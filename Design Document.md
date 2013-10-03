@@ -50,7 +50,7 @@ SLogo will be implemented using the Model-View-Controller (MVC) architecture whi
 * View is responsible for painting the trace of the activeTurtle according to the TurtleTrace.
 
 #Primary Classes and Methods
-###As the controller is the API interface between the front end and backend, it was important for us to define it before beginning the project
+### The controller is the API interface between the frontend and backend
 
 ```java
 Controller
@@ -77,6 +77,56 @@ Public void setBackgroundColor( )
 Public AGColor getBackgroundColor( )
 Public void setActiveTurtle( int turtleId )
 ```
+
+### TurtleTrace Class
+
+```java
+
+TurtleTrace
+
+Attributes
+
+List<TurtleCommand> commandList;
+Error error;
+
+Methods
+
+// Returns a list of TurtleCommands which are described below
+Public List<TurtleCommand> getCommandList( )
+
+// If parse error occurs, can get error message using this method
+Public Error getError( )
+
+
+```
+
+### TurtleCommand Class
+
+```java
+
+TurtleCommand
+
+Attribute
+
+int x;
+int y;
+double direction;
+bool isPenUp;
+
+Methods
+
+// Just getters so view can READ ONLY these objects
+public int getX()
+
+public int getY()
+
+public double getDirection()
+
+public bool isPenUp( )
+
+
+```
+
 
 #Example code
 ##1 Draw Turtle and Trace using TurtleTrace 
