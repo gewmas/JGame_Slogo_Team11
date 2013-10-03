@@ -127,9 +127,29 @@ public bool isPenUp( )
 
 ```
 
+### SLogoError Class
+
+```java
+
+SlogoError
+
+Attributes
+
+String Name;
+String Description;
+
+Methods
+
+// Getters of error messages
+public String getName( )
+public String getDescription( )
+
+
+```
+
 
 #Example code
-##1 Draw Turtle and Trace using TurtleTrace 
+##1. Draw Turtle and Trace using TurtleTrace 
 For View to get TurtleTrace to draw, calling the function in Controller:
 ```java
 public TurtleTrace getTurtleTrace( );
@@ -164,18 +184,25 @@ public void paintFrame(){
 }
 ```
 
-## 2 Pass command string to Controller
+## 2. Pass command string to Controller
 View uses the following function to pass the command string to the controller and wait for Model to update the TurtleTrace of Turtle.
 
 ```java
-controller.interpretCommand(commands); //because we are implementing multithreaded program, the view will have to wait for the function complete
+controller.interpretCommand(commands); //because we are not implementing multithreaded program, the view will have to wait for the function complete
 ```
-
-## 3
- // Fabio, maybe talk about how to update the TurtleTrace when parsing the commands?
 
 #Alternatives
 
+An alternative design for this code would be to not have a controller but simply a view and model. The reason we decided to include the controller as a broker between these two classes is the fact that we have state that will be updated soley by the model but accessed by the view. It therefore make sense to encapsulate this data in a third class so that the access and manipulation of its state could be handled differently for the other two classes.
+
 #Role
+
+### Fabio & Yujua
+
+Fabio and Yujua will be working on the backend of the program. He will be responsible for building the parser and language interpreter. They will write the controller API and then implement the model and parser class. These will in turn call command classes that will execute the commands of the script and return the TurtleCommand's to be added to TurtleTrace.
+
+### Adam and Alex 
+
+Adam and Alex will be working on the frontend of the program. They are responsible of handling all user events, building the GUI and sending data back to the controller in order to be interpreted. They will also need to update the turtle regularly with data given to them by controller.
 
 
