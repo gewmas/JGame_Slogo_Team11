@@ -1,6 +1,3 @@
-Design Document
-======
-
 #Design Goal  – Front End
 
 The front end object will contain a number of modules to be rendered as the UI for SLogo. The rendered modules are Display, Turtle-variable state, User-defined-variable state, and User inputs (this module is comprised of Command line and Toggle controls).  
@@ -12,11 +9,11 @@ The main form of sending data to the backend will be an interpretCommand method,
 #Primary Classes and Methods
 	
 The main parts of the GUI are:
-•	Display - paints the current position of the turtle, as well as lines drawn by the pen
-•	Command line - similar to MATLAB command window, displays past commands above which can be clicked to be executed, and allows the user to input new commands. Scrollable.
-•	Turtle variables - displays turtle-variables about the current turtle, for example: x,y coordinates, current angular direction etc. This module hovers on Display window and can be toggled off if the user desires.
-•	User-defined variables - shows the variables created by the user and their values, which can be edited by the user. Similar to MATLAB workspace window.
-•	Toggle controls - contains toggle buttons to turn certain features on and off.
+* Display - paints the current position of the turtle, as well as lines drawn by the pen
+* Command line - similar to MATLAB command window, displays past commands above which can be clicked to be executed, and allows the user to input new commands. Scrollable.
+* Turtle variables - displays turtle-variables about the current turtle, for example: x,y coordinates, current angular direction etc. This module hovers on Display window and can be toggled off if the user desires.
+* User-defined variables - shows the variables created by the user and their values, which can be edited by the user. Similar to MATLAB workspace window.
+* Toggle controls - contains toggle buttons to turn certain features on and off.
 There will be a basic GUI window super class, which each specialized window can then extend in order to implement their individual features. The final display window will contain each of these GUI elements organized in a user-friendly way.
 
 #Example Code
@@ -48,14 +45,14 @@ The communication pathway between the frontend and the backend can be extended, 
 The back end will takes the command string from front end and update the TurtleTrace of the Turtle and the front end can update the painting according to the trace.
 
 SLogo will be implemented using the Model-View-Controller (MVC) architecture and therefore there are three main classes, Model, View and Controller. 
-##Controller is responsible to store instances of Turtle and servers interface for View and Model. View will call function in Controller to pass command strings to Model, set activeTurtle and get multiple properties of the activeTurtle, background color.  Model will update the TurtleTrace of the activeTurtle.
-##Model is responsible to parse the command strings, update muliple properties and TurtleTrace of Turtle.
-##View is responsible to paint the trace of activeTurtle according to the TurtleTrace.
+* Controller is responsible to store instances of Turtle and servers interface for View and Model. View will call function in Controller to pass command strings to Model, set activeTurtle and get multiple properties of the activeTurtle, background color.  Model will update the TurtleTrace of the activeTurtle.
+* Model is responsible to parse the command strings, update muliple properties and TurtleTrace of Turtle.
+* View is responsible to paint the trace of activeTurtle according to the TurtleTrace.
 
 #Primary Classes and Methods
 
 #Example code
-##Draw Turtle and Trace using TurtleTrace 
+##1 Draw Turtle and Trace using TurtleTrace 
 For View to get TurtleTrace to draw, calling the function in Controller:
 ```java
 public TurtleTrace getTurtleTrace( );
@@ -88,7 +85,15 @@ public void paintFrame(){
 }
 ```
 
-## … // Fabio, maybe talk about how to update the TurtleTrace when parsing the commands?
+## 2 Pass command string to Controller
+View use following function to pass command string to controller and wait for Model to update the TurtleTrace of Turtle.
+
+```java
+controller.interpretCommand(commands); //because we are implementing multithreaded program, the view will have to wait for the function complete
+```
+
+## 3
+ // Fabio, maybe talk about how to update the TurtleTrace when parsing the commands?
 
 #Alternatives
 
