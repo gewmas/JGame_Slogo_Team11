@@ -162,7 +162,8 @@ public TurtleTrace getTurtleTrace( );
 ```
 To interpret the Trace, first check the Error. If there is any, it means that Model failed to parse the previous command and stored the error information in Error. The View can then show the error information to the user.
 ```java
-if(!getError().empty()) System.out.println(getError()); //The format of Error is not decided yet, may be String.
+if(!getError().empty()) System.out.println(getError()); 
+
 ```
 If there is no error, View can look at the List of TurtleCommand and draw.
 ```java
