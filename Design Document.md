@@ -18,6 +18,8 @@ There will be a basic GUI window super class, which each specialized window can 
 
 #Example Code
 
+##1
+
 In order to parse the user command, the command line will have an ActionListener that processes user input. The ActionListener will then call interpretCommand whenever a string is entered.
 
 ```java
@@ -36,6 +38,50 @@ loop{
    paintTurtleCommands();
 }
 ```
+
+## 2. Draw Turtle and Trace using TurtleTrace 
+For View to get TurtleTrace to draw, calling the function in Controller:
+```java
+public TurtleTrace getTurtleTrace( );
+```
+To interpret the Trace, first check the Error. If there is any, it means that Model failed to parse the previous command and stored the error information in Error. The View can then show the error information to the user.
+```java
+if(!getError().empty()) System.out.println(getError()); 
+
+```
+If there is no error, View can look at the List of TurtleCommand and draw.
+```java
+ commandList = getCommandList( )
+```
+The information for drawing Turtle includes x, y, direction and isPenUp. More attributes could be added to the TurtleCommand like color.
+
+In general, the method to draw the trace and the turtle is as below:
+```java
+public void paintFrame(){
+       TurtleTrace turtleTrace = controller.getTurtleTrace(); // Notice that the return value could extend to List of TurtleTrace, then need to draw multiple turtle and traces
+       if(turtleTrace.getError()) … //Print some error info
+
+       List<TurtleCommand> turtleCommands = turtleTrace.getCommandList( );
+       for(TurtleCommand turtleCommand : turtleCommands){
+       	      if (penUp) drawLine(turtleCommand.prevX,turtleCommand.prevY,turtleCommand.x,turtleCommand.y);
+              //Not sure if we can draw a temp turtle according to every x,y,direction and disappear after we draw the next position to do the animation? 
+              …
+              //Draw trace according to the x,y and the prevX, prevY and isPenUp
+              ...
+       }
+       //Draw turtle according to the color or image of the turtle, and x,y,direction in turtleCommand
+       drawTurtle(turtleCommand.x,turtleCommand.y);
+              ...
+}
+```
+
+## 3. Pass command string to Controller
+View uses the following function to pass the command string to the controller and wait for Model to update the TurtleTrace of Turtle.
+
+```java
+controller.interpretCommand(commands); //because we are not implementing multithreaded program, the view will have to wait for the function complete
+```
+
 #Alternatives
 
 The communication pathway between the frontend and the backend can be extended, so that each window has its own method that passes commands to the backend, or even sets state in the backend directly. However, we found that this implementation would be too restrictive, as it would introduce a number of class specific communication pathways, compared to a more general method of passing everything as string commands. This also means that the backend's command parser will be able to parse everything the frontend sends without any modifications.
@@ -155,48 +201,6 @@ public String getDescription( )
 
 
 #Example code
-##1. Draw Turtle and Trace using TurtleTrace 
-For View to get TurtleTrace to draw, calling the function in Controller:
-```java
-public TurtleTrace getTurtleTrace( );
-```
-To interpret the Trace, first check the Error. If there is any, it means that Model failed to parse the previous command and stored the error information in Error. The View can then show the error information to the user.
-```java
-if(!getError().empty()) System.out.println(getError()); 
-
-```
-If there is no error, View can look at the List of TurtleCommand and draw.
-```java
- commandList = getCommandList( )
-```
-The information for drawing Turtle includes x, y, direction and isPenUp. More attributes could be added to the TurtleCommand like color.
-
-In general, the method to draw the trace and the turtle is as below:
-```java
-public void paintFrame(){
-       TurtleTrace turtleTrace = controller.getTurtleTrace(); // Notice that the return value could extend to List of TurtleTrace, then need to draw multiple turtle and traces
-       if(turtleTrace.getError()) … //Print some error info
-
-       List<TurtleCommand> turtleCommands = turtleTrace.getCommandList( );
-       for(TurtleCommand turtleCommand : turtleCommands){
-       	      if (penUp) drawLine(turtleCommand.prevX,turtleCommand.prevY,turtleCommand.x,turtleCommand.y);
-              //Not sure if we can draw a temp turtle according to every x,y,direction and disappear after we draw the next position to do the animation? 
-              …
-              //Draw trace according to the x,y and the prevX, prevY and isPenUp
-              ...
-       }
-       //Draw turtle according to the color or image of the turtle, and x,y,direction in turtleCommand
-       drawTurtle(turtleCommand.x,turtleCommand.y);
-              ...
-}
-```
-
-## 2. Pass command string to Controller
-View uses the following function to pass the command string to the controller and wait for Model to update the TurtleTrace of Turtle.
-
-```java
-controller.interpretCommand(commands); //because we are not implementing multithreaded program, the view will have to wait for the function complete
-```
 
 #Alternatives
 
@@ -206,7 +210,7 @@ An alternative design for this code would be to not have a controller but simply
 
 ### Fabio & Yujua
 
-Fabio and Yujua will be working on the backend of the program. He will be responsible for building the parser and language interpreter. They will write the controller API and then implement the model and parser class. These will in turn call command classes that will execute the commands of the script and return the TurtleCommand's to be added to TurtleTrace.
+Fabio and Yuhua will be working on the backend of the program. Yuhua will be responsible for building the parser and language interpreter. They will write the controller API and then implement the model and parser class. These will in turn call command classes that will execute the commands of the script and return the TurtleCommand's to be added to TurtleTrace.
 
 ### Adam and Alex 
 
