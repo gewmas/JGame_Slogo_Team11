@@ -100,7 +100,6 @@ SLogo will be implemented using the Model-View-Controller (MVC) architecture whi
 
 ```java
 Controller
-Methods
 
 // Take the commands typed by the user and updates the TurtleTrace accordingly.
 Public void interpretCommand ( String userInput )
@@ -122,6 +121,19 @@ Public void setTurtlePenColor( )
 Public void setBackgroundColor( )
 Public AGColor getBackgroundColor( )
 Public void setActiveTurtle( int turtleId )
+```
+#### In back-end, we have class Model, Parser, Command.
+```java
+Abstract Model{
+     public List<TurtleCommand> parseInput(String userInput);
+}
+Abstract Parser{ }{
+     public void parserCommand(String commandInput);
+}
+Abstract Command{
+     int numberOfParameters;
+     public void execute( List<String> );
+}
 ```
 
 ### TurtleTrace Class
@@ -202,13 +214,45 @@ public String getDescription( )
 
 #Example code
 
+Controller call following function in Model to pass one command string given by View and Model partition it into list of strings.
+
+```java
+public List<TurtleCommand> parseInput(String userInput){
+      //userInput = "repeat 3 [ fd 10 rt 90 ]"
+      ...
+      //return List of {"repeat", "3", "[", "fd", "10", "rt", "90", "]"}
+}
+```
+
+Then the Model will ask Parser to parse the command list.
+```java
+Abstract Parser{ }{
+     public void parserCommand(String commandInput){
+         //look at the Keyword and use corresponding command
+         
+     }
+}
+```
+
+```java
+Abstract Command{
+     int numberOfParameters;
+     public void execute( List<String> ){
+         //will check if the command list satisfy the requirement to execute the specific command, if not, call Parser again.
+     }
+}
+```
+
+For the example above, Parser will look at "repeat" and remove "repeat" and pass {"3", "[", "fd", "10", "rt", "90", "]"} to RepeatCommand.
+Then RepeatCommand will execute the command list between "[" and "]" for 3 times by calling Parser again.
+
 #Alternatives
 
 An alternative design for this code would be to not have a controller but simply a view and model. The reason we decided to include the controller as a broker between these two classes is the fact that we have state that will be updated soley by the model but accessed by the view. It therefore make sense to encapsulate this data in a third class so that the access and manipulation of its state could be handled differently for the other two classes.
 
 #Role
 
-### Fabio & Yujua
+### Fabio & Yuhua
 
 Fabio and Yuhua will be working on the backend of the program. Yuhua will be responsible for building the parser and language interpreter. They will write the controller API and then implement the model and parser class. These will in turn call command classes that will execute the commands of the script and return the TurtleCommand's to be added to TurtleTrace.
 
