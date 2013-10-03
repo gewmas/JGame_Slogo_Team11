@@ -1,4 +1,4 @@
-#Design Goal  – Front End
+#Design Goals  – Front End
 
 The front end object will contain a number of modules to be rendered as the UI for SLogo. The rendered modules are Display, Turtle-variable state, User-defined-variable state, and User inputs (this module is comprised of Command line and Toggle controls).  
 
@@ -42,12 +42,12 @@ The communication pathway between the frontend and the backend can be extended, 
 
 
 #Design Goals - Back End
-The back end will takes the command string from front end and update the TurtleTrace of the Turtle and the front end can update the painting according to the trace.
+The back end will take the command string from the front end and update the TurtleTrace of the Turtle. The front end can then update the view according to the trace.
 
-SLogo will be implemented using the Model-View-Controller (MVC) architecture and therefore there are three main classes, Model, View and Controller. 
-* Controller is responsible to store instances of Turtle and servers interface for View and Model. View will call function in Controller to pass command strings to Model, set activeTurtle and get multiple properties of the activeTurtle, background color.  Model will update the TurtleTrace of the activeTurtle.
-* Model is responsible to parse the command strings, update muliple properties and TurtleTrace of Turtle.
-* View is responsible to paint the trace of activeTurtle according to the TurtleTrace.
+SLogo will be implemented using the Model-View-Controller (MVC) architecture which has three main classes, Model, View and Controller. 
+* Controller is responsible for storing instances of Turtle and servers interface for View and Model. View will call a function in Controller to pass command strings to Model, set activeTurtle and get multiple properties of the activeTurtle, background color.  Model will update the TurtleTrace of the activeTurtle.
+* Model is responsible for parsing the command strings, updating muliple properties of the TurtleTrace of Turtle.
+* View is responsible for painting the trace of the activeTurtle according to the TurtleTrace.
 
 #Primary Classes and Methods
 ```java
@@ -74,7 +74,7 @@ For View to get TurtleTrace to draw, calling the function in Controller:
 ```java
 public TurtleTrace getTurtleTrace( );
 ```
-To interpret the Trace, first check the Error. If there is any, it means that Model fails to parse the previou command and store the error information in Error. Then the View can show the error information to the user.
+To interpret the Trace, first check the Error. If there is any, it means that Model failed to parse the previous command and stored the error information in Error. The View can then show the error information to the user.
 ```java
 if(!getError().empty()) System.out.println(getError()); //The format of Error is not decided yet, may be String.
 ```
@@ -92,18 +92,20 @@ public void paintFrame(){
 
        List<TurtleCommand> turtleCommands = turtleTrace.getCommandList( );
        for(TurtleCommand turtleCommand : turtleCommands){
+       	      if (penUp) drawLine(turtleCommand.prevX,turtleCommand.prevY,turtleCommand.x,turtleCommand.y);
               //Not sure if we can draw a temp turtle according to every x,y,direction and disappear after we draw the next position to do the animation? 
               …
               //Draw trace according to the x,y and the prevX, prevY and isPenUp
               ...
        }
        //Draw turtle according to the color or image of the turtle, and x,y,direction in turtleCommand
+       drawTurtle(turtleCommand.x,turtleCommand.y);
               ...
 }
 ```
 
 ## 2 Pass command string to Controller
-View use following function to pass command string to controller and wait for Model to update the TurtleTrace of Turtle.
+View uses the following function to pass the command string to the controller and wait for Model to update the TurtleTrace of Turtle.
 
 ```java
 controller.interpretCommand(commands); //because we are implementing multithreaded program, the view will have to wait for the function complete
