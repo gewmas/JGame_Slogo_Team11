@@ -12,27 +12,49 @@ public class SumExpression extends Expression {
     }
 
     public void convert(List<String> cmdList, int begin) {
-        cmdList.remove(begin);
+        cmdList.remove(0);
         
         // sum sum 1 2 sum 3 4
         try
         {
             expression1 = new NumberExpression(Double.parseDouble(cmdList.get(begin)));
+            cmdList.remove(0);
         }
         catch(NumberFormatException e)
         {
-            expression1 = DefaultParser.parse(cmdList, begin);
+            expression1 = DefaultParser.parse(cmdList, 0);
         }
 
         try
         {
-            expression2 = new NumberExpression(Double.parseDouble(cmdList.get(begin+1)));
+            expression2 = new NumberExpression(Double.parseDouble(cmdList.get(begin)));
+            cmdList.remove(0);
         }
         catch(NumberFormatException e)
         {
-            expression1 = DefaultParser.parse(cmdList, begin+1);
+            expression2 = DefaultParser.parse(cmdList, 0);
         }
 
+    }
+
+    @Override
+    public Expression evaluate () {
+        if(!(expression1 instanceof NumberExpression)){
+            expression1 = expression1.evaluate();
+        }
+        
+        if(!(expression2 instanceof NumberExpression)){
+            expression2 = expression2.evaluate();
+        }
+        
+//        if(expression1 instanceof NumberExpression && expression2 instanceof NumberExpression){
+            NumberExpression exp1 = (NumberExpression) expression1;
+            NumberExpression exp2 = (NumberExpression) expression2;
+            return exp1.sum(exp2);
+//        }
+        
+        
+//        return null;
     }
 
 }

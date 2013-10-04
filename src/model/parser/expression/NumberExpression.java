@@ -7,8 +7,15 @@ public class NumberExpression extends Expression {
         number = d;
     }
     
-    public double evaluate(){
-        return number;
+    public Expression evaluate(){
+        return this;
     }
     
+    public Expression sum(NumberExpression rhs){
+        return new NumberExpression(getNumber()+rhs.getNumber());
+    }
+
+    public double getNumber () {
+        return number;
+    }
 }
