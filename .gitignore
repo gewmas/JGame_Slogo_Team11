@@ -6,5 +6,4 @@
 *.ear
 
 # Eclipse Files #
-*.classpath
-*.project
+
