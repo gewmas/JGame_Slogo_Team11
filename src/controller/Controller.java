@@ -11,7 +11,7 @@ public abstract class Controller {
     public abstract void interpretCommand (String userInput);
     
     // Returns the active TurtleTrace object which is outlined below
-    public abstract TurtleTrace getTurtleTrace();
+    public abstract List<TurtleTrace> getTurtleTrace();
 
     // Getters and setters of turtle so turtle object never directly manipulated by view
     public abstract void setTurtleColor();

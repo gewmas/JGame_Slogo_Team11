@@ -9,13 +9,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import model.parser.*;
+import model.parser.expression.*;
 
 public class TestParser {
-    Parser parser;
+//    Parser parser;
     
     @Before
     public void setUp () throws Exception {
-        parser = new DefaultParser();
+//        parser = new DefaultParser();
     }
 
     @After
@@ -24,8 +25,8 @@ public class TestParser {
 
     @Test
     public void testParse() {
-        String answer = parser.parse(Arrays.asList("sum", "5", "sum", "8", "9"));
-        assertTrue(answer.equals("22"));
+        Expression answer = DefaultParser.parse(Arrays.asList("sum", "5", "sum", "8", "9"), 0);
+//        assertTrue(answer.equals("22"));
         
     }
 
