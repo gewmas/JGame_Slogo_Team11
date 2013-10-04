@@ -9,7 +9,7 @@ public abstract class Controller {
     
     // Take the commands typed by the user and updates the TurtleTrace accordingly.
     public abstract void interpretCommand (String userInput);
-
+    
     // Returns the active TurtleTrace object which is outlined below
     public abstract TurtleTrace getTurtleTrace();
 
