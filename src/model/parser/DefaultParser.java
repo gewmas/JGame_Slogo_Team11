@@ -1,36 +1,34 @@
 package model.parser;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import model.parser.expression.*;
 
 public class DefaultParser extends Parser {
-//    private static List<String> commandInput;
 
-    public DefaultParser() {
+    public List<Expression> execute(List<String> commandInput){
+        List<Expression> expressionList = new ArrayList<Expression>();
         
-    }
-
-    public static Expression parse(List<String> commandInput, int begin) {
-        // {"sum", "5", "sum", "8", "9"}
-
-        if(commandInput.get(0).equals("sum")) {
-            return new SumExpression(commandInput, begin);
+        while(!commandInput.isEmpty()){
+            expressionList.add(DefaultParser.parse(commandInput));
         }
         
-        return null;
-
-//        return "22";
+        return expressionList;
     }
     
-    public static void main(String[] args){
-        List<String> commandInput = new ArrayList<String>(Arrays.asList("sum", "sum", "2", "sum", "1", "sum", "5", "sum", "8", "9", "10"));
-//        List<String> commandInput = new ArrayList<String>(Arrays.asList("sum", "9", "10"));
-        Expression answer = DefaultParser.parse(commandInput, 0);
-//        System.out.println(answer.evaluate());
-        Expression evl = answer.evaluate();
+    public static Expression parse (List<String> commandInput) {
+        String s = commandInput.get(0);
+
+        if (s.equals("sum")){
+            return new SumExpression(commandInput);
+        }
+        else if (s.equals("fd")){
+            return new ForwardExpression(commandInput);
+        }
+        else if (s.equals("repeat")){
+            return new RepeatExpression(commandInput);
+        }
+
+        return null;
     }
-
-
 }

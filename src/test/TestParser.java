@@ -25,7 +25,7 @@ public class TestParser {
 
     @Test
     public void testParse() {
-        Expression answer = DefaultParser.parse(Arrays.asList("sum", "5", "sum", "8", "9"), 0);
+        Expression answer = DefaultParser.parse(Arrays.asList("sum", "5", "sum", "8", "9"));
 //        assertTrue(answer.equals("22"));
         
     }

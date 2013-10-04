@@ -7,32 +7,32 @@ public class SumExpression extends Expression {
     Expression expression1;
     Expression expression2;
 
-    public SumExpression(List<String> cmdList, int begin) {
-        convert(cmdList, begin);
+    public SumExpression(List<String> cmdList) {
+        convert(cmdList);
     }
 
-    public void convert(List<String> cmdList, int begin) {
+    public void convert(List<String> cmdList) {
         cmdList.remove(0);
         
         // sum sum 1 2 sum 3 4
         try
         {
-            expression1 = new NumberExpression(Double.parseDouble(cmdList.get(begin)));
+            expression1 = new NumberExpression(Double.parseDouble(cmdList.get(0)));
             cmdList.remove(0);
         }
         catch(NumberFormatException e)
         {
-            expression1 = DefaultParser.parse(cmdList, 0);
+            expression1 = DefaultParser.parse(cmdList);
         }
 
         try
         {
-            expression2 = new NumberExpression(Double.parseDouble(cmdList.get(begin)));
+            expression2 = new NumberExpression(Double.parseDouble(cmdList.get(0)));
             cmdList.remove(0);
         }
         catch(NumberFormatException e)
         {
-            expression2 = DefaultParser.parse(cmdList, 0);
+            expression2 = DefaultParser.parse(cmdList);
         }
 
     }
