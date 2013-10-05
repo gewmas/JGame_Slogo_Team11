@@ -27,9 +27,11 @@ public class DefaultModel extends Model {
         
         
         DefaultModel model = new DefaultModel();
+//        model.updateTrace("sum sum 2 sum 1 sum 5 sum 8 9 10");
 //        model.updateTrace("fd sum sum 2 sum 1 sum 5 sum 8 9 10");
 //        model.updateTrace("repeat sum 1 2 [ fd sum 1 2 ]");
-        model.updateTrace("repeat sum 1 2 [ fd sum 1 2 ] fd sum 1 2");
+//        model.updateTrace("repeat sum 1 2 [ fd sum 1 2 ] fd sum 1 2");
+        model.updateTrace("repeat sum 1 2 [ fd sum 1 2 repeat 3 [ fd sum 1 2 ] ] fd sum 1 2");
         
     }
 }
