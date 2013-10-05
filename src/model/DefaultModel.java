@@ -30,6 +30,8 @@ public class DefaultModel extends Model {
         TurtleTrace turtleTrace = new TurtleTrace();
         for (Expression expression : expressionList) {
             
+            //Here check IF expression is of type that doesnt return turtleCommand. 
+            
             latestTurtleCommand = expression.createTurtleCommand(latestTurtleCommand);
             TurtleTrace.addTurtleCommand(latestTurtleCommand);
             
