@@ -64,16 +64,15 @@ public class RepeatExpression extends Expression {
     }
 
     @Override
+    // Must think about whether expressions being evaluated can check for variables defined outside of repeat scope!
     public List<Expression> evaluate() {
     	NumberExpression repeatNumberExp = (NumberExpression) expression1;
     	// For number of specified repeats, execute the commands within repeat brackets
     	List<Expression> finalExpressionList = new ArrayList<Expression>();
-    	for (int i = 0; i < repeatNumberExp.getNumber(); i++) {
-			
+    	for (int i = 0; i < repeatNumberExp.getNumber(); i++) {	
     		for (Expression expression : expression2) {
     			finalExpressionList.addAll(expression.evaluate());
 			}
-    		
 		}
     	return finalExpressionList;
     }

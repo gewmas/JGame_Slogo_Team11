@@ -39,8 +39,8 @@ public class DefaultModel extends Model {
 //        model.updateTrace("repeat sum 1 2 [ fd sum 1 2 ]");
 //        model.updateTrace("repeat :count  [ fd sum 1 2 ]");
 //        model.updateTrace("repeat sum 1 2 [ fd sum 1 2 ] fd sum 1 2");
-//        model.updateTrace("repeat sum 1 2 [ fd sum 1 2 repeat 3 [ fd sum 1 2 ] ] fd sum 1 2");
-        model.updateTrace("to dash [ :count ] [ repeat :count  [   fd 4  fd 4 ]  ]   ");
+        model.updateTrace("repeat sum 1 2 [ fd sum 1 2 repeat 3 [ fd sum 1 2 ] ] fd sum 1 2");
+//        model.updateTrace("to dash [ :count ] [ repeat :count  [   fd 4  fd 4 ]  ]   ");
         
     }
 }
