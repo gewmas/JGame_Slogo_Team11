@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import model.parser.expression.*;
+import model.expression.*;
 
 public class DefaultParser extends Parser {
     private static Map<String, Expression> functionMap;

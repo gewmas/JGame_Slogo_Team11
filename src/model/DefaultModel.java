@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import model.parser.DefaultParser;
 import model.parser.Parser;
-import model.parser.expression.Expression;
+import model.expression.Expression;
 
 public class DefaultModel extends Model {
     private static Map<String, Expression> functionMap;

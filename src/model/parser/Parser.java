@@ -2,7 +2,7 @@ package model.parser;
 
 import java.util.List;
 import java.util.Map;
-import model.parser.expression.Expression;
+import model.expression.Expression;
 
 public abstract class Parser {
 
