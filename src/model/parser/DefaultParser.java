@@ -10,10 +10,11 @@ public class DefaultParser extends Parser {
     private static Map<String, Expression> functionMap;
 
     public DefaultParser(){
-        functionMap = new HashMap<String, Expression>();
     }
     
-    public List<Expression> execute(List<String> commandInput){
+    public List<Expression> execute(List<String> commandInput, Map<String, Expression> functionMap){
+        DefaultParser.functionMap = functionMap;
+        
         List<Expression> expressionList = new ArrayList<Expression>();
         
         while(!commandInput.isEmpty()){
@@ -38,7 +39,7 @@ public class DefaultParser extends Parser {
             commandInput.remove(0);
             functionMap.put(commandInput.get(0), new FunctionExpression(commandInput));
             // return ???
-        }else if(commandInput.get(0).indexOf(0) == ':'){
+        }else if(commandInput.get(0).charAt(0) == ':'){
             return new VariableExpression(commandInput);
         }
 

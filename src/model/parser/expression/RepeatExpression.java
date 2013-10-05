@@ -38,10 +38,18 @@ public class RepeatExpression extends Expression {
             }
         }
 
-        expression1 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
-//        expression2 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex)));
-        //"repeat sum 1 2 [ fd sum 1 2 repeat 3 [ fd sum 1 2 ] ] fd sum 1 2"
+        try
+        {
+            expression1 = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+//            cmdList.remove(0);
+        }
+        catch(NumberFormatException e)
+        {
+            expression1 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
+        }
         
+//        expression1 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
+
         List<String> expression2CmdList = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
         while(!expression2CmdList.isEmpty()){
             expression2.add(DefaultParser.parse(expression2CmdList));
