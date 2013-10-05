@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import controller.Turtle;
+import controller.TurtleCommand;
+import controller.TurtleTrace;
 import model.parser.DefaultParser;
 import model.parser.Parser;
 import model.expression.Expression;
@@ -23,7 +26,16 @@ public class DefaultModel extends Model {
         Parser parser = new DefaultParser();
         List<Expression> expressionList = parser.execute(commandInput, functionMap);
         
-//        Expression evl = answer.evaluate();
+        TurtleCommand latestTurtleCommand = new TurtleCommand(0, 0, 90);
+        TurtleTrace turtleTrace = new TurtleTrace();
+        for (Expression expression : expressionList) {
+            
+            latestTurtleCommand = expression.createTurtleCommand(latestTurtleCommand);
+            TurtleTrace.addTurtleCommand(latestTurtleCommand);
+            
+        }
+        
+        //Expression evl = answer.evaluate();
     }
 
     public static void main(String[] args){
