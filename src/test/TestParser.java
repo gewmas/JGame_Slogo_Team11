@@ -8,6 +8,10 @@ import model.Model;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
+import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
+
 import model.parser.*;
 import model.parser.expression.*;
 
@@ -27,6 +31,7 @@ public class TestParser {
     public void testParse() {
         Expression answer = DefaultParser.parse(Arrays.asList("sum", "5", "sum", "8", "9"));
 //        assertTrue(answer.equals("22"));
+    	
         
     }
 

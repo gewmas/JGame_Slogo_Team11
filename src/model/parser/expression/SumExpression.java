@@ -1,5 +1,6 @@
 package model.parser.expression;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SumExpression extends TwoParameterExpression {
@@ -11,23 +12,21 @@ public class SumExpression extends TwoParameterExpression {
     }
 
     @Override
-    public Expression evaluate () {
+    public List<Expression> evaluate () {
         if(!(expression1 instanceof NumberExpression)){
-            expression1 = expression1.evaluate();
+            expression1 = expression1.evaluate().get(0);
         }
-        
+
         if(!(expression2 instanceof NumberExpression)){
-            expression2 = expression2.evaluate();
+            expression2 = expression2.evaluate().get(0);
         }
-        
-//        if(expression1 instanceof NumberExpression && expression2 instanceof NumberExpression){
-            NumberExpression exp1 = (NumberExpression) expression1;
-            NumberExpression exp2 = (NumberExpression) expression2;
-            return exp1.sum(exp2);
-//        }
-        
-        
-//        return null;
+
+        List<Expression> finalExpressionList = new ArrayList<Expression>();
+
+        NumberExpression exp1 = (NumberExpression) expression1;
+        NumberExpression exp2 = (NumberExpression) expression2;
+        finalExpressionList.add(exp1.sum(exp2));
+        return finalExpressionList;
     }
 
 

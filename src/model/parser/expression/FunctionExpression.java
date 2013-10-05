@@ -95,9 +95,10 @@ public class FunctionExpression extends Expression {
     }
 
     @Override
-    public Expression evaluate () {
+    public List<Expression> evaluate () {
         // TODO Auto-generated method stub
-        return null;
+        List<Expression> finalExpressionList = new ArrayList<Expression>();
+        return finalExpressionList;
     }
 
 }
