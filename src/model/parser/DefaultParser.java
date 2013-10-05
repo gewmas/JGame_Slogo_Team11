@@ -1,11 +1,18 @@
 package model.parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import model.parser.expression.*;
 
 public class DefaultParser extends Parser {
+    private static Map<String, Expression> functionMap;
 
+    public DefaultParser(){
+        functionMap = new HashMap<String, Expression>();
+    }
+    
     public List<Expression> execute(List<String> commandInput){
         List<Expression> expressionList = new ArrayList<Expression>();
         
@@ -27,6 +34,12 @@ public class DefaultParser extends Parser {
         }
         else if (s.equals("repeat")){
             return new RepeatExpression(commandInput);
+        }else if(s.equals("to")){
+            commandInput.remove(0);
+            functionMap.put(commandInput.get(0), new FunctionExpression(commandInput));
+            // return ???
+        }else if(commandInput.get(0).indexOf(0) == ':'){
+            return new VariableExpression(commandInput);
         }
 
         return null;

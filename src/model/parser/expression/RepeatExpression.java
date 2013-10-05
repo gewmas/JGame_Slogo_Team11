@@ -6,10 +6,11 @@ import model.parser.DefaultParser;
 
 public class RepeatExpression extends Expression {
     Expression expression1;
-    Expression expression2;
-//    List<Expression> expression2;
+//    Expression expression2;
+    List<Expression> expression2;
 
     public RepeatExpression(List<String> cmdList){
+        expression2 = new ArrayList<Expression>();
         convert(cmdList);
     }
 
@@ -38,13 +39,13 @@ public class RepeatExpression extends Expression {
         }
 
         expression1 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
-        expression2 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex)));
+//        expression2 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex)));
         //"repeat sum 1 2 [ fd sum 1 2 repeat 3 [ fd sum 1 2 ] ] fd sum 1 2"
         
-        /*List<String> expression2CmdList = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
+        List<String> expression2CmdList = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
         while(!expression2CmdList.isEmpty()){
             expression2.add(DefaultParser.parse(expression2CmdList));
-        }*/
+        }
         
         for(int i = 0; i <= closeBracketIndex; i++){
             cmdList.remove(0);
