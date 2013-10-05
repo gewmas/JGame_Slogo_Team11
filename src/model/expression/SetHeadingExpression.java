@@ -1,4 +1,4 @@
-package model.parser.expression;
+package model.expression;
 
 import java.util.List;
 
