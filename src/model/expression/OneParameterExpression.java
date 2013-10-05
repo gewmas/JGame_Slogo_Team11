@@ -26,9 +26,8 @@ public class OneParameterExpression extends Expression {
     }
     
     @Override
-    public Expression evaluate () {
-        expression = expression.evaluate();
-        return this;
+    public List<Expression> evaluate () {
+        return null;
     }
 
 }

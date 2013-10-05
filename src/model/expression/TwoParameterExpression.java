@@ -38,7 +38,7 @@ public class TwoParameterExpression extends Expression {
     }
 
     @Override
-    public Expression evaluate () {
+    public List<Expression> evaluate () {
         // TODO Auto-generated method stub
         return null;
     }
