@@ -7,6 +7,7 @@ import model.parser.DefaultParser;
 public class RepeatExpression extends Expression {
     Expression expression1;
     Expression expression2;
+//    List<Expression> expression2;
 
     public RepeatExpression(List<String> cmdList){
         convert(cmdList);
@@ -16,14 +17,16 @@ public class RepeatExpression extends Expression {
     public void convert (List<String> cmdList) {
         cmdList.remove(0);
 
-        int openBracketIndex = 0;
-        int closeBracketIndex = 0;
+        int openBracketIndex = -1;
+        int closeBracketIndex = -1;
         int bracketNumber = 0;
 
         //Problem with following codes if repeat [] inside another repeat
         for(int i = 0; i < cmdList.size(); i++){
             if(cmdList.get(i).equals("[")){
-                openBracketIndex = i;
+                if(openBracketIndex == -1){
+                    openBracketIndex = i;
+                }
                 bracketNumber++;
             }else if(cmdList.get(i).equals("]")){
                 bracketNumber--;
@@ -36,6 +39,12 @@ public class RepeatExpression extends Expression {
 
         expression1 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
         expression2 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex)));
+        //"repeat sum 1 2 [ fd sum 1 2 repeat 3 [ fd sum 1 2 ] ] fd sum 1 2"
+        
+        /*List<String> expression2CmdList = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
+        while(!expression2CmdList.isEmpty()){
+            expression2.add(DefaultParser.parse(expression2CmdList));
+        }*/
         
         for(int i = 0; i <= closeBracketIndex; i++){
             cmdList.remove(0);
