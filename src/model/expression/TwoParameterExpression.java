@@ -1,5 +1,6 @@
 package model.expression;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.parser.DefaultParser;
 
@@ -38,9 +39,10 @@ public class TwoParameterExpression extends Expression {
     }
 
     @Override
-    public Expression evaluate () {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Expression> evaluate () {
+        List<Expression> finalExpressionList = new ArrayList<Expression>();
+        return finalExpressionList;
     }
+    
 
 }

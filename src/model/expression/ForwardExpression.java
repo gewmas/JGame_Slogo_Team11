@@ -1,4 +1,4 @@
-package model.parser.expression;
+package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ public class ForwardExpression extends OneParameterExpression {
 
     public ForwardExpression (List<String> cmdList) {
         super(cmdList);
-
+    }
     
     @Override
     public List<Expression> evaluate () {
