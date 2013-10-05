@@ -33,7 +33,7 @@ public class DefaultModel extends Model {
             //Here check IF expression is of type that doesnt return turtleCommand. 
             
             latestTurtleCommand = expression.createTurtleCommand(latestTurtleCommand);
-            TurtleTrace.addTurtleCommand(latestTurtleCommand);
+            turtleTrace.add(latestTurtleCommand);
             
         }
         

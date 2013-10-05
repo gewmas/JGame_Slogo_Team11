@@ -4,9 +4,18 @@ public class TurtleCommand {
     double x;
     double y;
     double direction;
+    boolean isPenDown;
+    boolean isVisible;
     //color
-    //isPenDown
     
+    public boolean isVisible () {
+        return isVisible;
+    }
+
+    public void setVisible (boolean isVisible) {
+        this.isVisible = isVisible;
+    }
+
     public TurtleCommand(double x, double y, double direction){
         this.x = x;
         this.y = y;
@@ -35,6 +44,14 @@ public class TurtleCommand {
 
     public void setDirection (double direction) {
         this.direction = direction;
+    }
+
+    public boolean isPenDown () {
+        return isPenDown;
+    }
+
+    public void setPenDown (boolean isPenDown) {
+        this.isPenDown = isPenDown;
     }
     
     
