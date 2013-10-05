@@ -1,5 +1,6 @@
 package model.parser.expression;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,8 +18,11 @@ public class NumberExpression extends Expression {
     }
 
     @Override
-    public Expression evaluate () {
-        return this;
+    public List<Expression> evaluate () {
+        // TODO Auto-generated method stub
+        List<Expression> finalExpressionList = new ArrayList<Expression>();
+        finalExpressionList.add(this);
+        return finalExpressionList;
     }
 
     public Expression sum (NumberExpression rhs) {

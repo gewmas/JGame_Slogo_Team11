@@ -1,5 +1,6 @@
 package model.parser.expression;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.parser.DefaultParser;
 
@@ -26,9 +27,10 @@ public class ForwardExpression extends Expression {
     }
     
     @Override
-    public Expression evaluate () {
-        expression = expression.evaluate();
-        return this;
+    public List<Expression> evaluate () {
+    	List<Expression> finalExpressionList = new ArrayList<Expression>();
+    	finalExpressionList.addAll(expression.evaluate());
+        return finalExpressionList;
     }
 
 }
