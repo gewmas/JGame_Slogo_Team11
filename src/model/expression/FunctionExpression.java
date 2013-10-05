@@ -1,10 +1,11 @@
-package model.parser.expression;
+package model.expression;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import model.parser.DefaultParser;
+import model.parser.*;
 
 public class FunctionExpression extends Expression {
     Map<String, Expression> variables;
