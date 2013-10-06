@@ -14,7 +14,7 @@ public class TestModel {
     
     @Before
     public void setUp () throws Exception {
-        model = new DefaultModel();
+//        model = new DefaultModel();
     }
 
     @After
