@@ -10,9 +10,30 @@ public class TurtleTrace {
         commandList.add(turtleCommand);
     }
     
+    public void add(List<TurtleCommand> turtleCommands){
+        for(TurtleCommand turtleCommand : turtleCommands){
+            commandList.add(turtleCommand);
+        }
+    }
+    
     public List<TurtleCommand> getCommandList () {
         return commandList;
     }
     
+    public void setTurtlePenUp(){
+        
+    }
+    
+    public void setTurtlePenDown(){
+        
+    }
+    
+    public void getTurtlePenColor(){
+        
+    }
+    
+    public void setTurtlePenColor(){
+        
+    }
     
 }

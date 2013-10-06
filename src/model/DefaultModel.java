@@ -11,6 +11,7 @@ import controller.TurtleTrace;
 import model.parser.DefaultParser;
 import model.parser.Parser;
 import model.expression.Expression;
+import model.expression.ForwardExpression;
 
 public class DefaultModel extends Model {
     private static Map<String, Expression> functionMap;
@@ -28,11 +29,13 @@ public class DefaultModel extends Model {
         
         TurtleCommand latestTurtleCommand = new TurtleCommand(0, 0, 90);
         TurtleTrace turtleTrace = new TurtleTrace();
+        
         for (Expression expression : expressionList) {
             
             //Here check IF expression is of type that doesnt return turtleCommand. 
-            
-            latestTurtleCommand = expression.createTurtleCommand(latestTurtleCommand);
+            ForwardExpression exp = (ForwardExpression) expression;
+            latestTurtleCommand = new TurtleCommand(latestTurtleCommand);
+            latestTurtleCommand = exp.createTurtleCommand(latestTurtleCommand);
             turtleTrace.add(latestTurtleCommand);
             
         }
@@ -40,7 +43,7 @@ public class DefaultModel extends Model {
         //Expression evl = answer.evaluate();
     }
 
-    public static void main(String[] args){
+   /* public static void main(String[] args){
         //      List<String> commandInput = new ArrayList<String>(Arrays.asList("sum", "sum", "2", "sum", "1", "sum", "5", "sum", "8", "9", "10"));
         //      List<String> commandInput = new ArrayList<String>(Arrays.asList("sum", "9", "10"));
 
@@ -56,5 +59,5 @@ public class DefaultModel extends Model {
         model.updateTrace("repeat sum 1 2 [ fd sum 1 2 repeat 3 [ fd sum 1 2 ] ] fd sum 1 2");
 //        model.updateTrace("to dash [ :count ] [ repeat :count  [   fd 4  fd 4 ]  ]   ");
         
-    }
+    }*/
 }

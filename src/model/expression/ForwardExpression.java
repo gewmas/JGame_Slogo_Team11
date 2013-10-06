@@ -19,15 +19,18 @@ public class ForwardExpression extends OneParameterExpression {
     }
 
     public TurtleCommand createTurtleCommand(TurtleCommand turtleCmd) {
-
+        expression = expression.evaluate().get(0);
+        
         if(!(expression instanceof NumberExpression)) {
             // Do better error checking here
             return null;
         }
 
         NumberExpression exp = (NumberExpression) expression;
-        turtleCmd.setX(turtleCmd.getX() + exp.getNumber() * Math.cos(turtleCmd.getDirection()));
-        turtleCmd.setY(turtleCmd.getY() + exp.getNumber() * Math.sin(turtleCmd.getDirection()));
+        
+        double direction = turtleCmd.getDirection();
+        turtleCmd.setX(turtleCmd.getX() + exp.getNumber() * Math.round(Math.cos(Math.toRadians(direction))));
+        turtleCmd.setY(turtleCmd.getY() + exp.getNumber() * Math.round(Math.sin(Math.toRadians(direction))));
         return turtleCmd;
     }
 
