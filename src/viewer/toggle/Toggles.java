@@ -27,7 +27,7 @@ public class Toggles extends Panel {
         //Put toggles into list of some kind and automate creation - but then how do we
         //define listener callbacks?
         setBorder(BorderFactory.createLineBorder(Color.black));
-        this.setName("Toggle Controls");
+        this.setName("Togggle Controls");
         
         this.buttonList = new ArrayList<Button>();
         buttonList.add(new BackgroundColorButton());
