@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SumExpression extends TwoParameterExpression {
-    Expression expression1;
-    Expression expression2;
 
     public SumExpression(List<String> cmdList) {
         super(cmdList);
@@ -13,6 +11,8 @@ public class SumExpression extends TwoParameterExpression {
 
     @Override
     public List<Expression> evaluate () {
+        
+        
         if(!(expression1 instanceof NumberExpression)){
             expression1 = expression1.evaluate().get(0);
         }

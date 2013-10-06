@@ -1,12 +1,32 @@
 package controller;
 
 public class TurtleCommand {
-    double x;
-    double y;
-    double direction;
-    boolean isPenDown;
-    boolean isVisible;
+    private double x;
+    private double y;
+    private double direction;
+    private boolean isPenDown;
+    private boolean isVisible;
     //color
+    
+    public TurtleCommand(){
+        this(0.0, 0.0, 90.0);
+    }
+    
+    public TurtleCommand(double x, double y, double direction){
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
+        this.isPenDown = true;
+        this.isVisible = true;
+    }
+    
+    public TurtleCommand(TurtleCommand rhs){
+        this.x = rhs.x;
+        this.y = rhs.y;
+        this.direction = rhs.direction;
+        this.isPenDown = rhs.isPenDown;
+        this.isVisible = rhs.isVisible;
+    }
     
     public boolean isVisible () {
         return isVisible;
@@ -16,11 +36,6 @@ public class TurtleCommand {
         this.isVisible = isVisible;
     }
 
-    public TurtleCommand(double x, double y, double direction){
-        this.x = x;
-        this.y = y;
-        this.direction = direction;
-    }
 
     public double getX () {
         return x;
