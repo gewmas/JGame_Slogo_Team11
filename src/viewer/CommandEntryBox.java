@@ -6,15 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CommandBox extends JPanel implements ActionListener{
+public class CommandEntryBox extends JPanel implements ActionListener{
     JTextField myTextField;
     
-    public CommandBox(){
-        myTextField=new JTextField(40);
-        //myTextField.setPreferredSize(new Dimension(500,100));
+    public CommandEntryBox(int width, int height){
+        myTextField=new JTextField();
+        myTextField.setPreferredSize(new Dimension(width,height));
         add(myTextField);
         myTextField.addActionListener(this);
-        //setSize(200,100);
+        //setPreferredSize(new Dimension(200,20));
     }
 
     @Override

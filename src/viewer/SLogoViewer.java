@@ -13,10 +13,11 @@ public class SLogoViewer extends Viewer{
     JPanel myRightPanel;
     public SLogoViewer(){
         super();
+        //Don't need main panel if we're going to separate into left and right anyway?
         myLeftPanel=new JPanel(new FlowLayout());
         myRightPanel=new JPanel(new FlowLayout());
-        myLeftPanel.setPreferredSize(new Dimension(500,600));
-        myRightPanel.setPreferredSize(new Dimension(300,600));
+        myLeftPanel.setPreferredSize(new Dimension(600,600));
+        myRightPanel.setPreferredSize(new Dimension(200,600));
         myMainPanel.setPreferredSize(new Dimension(800,600));
         FlowLayout myFlow = new FlowLayout();
         myFlow.setAlignment(FlowLayout.LEADING);
@@ -28,23 +29,10 @@ public class SLogoViewer extends Viewer{
         myMainPanel.add(myRightPanel, BorderLayout.EAST);
         
         setTitle("SLogo");
-        setPreferredSize(new Dimension(800,600));
-        /*JLabel yellowLabel = new JLabel();
-        yellowLabel.setOpaque(true);
-        yellowLabel.setBackground(new Color(248, 213, 131));
-        yellowLabel.setPreferredSize(new Dimension(200, 180));
- 
-        //Set the menu bar and add the label to the content pane.
-        getContentPane().add(yellowLabel, BorderLayout.CENTER);
-        */
-        /*myPanel.add(new UserVariableBox());//,BorderLayout.EAST);
-        myPanel.add(new Display());//,BorderLayout.WEST);
-        //myPanel.add(new ToggleControls());//,BorderLayout.SOUTH);
-        myPanel.add(new CommandBox());//,BorderLayout.SOUTH);*/
-        myLeftPanel.add(new Display());
-        myLeftPanel.add(new CommandBox());
-        myRightPanel.add(new UserVariableBox());
-        myRightPanel.add(new ToggleControls());
+        myLeftPanel.add(new Display(600,500));
+        myLeftPanel.add(new CommandEntryBox(600,20));
+        myRightPanel.add(new UserVariableBox(200,300));
+        myRightPanel.add(new ToggleControls(200,200));
         pack();
         setVisible(true);
     }

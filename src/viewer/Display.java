@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 public class Display extends JPanel{
-    public Display(){
-        setPreferredSize(new Dimension(500,500));
+    public Display(int width, int height){
+        setPreferredSize(new Dimension(width,height));
         //setVisible(true);
         setBorder(BorderFactory.createLineBorder(Color.black));
         this.setName("Display");

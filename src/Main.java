@@ -1,5 +1,5 @@
 import javax.swing.JFrame;
-import viewer.CommandBox;
+import viewer.CommandEntryBox;
 import viewer.Display;
 import viewer.SLogoViewer;
 
