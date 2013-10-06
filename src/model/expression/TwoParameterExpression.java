@@ -44,5 +44,24 @@ public class TwoParameterExpression extends Expression {
         return finalExpressionList;
     }
     
+    public List<NumberExpression> preEvaluate () {
+        if(!(expression1 instanceof NumberExpression)){
+            expression1 = expression1.evaluate().get(0);
+        }
+
+        if(!(expression2 instanceof NumberExpression)){
+            expression2 = expression2.evaluate().get(0);
+        }
+
+        List<NumberExpression> expressionList = new ArrayList<NumberExpression>();
+
+        NumberExpression exp1 = (NumberExpression) expression1;
+        expressionList.add(exp1);
+        NumberExpression exp2 = (NumberExpression) expression2;
+        expressionList.add(exp2);
+
+        return expressionList;
+    }
+    
 
 }

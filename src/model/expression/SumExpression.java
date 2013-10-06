@@ -13,19 +13,11 @@ public class SumExpression extends TwoParameterExpression {
 
     @Override
     public List<Expression> evaluate () {
-        if(!(expression1 instanceof NumberExpression)){
-            expression1 = expression1.evaluate().get(0);
-        }
-
-        if(!(expression2 instanceof NumberExpression)){
-            expression2 = expression2.evaluate().get(0);
-        }
-
+        
+        List<NumberExpression> expList = preEvaluate();
+        
         List<Expression> finalExpressionList = new ArrayList<Expression>();
-
-        NumberExpression exp1 = (NumberExpression) expression1;
-        NumberExpression exp2 = (NumberExpression) expression2;
-        finalExpressionList.add(exp1.sum(exp2));
+        finalExpressionList.add(expList.get(0).sum(expList.get(1)));
         return finalExpressionList;
     }
 
