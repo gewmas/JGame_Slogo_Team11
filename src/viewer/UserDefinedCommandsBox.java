@@ -11,10 +11,11 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 //Should also extend EditableListTable?
-public class UserDefinedCommandsBox extends JPanel{
+public class UserDefinedCommandsBox extends Panel {
+	
     protected JLabel myVariables;
-    //protected ArrayList<>;
     protected JList myVariableNameList, myVariableValueList;
+    
     public UserDefinedCommandsBox(int width, int height){
         myVariableNameList=new JList();
         myVariableValueList=new JList();

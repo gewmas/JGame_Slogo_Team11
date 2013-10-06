@@ -17,5 +17,4 @@ public class DataTableModel extends DefaultTableModel{
         return column==1;
     }
     
-    
 }

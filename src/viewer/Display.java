@@ -8,7 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-public class Display extends JPanel{
+public class Display extends Panel {
+	
     public Display(int width, int height){
         setPreferredSize(new Dimension(width,height));
         //setVisible(true);
@@ -16,4 +17,5 @@ public class Display extends JPanel{
         this.setName("Display");
         setVisible(true);
     }
+    
 }

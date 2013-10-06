@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CommandEntryBox extends JPanel implements ActionListener{
+public class CommandEntryBox extends Panel implements ActionListener{
     JTextField myTextField;
     
     public CommandEntryBox(int width, int height){

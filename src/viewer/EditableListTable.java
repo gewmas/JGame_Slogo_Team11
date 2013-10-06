@@ -11,7 +11,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-public abstract class EditableListTable extends JPanel{
+public abstract class EditableListTable extends Panel {
     protected JTable myElementTable; 
     protected DefaultTableModel myTableModel;
     

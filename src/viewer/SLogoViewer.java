@@ -9,13 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class SLogoViewer extends Viewer{
-    JPanel myLeftPanel;
-    JPanel myRightPanel;
+    Panel myLeftPanel;
+    Panel myRightPanel;
     public SLogoViewer(){
         super();
         //Don't need main panel if we're going to separate into left and right anyway?
-        myLeftPanel=new JPanel(new FlowLayout());
-        myRightPanel=new JPanel(new FlowLayout());
+        myLeftPanel=new Panel(new FlowLayout());
+        myRightPanel=new Panel(new FlowLayout());
         myLeftPanel.setPreferredSize(new Dimension(600,600));
         myRightPanel.setPreferredSize(new Dimension(200,600));
         myMainPanel.setPreferredSize(new Dimension(800,600));
