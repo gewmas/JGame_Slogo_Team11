@@ -10,6 +10,7 @@ public class BackExpression extends OneParameterExpression {
     }
     
     public TurtleCommand createTurtleCommand(TurtleCommand turtleCmd) {
+        expression = expression.evaluate().get(0);
         
         if(!(expression instanceof NumberExpression)) {
             // Do better error checking here
@@ -17,8 +18,8 @@ public class BackExpression extends OneParameterExpression {
         }
         
         NumberExpression exp = (NumberExpression) expression;
-        turtleCmd.setX(turtleCmd.getX() - exp.getNumber() * Math.cos(turtleCmd.getDirection()));
-        turtleCmd.setY(turtleCmd.getY() - exp.getNumber() * Math.sin(turtleCmd.getDirection()));
+        turtleCmd.setX(turtleCmd.getX() - exp.getNumber() * Math.round(Math.cos(Math.toRadians(turtleCmd.getDirection()))));
+        turtleCmd.setY(turtleCmd.getY() - exp.getNumber() * Math.round(Math.sin(Math.toRadians(turtleCmd.getDirection()))));
         return turtleCmd;
     }
 

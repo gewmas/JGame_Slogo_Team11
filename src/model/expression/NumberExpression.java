@@ -97,7 +97,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression sin () {
-        return new NumberExpression(Math.sin(getNumber()));
+        return new NumberExpression(Math.round(Math.sin(Math.toRadians(getNumber()))));
     }
     
     /**
@@ -106,7 +106,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression cos () {
-        return new NumberExpression(Math.cos(getNumber()));
+        return new NumberExpression(Math.round(Math.cos(Math.toRadians(getNumber()))));
     }
     
     /**
@@ -115,7 +115,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression tan () {
-        return new NumberExpression(Math.tan(getNumber()));
+        return new NumberExpression(Math.round(Math.tan(Math.toRadians(getNumber()))));
     }
     
     /**
@@ -124,7 +124,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression atan () {
-        return new NumberExpression(Math.atan(getNumber()));
+        return new NumberExpression(Math.round(Math.atan(Math.toRadians(getNumber()))));
     }
     
     /**

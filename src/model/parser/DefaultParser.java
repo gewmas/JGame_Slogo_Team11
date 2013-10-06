@@ -25,13 +25,25 @@ public class DefaultParser extends Parser {
     }
     
     public static Expression parse (List<String> commandInput) {
-        String s = commandInput.get(0);
+        String s = commandInput.get(0).toLowerCase();
 
         if (s.equals("sum")){
             return new SumExpression(commandInput);
         }
         else if (s.equals("fd")){
             return new ForwardExpression(commandInput);
+        }
+        else if (s.equals("bk")){
+            return new BackExpression(commandInput);
+        }
+        else if (s.equals("lt")){
+            return new LeftExpression(commandInput);
+        }
+        else if (s.equals("rt")){
+            return new RightExpression(commandInput);
+        }
+        else if (s.equals("seth")){
+            return new SetHeadingExpression(commandInput);
         }
         else if (s.equals("repeat")){
             return new RepeatExpression(commandInput);

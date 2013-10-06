@@ -25,12 +25,10 @@ public class ForwardExpression extends OneParameterExpression {
             // Do better error checking here
             return null;
         }
-
-        NumberExpression exp = (NumberExpression) expression;
         
-        double direction = turtleCmd.getDirection();
-        turtleCmd.setX(turtleCmd.getX() + exp.getNumber() * Math.round(Math.cos(Math.toRadians(direction))));
-        turtleCmd.setY(turtleCmd.getY() + exp.getNumber() * Math.round(Math.sin(Math.toRadians(direction))));
+        NumberExpression exp = (NumberExpression) expression;
+        turtleCmd.setX(turtleCmd.getX() + exp.getNumber() * Math.round(Math.cos(Math.toRadians(turtleCmd.getDirection()))));
+        turtleCmd.setY(turtleCmd.getY() + exp.getNumber() * Math.round(Math.sin(Math.toRadians(turtleCmd.getDirection()))));
         return turtleCmd;
     }
 

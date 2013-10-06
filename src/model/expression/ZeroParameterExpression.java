@@ -1,6 +1,7 @@
 package model.expression;
 
 import java.util.List;
+import controller.TurtleCommand;
 
 public class ZeroParameterExpression extends Expression {
 
@@ -15,5 +16,7 @@ public class ZeroParameterExpression extends Expression {
         // TODO Auto-generated method stub
         return null;
     }
+
+  
 
 }

@@ -1,9 +1,27 @@
 package model.expression;
 
 import java.util.List;
+import controller.TurtleCommand;
 
-public abstract class Expression {
+public class Expression extends AbstractExpression{
 
-    public abstract void convert(List<String> cmdList);
-    public abstract List<Expression> evaluate();
+    @Override
+    public void convert (List<String> cmdList) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public List<Expression> evaluate () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public TurtleCommand createTurtleCommand (TurtleCommand turtleCmd) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    
 }

@@ -10,7 +10,8 @@ public class LeftExpression extends OneParameterExpression {
     }
 
     public TurtleCommand createTurtleCommand(TurtleCommand turtleCmd) {
-
+        expression = expression.evaluate().get(0);
+        
         if(!(expression instanceof NumberExpression)) {
             // Do better error checking here
             return null;
