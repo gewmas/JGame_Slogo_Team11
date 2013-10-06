@@ -47,9 +47,15 @@ public class DefaultParser extends Parser {
         }
         else if (s.equals("repeat")){
             return new RepeatExpression(commandInput);
-        }else if(s.equals("to")){
+        } else if(functionMap.containsKey(s)) {
+            FunctionExpression functionExp = new FunctionExpression(commandInput);
+            functionExp.checkFunctionDeclaration(functionMap.get(s));
+            functionExp.convert(commandInput);
+            return functionExp;
+        }
+        else if(s.equals("to")){
             commandInput.remove(0);
-            functionMap.put(commandInput.get(0), new FunctionExpression(commandInput));
+            functionMap.put(commandInput.get(0), new FunctionDeclarationExpression(commandInput));
             // return ???
         }else if(commandInput.get(0).charAt(0) == ':'){
             return new VariableExpression(commandInput);
