@@ -11,4 +11,8 @@ public class PenColorButton extends Button {
 //		this.setPreferredSize(new Dimension(BUTTON_WIDTH,20));
 	}
 	
+//	protected void setPenColor(JGColor color) {
+//		
+//	}
+	
 }

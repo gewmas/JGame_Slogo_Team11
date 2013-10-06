@@ -4,11 +4,15 @@ import java.awt.Dimension;
 
 import viewer.Button;
 
-public class ToggleGridButton extends Button {
+public class GridButton extends Button {
 
-	public ToggleGridButton() {
+	public GridButton() {
 		super("Toggle Grid");
 //		this.setPreferredSize(new Dimension(BUTTON_WIDTH,20));
 	}
+	
+//	protected void toggleGridOn() {
+//		
+//	}
 	
 }

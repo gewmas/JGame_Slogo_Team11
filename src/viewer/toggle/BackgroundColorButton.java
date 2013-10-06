@@ -11,4 +11,8 @@ public class BackgroundColorButton extends Button {
 //		this.setPreferredSize(new Dimension(BUTTON_WIDTH,20));
 	}
 	
+//	public void setBackgroundColor(JGColor color) {
+//		
+//	}
+	
 }

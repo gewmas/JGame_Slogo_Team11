@@ -9,7 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import viewer.toggle.ToggleControls;
+import viewer.toggle.Toggles;
 
 public class SLogoViewer extends Viewer{
     Panel myLeftPanel;
@@ -35,7 +35,7 @@ public class SLogoViewer extends Viewer{
         myLeftPanel.add(new Display(600,500));
         myLeftPanel.add(new CommandEntryBox(600,20));
         myRightPanel.add(new UserVariableBox(200,300));
-        myRightPanel.add(new ToggleControls(200,200));
+        myRightPanel.add(new Toggles(200,200));
         pack();
         setVisible(true);
     }

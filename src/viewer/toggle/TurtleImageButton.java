@@ -11,4 +11,8 @@ public class TurtleImageButton extends Button {
 //		this.setPreferredSize(new Dimension(BUTTON_WIDTH,20));
 	}
 	
+//	protected void setTurtleImage(JGObject image) {
+//		
+//	}
+	
 }
