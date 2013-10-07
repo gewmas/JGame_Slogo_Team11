@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.parser.DefaultParser;
 
-public class ForExpression extends Expression{
+public class ForExpression extends ScopedExpression{
     
     VariableExpression variableExpression; //Assuming just one variable
     Expression startExpression;

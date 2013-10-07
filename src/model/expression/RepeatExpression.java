@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.parser.DefaultParser;
 
-public class RepeatExpression extends Expression {
+public class RepeatExpression extends ScopedExpression {
     Expression expression1;
 //    Expression expression2;
     List<Expression> expression2;
