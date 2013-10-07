@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import jgame.JGPoint;
 
 public class Display extends JPanel{
     public Display(int width, int height){
@@ -14,6 +15,9 @@ public class Display extends JPanel{
         //setVisible(true);
         setBorder(BorderFactory.createLineBorder(Color.black));
         this.setName("Display");
+        this.setOpaque(false);
+        Example1 jgametest = new Example1(new JGPoint(width,height));
+        add(jgametest);
         setVisible(true);
     }
 }

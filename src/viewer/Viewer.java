@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import jgame.JGPoint;
 
 public abstract class Viewer extends JFrame{
     protected JPanel myMainPanel;
@@ -16,7 +17,6 @@ public abstract class Viewer extends JFrame{
         myMainPanel=new JPanel();
         getContentPane().add(myMainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
     
     public void addPanel(JPanel panel){
