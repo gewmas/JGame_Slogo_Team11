@@ -11,7 +11,7 @@ public class HomeExpression extends ZeroParameterExpression {
         turtleCmd.setX(0);
         turtleCmd.setY(0);
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
-        list.add(turtleCmd);
+        list.add(new TurtleCommand(turtleCmd));
         return list;
     }
     

@@ -12,7 +12,7 @@ public class ShowTurtleExpression extends ZeroParameterExpression {
         turtleCmd.setVisible(true);
         
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
-        list.add(turtleCmd);
+        list.add(new TurtleCommand(turtleCmd));
         return list;
     }
     

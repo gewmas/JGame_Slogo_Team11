@@ -23,7 +23,7 @@ public class BackExpression extends OneParameterExpression {
         turtleCmd.setX(turtleCmd.getX() - exp.getNumber() * Math.round(Math.cos(Math.toRadians(turtleCmd.getDirection()))));
         turtleCmd.setY(turtleCmd.getY() - exp.getNumber() * Math.round(Math.sin(Math.toRadians(turtleCmd.getDirection()))));
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
-        list.add(turtleCmd);
+        list.add(new TurtleCommand(turtleCmd));
         return list;
     }
 

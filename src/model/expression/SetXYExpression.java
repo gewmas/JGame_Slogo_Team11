@@ -23,7 +23,7 @@ public class SetXYExpression extends TwoParameterExpression {
         turtleCmd.setX(expX.getNumber());
         turtleCmd.setY(expY.getNumber());
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
-        list.add(turtleCmd);
+        list.add(new TurtleCommand(turtleCmd));
         return list;
     }
 

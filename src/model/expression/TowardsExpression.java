@@ -35,7 +35,7 @@ public class TowardsExpression extends TwoParameterExpression {
         turtleCmd.setDirection((turtleCmd.getDirection() - angle));
         
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
-        list.add(turtleCmd);
+        list.add(new TurtleCommand(turtleCmd));
         return list;
     }
 

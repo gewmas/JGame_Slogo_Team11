@@ -22,7 +22,7 @@ public class LeftExpression extends OneParameterExpression {
         NumberExpression exp = (NumberExpression) expression;
         turtleCmd.setDirection(turtleCmd.getDirection() + exp.getNumber());
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
-        list.add(turtleCmd);
+        list.add(new TurtleCommand(turtleCmd));
         return list;
     }
 
