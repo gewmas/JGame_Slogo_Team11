@@ -8,15 +8,20 @@ import controller.TurtleCommand;
 import controller.TurtleTrace;
 import model.parser.DefaultParser;
 
-public class FunctionExpression extends Expression {
+public class FunctionExpression extends ScopedExpression {
 
-    List<String> commandList;
+//    List<String> commandList;
     FunctionDeclarationExpression declaration;
-    private static Map<String, Expression>localVariables;
+    
 
+    /*
+     *  to method [ :x ] [ fd :x ]
+     *  method sum 1 2
+     * 
+     */
+    
     public FunctionExpression(List<String> cmdList){
-        localVariables = new HashMap<String, Expression>();
-        commandList = cmdList;
+//        commandList = cmdList;
     }
 
     @Override
@@ -28,12 +33,12 @@ public class FunctionExpression extends Expression {
            try
            {
                NumberExpression finalExp = new NumberExpression(Double.parseDouble(cmdList.get(0)));
-               localVariables.put(var.getId(), finalExp);
+               ScopedExpression.getLocalVariables().put(var.getId(), finalExp);
                cmdList.remove(0);
            }
            catch (NumberFormatException e)
            {
-               localVariables.put(var.getId(), DefaultParser.parse(cmdList));
+               ScopedExpression.getLocalVariables().put(var.getId(), DefaultParser.parse(cmdList));
            }  
        }
                            
@@ -51,17 +56,18 @@ public class FunctionExpression extends Expression {
 
         for (Expression expression : declaration.expressions) {
             List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
-            if(turtleCmds.size() != 0) {
+            if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
                 latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
             }
             commandList.addAll(turtleCmds);
         }
         
+        //clean localVariable
+        FunctionExpression.getLocalVariables().clear();
+        
         return commandList;
     }
     
-    public static Map<String, Expression> getLocalVariables() {
-        return localVariables;
-    }
+    
     
 }

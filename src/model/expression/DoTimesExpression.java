@@ -2,15 +2,18 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import model.parser.DefaultParser;
 import controller.TurtleCommand;
 
-public class DoTimesExpression extends Expression {
+public class DoTimesExpression extends ScopedExpression {
 
     VariableExpression variableExpression; //Assuming just one variable
     List<Expression> expression1; //limit
     
     List<Expression> expression2; //command(s)
+    
+    private static Map<String, Expression> localVariables;
     
     /*
      * DOTIMES [ variable limit ] [ command(s) ]
@@ -91,8 +94,7 @@ public class DoTimesExpression extends Expression {
         }
     }
 
-    @Override
-    public List<Expression> evaluate () {
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
         // TODO Auto-generated method stub
         return null;
     }

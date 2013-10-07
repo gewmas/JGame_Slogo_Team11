@@ -24,14 +24,16 @@ public class VariableExpression extends Expression{
         List<Expression> finalExpressionList = new ArrayList<Expression>();
 
         Map<String, Expression> globalVars = DefaultModel.getGlobalVariables();
-        Map<String, Expression> localVars = FunctionExpression.getLocalVariables();
+        Map<String, Expression> localVars = ScopedExpression.getLocalVariables();
         
         if(localVars.containsKey(id)) {
-            finalExpressionList.add(localVars.get(id));
+            Expression expression = localVars.get(id);
+            finalExpressionList.addAll(expression.evaluate());
             return finalExpressionList;
             
         } else if(globalVars.containsKey(id)) {
-            finalExpressionList.add(globalVars.get(id));
+            Expression expression = globalVars.get(id);
+            finalExpressionList.addAll(expression.evaluate());
         }
         
         return finalExpressionList;
