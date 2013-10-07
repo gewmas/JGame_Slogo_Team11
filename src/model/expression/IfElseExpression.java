@@ -2,6 +2,7 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import controller.TurtleCommand;
 import model.parser.DefaultParser;
 
 public class IfElseExpression extends Expression {
@@ -95,6 +96,39 @@ public class IfElseExpression extends Expression {
     public List<Expression> evaluate () {
         // TODO Auto-generated method stub
         return null;
+    }
+    
+    @Override
+    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCommand) {
+
+        List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
+
+        NumberExpression condition = (NumberExpression) conditionExpression.evaluate().get(0);
+        if(condition.getNumber() == 1) {
+            commandList = makeTurtleCommands(ifCommandExpression, turtleCommand);
+        } else {
+            commandList = makeTurtleCommands(elseCommandExpression, turtleCommand);
+        }
+        return commandList;
+    }
+    
+    public List<TurtleCommand> makeTurtleCommands(List<Expression> commandExpression, TurtleCommand turtleCommand) {
+        
+        List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
+        TurtleCommand latestTurtleCommand = turtleCommand;
+        for (Expression expression : ifCommandExpression) {
+            List<Expression> evaluatedExpressions = expression.evaluate();
+            for (Expression evalExpression : evaluatedExpressions) {
+                List<TurtleCommand> turtleCmds = evalExpression.createTurtleCommands(latestTurtleCommand);
+                if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
+                    latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
+                }
+                commandList.addAll(turtleCmds);
+            }
+        }
+        
+        return commandList;
+        
     }
 
 }
