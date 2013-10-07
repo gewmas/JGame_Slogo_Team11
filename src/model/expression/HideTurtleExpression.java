@@ -9,10 +9,11 @@ public class HideTurtleExpression extends ZeroParameterExpression {
     @Override
     public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCmd) {
 
+        turtleCmd = new TurtleCommand(turtleCmd);
         turtleCmd.setVisible(false);
         
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
-        list.add(new TurtleCommand(turtleCmd));
+        list.add(turtleCmd);
         return list;
     }
     

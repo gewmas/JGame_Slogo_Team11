@@ -20,10 +20,11 @@ public class RightExpression extends OneParameterExpression {
             return null;
         }
 
+        turtleCmd = new TurtleCommand(turtleCmd);
         NumberExpression exp = (NumberExpression) expression;
         turtleCmd.setDirection(turtleCmd.getDirection() - exp.getNumber());
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
-        list.add(new TurtleCommand(turtleCmd));
+        list.add(turtleCmd);
         return list;
     }
 

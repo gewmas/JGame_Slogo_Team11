@@ -17,13 +17,14 @@ public class SetXYExpression extends TwoParameterExpression {
             // Do better error checking here
             return null;
         }
-
+        
         NumberExpression expX = (NumberExpression) expression1;
         NumberExpression expY = (NumberExpression) expression2;
+        turtleCmd = new TurtleCommand(turtleCmd);
         turtleCmd.setX(expX.getNumber());
         turtleCmd.setY(expY.getNumber());
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
-        list.add(new TurtleCommand(turtleCmd));
+        list.add(turtleCmd);
         return list;
     }
 

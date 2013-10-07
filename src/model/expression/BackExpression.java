@@ -20,10 +20,11 @@ public class BackExpression extends OneParameterExpression {
         }
         
         NumberExpression exp = (NumberExpression) expression;
+        turtleCmd = new TurtleCommand(turtleCmd);
         turtleCmd.setX(turtleCmd.getX() - exp.getNumber() * Math.round(Math.cos(Math.toRadians(turtleCmd.getDirection()))));
         turtleCmd.setY(turtleCmd.getY() - exp.getNumber() * Math.round(Math.sin(Math.toRadians(turtleCmd.getDirection()))));
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
-        list.add(new TurtleCommand(turtleCmd));
+        list.add(turtleCmd);
         return list;
     }
 

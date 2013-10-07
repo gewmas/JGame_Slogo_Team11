@@ -32,10 +32,11 @@ public class TowardsExpression extends TwoParameterExpression {
         
         double angle = Math.atan((newPointY/newPointX));
         
+        turtleCmd = new TurtleCommand(turtleCmd);
         turtleCmd.setDirection((turtleCmd.getDirection() - angle));
         
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
-        list.add(new TurtleCommand(turtleCmd));
+        list.add(turtleCmd);
         return list;
     }
 

@@ -21,9 +21,10 @@ public class SetHeadingExpression extends OneParameterExpression{
         }
 
         NumberExpression exp = (NumberExpression) expression;
+        turtleCmd = new TurtleCommand(turtleCmd);
         turtleCmd.setDirection(exp.getNumber());
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
-        list.add(new TurtleCommand(turtleCmd));
+        list.add(turtleCmd);
         return list;
     }
 
