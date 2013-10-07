@@ -121,15 +121,17 @@ public class TestController {
             
             dash
          */
-        /*updateAvtiveTurtle();
+        updateAvtiveTurtle();
+        //Test ExpressionList, Passed..  To be done: createTurtleCommand
         controller.interpretCommand("set :count 12 to dash [ ] [ repeat :count [ pu fd 4 pd fd 4 ] ] dash");
+        
         updateLatestCommandOfFirstActiveTurtle();
         assertTrue(x == 0.0);
         assertTrue(y == 70.0);
         assertTrue(direction == 90.0);
         assertTrue(isPenDown);
         assertTrue(isVisible);
-        turtleTrace.clearCommandList();*/
+        turtleTrace.clearCommandList();
     }
 
     @Test

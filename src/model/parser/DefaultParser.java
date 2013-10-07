@@ -191,8 +191,9 @@ public class DefaultParser extends Parser {
         }
         else if(s.equals("to")){
             commandInput.remove(0);
+            String funName = commandInput.get(0);
             FunctionDeclarationExpression functionDeclaration = new FunctionDeclarationExpression(commandInput);
-            functionMap.put(commandInput.get(0), functionDeclaration);
+            functionMap.put(funName, functionDeclaration);
             return functionDeclaration;
         }
         else if(commandInput.get(0).charAt(0) == ':'){
