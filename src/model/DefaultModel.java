@@ -42,12 +42,15 @@ public class DefaultModel extends Model {
             //Here check IF expression is of type that doesnt return turtleCommand. 
 //            OneParameterExpression exp = (OneParameterExpression) expression;
 
-            
             if(expression.getClass().getSuperclass().getSimpleName().equals("QueryExpression")){
                 ((QueryExpression) expression).executeControllerCommand(controller);
                 continue;
             }
-            
+            // If make called from top level, then need to flag it as global 
+            if(expression instanceof MakeExpression) {
+                MakeExpression makeExp = (MakeExpression) expression;
+                makeExp.setIsGlobal(true);
+            }
 
             latestTurtleCommand = new TurtleCommand(turtleTrace.getLatest());
             tempTurtleTrace = expression.createTurtleCommands(latestTurtleCommand);
