@@ -115,8 +115,9 @@ public class Controller {
 //        controller.interpretCommand("cs xcor ycor heading pendown? showing?");
 
 //        controller.interpretCommand("to method [ :x ] [ fd :x ] method sum 1 2");
-        controller.interpretCommand("DOTIMES [ :i sum 1 2 ] [ fd :i fd 2 ]");
+//        controller.interpretCommand("DOTIMES [ :i sum 1 2 ] [ fd :i fd 2 ]");
 
+        controller.interpretCommand("for [ :i 0 3 1 ] [  fd :i fd sum :i 1 ]");
         
         
     }

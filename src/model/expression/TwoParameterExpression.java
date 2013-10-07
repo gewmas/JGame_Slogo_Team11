@@ -8,6 +8,7 @@ import model.parser.DefaultParser;
 public class TwoParameterExpression extends Expression {
     Expression expression1;
     Expression expression2;
+    
 
     public TwoParameterExpression(List<String> cmdList) {
         convert(cmdList);
@@ -46,7 +47,36 @@ public class TwoParameterExpression extends Expression {
     }
     
     public List<NumberExpression> preEvaluate () {
+      Expression evaluatedExpression1 = expression1;
+      Expression evaluatedExpression2 = expression2;
+        
+        if(expression1 instanceof VariableExpression){
+            evaluatedExpression1 = new VariableExpression((VariableExpression)expression1);
+        }
+        
         if(!(expression1 instanceof NumberExpression)){
+            evaluatedExpression1 = expression1.evaluate().get(0);
+        }
+        
+        if(expression2 instanceof VariableExpression){
+            evaluatedExpression2 = new VariableExpression((VariableExpression)expression2);
+        }
+        
+        if(!(expression2 instanceof NumberExpression)){
+            evaluatedExpression2 = expression2.evaluate().get(0);
+        }
+
+        List<NumberExpression> expressionList = new ArrayList<NumberExpression>();
+
+        NumberExpression exp1 = (NumberExpression) evaluatedExpression1;
+        expressionList.add(exp1);
+        NumberExpression exp2 = (NumberExpression) evaluatedExpression2;
+        expressionList.add(exp2);
+
+        return expressionList;
+        
+        
+        /*if(!(expression1 instanceof NumberExpression)){
             expression1 = expression1.evaluate().get(0);
         }
 
@@ -61,7 +91,7 @@ public class TwoParameterExpression extends Expression {
         NumberExpression exp2 = (NumberExpression) expression2;
         expressionList.add(exp2);
 
-        return expressionList;
+        return expressionList;*/
     }
 
  

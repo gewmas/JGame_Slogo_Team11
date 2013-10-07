@@ -8,6 +8,14 @@ import model.DefaultModel;
 public class VariableExpression extends Expression{
     String id;
     
+    public VariableExpression(String id){
+        this.id = id;
+    }
+    
+    public VariableExpression(VariableExpression rhs){
+        this(rhs.getId());
+    }
+    
     public VariableExpression(List<String> cmdList){
         id = cmdList.get(0).substring(1);
         cmdList.remove(0);

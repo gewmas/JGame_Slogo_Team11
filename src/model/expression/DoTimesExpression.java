@@ -9,9 +9,9 @@ import controller.TurtleCommand;
 public class DoTimesExpression extends ScopedExpression {
 
     VariableExpression variableExpression; //Assuming just one variable
-    List<Expression> expression1; //limit
+    List<Expression> limitExpression; //limit
 
-    List<Expression> expression2; //command(s)
+    List<Expression> commandExpression; //command(s)
 
 
     /*
@@ -24,8 +24,8 @@ public class DoTimesExpression extends ScopedExpression {
      * 
      */
     public DoTimesExpression(List<String> cmdList){
-        expression1 = new ArrayList<Expression>();
-        expression2 = new ArrayList<Expression>();
+        limitExpression = new ArrayList<Expression>();
+        commandExpression = new ArrayList<Expression>();
         convert(cmdList);
     }
 
@@ -57,7 +57,7 @@ public class DoTimesExpression extends ScopedExpression {
         variableExpression = new VariableExpression(new ArrayList<String>(cmdList.subList(1, 2))); // assuming just on variable
         List<String> limits = new ArrayList<String>(cmdList.subList(openBracketIndex+2, closeBracketIndex));
         while(!limits.isEmpty()){
-            expression1.add(DefaultParser.parse(limits));
+            limitExpression.add(DefaultParser.parse(limits));
         }
 
 
@@ -88,7 +88,7 @@ public class DoTimesExpression extends ScopedExpression {
 
         List<String> commands = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
         while(!commands.isEmpty()){
-            expression2.add(DefaultParser.parse(commands));
+            commandExpression.add(DefaultParser.parse(commands));
         }
 
         for(int i = 0; i <= closeBracketIndex; i++){
@@ -101,24 +101,20 @@ public class DoTimesExpression extends ScopedExpression {
 
         // create local variable :i from 0 to limit
         ScopedExpression.getLocalVariables().put(variableExpression.getId(), new NumberExpression(0));
-        NumberExpression limit = (NumberExpression) expression1.get(0).evaluate().get(0); //Assuming get a NumberExpression
+        NumberExpression limit = (NumberExpression) limitExpression.get(0).evaluate().get(0); //Assuming get a NumberExpression
 
         NumberExpression variableNumber = (NumberExpression) ScopedExpression.getLocalVariables().get(variableExpression.getId());
 
         TurtleCommand latestTurtleCommand = turtleCmd;
 
         while(variableNumber.getNumber() < limit.getNumber()){
-            for(Expression expression : expression2){
-                //                List<Expression> evaluatedExpressions = expression.evaluate();
-                //                for (Expression evalExpression : evaluatedExpressions) {
-                
-
+            
+            for(Expression expression : commandExpression){
                 List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
                 if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
                     latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
                 }
                 commandList.addAll(turtleCmds);
-                //                }
             }
 
 

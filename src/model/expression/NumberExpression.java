@@ -8,6 +8,10 @@ import java.util.Random;
 public class NumberExpression extends Expression {
     double number;
 
+//    public NumberExpression (NumberExpression rhs){
+//        
+//    }
+    
     public NumberExpression (double d) {
         number = d;
     }

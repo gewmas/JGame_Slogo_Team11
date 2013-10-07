@@ -54,9 +54,42 @@ public class ForExpression extends ScopedExpression{
         cmdList.remove(0); // remove [
         cmdList.remove(0); // remove variable
         
-        startExpression = DefaultParser.parse(cmdList);
-        endExpression = DefaultParser.parse(cmdList);
-        incrementExpression = DefaultParser.parse(cmdList);
+        //condition
+        try
+        {
+            startExpression = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+            cmdList.remove(0);
+        }
+        catch(NumberFormatException e)
+        {
+            startExpression = DefaultParser.parse(cmdList);
+        }
+        
+        try
+        {
+            endExpression = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+            cmdList.remove(0);
+        }
+        catch(NumberFormatException e)
+        {
+            endExpression = DefaultParser.parse(cmdList);
+        }
+        
+        try
+        {
+            incrementExpression = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+            cmdList.remove(0);
+        }
+        catch(NumberFormatException e)
+        {
+            incrementExpression = DefaultParser.parse(cmdList);
+        }
+        
+//        startExpression = DefaultParser.parse(cmdList);
+//        
+//        endExpression = DefaultParser.parse(cmdList);
+//        
+//        incrementExpression = DefaultParser.parse(cmdList);
         
         cmdList.remove(0); // remove ]  
 
@@ -113,14 +146,11 @@ public class ForExpression extends ScopedExpression{
         while(variableNumber.getNumber() < end.getNumber()){
             
             for(Expression expression : commandExpression){
-                List<Expression> evaluatedExpressions = expression.evaluate();
-                for (Expression evalExpression : evaluatedExpressions) {
-                    List<TurtleCommand> turtleCmds = evalExpression.createTurtleCommands(latestTurtleCommand);
-                    if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
-                        latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
-                    }
-                    commandList.addAll(turtleCmds);
+                List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
+                if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
+                    latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
                 }
+                commandList.addAll(turtleCmds);
             }
             
             
