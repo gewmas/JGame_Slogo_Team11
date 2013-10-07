@@ -1,5 +1,6 @@
 package model.expression;
 
+import java.util.ArrayList;
 import java.util.List;
 import controller.TurtleCommand;
 
@@ -9,7 +10,8 @@ public class BackExpression extends OneParameterExpression {
         super(cmdList);
     }
     
-    public TurtleCommand createTurtleCommand(TurtleCommand turtleCmd) {
+    @Override
+    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCmd) {
         expression = expression.evaluate().get(0);
         
         if(!(expression instanceof NumberExpression)) {
@@ -20,7 +22,9 @@ public class BackExpression extends OneParameterExpression {
         NumberExpression exp = (NumberExpression) expression;
         turtleCmd.setX(turtleCmd.getX() - exp.getNumber() * Math.round(Math.cos(Math.toRadians(turtleCmd.getDirection()))));
         turtleCmd.setY(turtleCmd.getY() - exp.getNumber() * Math.round(Math.sin(Math.toRadians(turtleCmd.getDirection()))));
-        return turtleCmd;
+        List<TurtleCommand> list = new ArrayList<TurtleCommand>();
+        list.add(turtleCmd);
+        return list;
     }
 
 }

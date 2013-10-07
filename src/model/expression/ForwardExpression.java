@@ -15,10 +15,10 @@ public class ForwardExpression extends OneParameterExpression {
         List<Expression> finalExpressionList = new ArrayList<Expression>();
         finalExpressionList.addAll(expression.evaluate());
         return finalExpressionList;
-
     }
 
-    public TurtleCommand createTurtleCommand(TurtleCommand turtleCmd) {
+    @Override
+    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCmd) {
         expression = expression.evaluate().get(0);
         
         if(!(expression instanceof NumberExpression)) {
@@ -29,7 +29,9 @@ public class ForwardExpression extends OneParameterExpression {
         NumberExpression exp = (NumberExpression) expression;
         turtleCmd.setX(turtleCmd.getX() + exp.getNumber() * Math.round(Math.cos(Math.toRadians(turtleCmd.getDirection()))));
         turtleCmd.setY(turtleCmd.getY() + exp.getNumber() * Math.round(Math.sin(Math.toRadians(turtleCmd.getDirection()))));
-        return turtleCmd;
+        List<TurtleCommand> list = new ArrayList<TurtleCommand>();
+        list.add(turtleCmd);
+        return list;
     }
 
 

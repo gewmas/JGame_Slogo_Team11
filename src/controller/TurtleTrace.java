@@ -21,6 +21,13 @@ public class TurtleTrace {
         }
     }
     
+    public TurtleCommand getLatest() {
+        if(commandList.size() == 0) {
+            return new TurtleCommand(0, 0, 90);
+        }
+        return commandList.get(commandList.size()-1);
+    }
+    
     public List<TurtleCommand> getCommandList () {
         return commandList;
     }

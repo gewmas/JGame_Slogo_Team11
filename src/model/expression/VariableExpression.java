@@ -1,6 +1,9 @@
 package model.expression;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import model.DefaultModel;
 
 public class VariableExpression extends Expression{
     String id;
@@ -18,8 +21,25 @@ public class VariableExpression extends Expression{
 
     @Override
     public List<Expression> evaluate () {
-        // TODO Auto-generated method stub
-        return null;
+        List<Expression> finalExpressionList = new ArrayList<Expression>();
+
+        Map<String, Expression> globalVars = DefaultModel.getGlobalVariables();
+        Map<String, Expression> localVars = FunctionExpression.getLocalVariables();
+        
+        if(localVars.containsKey(id)) {
+            finalExpressionList.add(localVars.get(id));
+            return finalExpressionList;
+            
+        } else if(globalVars.containsKey(id)) {
+            finalExpressionList.add(globalVars.get(id));
+        }
+        
+        return finalExpressionList;
+        
+    }
+
+    public String getId () {
+        return id;
     }
 
 }
