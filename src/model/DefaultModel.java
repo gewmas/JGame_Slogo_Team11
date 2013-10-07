@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import controller.Controller;
+import controller.SlogoError;
 import controller.Turtle;
 import controller.TurtleCommand;
 import controller.TurtleTrace;
@@ -31,12 +32,17 @@ public class DefaultModel extends Model {
         //"sum 5 sum 8 9"
         List<String> commandInput = new ArrayList<String>(Arrays.asList(userInput.split("[\\s,;\\n\\t]+")));//"\\s+")));       
         
-        Parser parser = new DefaultParser();
-        List<Expression> expressionList = parser.execute(commandInput, functionMap);
-        
         TurtleCommand latestTurtleCommand;
         List<TurtleCommand> tempTurtleTrace;
         TurtleTrace turtleTrace = new TurtleTrace();
+        
+        Parser parser = new DefaultParser();
+        List<Expression> expressionList = parser.execute(commandInput, functionMap);
+        
+        if(expressionList == null) {
+            SlogoError error = new SlogoError("Parse Error", "A syntax error occured while parsing your script");
+            turtleTrace.setSlogoError(error);
+        }
         
         for (Expression expression : expressionList) {
             //Here check IF expression is of type that doesnt return turtleCommand. 

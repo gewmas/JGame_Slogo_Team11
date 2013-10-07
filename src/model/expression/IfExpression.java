@@ -64,19 +64,18 @@ public class IfExpression extends Expression {
 
         NumberExpression condition = (NumberExpression) conditionExpression.evaluate().get(0);
         if(condition.getNumber() == 1) {
-            
-            //Still need to change this!!!!!
+
             for (Expression expression : commandExpression) {
-                List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
-                if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
-                    latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
-                }
-                commandList.addAll(turtleCmds);
+                
+                    List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
+                    if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
+                        latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
+                    }
+                    commandList.addAll(turtleCmds);
             }
-            
+
         }
-
-
+        
         return commandList;
     }
 
