@@ -2,6 +2,7 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import controller.TurtleCommand;
 import model.parser.DefaultParser;
 
 public class ForExpression extends ScopedExpression{
@@ -93,10 +94,45 @@ public class ForExpression extends ScopedExpression{
         }
     }
 
-    @Override
-    public List<Expression> evaluate () {
-        // TODO Auto-generated method stub
-        return null;
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
+        List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
+        
+        // assuming not changing afterwards
+        NumberExpression start = (NumberExpression) startExpression.evaluate().get(0);
+        NumberExpression end = (NumberExpression) endExpression.evaluate().get(0);
+        NumberExpression increment = (NumberExpression) incrementExpression.evaluate().get(0);
+        
+        // create local variable
+        ScopedExpression.getLocalVariables().put(variableExpression.getId(), start);
+        
+        NumberExpression variableNumber = (NumberExpression) ScopedExpression.getLocalVariables().get(variableExpression.getId());
+        TurtleCommand latestTurtleCommand = turtleCmd;
+        
+        
+        //for (:i = start, :i < end, :i += increment)
+        while(variableNumber.getNumber() < end.getNumber()){
+            
+            for(Expression expression : commandExpression){
+                List<Expression> evaluatedExpressions = expression.evaluate();
+                for (Expression evalExpression : evaluatedExpressions) {
+                    List<TurtleCommand> turtleCmds = evalExpression.createTurtleCommands(latestTurtleCommand);
+                    if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
+                        latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
+                    }
+                    commandList.addAll(turtleCmds);
+                }
+            }
+            
+            
+            ScopedExpression.getLocalVariables().put(variableExpression.getId(), variableNumber.sum(increment));
+            variableNumber = (NumberExpression) ScopedExpression.getLocalVariables().get(variableExpression.getId());
+        }
+        
+        
+        
+        ScopedExpression.getLocalVariables().clear();
+        
+        return commandList;
     }
 
 }

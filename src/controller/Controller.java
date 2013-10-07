@@ -115,26 +115,11 @@ public class Controller {
 //        controller.interpretCommand("cs xcor ycor heading pendown? showing?");
 
 //        controller.interpretCommand("to method [ :x ] [ fd :x ] method sum 1 2");
-        controller.interpretCommand("DOTIMES [ :i sum 1 3 ] [ fd 23 fd 23 ]");
+        controller.interpretCommand("DOTIMES [ :i sum 1 2 ] [ fd :i fd 2 ]");
 
+        
+        
     }
     
-    /* public static void main(String[] args){
-    //      List<String> commandInput = new ArrayList<String>(Arrays.asList("sum", "sum", "2", "sum", "1", "sum", "5", "sum", "8", "9", "10"));
-    //      List<String> commandInput = new ArrayList<String>(Arrays.asList("sum", "9", "10"));
-
-    //      List<String> commandInput = new ArrayList<String>(Arrays.asList("fd", "sum", "sum", "2", "sum", "1", "sum", "5", "sum", "8", "9", "10"));
-    
-    
-    DefaultModel model = new DefaultModel();
-//    model.updateTrace("sum sum 2 sum 1 sum 5 sum 8 9 10");
-    model.updateTrace("fd sum sum 2 sum 1 sum 5 sum 8 9 10");
-//    model.updateTrace("repeat sum 1 2 [ fd sum 1 2 ]");
-//    model.updateTrace("repeat :count  [ fd sum 1 2 ]");
-//    model.updateTrace("repeat sum 1 2 [ fd sum 1 2 ] fd sum 1 2");
-    model.updateTrace("repeat sum 1 2 [ fd sum 1 2 repeat 3 [ fd sum 1 2 ] ] fd sum 1 2");
-//    model.updateTrace("to dash [ :count ] [ repeat :count  [   fd 4  fd 4 ]  ]   ");
-    
-}*/
 
 }

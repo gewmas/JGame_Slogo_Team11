@@ -10,10 +10,10 @@ public class DoTimesExpression extends ScopedExpression {
 
     VariableExpression variableExpression; //Assuming just one variable
     List<Expression> expression1; //limit
-    
+
     List<Expression> expression2; //command(s)
-   
-    
+
+
     /*
      * DOTIMES [ variable limit ] [ command(s) ]
      * 
@@ -28,16 +28,16 @@ public class DoTimesExpression extends ScopedExpression {
         expression2 = new ArrayList<Expression>();
         convert(cmdList);
     }
-    
+
     @Override
     public void convert (List<String> cmdList) {
         cmdList.remove(0);
-        
+
         int openBracketIndex = -1;
         int closeBracketIndex = -1;
         int bracketNumber = 0;
 
-      //Find [ variable limit ]
+        //Find [ variable limit ]
         for(int i = 0; i < cmdList.size(); i++){
             if(cmdList.get(i).equals("[")){
                 if(openBracketIndex == -1){
@@ -59,7 +59,7 @@ public class DoTimesExpression extends ScopedExpression {
         while(!limits.isEmpty()){
             expression1.add(DefaultParser.parse(limits));
         }
-            
+
 
         //Remove [ variable limit ]
         for(int i = openBracketIndex; i <= closeBracketIndex; i++){
@@ -98,29 +98,36 @@ public class DoTimesExpression extends ScopedExpression {
 
     public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
-        
+
         // create local variable :i from 0 to limit
         ScopedExpression.getLocalVariables().put(variableExpression.getId(), new NumberExpression(0));
         NumberExpression limit = (NumberExpression) expression1.get(0).evaluate().get(0); //Assuming get a NumberExpression
-        
+
         NumberExpression variableNumber = (NumberExpression) ScopedExpression.getLocalVariables().get(variableExpression.getId());
-        
+
         TurtleCommand latestTurtleCommand = turtleCmd;
-        
+
         while(variableNumber.getNumber() < limit.getNumber()){
             for(Expression expression : expression2){
+                //                List<Expression> evaluatedExpressions = expression.evaluate();
+                //                for (Expression evalExpression : evaluatedExpressions) {
+                
+
                 List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
                 if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
                     latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
                 }
                 commandList.addAll(turtleCmds);
+                //                }
             }
-            
-            variableNumber.sum(new NumberExpression(1));
+
+
+            ScopedExpression.getLocalVariables().put(variableExpression.getId(), variableNumber.sum(new NumberExpression(1)));
+            variableNumber = (NumberExpression) ScopedExpression.getLocalVariables().get(variableExpression.getId());
         }
-        
+
         ScopedExpression.getLocalVariables().clear();
-        
+
         return commandList;
     }
 
