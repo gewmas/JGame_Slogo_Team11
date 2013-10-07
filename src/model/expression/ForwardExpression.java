@@ -28,8 +28,14 @@ public class ForwardExpression extends OneParameterExpression {
         
         NumberExpression exp = (NumberExpression) evaluatedExpression;
         turtleCmd = new TurtleCommand(turtleCmd);
-        turtleCmd.setX(turtleCmd.getX() + exp.getNumber() * Math.round(Math.cos(Math.toRadians(turtleCmd.getDirection()))));
-        turtleCmd.setY(turtleCmd.getY() + exp.getNumber() * Math.round(Math.sin(Math.toRadians(turtleCmd.getDirection()))));
+        
+        //Math.round(d*100)/100.0d;
+        double precision = 1000;
+      turtleCmd.setX(turtleCmd.getX() + exp.getNumber() * Math.round(Math.cos(Math.toRadians(turtleCmd.getDirection()))*precision)/precision);
+      turtleCmd.setY(turtleCmd.getY() + exp.getNumber() * Math.round(Math.sin(Math.toRadians(turtleCmd.getDirection()))*precision)/precision);
+
+//        turtleCmd.setX(turtleCmd.getX() + exp.getNumber() * Math.round(Math.cos(Math.toRadians(turtleCmd.getDirection()))));
+//        turtleCmd.setY(turtleCmd.getY() + exp.getNumber() * Math.round(Math.sin(Math.toRadians(turtleCmd.getDirection()))));
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
         list.add(turtleCmd);
         return list;
