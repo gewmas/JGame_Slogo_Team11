@@ -51,38 +51,49 @@ public class DefaultParser extends Parser {
             return new SetXYExpression(commandInput);
         }
         else if (s.equals("pd") || s.equals("pendown")){
+            commandInput.remove(0);
             return new PenDownExpression();
         }
         else if (s.equals("pu") || s.equals("penup")){
+            commandInput.remove(0);
             return new PenUpExpression();
         }
         else if (s.equals("st") || s.equals("showturtle")){
+            commandInput.remove(0);
             return new ShowTurtleExpression();
         }
         else if (s.equals("ht") || s.equals("hideturtle")){
+            commandInput.remove(0);
             return new HideTurtleExpression();
         }
         else if (s.equals("home")){
+            commandInput.remove(0);
             return new HomeExpression();
         }
         else if (s.equals("cs") || s.equals("clearscreen")){
+            commandInput.remove(0);
             return new ClearScreenExpression();
         }
         
         //Turtle Queries
         else if (s.equals("xcor")){
+            commandInput.remove(0);
             return new XCorExpression();
         }
         else if (s.equals("ycor")){
+            commandInput.remove(0);
             return new YCorExpression();
         }
         else if (s.equals("heading")){
+            commandInput.remove(0);
             return new HeadingExpression();
         }
         else if (s.equals("pendownp") || s.equals("pendown?")){
+            commandInput.remove(0);
             return new IsPenDownExpression();
         }
         else if (s.equals("showingp") || s.equals("showing?")){
+            commandInput.remove(0);
             return new IsShowingExpression();
         }
         
@@ -163,16 +174,16 @@ public class DefaultParser extends Parser {
             return functionExp;
         }
         else if (s.equals("dotimes")){
-            return new DoTimesExpression();
+            return new DoTimesExpression(commandInput);
         }
         else if (s.equals("for")){
-            return new ForExpression();
+            return new ForExpression(commandInput);
         }
         else if (s.equals("if")){
-            return new IfExpression();
+            return new IfExpression(commandInput);
         }
         else if (s.equals("ifelse")){
-            return new IfElseExpression();
+            return new IfElseExpression(commandInput);
         }
         else if(s.equals("to")){
             commandInput.remove(0);

@@ -74,10 +74,44 @@ public class Controller {
         return backgroundColor;
     }
     
+    
+    //Turtle queries function call
+    public void clearScreen(){
+        //view.clearScreen()
+    }
+    
+    public void xCor(){
+      //view.xCor();
+    }
+    
+    public void yCor(){
+      //view.yCor();
+    }
+    
+    public void heading(){
+      //view.heading();
+    }
+    
+    public void isPenDown(){
+      //view.isPenDown();
+    }
+    
+    public void isShowing(){
+      //view.isShowing();
+    }
+                          
+    
+    
+    
     public static void main(String[] args){
         Controller controller = new Controller();
 //        controller.interpretCommand("fd sum 8 9 bk 8 lt 1 rt 2 seth 4");
-        controller.interpretCommand("make :random sum 1 random 100");
+//        controller.interpretCommand("make :random sum 1 random 100");
+//        controller.interpretCommand("DOTIMES  [  :i sum 1 3 ] [ fd 23 fd 23 ]");
+//        controller.interpretCommand("for [ :i sum 1 3 sum 1 3 sum 1 3 ] [  fd 23 fd 23 ] ");
+//        controller.interpretCommand("if lessp 2 3 [ fd sum 1 2 ]");
+//        controller.interpretCommand("ifelse lessp 2 3 [ fd sum 1 2 ] [ fd sum 1 sum 1 2 ]");
+        controller.interpretCommand("cs xcor ycor heading pendown? showing?");
     }
     
     /* public static void main(String[] args){

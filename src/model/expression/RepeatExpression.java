@@ -22,7 +22,6 @@ public class RepeatExpression extends Expression {
         int closeBracketIndex = -1;
         int bracketNumber = 0;
 
-        //Problem with following codes if repeat [] inside another repeat
         for(int i = 0; i < cmdList.size(); i++){
             if(cmdList.get(i).equals("[")){
                 if(openBracketIndex == -1){

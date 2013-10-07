@@ -1,8 +1,9 @@
 package model.expression;
 
 import java.util.List;
+import controller.Controller;
 
-public class QueryExpression extends Expression {
+public abstract class QueryExpression extends Expression {
 
     @Override
     public void convert (List<String> cmdList) {
@@ -15,5 +16,7 @@ public class QueryExpression extends Expression {
         // TODO Auto-generated method stub
         return null;
     }
+    
+    public abstract void executeControllerCommand(Controller controller);
 
 }

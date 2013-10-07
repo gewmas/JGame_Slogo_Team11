@@ -1,5 +1,12 @@
 package model.expression;
 
-public class ClearScreenExpression extends ZeroParameterExpression {
+import controller.Controller;
+
+public class ClearScreenExpression extends QueryExpression {
+
+    @Override
+    public void executeControllerCommand (Controller controller) {
+        controller.clearScreen();
+    }
 
 }

@@ -24,8 +24,10 @@ public class DefaultModel extends Model {
     }
     
     public void updateTrace (String userInput) {
+        //cs, xcoo, ycoor, heading, pendown?, showing?..
+        
         //"sum 5 sum 8 9"
-        List<String> commandInput = new ArrayList<String>(Arrays.asList(userInput.split("\\s+")));       
+        List<String> commandInput = new ArrayList<String>(Arrays.asList(userInput.split("[\\s,;\\n\\t]+")));//"\\s+")));       
         
         Parser parser = new DefaultParser();
         List<Expression> expressionList = parser.execute(commandInput, functionMap);
@@ -36,6 +38,12 @@ public class DefaultModel extends Model {
         for (Expression expression : expressionList) {
             //Here check IF expression is of type that doesnt return turtleCommand. 
 //            OneParameterExpression exp = (OneParameterExpression) expression;
+            
+            if(expression.getClass().getSuperclass().getSimpleName().equals("QueryExpression")){
+                ((QueryExpression) expression).executeControllerCommand(controller);
+                continue;
+            }
+            
             latestTurtleCommand = new TurtleCommand(latestTurtleCommand);
             latestTurtleCommand = expression.createTurtleCommand(latestTurtleCommand);
             turtleTrace.add(latestTurtleCommand);
