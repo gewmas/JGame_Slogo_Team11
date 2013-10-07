@@ -33,7 +33,7 @@ public class TestController {
         
     }
     
-    public void updateAvtiveTurtle(){
+    public void updateActiveTurtle(){
         activeTurtle = controller.getActiveTurtles();
     }
     
@@ -54,7 +54,7 @@ public class TestController {
         //http://www.cs.duke.edu/courses/compsci308/fall13/assign/03_slogo/examples/simple/
         
 //        # go forward 70 (the hard way)
-        updateAvtiveTurtle();
+        updateActiveTurtle();
         controller.interpretCommand("fd sum sum sum sum 10 20 30 5 5");
         updateLatestCommandOfFirstActiveTurtle();
         assertTrue(x == 0.0);
@@ -65,7 +65,7 @@ public class TestController {
         turtleTrace.clearCommandList();
         
 //        # go forward 70 (a different hard way)
-        updateAvtiveTurtle();
+        updateActiveTurtle();
         controller.interpretCommand("fd sum 10 sum 10 sum 10 sum 20 20");
         updateLatestCommandOfFirstActiveTurtle();
         assertTrue(x == 0.0);
@@ -86,7 +86,7 @@ public class TestController {
             fd 100
             rt 90
          */
-        updateAvtiveTurtle();
+        updateActiveTurtle();
         controller.interpretCommand("fd 100 rt 90 fd 100 rt 90 fd 100  rt 90 fd 100 rt 90");
         updateLatestCommandOfFirstActiveTurtle();
         assertTrue(x == 0.0);
@@ -121,13 +121,13 @@ public class TestController {
             
             dash
          */
-        updateAvtiveTurtle();
+        updateActiveTurtle();
         //Test ExpressionList, Passed..  To be done: createTurtleCommand
         controller.interpretCommand("set :count 12 to dash [ ] [ repeat :count [ pu fd 4 pd fd 4 ] ] dash");
         
         updateLatestCommandOfFirstActiveTurtle();
         assertTrue(x == 0.0);
-        assertTrue(y == 70.0);
+        assertTrue(y == 96.0);
         assertTrue(direction == 90.0);
         assertTrue(isPenDown);
         assertTrue(isVisible);
@@ -136,7 +136,7 @@ public class TestController {
 
     @Test
     public void testOneParameter () {
-        updateAvtiveTurtle();
+        updateActiveTurtle();
         
         //fd 17 bk 8 lt 1 rt 2 seth 4 => (x = 0, y = 9.0, direction = 89, pendown = true, isshowing = true)
         controller.interpretCommand("fd sum 8 9 bk 8 lt 1 rt 2 seth 4");
@@ -147,6 +147,19 @@ public class TestController {
         assertTrue(direction == 4.0);
         assertTrue(isPenDown);
         assertTrue(isVisible);
+        turtleTrace.clearCommandList();
+        
+        updateActiveTurtle();
+        //fd fd 15
+        controller.interpretCommand("fd fd 15");
+        updateLatestCommandOfFirstActiveTurtle();
+    
+        assertTrue(x == 0.0);
+        assertTrue(y == 9.0);
+        assertTrue(direction == 4.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
     }
 
 }

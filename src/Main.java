@@ -8,10 +8,10 @@ import viewer.SLogoViewer;
 public class Main {
     public static void main (String[] args) {
 //        SLogoViewer myViewer=new SLogoViewer();
-        //myViewer.addPanel(new Display());
-        //myViewer.addPanel(new CommandBox());
+//        myViewer.addPanel(new Display());
+//        myViewer.addPanel(new CommandBox());
         
-//        Controller controller = new Controller();
+        Controller controller = new Controller();
 //        controller.interpretCommand("fd sum 8 9 bk 8 lt 1 rt 2 seth 4");
 
 //        controller.interpretCommand("make :random sum 1 random 100");
@@ -25,6 +25,6 @@ public class Main {
 //        controller.interpretCommand("DOTIMES [ :i sum 1 2 ] [ fd :i fd 2 ]");
 
 //        controller.interpretCommand("for [ :i 0 3 1 ] [  fd :i fd sum :i 1 ]");
-//        controller.interpretCommand("repeat 180 [ fd 1 rt 2 ]");
+        controller.interpretCommand("repeat 3 [ fd 1 rt 2 ]");
     }
 }

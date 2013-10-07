@@ -62,6 +62,13 @@ public class DefaultModel extends Model {
                 if(expression instanceof MakeExpression) {
                     MakeExpression makeExp = (MakeExpression) expression;
                     makeExp.setIsGlobal(true);
+                    makeExp.evaluate();
+                    continue;
+                }
+                
+                // Skip FunctionDeclarationExpression
+                if(expression instanceof FunctionDeclarationExpression){
+                    continue;
                 }
 
                 //Here check IF expression is of type that doesnt return turtleCommand.  ????

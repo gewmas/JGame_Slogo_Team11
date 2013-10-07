@@ -2,15 +2,16 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import controller.TurtleCommand;
 import model.parser.DefaultParser;
 
 public class RepeatExpression extends ScopedExpression {
-    Expression expression1;
-//    Expression expression2;
-    List<Expression> expression2;
+    Expression variableExpression;
+    //    Expression expression2;
+    List<Expression> commandExpression;
 
     public RepeatExpression(List<String> cmdList){
-        expression2 = new ArrayList<Expression>();
+        commandExpression = new ArrayList<Expression>();
         convert(cmdList);
     }
 
@@ -39,30 +40,30 @@ public class RepeatExpression extends ScopedExpression {
 
         try
         {
-            expression1 = new NumberExpression(Double.parseDouble(cmdList.get(0)));
-//            cmdList.remove(0);
+            variableExpression = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+            //            cmdList.remove(0);
         }
         catch(NumberFormatException e)
         {
-            expression1 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
+            variableExpression = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
         }
-        
-//        expression1 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
+
+        //        expression1 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
 
         List<String> expression2CmdList = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
         while(!expression2CmdList.isEmpty()){
-            expression2.add(DefaultParser.parse(expression2CmdList));
+            commandExpression.add(DefaultParser.parse(expression2CmdList));
         }
-        
+
         for(int i = 0; i <= closeBracketIndex; i++){
             cmdList.remove(0);
         }
-        
-//        cmdList = cmdList.subList(closeBracketIndex+1, cmdList.size());
-        
+
+        //        cmdList = cmdList.subList(closeBracketIndex+1, cmdList.size());
+
     }
 
-    @Override
+    /*@Override
     // Must think about whether expressions being evaluated can check for variables defined outside of repeat scope!
     public List<Expression> evaluate() {
     	NumberExpression repeatNumberExp = (NumberExpression) expression1.evaluate().get(0);
@@ -74,6 +75,27 @@ public class RepeatExpression extends ScopedExpression {
 			}
 		}
     	return finalExpressionList;
+    }*/
+
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
+        List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
+        NumberExpression repeatNumberExp = (NumberExpression) variableExpression.evaluate().get(0); //Assume variable is NumberExpression
+
+        TurtleCommand latestTurtleCommand = turtleCmd;
+
+        for (int i = 0; i < repeatNumberExp.getNumber(); i++) { 
+            for(Expression expression : commandExpression){
+                List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
+                if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
+                    latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
+                }
+                commandList.addAll(turtleCmds);
+            }
+        }
+
+
+        return commandList;
+
     }
 
 }
