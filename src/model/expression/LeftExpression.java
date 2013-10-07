@@ -21,7 +21,13 @@ public class LeftExpression extends OneParameterExpression {
 
         turtleCmd = new TurtleCommand(turtleCmd);
         NumberExpression exp = (NumberExpression) expression;
-        turtleCmd.setDirection(turtleCmd.getDirection() + exp.getNumber());
+        double currentDirection = turtleCmd.getDirection() + exp.getNumber();
+        if(currentDirection < -180){
+            currentDirection += 360;
+        }else if(currentDirection > 180){
+            currentDirection -= 360;
+        }
+        turtleCmd.setDirection(currentDirection);
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
         list.add(turtleCmd);
         return list;

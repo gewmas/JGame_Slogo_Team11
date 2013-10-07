@@ -17,58 +17,68 @@ import model.expression.*;
 public class DefaultModel extends Model {
     private static Map<String, Expression> functionMap;
     private static Map<String, Expression> globalVariables;
-    
+
     private Controller controller;
-    
+    List<Turtle> activeTurtle;
+    TurtleTrace turtleTrace;
+
     public DefaultModel(Controller controller){
         functionMap = new HashMap<String, Expression>();
         globalVariables = new HashMap<String, Expression>();
         this.controller = controller;
     }
-    
+
+    public void updateAvtiveTurtle(){
+        activeTurtle = controller.getActiveTurtles();
+    }
+
     public void updateTrace (String userInput) {
-        //cs, xcoo, ycoor, heading, pendown?, showing?..
-        
-        //"sum 5 sum 8 9"
-        List<String> commandInput = new ArrayList<String>(Arrays.asList(userInput.split("[\\s,;\\n\\t]+")));//"\\s+")));       
-        
         TurtleCommand latestTurtleCommand;
-        List<TurtleCommand> tempTurtleTrace;
-        TurtleTrace turtleTrace = new TurtleTrace();
-        
+        List<TurtleCommand> tempTurtleCommand;
+
+        // convert command
+        List<String> commandInput = new ArrayList<String>(Arrays.asList(userInput.split("[\\s,;\\n\\t]+")));//"\\s+")));       
         Parser parser = new DefaultParser();
         List<Expression> expressionList = parser.execute(commandInput, functionMap);
-        
+
         if(expressionList == null) {
             SlogoError error = new SlogoError("Parse Error", "A syntax error occured while parsing your script");
             turtleTrace.setSlogoError(error);
         }
-        
-        for (Expression expression : expressionList) {
-            //Here check IF expression is of type that doesnt return turtleCommand. 
-            //OneParameterExpression exp = (OneParameterExpression) expression;
 
-            if(expression.getClass().getSuperclass().getSimpleName().equals("QueryExpression")){
-                ((QueryExpression) expression).executeControllerCommand(controller);
-                continue;
-            }
-            // If make called from top level, then need to flag it as global 
-            if(expression instanceof MakeExpression) {
-                MakeExpression makeExp = (MakeExpression) expression;
-                makeExp.setIsGlobal(true);
-            }
+        //get TurtleTrace of every activeTurtle
+        updateAvtiveTurtle();
+        for(Turtle turtle : activeTurtle){
+            turtleTrace = turtle.getTurtleTrace();
 
-            latestTurtleCommand = new TurtleCommand(turtleTrace.getLatest());
-            tempTurtleTrace = expression.createTurtleCommands(latestTurtleCommand);
-            turtleTrace.add(tempTurtleTrace);
+            // evaluate & create TurtleCommand
+            for (Expression expression : expressionList) {
+                if(expression.getClass().getSuperclass().getSimpleName().equals("QueryExpression")){
+                    ((QueryExpression) expression).executeControllerCommand(controller);
+                    continue;
+                }
+
+                // If make called from top level, then need to flag it as global 
+                if(expression instanceof MakeExpression) {
+                    MakeExpression makeExp = (MakeExpression) expression;
+                    makeExp.setIsGlobal(true);
+                }
+
+                //Here check IF expression is of type that doesnt return turtleCommand.  ????
+                latestTurtleCommand = new TurtleCommand(turtleTrace.getLatest());
+                tempTurtleCommand = expression.createTurtleCommands(latestTurtleCommand);
+                turtleTrace.add(tempTurtleCommand);
+            }
+            
         }
-        
-        //Expression evl = answer.evaluate();
+
+
+
     }
-    
+
     public static Map<String, Expression> getGlobalVariables() {
         return globalVariables;
     }
 
- 
+
 }

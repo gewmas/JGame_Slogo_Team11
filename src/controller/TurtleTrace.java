@@ -32,6 +32,10 @@ public class TurtleTrace {
         return commandList;
     }
     
+    public void clearCommandList(){
+        commandList.clear();
+    }
+    
     public void setTurtlePenUp(){
         
     }

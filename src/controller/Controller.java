@@ -31,11 +31,15 @@ public class Controller {
         // view.paintFrame(getTurtleTraces);
     }
 
+    //Now getTurtles & getActiveTurtle return the same only turtle
     public List<Turtle> getTurtles () {
         return turtles;
     }
-
-    // public abstract AGColor getBackgroundColor();
+    
+    public List<Turtle> getActiveTurtles() {
+        return activeTurtles;
+    }
+    
     public void setActiveTurtle (List<String> turtleIds) {
         activeTurtles.clear();
         //Bad Method, Modify!
@@ -47,12 +51,6 @@ public class Controller {
             }
         }
     }
-
-    public List<Turtle> getActiveTurtles() {
-        return activeTurtles;
-    }
-    
-    
 
     // Returns the active TurtleTrace object which is outlined below
 //    private List<TurtleTrace> getTurtleTraces () {
@@ -101,26 +99,4 @@ public class Controller {
     }
                           
     
-    
-    
-    public static void main(String[] args){
-        Controller controller = new Controller();
-//        controller.interpretCommand("fd sum 8 9 bk 8 lt 1 rt 2 seth 4");
-
-//        controller.interpretCommand("make :random sum 1 random 100");
-//        controller.interpretCommand("DOTIMES  [  :i sum 1 3 ] [ fd 23 fd 23 ]");
-//        controller.interpretCommand("for [ :i sum 1 3 sum 1 3 sum 1 3 ] [  fd 23 fd 23 ] ");
-//        controller.interpretCommand("if lessp 2 3 [ fd sum 1 2 ]");
-//        controller.interpretCommand("ifelse lessp 2 3 [ fd sum 1 2 ] [ fd sum 1 sum 1 2 ]");
-//        controller.interpretCommand("cs xcor ycor heading pendown? showing?");
-
-//        controller.interpretCommand("to method [ :x ] [ fd :x ] method sum 1 2");
-//        controller.interpretCommand("DOTIMES [ :i sum 1 2 ] [ fd :i fd 2 ]");
-
-        controller.interpretCommand("for [ :i 0 3 1 ] [  fd :i fd sum :i 1 ]");
-        
-        
-    }
-    
-
 }
