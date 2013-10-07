@@ -12,13 +12,15 @@ public class DoTimesExpression extends ScopedExpression {
     List<Expression> expression1; //limit
     
     List<Expression> expression2; //command(s)
-    
-    private static Map<String, Expression> localVariables;
+   
     
     /*
      * DOTIMES [ variable limit ] [ command(s) ]
      * 
      * DOTIMES [ :i sum 1 3 ] [ fd 23 fd 23 ]
+     * 
+     * runs the commands for each value specified in the range, i.e., from 0 up to (limit - 1). 
+     * note, variable is assigned to each succeeding value so that it can be accessed by the commands
      * 
      */
     public DoTimesExpression(List<String> cmdList){
@@ -95,8 +97,31 @@ public class DoTimesExpression extends ScopedExpression {
     }
 
     public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
-        // TODO Auto-generated method stub
-        return null;
+        List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
+        
+        // create local variable :i from 0 to limit
+        ScopedExpression.getLocalVariables().put(variableExpression.getId(), new NumberExpression(0));
+        NumberExpression limit = (NumberExpression) expression1.get(0).evaluate().get(0); //Assuming get a NumberExpression
+        
+        NumberExpression variableNumber = (NumberExpression) ScopedExpression.getLocalVariables().get(variableExpression.getId());
+        
+        TurtleCommand latestTurtleCommand = turtleCmd;
+        
+        while(variableNumber.getNumber() < limit.getNumber()){
+            for(Expression expression : expression2){
+                List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
+                if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
+                    latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
+                }
+                commandList.addAll(turtleCmds);
+            }
+            
+            variableNumber.sum(new NumberExpression(1));
+        }
+        
+        ScopedExpression.getLocalVariables().clear();
+        
+        return commandList;
     }
 
 

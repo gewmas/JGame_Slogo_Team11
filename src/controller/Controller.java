@@ -114,7 +114,8 @@ public class Controller {
 //        controller.interpretCommand("ifelse lessp 2 3 [ fd sum 1 2 ] [ fd sum 1 sum 1 2 ]");
 //        controller.interpretCommand("cs xcor ycor heading pendown? showing?");
 
-        controller.interpretCommand("to method [ :x ] [ fd :x ] method sum 1 2");
+//        controller.interpretCommand("to method [ :x ] [ fd :x ] method sum 1 2");
+        controller.interpretCommand("DOTIMES [ :i sum 1 3 ] [ fd 23 fd 23 ]");
 
     }
     

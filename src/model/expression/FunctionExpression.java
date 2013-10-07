@@ -63,7 +63,7 @@ public class FunctionExpression extends ScopedExpression {
         }
         
         //clean localVariable
-        FunctionExpression.getLocalVariables().clear();
+        ScopedExpression.getLocalVariables().clear();
         
         return commandList;
     }
