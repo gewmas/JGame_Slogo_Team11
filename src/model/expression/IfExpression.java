@@ -66,14 +66,12 @@ public class IfExpression extends Expression {
         if(condition.getNumber() == 1) {
 
             for (Expression expression : commandExpression) {
-                List<Expression> evaluatedExpressions = expression.evaluate();
-                for (Expression evalExpression : evaluatedExpressions) {
-                    List<TurtleCommand> turtleCmds = evalExpression.createTurtleCommands(latestTurtleCommand);
+                
+                    List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
                     if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
                         latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
                     }
                     commandList.addAll(turtleCmds);
-                }
             }
 
         }

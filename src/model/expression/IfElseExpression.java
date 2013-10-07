@@ -117,14 +117,12 @@ public class IfElseExpression extends Expression {
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
         TurtleCommand latestTurtleCommand = turtleCommand;
         for (Expression expression : ifCommandExpression) {
-            List<Expression> evaluatedExpressions = expression.evaluate();
-            for (Expression evalExpression : evaluatedExpressions) {
-                List<TurtleCommand> turtleCmds = evalExpression.createTurtleCommands(latestTurtleCommand);
+            
+                List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
                 if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
                     latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
                 }
                 commandList.addAll(turtleCmds);
-            }
         }
         
         return commandList;
