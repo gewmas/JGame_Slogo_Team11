@@ -2,13 +2,14 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import controller.TurtleCommand;
 import model.parser.DefaultParser;
 
 public class IfExpression extends Expression {
 
     Expression conditionExpression; //assuming one expression
     List<Expression> commandExpression;
-    
+
     /*
      * IF expr [ command(s) ]
      * if lessp 2 3 [ fd sum 1 2 ]
@@ -17,7 +18,7 @@ public class IfExpression extends Expression {
         commandExpression = new ArrayList<Expression>();
         convert(cmdList);
     }
-    
+
     @Override
     public void convert (List<String> cmdList) {
         cmdList.remove(0); // remove if
@@ -42,24 +43,43 @@ public class IfExpression extends Expression {
             }
         }
 
-        
-        
         conditionExpression = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
 
         List<String> commandCmdList = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
         while(!commandCmdList.isEmpty()){
             commandExpression.add(DefaultParser.parse(commandCmdList));
         }
-        
+
         for(int i = 0; i <= closeBracketIndex; i++){
             cmdList.remove(0);
         }
     }
 
     @Override
-    public List<Expression> evaluate () {
-        // TODO Auto-generated method stub
-        return null;
+    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCommand) {
+
+        List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
+
+        TurtleCommand latestTurtleCommand = turtleCommand;
+
+        NumberExpression condition = (NumberExpression) conditionExpression.evaluate().get(0);
+        if(condition.getNumber() == 1) {
+            
+            //Still need to change this!!!!!
+            for (Expression expression : commandExpression) {
+                List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
+                if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
+                    latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
+                }
+                commandList.addAll(turtleCmds);
+            }
+            
+        }
+
+
+        return commandList;
     }
+
+
 
 }

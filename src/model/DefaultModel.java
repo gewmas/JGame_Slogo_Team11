@@ -40,7 +40,7 @@ public class DefaultModel extends Model {
         
         for (Expression expression : expressionList) {
             //Here check IF expression is of type that doesnt return turtleCommand. 
-//            OneParameterExpression exp = (OneParameterExpression) expression;
+            //OneParameterExpression exp = (OneParameterExpression) expression;
 
             if(expression.getClass().getSuperclass().getSimpleName().equals("QueryExpression")){
                 ((QueryExpression) expression).executeControllerCommand(controller);
