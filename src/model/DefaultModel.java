@@ -15,11 +15,13 @@ import model.expression.*;
 
 public class DefaultModel extends Model {
     private static Map<String, Expression> functionMap;
+    private static Map<String, Expression> globalVariables;
     
     private Controller controller;
     
     public DefaultModel(Controller controller){
         functionMap = new HashMap<String, Expression>();
+        globalVariables = new HashMap<String, Expression>();
         this.controller = controller;
     }
     
@@ -30,19 +32,23 @@ public class DefaultModel extends Model {
         Parser parser = new DefaultParser();
         List<Expression> expressionList = parser.execute(commandInput, functionMap);
         
-        TurtleCommand latestTurtleCommand = new TurtleCommand(0, 0, 90);
+        TurtleCommand latestTurtleCommand;
+        List<TurtleCommand> tempTurtleTrace;
         TurtleTrace turtleTrace = new TurtleTrace();
         
         for (Expression expression : expressionList) {
             //Here check IF expression is of type that doesnt return turtleCommand. 
 //            OneParameterExpression exp = (OneParameterExpression) expression;
-            latestTurtleCommand = new TurtleCommand(latestTurtleCommand);
-            latestTurtleCommand = expression.createTurtleCommand(latestTurtleCommand);
-            turtleTrace.add(latestTurtleCommand);
-            
+            latestTurtleCommand = new TurtleCommand(turtleTrace.getLatest());
+            tempTurtleTrace = expression.createTurtleCommands(latestTurtleCommand);
+            turtleTrace.add(tempTurtleTrace);
         }
         
         //Expression evl = answer.evaluate();
+    }
+    
+    public static Map<String, Expression> getGlobalVariables() {
+        return globalVariables;
     }
 
  

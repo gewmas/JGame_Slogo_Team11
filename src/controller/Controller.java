@@ -77,7 +77,7 @@ public class Controller {
     public static void main(String[] args){
         Controller controller = new Controller();
 //        controller.interpretCommand("fd sum 8 9 bk 8 lt 1 rt 2 seth 4");
-        controller.interpretCommand("make :random sum 1 random 100");
+        controller.interpretCommand("to method [ :x ] [ fd :x ] method 10");
     }
     
     /* public static void main(String[] args){

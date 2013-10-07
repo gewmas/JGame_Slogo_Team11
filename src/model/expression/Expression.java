@@ -18,7 +18,7 @@ public class Expression extends AbstractExpression{
     }
 
     @Override
-    public TurtleCommand createTurtleCommand (TurtleCommand turtleCmd) {
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
         // TODO Auto-generated method stub
         return null;
     }

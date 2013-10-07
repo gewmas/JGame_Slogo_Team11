@@ -1,14 +1,19 @@
 package model.expression;
 
+import java.util.ArrayList;
+import java.util.List;
 import controller.TurtleCommand;
 
 public class HideTurtleExpression extends ZeroParameterExpression {
 
-    public TurtleCommand createTurtleCommand(TurtleCommand turtleCmd) {
+    @Override
+    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCmd) {
 
         turtleCmd.setVisible(false);
         
-        return turtleCmd;
+        List<TurtleCommand> list = new ArrayList<TurtleCommand>();
+        list.add(turtleCmd);
+        return list;
     }
     
     
