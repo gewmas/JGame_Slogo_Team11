@@ -13,7 +13,8 @@ public class TurtleImageButton extends Button {
 	
 	@Override
 	public void buttonPushed() {
-		
+		//need to add popup to select image
+		((Toggles) this.myPanel).setTurtleImage(null);
 	}
 	
 }

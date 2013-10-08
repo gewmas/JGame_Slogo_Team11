@@ -14,8 +14,6 @@ public class Panel extends JPanel {
 
 	protected List<JComponent> componentList;
 	protected LayoutManager layout;
-//    public ActionListener actionListener;
-//    public ItemListener itemListener;
 	
 	public Panel() {
 		this(new FlowLayout());
@@ -26,4 +24,5 @@ public class Panel extends JPanel {
 		this.layout = layout;
 		componentList = new ArrayList<JComponent>();
 	}
+	
 }

@@ -13,7 +13,7 @@ public class GridButton extends Button {
 	
 	@Override
 	public void buttonPushed() {
-		
+		((Toggles) this.myPanel).toggleGrid();
 	}
 	
 }
