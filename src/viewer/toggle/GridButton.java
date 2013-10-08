@@ -3,16 +3,17 @@ package viewer.toggle;
 import java.awt.Dimension;
 
 import viewer.Button;
+import viewer.Panel;
 
 public class GridButton extends Button {
 
-	public GridButton() {
-		super("Toggle Grid");
-//		this.setPreferredSize(new Dimension(BUTTON_WIDTH,20));
+	public GridButton(Panel myPanel) {
+		super(myPanel, "Toggle Grid");
 	}
 	
-//	protected void toggleGridOn() {
-//		
-//	}
+	@Override
+	public void buttonPushed() {
+		
+	}
 	
 }

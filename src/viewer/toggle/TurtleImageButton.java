@@ -3,16 +3,17 @@ package viewer.toggle;
 import java.awt.Dimension;
 
 import viewer.Button;
+import viewer.Panel;
 
 public class TurtleImageButton extends Button {
 
-	public TurtleImageButton() {
-		super("Set Turtle Image");
-//		this.setPreferredSize(new Dimension(BUTTON_WIDTH,20));
+	public TurtleImageButton(Panel myPanel) {
+		super(myPanel, "Set Turtle Image");
 	}
 	
-//	protected void setTurtleImage(JGObject image) {
-//		
-//	}
+	@Override
+	public void buttonPushed() {
+		
+	}
 	
 }
