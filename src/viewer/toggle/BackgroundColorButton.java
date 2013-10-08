@@ -2,17 +2,19 @@ package viewer.toggle;
 
 import java.awt.Dimension;
 
+import jgame.JGColor;
 import viewer.Button;
+import viewer.Panel;
 
 public class BackgroundColorButton extends Button {
 
-	public BackgroundColorButton() {
-		super("Set Background Color");
-//		this.setPreferredSize(new Dimension(BUTTON_WIDTH,20));
+	public BackgroundColorButton(Panel myPanel) {
+		super(myPanel, "Set Background Color");
 	}
 	
-//	public void setBackgroundColor(JGColor color) {
-//		
-//	}
+	@Override
+	public void buttonPushed() {
+		
+	}
 	
 }

@@ -3,16 +3,17 @@ package viewer.toggle;
 import java.awt.Dimension;
 
 import viewer.Button;
+import viewer.Panel;
 
 public class PenColorButton extends Button {
 
-	public PenColorButton() {
-		super("Set Pen Color");
-//		this.setPreferredSize(new Dimension(BUTTON_WIDTH,20));
+	public PenColorButton(Panel myPanel) {
+		super(myPanel, "Set Pen Color");
 	}
 	
-//	protected void setPenColor(JGColor color) {
-//		
-//	}
+	@Override
+	public void buttonPushed() {
+		
+	}
 	
 }

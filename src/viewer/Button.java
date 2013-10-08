@@ -6,15 +6,22 @@ import javax.swing.JButton;
 
 public class Button extends JButton {
 
-    protected static final int BUTTON_WIDTH=180;
-    protected static final int BUTTON_HEIGHT=20;
+    private static final int BUTTON_WIDTH=180;
+    private static final int BUTTON_HEIGHT=20;
+    protected Panel myPanel;
 
-	public Button() {
-		this("Button Text");
+	public Button(Panel myPanel) {
+		this(myPanel, "Button Text");
 	}
 	
-	public Button(String buttonText) {
+	public Button(Panel myPanel, String buttonText) {
 		super(buttonText);
+		this.myPanel = myPanel;
 		setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 	}
+	
+	public void buttonPushed() {
+		
+	}
+	
 }

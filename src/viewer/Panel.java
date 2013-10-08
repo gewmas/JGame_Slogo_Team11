@@ -2,6 +2,8 @@ package viewer;
 
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,8 @@ public class Panel extends JPanel {
 
 	protected List<JComponent> componentList;
 	protected LayoutManager layout;
+//    public ActionListener actionListener;
+//    public ItemListener itemListener;
 	
 	public Panel() {
 		this(new FlowLayout());
