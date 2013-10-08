@@ -49,7 +49,6 @@ public class Toggles extends Panel {
     
     public void setBackgroundColor(JGColor color) {
     	System.out.println("Set Background Color clicked");
-//    	this.setBackground(Color.GREEN);
     	this.backgroundColor = color;
     }
     
