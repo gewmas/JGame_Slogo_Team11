@@ -1,7 +1,17 @@
 package viewer;
 
-import jgame.*;
-import jgame.platform.*;
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
+import controller.Controller;
+import controller.TurtleCommand;
+import controller.TurtleTrace;
+import viewer.display_objects.DisplayPath;
+import viewer.display_objects.DisplayTurtle;
+import jgame.JGColor;
+import jgame.JGPoint;
+import jgame.platform.JGEngine;
+
 
 /** Tutorial example 1: a minimal program.  A "bare skeleton" program
  * displaying a moving text "hello world".
@@ -13,18 +23,29 @@ import jgame.platform.*;
  * application.
  */
 public class Example1 extends JGEngine {
-
+        private static final int ZERO_OFFSET=50;
+        private static final int NUM_TILES_WIDTH=20;
+        private static final int NUM_TILES_HEIGHT=20;
+    
+        protected List<DisplayPath> myPaths;
+        protected DisplayTurtle myDisplayTurtle;
+        protected double myWidth, myHeight;
+        protected TurtleTrace myTurtleTrace;
+        protected ArrayList<TurtleCommand> myTurtleList;
         /** The parameterless constructor is called by the browser, in case we're
          * an applet. */
-        public Example1() {
+        public Example1(TurtleTrace trace) {
                 // This inits the engine as an applet.
-                this(new JGPoint(500,500)); 
+                this(new JGPoint(500,500),trace); 
         }
 
         /** We use a separate constructor for starting as an application. */
-        public Example1(JGPoint size) {
-                // This inits the engine as an application.
-                initEngineComponent(size.x,size.y); 
+        public Example1(JGPoint size, TurtleTrace trace) {
+            myWidth=(int)(size.x/NUM_TILES_WIDTH)*(NUM_TILES_WIDTH);
+            myHeight=(int)(size.y/NUM_TILES_HEIGHT)*(NUM_TILES_HEIGHT);
+            myTurtleTrace=trace;
+            // This inits the engine as an application.
+            initEngineComponent(size.x,size.y); 
         }
 
         /** This method is called by the engine when it is ready to intialise the
@@ -38,13 +59,13 @@ public class Example1 extends JGEngine {
                 // what canvas settings to use.  We should not yet call any of the
                 // other game engine methods here!
                 setCanvasSettings(
-                        20,  // width of the canvas in tiles
-                        15,  // height of the canvas in tiles
-                        16,  // width of one tile
-                        16,  // height of one tile
+                        (int) NUM_TILES_WIDTH,  // width of the canvas in tiles
+                        (int) NUM_TILES_HEIGHT,  // height of the canvas in tiles
+                        (int) myWidth/NUM_TILES_WIDTH,  // width of one tile
+                        (int) myHeight/NUM_TILES_WIDTH,  // height of one tile
                              //    (note: total size = 20*16=320  x  15*16=240)
                         null,// foreground colour -> use default colour white
-                        null,// background colour -> use default colour black
+                        JGColor.white,// background colour -> use default colour black
                         null // standard font -> use default font
                 );
         }
@@ -62,30 +83,38 @@ public class Example1 extends JGEngine {
                         2  //  2 = frame skip, skip at most 2 frames before displaying
                            //      a frame again
                 );
+                myPaths=new ArrayList<DisplayPath>();
+                Point2D.Double thispoint=getDisplayCoordinates(0,0);
+                System.out.println(myWidth + " " + myHeight);
+                myDisplayTurtle=new DisplayTurtle(thispoint.x,thispoint.y);
         }
-
-        /** A timer used to animate the "hello world" text. */
-        double texttimer=0;
+        
+        public void addPath(double x1, double y1, double x2, double y2){
+            myPaths.add(new DisplayPath(x1,y1,x2,y2));
+        }
+        
+        public void setTurtle(double x, double y){
+            myDisplayTurtle.setPosition(x,y);
+        }
 
         /** Game logic is done here.  No painting can be done here, define
         * paintFrame to do that. */
         public void doFrame() {
-                // Increment the angle of the moving text.
-                texttimer += 0.05;
+            myTurtleList=myTurtleTrace.getCommandList();
+            moveObjects();
         }
-
+        
+        protected Point2D.Double getDisplayCoordinates(double x, double y){
+            return new Point2D.Double(myWidth/2+x,-y+myHeight-ZERO_OFFSET);
+        }
+        
+        public void setBackGroundColor(JGColor color){
+            setBGColor(color);
+        }
+        
         /** Any graphics drawing beside objects or tiles should be done here.
          * Usually, only status / HUD information needs to be drawn here. */
         public void paintFrame() {
-                setColor(JGColor.yellow);
-                // Draw a text that moves around in a circle.
-                // Note: viewWidth returns the width of the view;
-                //       viewHeight the height.
-                drawString("Hello world",
-                        viewWidth()/2  + 50*Math.sin(texttimer), // xpos
-                        viewHeight()/2 + 50*Math.cos(texttimer), // ypos
-                        0 // the text alignment
-                          // (-1 is left-aligned, 0 is centered, 1 is right-aligned)
-                );
+                
         }
 }

@@ -16,7 +16,7 @@ public class Display extends JPanel{
         setBorder(BorderFactory.createLineBorder(Color.black));
         this.setName("Display");
         this.setOpaque(false);
-        Example1 jgametest = new Example1(new JGPoint(width,height));
+        Example1 jgametest = new Example1(new JGPoint(width-10,height-10));
         add(jgametest);
         setVisible(true);
     }
