@@ -2,6 +2,7 @@ package viewer.toggle;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class Toggles extends Panel {
         this.setName("Togggle Controls");
         
         this.buttonList = new ArrayList<Button>();
+             
         buttonList.add(new BackgroundColorButton(this));
         buttonList.add(new TurtleImageButton(this));
         buttonList.add(new PenColorButton(this));
@@ -41,11 +43,12 @@ public class Toggles extends Panel {
         for (int i = 0; i < buttonList.size(); i++) {
 			add(buttonList.get(i));
 		}        
-        
+                
         setVisible(true);
     }
     
     public void setBackgroundColor(JGColor color) {
+    	System.out.println("Set Background Color clicked");
     	this.backgroundColor = color;
     }
     
@@ -54,6 +57,7 @@ public class Toggles extends Panel {
     }
     
     public void setTurtleImage(JGObject image) {
+    	System.out.println("Set Turtle Image clicked");
     	this.turtleImage = image;
     }
     
@@ -62,6 +66,7 @@ public class Toggles extends Panel {
     }
     
     public void setPenColor(JGColor color) {
+    	System.out.println("Set Pen Color clicked");
     	this.penColor = color;
     }
     
@@ -70,6 +75,7 @@ public class Toggles extends Panel {
     }
     
     public void toggleGrid() {
+    	System.out.println("Toggle Grid clicked");
     	this.gridOn = !this.gridOn;
     }
     
