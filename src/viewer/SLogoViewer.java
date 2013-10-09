@@ -4,18 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import viewer.toggle.Toggles;
+
 public class SLogoViewer extends Viewer{
-    JPanel myLeftPanel;
-    JPanel myRightPanel;
+    Panel myLeftPanel;
+    Panel myRightPanel;
     public SLogoViewer(){
         super();
         //Don't need main panel if we're going to separate into left and right anyway?
-        myLeftPanel=new JPanel(new FlowLayout());
-        myRightPanel=new JPanel(new FlowLayout());
+        myLeftPanel=new Panel(new FlowLayout());
+        myRightPanel=new Panel(new FlowLayout());
         myLeftPanel.setPreferredSize(new Dimension(600,600));
         myRightPanel.setPreferredSize(new Dimension(200,600));
         myMainPanel.setPreferredSize(new Dimension(800,600));
@@ -32,7 +35,7 @@ public class SLogoViewer extends Viewer{
         myLeftPanel.add(new Display(600,500));
         myLeftPanel.add(new CommandEntryBox(600,20));
         myRightPanel.add(new UserVariableBox(200,300));
-        myRightPanel.add(new ToggleControls(200,200));
+        myRightPanel.add(new Toggles(200,200));
         pack();
         setVisible(true);
     }

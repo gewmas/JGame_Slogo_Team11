@@ -9,7 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import jgame.JGPoint;
 
-public class Display extends JPanel{
+public class Display extends Panel {
+	
     public Display(int width, int height){
         setPreferredSize(new Dimension(width,height));
         //setVisible(true);
@@ -20,4 +21,5 @@ public class Display extends JPanel{
         add(jgametest);
         setVisible(true);
     }
+    
 }

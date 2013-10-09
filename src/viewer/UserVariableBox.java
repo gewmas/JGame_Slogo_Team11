@@ -19,9 +19,9 @@ public class UserVariableBox extends EditableListTable{
     public UserVariableBox(int width, int height){
         super(width,height,columnNames);
         String[] test={"Hi","Hello"};
-        myTableModel.addRow(test);
-        myTableModel.addRow(test);
-        myTableModel.addRow(test);
+        for (int i = 0; i < 5; i++) {
+            myTableModel.addRow(test);
+		}
         //Automate value entry?
     }
 }

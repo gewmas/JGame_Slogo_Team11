@@ -1,0 +1,9 @@
+NOTES / TO-DO
+
+Turtle display object that processes turtle lists
+
+SLogoViewer monitors toggles and changes display accordingly
+
+Display class is a JGObject
+
+add action listeners/callback functions for toggle buttons

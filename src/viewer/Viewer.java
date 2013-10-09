@@ -9,19 +9,22 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import jgame.JGPoint;
 
-public abstract class Viewer extends JFrame{
-    protected JPanel myMainPanel;
-    public Viewer(){
+public abstract class Viewer extends Frame{
+	
+    protected Panel myMainPanel;
+    
+    public Viewer() {
         super();
         setLayout(new FlowLayout());
-        myMainPanel=new JPanel();
+        myMainPanel = new Panel();
         getContentPane().add(myMainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    public void addPanel(JPanel panel){
+    public void addPanel(Panel panel) {
         myMainPanel.add(panel,BorderLayout.CENTER);
         pack();
         setVisible(true);
     }
+    
 }
