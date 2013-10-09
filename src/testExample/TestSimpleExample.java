@@ -43,20 +43,20 @@ public class TestSimpleExample extends TestExample{
     }
     
     
-/*    @Test
+    @Test
     public void testForwardForward(){
 //        # go forward 100
 //        fd fd 50
         updateActiveTurtle();
-        controller.interpretCommand("fd fd 50");
+        controller.interpretCommand("fd fd fd fd 50");
         updateLatestCommandOfFirstActiveTurtle();
         assertTrue(x == 0.0);
-        assertTrue(y == 100.0);
+        assertTrue(y == 200.0);
         assertTrue(direction == 90.0);
         assertTrue(isPenDown);
         assertTrue(isVisible);
         turtleTrace.clearCommandList();
-    }*/
+    }
     
     @Test
     public void testForwardRandom(){

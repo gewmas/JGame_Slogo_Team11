@@ -49,43 +49,6 @@ public class TestController {
         isVisible = command.isVisible();
     }
 
-   
-    
-<<<<<<< HEAD
- 
-=======
-    @Test
-    public void testLoops(){
-        //http://www.cs.duke.edu/courses/compsci308/fall13/assign/03_slogo/examples/loops/
-        
-        /*
-        repeat 180
-        [
-          fd 1 rt 2
-        ]
-        */
-        
-        updateActiveTurtle();
-    
-        controller.interpretCommand("repeat 1 [ fd 1 rt 2 ]");
-        
-        updateLatestCommandOfFirstActiveTurtle();
-        assertTrue(x == 0.0);
-        assertTrue(y == 1.0);
-        assertTrue(direction == 88.0);
-        assertTrue(isPenDown);
-        assertTrue(isVisible);
-        turtleTrace.clearCommandList();
-        
-//        testCircle();
-    }
->>>>>>> b35c2de86f655b29829ff34c024041b2aa7f28fc
-    
-   
-    
-
-    
-    
 
     @Test
     public void testOneParameter () {

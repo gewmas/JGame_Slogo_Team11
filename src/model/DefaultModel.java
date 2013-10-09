@@ -15,7 +15,7 @@ import model.parser.DefaultParser;
 import model.parser.Parser;
 import model.expression.*;
 
-public class DefaultModel extends Model implements TurtleTraceInterface {
+public class DefaultModel extends Model {
     private static Map<String, Expression> functionMap;
     private static Map<String, Expression> globalVariables;
 
@@ -29,7 +29,7 @@ public class DefaultModel extends Model implements TurtleTraceInterface {
         this.controller = controller;
     }
 
-    public void updateAxtiveTurtle(){
+    public void updateActiveTurtle(){
         activeTurtle = controller.getActiveTurtles();
     }
 
@@ -48,7 +48,7 @@ public class DefaultModel extends Model implements TurtleTraceInterface {
         }
 
         //get TurtleTrace of every activeTurtle
-        updateAvtiveTurtle();
+        updateActiveTurtle();
         for(Turtle turtle : activeTurtle){
             turtleTrace = turtle.getTurtleTrace();
 
