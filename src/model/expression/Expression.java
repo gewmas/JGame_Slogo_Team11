@@ -5,8 +5,6 @@ import controller.TurtleCommand;
 
 public class Expression extends AbstractExpression{
 
-   
-
     public Expression (Expression expression) {
         this();
     }

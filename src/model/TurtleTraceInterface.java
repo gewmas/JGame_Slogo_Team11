@@ -8,6 +8,8 @@ public interface TurtleTraceInterface {
 
     public TurtleTrace getTurtleTrace();
     
-    public void updateTurtleTrace(List<TurtleCommand> turtleCommand);
+    public void updateTurtleTrace(List<TurtleCommand> turtleCommands);
+    
+    public TurtleCommand getLastTurtleCommand();
     
 }

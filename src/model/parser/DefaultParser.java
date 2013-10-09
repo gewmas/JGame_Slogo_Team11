@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import model.Model;
 import model.expression.*;
 
 public class DefaultParser extends Parser {
-    private static Map<String, Expression> functionMap;
+    private Model model;
 
-    public DefaultParser(){
+    public DefaultParser(Model model){
+        this.model = model;
     }
     
     public List<Expression> execute(List<String> commandInput, Map<String, Expression> functionMap){
-        DefaultParser.functionMap = functionMap;
         
         List<Expression> expressionList = new ArrayList<Expression>();
         
         while(!commandInput.isEmpty()){
-            Expression parsedExpression = DefaultParser.parse(commandInput);
+            Expression parsedExpression = parse(commandInput);
             if(parsedExpression == null) {
                 return null;
             }
@@ -28,14 +29,15 @@ public class DefaultParser extends Parser {
         return expressionList;
     }
     
-    public static Expression parse (List<String> commandInput) {
+    public Expression parse (List<String> commandInput) {
         String s = commandInput.get(0).toLowerCase();
 
         
         //Turtle Commands
         if (s.equals("fd") || s.equals("forward")){
-            return new ForwardExpression(commandInput);
+            return new ForwardExpression(commandInput, model, this);
         }
+        /*
         else if (s.equals("bk") || s.equals("back")){
             return new BackExpression(commandInput);
         }
@@ -199,6 +201,7 @@ public class DefaultParser extends Parser {
         else if(commandInput.get(0).charAt(0) == ':'){
             return new VariableExpression(commandInput);
         }
+        */
 
         return null;
     }

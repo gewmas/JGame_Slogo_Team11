@@ -7,6 +7,6 @@ public interface GlobalVariableInterface {
 
     public Map<String, Expression> getGlobalVariables();
     
-    public void addToGlobalVariables(String variable, Expression expression);
+    public void addToGlobalVariables(String name, Expression expression);
     
 }

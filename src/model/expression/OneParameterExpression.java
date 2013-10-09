@@ -8,9 +8,11 @@ import controller.TurtleCommand;
 
 public abstract class OneParameterExpression extends Expression {
     Expression expression;
+    private DefaultParser parser;
 
-    public OneParameterExpression (List<String> cmdList) {
+    public OneParameterExpression (List<String> cmdList, DefaultParser parser) {
         convert(cmdList);
+        this.parser = parser;
     }
 
     @Override
@@ -24,7 +26,7 @@ public abstract class OneParameterExpression extends Expression {
         }
         catch (NumberFormatException e)
         {
-            expression = DefaultParser.parse(cmdList);
+            expression = parser.parse(cmdList);
         }
 
     }

@@ -2,13 +2,18 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Model;
+import model.parser.DefaultParser;
 import controller.TurtleCommand;
 
 
 public class ForwardExpression extends OneParameterExpression {
+    
+    private Model model;
 
-    public ForwardExpression (List<String> cmdList) {
-        super(cmdList);
+    public ForwardExpression (List<String> cmdList, Model model, DefaultParser parser) {
+        super(cmdList, parser);
+        this.model = model;
     }
 
     @Override

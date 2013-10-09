@@ -7,6 +7,6 @@ public interface FunctionMapInterface {
 
     public Map<String, Expression> getFunctionMap();
     
-    public void updateFunctionMap(String function, Expression expression);
+    public void addToFunctionMap(String name, Expression expression);
     
 }

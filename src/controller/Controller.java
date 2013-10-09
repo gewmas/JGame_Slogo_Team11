@@ -2,7 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.DefaultModel;
+import model.Model;
 import model.Model;
 
 
@@ -15,7 +15,7 @@ public class Controller {
     String backgroundColor;
 
     public Controller () {
-        model = new DefaultModel(this);
+        model = new Model(this);
         turtles = new ArrayList<Turtle>();
         activeTurtles = new ArrayList<Turtle>();
         
