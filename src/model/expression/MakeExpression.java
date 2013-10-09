@@ -31,7 +31,19 @@ public class MakeExpression extends Expression {
         String id = cmdList.get(0).substring(1);
         cmdList.remove(0); // remove :random
         
-        Expression expression = DefaultParser.parse(cmdList);
+
+        Expression expression;
+        
+        try
+        {
+            expression = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+            cmdList.remove(0);
+        }
+        catch(NumberFormatException e)
+        {
+            expression = DefaultParser.parse(cmdList);
+        }
+        
         
         variables.put(id, expression);
     }

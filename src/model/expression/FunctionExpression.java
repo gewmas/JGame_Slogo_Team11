@@ -55,14 +55,14 @@ public class FunctionExpression extends ScopedExpression {
         TurtleCommand latestTurtleCommand = turtleCommand;
 
         for (Expression expression : declaration.expressions) {
-            List<Expression> evaluatedExpressions = expression.evaluate();
-            for (Expression evalExpression : evaluatedExpressions) {
-                List<TurtleCommand> turtleCmds = evalExpression.createTurtleCommands(latestTurtleCommand);
+//            List<Expression> evaluatedExpressions = expression.evaluate();
+//            for (Expression evalExpression : evaluatedExpressions) {
+                List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
                 if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds return
                     latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
                 }
                 commandList.addAll(turtleCmds);
-            }
+//            }
         }
         
         //clean localVariable

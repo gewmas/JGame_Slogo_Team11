@@ -2,13 +2,15 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import viewer.SLogoViewer;
+import viewer.Viewer;
 import model.DefaultModel;
 import model.Model;
 
 
-public class Controller {
+public class Controller implements ControllerToViewInterface, ControllerToModelInterface {
     Model model;
-    // View view;
+    Viewer viewer;
 
     List<Turtle> turtles;
     List<Turtle> activeTurtles;
@@ -16,6 +18,8 @@ public class Controller {
 
     public Controller () {
         model = new DefaultModel(this);
+//        viewer = new SLogoViewer(); // new SLogoViewer(ControllerToViewInterface this);
+        
         turtles = new ArrayList<Turtle>();
         activeTurtles = new ArrayList<Turtle>();
         
