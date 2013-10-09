@@ -101,6 +101,25 @@ public class TestController {
     @Test
     public void testLoop(){
         
+        /*
+        repeat 180
+        [
+          fd 1 rt 2
+        ]
+        */
+        
+        updateActiveTurtle();
+    
+        controller.interpretCommand("repeat 1 [ fd 1 rt 2 ]");
+        
+        updateLatestCommandOfFirstActiveTurtle();
+        assertTrue(x == 0.0);
+        assertTrue(y == 1.0);
+        assertTrue(direction == 88.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
+        
     }
     
     @Test
@@ -149,17 +168,17 @@ public class TestController {
         assertTrue(isVisible);
         turtleTrace.clearCommandList();
         
-        updateActiveTurtle();
-        //fd fd 15
-        controller.interpretCommand("fd fd 15");
-        updateLatestCommandOfFirstActiveTurtle();
-    
-        assertTrue(x == 0.0);
-        assertTrue(y == 9.0);
-        assertTrue(direction == 4.0);
-        assertTrue(isPenDown);
-        assertTrue(isVisible);
-        turtleTrace.clearCommandList();
+//        updateActiveTurtle();
+//        //fd fd 15
+//        controller.interpretCommand("fd fd 15");
+//        updateLatestCommandOfFirstActiveTurtle();
+//    
+//        assertTrue(x == 0.0);
+//        assertTrue(y == 9.0);
+//        assertTrue(direction == 4.0);
+//        assertTrue(isPenDown);
+//        assertTrue(isVisible);
+//        turtleTrace.clearCommandList();
     }
 
 }
