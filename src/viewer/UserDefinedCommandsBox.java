@@ -17,11 +17,11 @@ public class UserDefinedCommandsBox extends Panel {
     protected JList myVariableNameList, myVariableValueList;
     
     public UserDefinedCommandsBox(int width, int height){
+        super(width,height);
         myVariableNameList=new JList();
         myVariableValueList=new JList();
         add(myVariableNameList);
         add(myVariableValueList);
         setBorder(BorderFactory.createLineBorder(Color.black));
-        setPreferredSize(new Dimension(width,height));
     }
 }

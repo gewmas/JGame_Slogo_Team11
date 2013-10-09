@@ -8,7 +8,7 @@ public class DisplayTurtle extends JGObject{
 
     private static final int TURTLE_COLID=1;
     private static final String DISPLAY_TURTLE_NAME="display_turtle";
-    private static final int TURTLE_RADIUS=10;
+    private static final int TURTLE_RADIUS=20;
     
     protected JGColor myColor;
     protected JGEngineInterface myEngine;

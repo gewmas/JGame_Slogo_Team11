@@ -7,16 +7,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+import controller.Controller;
 import jgame.JGColor;
 import jgame.JGObject;
 import viewer.Button;
+import viewer.Display;
 import viewer.Panel;
+import viewer.TurtleDisplay;
 
 public class Toggles extends Panel {
 	
@@ -24,11 +25,12 @@ public class Toggles extends Panel {
     private JGColor backgroundColor;
     private JGObject turtleImage;
     private JGColor penColor;
+    private TurtleDisplay myTurtleDisplay;
     private boolean gridOn;
     
-    public Toggles(int width, int height){
-    	setPreferredSize(new Dimension(width,height));
-        //setVisible(true);
+    public Toggles(int width, int height, TurtleDisplay turtledisplay){
+        super(width,height);
+    	//setVisible(true);
         //Put toggles into list of some kind and automate creation - but then how do we
         //define listener callbacks?
         setBorder(BorderFactory.createLineBorder(Color.black));
@@ -44,11 +46,14 @@ public class Toggles extends Panel {
 			add(buttonList.get(i));
 		}        
                 
+        myTurtleDisplay=turtledisplay;
+        
         setVisible(true);
     }
     
     public void setBackgroundColor(JGColor color) {
     	System.out.println("Set Background Color clicked");
+    	myTurtleDisplay.setBackGroundColor(color);
     	this.backgroundColor = color;
     }
     
@@ -67,6 +72,7 @@ public class Toggles extends Panel {
     
     public void setPenColor(JGColor color) {
     	System.out.println("Set Pen Color clicked");
+    	myTurtleDisplay.setPenColor(color);
     	this.penColor = color;
     }
     
@@ -76,6 +82,7 @@ public class Toggles extends Panel {
     
     public void toggleGrid() {
     	System.out.println("Toggle Grid clicked");
+    	myTurtleDisplay.toggleGrid();
     	this.gridOn = !this.gridOn;
     }
     

@@ -1300,12 +1300,14 @@ public abstract class JGEngine extends Applet implements JGEngineInterface {
 
 
 	/** Set global background colour, which is displayed in borders, and behind
-	* transparent tiles if no BGImage is defined. */
+	* transparent tiles if no BGImage is defined. 
+	* Note: Has been edited to allow BG Color to be changed in game*/
 	public void setBGColor(JGColor bgcolor) {
 		Color bgcol = new Color(bgcolor.r,bgcolor.g,bgcolor.b);
 		if (canvas!=null) canvas.setBackground(bgcol);
 		if (jre.my_win!=null) jre.my_win.setBackground(bgcol);
 		el.bg_color=bgcolor;
+		el.invalidateBGTiles();
 	}
 
 	/** Set global foreground colour, used for printing text and status

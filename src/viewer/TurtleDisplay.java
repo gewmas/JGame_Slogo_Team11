@@ -9,6 +9,7 @@ import controller.TurtleCommand;
 import controller.TurtleTrace;
 import viewer.display_objects.DisplayPath;
 import viewer.display_objects.DisplayTurtle;
+import viewer.display_objects.Grid;
 import jgame.JGColor;
 import jgame.JGPoint;
 import jgame.platform.JGEngine;
@@ -27,6 +28,8 @@ public abstract class TurtleDisplay extends JGEngine {
         private static final int ZERO_OFFSET=50;
         private static final int NUM_TILES_WIDTH=20;
         private static final int NUM_TILES_HEIGHT=20;
+        private static final int NUM_GRID_X=20;
+        private static final int NUM_GRID_Y=20;
     
         protected List<DisplayPath> myPaths;
         protected DisplayTurtle myDisplayTurtle;
@@ -34,6 +37,8 @@ public abstract class TurtleDisplay extends JGEngine {
         protected Controller myController;
         protected List<TurtleCommand> myTurtleList;
         protected int myTurtleNumber;
+        protected Grid myGrid;
+        protected JGColor myPenColor;
         /** The parameterless constructor is called by the browser, in case we're
          * an applet. */
         public TurtleDisplay(Controller controller) {
@@ -86,23 +91,38 @@ public abstract class TurtleDisplay extends JGEngine {
                         2  //  2 = frame skip, skip at most 2 frames before displaying
                            //      a frame again
                 );
+                myPenColor=JGColor.black;
                 myPaths=new ArrayList<DisplayPath>();
                 Point2D thispoint=getDisplayCoordinates(0,0);
-                System.out.println(myWidth + " " + myHeight);
                 myDisplayTurtle=new DisplayTurtle(thispoint.getX(),thispoint.getY());
+                myGrid=new Grid((int)(myWidth),(int)(myHeight),NUM_GRID_X,NUM_GRID_Y);
         }
         
         public void addPath(double x1, double y1, double x2, double y2){
-            myPaths.add(new DisplayPath(x1,y1,x2,y2));
+            myPaths.add(new DisplayPath(x1,y1,x2,y2,myPenColor));
+        }
+        
+        public void setBackGroundColor(JGColor color){
+            setBGColor(color);
+        }
+        
+        public void setPenColor(JGColor color){
+            myPenColor=color;
+        }
+        
+        public void toggleGrid(){
+            myGrid.toggleOn();
+        }
+        
+        protected Point2D getDisplayCoordinates(double x, double y){
+            return new Point2D.Double(myWidth/2+x,-y+myHeight-ZERO_OFFSET);
         }
         
         public void setTurtle(double x, double y){
             myDisplayTurtle.setPosition(x,y);
         }
 
-        /** Game logic is done here.  No painting can be done here, define
-        * paintFrame to do that. */
-        public void doFrame() {
+        private void drawTurtle(){
             try {
                 myTurtleList=myController.getTurtles().get(0).getTurtleTrace().getCommandList();
                 if (!myTurtleList.isEmpty()) {
@@ -117,7 +137,8 @@ public abstract class TurtleDisplay extends JGEngine {
                             myPaths.add(new DisplayPath(lastPos.getX(), 
                                                         lastPos.getY(),
                                                         thisPos.getX(),
-                                                        thisPos.getY()));
+                                                        thisPos.getY(),
+                                                        myPenColor));
                         }
                     }
                     myTurtleNumber=myTurtleList.size();
@@ -126,17 +147,15 @@ public abstract class TurtleDisplay extends JGEngine {
                     setTurtle(endPos.getX(),endPos.getY());
                 }
             } catch (Exception e){
-                
+
             }
+        }
+        
+        /** Game logic is done here.  No painting can be done here, define
+        * paintFrame to do that. */
+        public void doFrame() {
+            drawTurtle();
             moveObjects();
-        }
-        
-        protected Point2D getDisplayCoordinates(double x, double y){
-            return new Point2D.Double(myWidth/2+x,-y+myHeight-ZERO_OFFSET);
-        }
-        
-        public void setBackGroundColor(JGColor color){
-            setBGColor(color);
         }
         
         /** Any graphics drawing beside objects or tiles should be done here.
