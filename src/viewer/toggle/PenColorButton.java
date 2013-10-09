@@ -13,7 +13,8 @@ public class PenColorButton extends Button {
 	
 	@Override
 	public void buttonPushed() {
-		
+		//need to add popup to select color
+		((Toggles) this.myPanel).setPenColor(null);
 	}
 	
 }
