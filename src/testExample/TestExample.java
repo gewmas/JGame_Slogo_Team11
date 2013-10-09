@@ -1,6 +1,6 @@
-package test;
+package testExample;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import controller.Turtle;
 import controller.TurtleCommand;
 import controller.TurtleTrace;
 
-public class TestController {
+public class TestExample {
     Controller controller;
     List<Turtle> activeTurtle;
     TurtleTrace turtleTrace;
@@ -48,43 +48,6 @@ public class TestController {
         isPenDown = command.isPenDown();
         isVisible = command.isVisible();
     }
-
-   
-    
- 
     
    
-    
-
-    
-    
-
-    @Test
-    public void testOneParameter () {
-        updateActiveTurtle();
-        
-        //fd 17 bk 8 lt 1 rt 2 seth 4 => (x = 0, y = 9.0, direction = 89, pendown = true, isshowing = true)
-        controller.interpretCommand("fd sum 8 9 bk 8 lt 1 rt 2 seth 4");
-        updateLatestCommandOfFirstActiveTurtle();
-    
-        assertTrue(x == 0.0);
-        assertTrue(y == 9.0);
-        assertTrue(direction == 4.0);
-        assertTrue(isPenDown);
-        assertTrue(isVisible);
-        turtleTrace.clearCommandList();
-        
-        /*updateActiveTurtle();
-        //fd fd 15
-        controller.interpretCommand("fd fd 15");
-        updateLatestCommandOfFirstActiveTurtle();
-    
-        assertTrue(x == 0.0);
-        assertTrue(y == 9.0);
-        assertTrue(direction == 4.0);
-        assertTrue(isPenDown);
-        assertTrue(isVisible);
-        turtleTrace.clearCommandList();*/
-    }
-
 }

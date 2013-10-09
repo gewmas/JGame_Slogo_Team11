@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import controller.Controller;
+import controller.ControllerToModelInterface;
 import controller.SlogoError;
 import controller.Turtle;
 import controller.TurtleCommand;
@@ -18,7 +19,7 @@ public class DefaultModel extends Model {
     private static Map<String, Expression> functionMap;
     private static Map<String, Expression> globalVariables;
 
-    private Controller controller;
+    private ControllerToModelInterface controller;
     List<Turtle> activeTurtle;
     TurtleTrace turtleTrace;
 
