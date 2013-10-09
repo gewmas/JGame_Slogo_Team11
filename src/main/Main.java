@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args){
         Controller controller = new Controller();
         //controller.interpretCommand("fd sum 8 9 bk 8 lt 1 rt 2 seth 4");
-        controller.interpretCommand("fd 100 rt 90 fd 100 rt 90 fd 100");
+//        controller.interpretCommand("fd 100 rt 90 fd 100 rt 90 fd 100");
 //        controller.interpretCommand("DOTIMES  [  :i sum 1 3 ] [ fd 23 fd 23 ]");
         //        controller.interpretCommand("make :random sum 1 random 100");
         //controller.interpretCommand("for [ :i sum 1 3 sum 1 3 sum 1 3 ] [  fd 23 fd 23 ] ");

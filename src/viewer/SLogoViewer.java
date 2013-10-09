@@ -37,12 +37,13 @@ public class SLogoViewer extends Viewer{
         myMainPanel.add(myRightPanel, BorderLayout.EAST);
         
         setTitle("SLogo");
-        myTurtleDisplay=new DefaultTurtleDisplay(new JGPoint(DISPLAY_WIDTH-10,DISPLAY_HEIGHT-10), controller);
+        myTurtleDisplay=new DefaultTurtleDisplayBox(new JGPoint(DISPLAY_WIDTH-10,DISPLAY_HEIGHT-10), controller);
         myPastCommandBox=new PastCommandBox(600,80);
-        myLeftPanel.add(new Display(DISPLAY_WIDTH,DISPLAY_HEIGHT,myTurtleDisplay,controller));
+        myLeftPanel.add(new DisplayBox(DISPLAY_WIDTH,DISPLAY_HEIGHT,myTurtleDisplay,controller));
         myLeftPanel.add(myPastCommandBox);
         myLeftPanel.add(new CommandEntryBox(600,30,myPastCommandBox,controller));
         myRightPanel.add(new UserVariableBox(200,200));
+        myRightPanel.add(new UserDefinedCommandsBox(200,200));
         myRightPanel.add(new Toggles(200,200,myTurtleDisplay));
         pack();
         setVisible(true);

@@ -11,11 +11,11 @@ import controller.Controller;
 import controller.TurtleTrace;
 import jgame.JGPoint;
 
-public class Display extends Panel {
+public class DisplayBox extends Panel {
 	
     protected TurtleDisplay myTurtleDisplay;
     
-    public Display(int width, int height,TurtleDisplay turtledisplay,Controller controller){
+    public DisplayBox(int width, int height,TurtleDisplay turtledisplay,Controller controller){
         super(width,height);
         //setVisible(true);
         setBorder(BorderFactory.createLineBorder(Color.black));

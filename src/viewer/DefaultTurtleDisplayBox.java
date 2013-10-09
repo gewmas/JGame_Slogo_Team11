@@ -23,14 +23,14 @@ import jgame.platform.JGEngine;
  * constructor with a size parameter to initialise the engine as an
  * application.
  */
-public class DefaultTurtleDisplay extends TurtleDisplay {
-        public DefaultTurtleDisplay(Controller controller) {
+public class DefaultTurtleDisplayBox extends TurtleDisplay {
+        public DefaultTurtleDisplayBox(Controller controller) {
                 // This inits the engine as an applet.
                 this(new JGPoint(500,500),controller); 
         }
 
         /** We use a separate constructor for starting as an application. */
-        public DefaultTurtleDisplay(JGPoint size, Controller controller) {
+        public DefaultTurtleDisplayBox(JGPoint size, Controller controller) {
             super(size,controller); 
         }
 }

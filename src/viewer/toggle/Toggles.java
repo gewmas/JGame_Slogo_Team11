@@ -15,7 +15,7 @@ import controller.Controller;
 import jgame.JGColor;
 import jgame.JGObject;
 import viewer.Button;
-import viewer.Display;
+import viewer.DisplayBox;
 import viewer.Panel;
 import viewer.TurtleDisplay;
 
