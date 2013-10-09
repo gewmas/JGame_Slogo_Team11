@@ -48,7 +48,6 @@ public class TestController {
         isPenDown = command.isPenDown();
         isVisible = command.isVisible();
     }
-     
 
     @Test
     public void testOneParameter () {

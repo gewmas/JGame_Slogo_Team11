@@ -42,7 +42,7 @@ public class TestProceduresWithParametersExample extends TestExample {
         
         updateActiveTurtle();
         //Test ExpressionList, Passed..  To be done: createTurtleCommand
-        controller.interpretCommand("to square [ :distance ]         [           repeat 4 [             fd :distance             rt 90           ]         ]                           to face [ ]         [           pendown square 100           penup forward 20           right 90 forward 25           pendown forward 50           penup back 75           left 90 forward 65           right 90 forward 20           pendown square 15           penup forward 45           pendown square 15                      penup back 15           right 90 forward 20 left 45           pendown square 20         ]                           face       ");
+        controller.interpretCommand("to square [  :distance  ]         [           repeat 4 [             fd :distance             rt 90           ]         ]                           to face [ ]         [           pendown square 100           penup forward 20           right 90 forward 25           pendown forward 50           penup back 75           left 90 forward 65           right 90 forward 20           pendown square 15           penup forward 45           pendown square 15                      penup back 15           right 90 forward 20 left 45           pendown square 20         ]                           face       ");
         
         updateLatestCommandOfFirstActiveTurtle();
         assertTrue(x == 0.0);
