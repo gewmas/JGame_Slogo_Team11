@@ -4,6 +4,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 import controller.Controller;
+import controller.Turtle;
 import controller.TurtleCommand;
 import controller.TurtleTrace;
 import viewer.display_objects.DisplayPath;
@@ -22,7 +23,7 @@ import jgame.platform.JGEngine;
  * constructor with a size parameter to initialise the engine as an
  * application.
  */
-public class Example1 extends JGEngine {
+public abstract class TurtleDisplay extends JGEngine {
         private static final int ZERO_OFFSET=50;
         private static final int NUM_TILES_WIDTH=20;
         private static final int NUM_TILES_HEIGHT=20;
@@ -30,20 +31,22 @@ public class Example1 extends JGEngine {
         protected List<DisplayPath> myPaths;
         protected DisplayTurtle myDisplayTurtle;
         protected double myWidth, myHeight;
-        protected TurtleTrace myTurtleTrace;
-        protected ArrayList<TurtleCommand> myTurtleList;
+        protected Controller myController;
+        protected List<TurtleCommand> myTurtleList;
+        protected int myTurtleNumber;
         /** The parameterless constructor is called by the browser, in case we're
          * an applet. */
-        public Example1(TurtleTrace trace) {
+        public TurtleDisplay(Controller controller) {
                 // This inits the engine as an applet.
-                this(new JGPoint(500,500),trace); 
+                this(new JGPoint(500,500),controller); 
         }
 
         /** We use a separate constructor for starting as an application. */
-        public Example1(JGPoint size, TurtleTrace trace) {
+        public TurtleDisplay(JGPoint size, Controller controller) {
             myWidth=(int)(size.x/NUM_TILES_WIDTH)*(NUM_TILES_WIDTH);
             myHeight=(int)(size.y/NUM_TILES_HEIGHT)*(NUM_TILES_HEIGHT);
-            myTurtleTrace=trace;
+            myController=controller;
+            myTurtleNumber=1;
             // This inits the engine as an application.
             initEngineComponent(size.x,size.y); 
         }
@@ -84,9 +87,9 @@ public class Example1 extends JGEngine {
                            //      a frame again
                 );
                 myPaths=new ArrayList<DisplayPath>();
-                Point2D.Double thispoint=getDisplayCoordinates(0,0);
+                Point2D thispoint=getDisplayCoordinates(0,0);
                 System.out.println(myWidth + " " + myHeight);
-                myDisplayTurtle=new DisplayTurtle(thispoint.x,thispoint.y);
+                myDisplayTurtle=new DisplayTurtle(thispoint.getX(),thispoint.getY());
         }
         
         public void addPath(double x1, double y1, double x2, double y2){
@@ -100,11 +103,35 @@ public class Example1 extends JGEngine {
         /** Game logic is done here.  No painting can be done here, define
         * paintFrame to do that. */
         public void doFrame() {
-            myTurtleList=myTurtleTrace.getCommandList();
+            try {
+                myTurtleList=myController.getTurtles().get(0).getTurtleTrace().getCommandList();
+                if (!myTurtleList.isEmpty()) {
+                    for (int i=myTurtleNumber;i<myTurtleList.size();i++){
+                        TurtleCommand lastCommand=myTurtleList.get(i-1);
+                        Point2D lastPos=getDisplayCoordinates(lastCommand.getX(),lastCommand.getY());
+                        TurtleCommand thisCommand=myTurtleList.get(i);
+                        Point2D thisPos=getDisplayCoordinates(thisCommand.getX(),thisCommand.getY());
+                        System.out.println(i);
+                        if (lastCommand.isPenDown()){
+                            System.out.println(lastCommand.getX()+" "+lastCommand.getY()+" "+thisCommand.getX()+" "+thisCommand.getY());
+                            myPaths.add(new DisplayPath(lastPos.getX(), 
+                                                        lastPos.getY(),
+                                                        thisPos.getX(),
+                                                        thisPos.getY()));
+                        }
+                    }
+                    myTurtleNumber=myTurtleList.size();
+                    TurtleCommand endCommand=myTurtleList.get(myTurtleList.size()-1);
+                    Point2D endPos=getDisplayCoordinates(endCommand.getX(),endCommand.getY());
+                    setTurtle(endPos.getX(),endPos.getY());
+                }
+            } catch (Exception e){
+                
+            }
             moveObjects();
         }
         
-        protected Point2D.Double getDisplayCoordinates(double x, double y){
+        protected Point2D getDisplayCoordinates(double x, double y){
             return new Point2D.Double(myWidth/2+x,-y+myHeight-ZERO_OFFSET);
         }
         

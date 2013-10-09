@@ -2,12 +2,15 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import viewer.SLogoViewer;
+import viewer.Viewer;
 import model.DefaultModel;
 import model.Model;
 
 
 public class Controller {
     Model model;
+    Viewer viewer;
     // View view;
 
     List<Turtle> turtles;
@@ -16,6 +19,7 @@ public class Controller {
 
     public Controller () {
         model = new DefaultModel(this);
+        viewer = new SLogoViewer(this);
         turtles = new ArrayList<Turtle>();
         activeTurtles = new ArrayList<Turtle>();
         
