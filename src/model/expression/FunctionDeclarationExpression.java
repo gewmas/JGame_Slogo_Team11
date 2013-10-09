@@ -61,9 +61,11 @@ public class FunctionDeclarationExpression extends Expression {
         
 
         //Remove [ :count ]
-        for(int i = openBracketIndex; i < closeBracketIndex; i++){
+        cmdList.remove(0); // remove [
+        cmdList.remove(0); // remove ]
+        /*for(int i = openBracketIndex; i <= closeBracketIndex; i++){
             cmdList.remove(0);
-        }
+        }*/
 
         openBracketIndex = -1;
         closeBracketIndex = -1;

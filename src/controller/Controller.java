@@ -8,10 +8,9 @@ import model.DefaultModel;
 import model.Model;
 
 
-public class Controller {
+public class Controller implements ControllerToViewInterface, ControllerToModelInterface {
     Model model;
     Viewer viewer;
-    // View view;
 
     List<Turtle> turtles;
     List<Turtle> activeTurtles;
