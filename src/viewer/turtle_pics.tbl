@@ -1,0 +1,52 @@
+turtle1			turtle1.png			0	0	32	32	0	0
+turtle2up		turtle2up.png		0	0	22	32	0	0
+turtle2left		turtle2left.png		0	0	32	20	0	0
+
+#Turtle Sprites
+turtle1down1	-	0	turtle1			0		-
+turtle1down2	-	0	turtle1			1		-
+turtle1down3	-	0	turtle1			2		-
+turtle1up1		-	0	turtle1			3		-
+turtle1up2		-	0	turtle1			4		-
+turtle1up3		-	0	turtle1			5		-
+turtle1right1	-	0	turtle1			6		-
+turtle1right2	-	0	turtle1			7		-
+turtle1right3	-	0	turtle1			8		-
+turtle1left1	-	0	turtle1			9		-
+turtle1left2	-	0	turtle1			10		-
+turtle1left3	-	0	turtle1			11		-
+
+turtle2down1	-	0	turtle2up		0		y
+turtle2down2	-	0	turtle2up		1		y
+turtle2down3	-	0	turtle2up		2		y
+turtle2down4	-	0	turtle2up		3		y
+
+turtle2up1	-	0	turtle2up		0		-
+turtle2up2	-	0	turtle2up		1		-
+turtle2up3	-	0	turtle2up		2		-
+turtle2up4	-	0	turtle2up		3		-
+
+turtle2left1	-	0	turtle2left		0		-
+turtle2left2	-	0	turtle2left		1		-
+turtle2left3	-	0	turtle2left		2		-
+turtle2left4	-	0	turtle2left		3		-
+turtle2left5	-	0	turtle2left		4		-
+turtle2left6	-	0	turtle2left		5		-
+
+turtle2right1	-	0	turtle2left		0		x
+turtle2right2	-	0	turtle2left		1		x
+turtle2right3	-	0	turtle2left		2		x
+turtle2right4	-	0	turtle2left		3		x
+turtle2right5	-	0	turtle2left		4		x
+turtle2right6	-	0	turtle2left		5		x
+
+#Turtle Animations
+turtle1up	turtle1up1;turtle1up2;turtle1up3	0.2	true
+turtle1down	turtle1down1;turtle1down2;turtle1down3	0.2	true
+turtle1right	turtle1right1;turtle1right2;turtle1right3	0.2	true
+turtle1left	turtle1left1;turtle1left2;turtle1left3	0.2	true
+
+turtle2up	turtle2up1;turtle2up2	0.2	true
+turtle2down	turtle2down1;turtle2down2	0.2	true
+turtle2left	turtle2left1;turtle2left2;turtle2left3;turtle2left4;turtle2left5;turtle2left6	0.2	true
+turtle2right	turtle2right1;turtle2right2;turtle2right3;turtle2right4;turtle2right5;turtle2right6	0.2	true

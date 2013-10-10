@@ -91,10 +91,12 @@ public abstract class TurtleDisplay extends JGEngine {
                         2  //  2 = frame skip, skip at most 2 frames before displaying
                            //      a frame again
                 );
+                defineMedia("turtle_pics.tbl");
                 myPenColor=JGColor.black;
                 myPaths=new ArrayList<DisplayPath>();
                 Point2D thispoint=getDisplayCoordinates(0,0);
                 myDisplayTurtle=new DisplayTurtle(thispoint.getX(),thispoint.getY());
+                //myDisplayTurtle.setGraphic("turtle1up");
                 myGrid=new Grid((int)(myWidth),(int)(myHeight),NUM_GRID_X,NUM_GRID_Y);
         }
         
@@ -118,8 +120,13 @@ public abstract class TurtleDisplay extends JGEngine {
             return new Point2D.Double(myWidth/2+x,-y+myHeight-ZERO_OFFSET);
         }
         
-        public void setTurtle(double x, double y){
+        public void setTurtlePosition(double x, double y){
             myDisplayTurtle.setPosition(x,y);
+        }
+        
+        public void setTurtleImageNumber(int imageNum){
+            myDisplayTurtle.setImageNumber(imageNum);
+            myDisplayTurtle.setRotation(myDisplayTurtle.getRotation());
         }
 
         private void drawTurtle(){
@@ -144,12 +151,16 @@ public abstract class TurtleDisplay extends JGEngine {
                     myTurtleNumber=myTurtleList.size();
                     TurtleCommand endCommand=myTurtleList.get(myTurtleList.size()-1);
                     Point2D endPos=getDisplayCoordinates(endCommand.getX(),endCommand.getY());
-                    setTurtle(endPos.getX(),endPos.getY());
+                    setTurtlePosition(endPos.getX(),endPos.getY());
+                    System.out.println(endCommand.getDirection());
+                    myDisplayTurtle.setRotation(endCommand.getDirection());
                 }
             } catch (Exception e){
 
             }
         }
+        
+        
         
         /** Game logic is done here.  No painting can be done here, define
         * paintFrame to do that. */

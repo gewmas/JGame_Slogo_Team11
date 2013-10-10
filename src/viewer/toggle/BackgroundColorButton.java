@@ -7,66 +7,34 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-
+import java.awt.event.MouseEvent;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import jgame.JGColor;
-import viewer.Button;
 import viewer.Panel;
 
-public class BackgroundColorButton extends Button {
-
-	private JPopupMenu menu;
+public class BackgroundColorButton extends SelectableListButton {
+        private static final String BUTTON_TITLE="Set Background";
+        private static final String DIALOG_MESSAGE="Please select a pen color";
+        private static final JGColor[] BG_JGCOLORS={JGColor.black,JGColor.blue,JGColor.cyan,
+                                                  JGColor.gray,JGColor.green,JGColor.magenta,
+                                                  JGColor.orange,JGColor.pink,JGColor.red,JGColor.white,JGColor.yellow};
+        private static final String[] BG_COLORS={"Black","Blue","Cyan","Gray","Green","Magenta","Orange","Pink","Red","White","Yellow"};
 	
-	public BackgroundColorButton(Panel myPanel) {
-		super(myPanel, "Set Background Color");
-		this.menu = new JPopupMenu();
-		menu.addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-				System.out.println("pop up");
-			}
-
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-				System.out.println("pop down");
-			}
-		});
-		menu.addComponentListener(new ComponentListener() {
-			@Override
-			public void componentHidden(ComponentEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void componentMoved(ComponentEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void componentResized(ComponentEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void componentShown(ComponentEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		setFocusable(true);
-		menu.setFocusable(true);
+	public BackgroundColorButton(Panel panel) {
+	        super(panel, BG_COLORS, BUTTON_TITLE, DIALOG_MESSAGE);
 	}
 	
-	@Override
-	public void buttonPushed() {
-		//need to add popup to select color
-		((Toggles) this.myPanel).setBackgroundColor(null);
-	}
+	
+
+    @Override
+    public void callReturn () {
+        ((Toggles) this.myPanel).setBackgroundColor(BG_JGCOLORS[myList.getSelectedIndex()]);
+    }
 	
 }

@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 import controller.Controller;
 import jgame.JGColor;
 import jgame.JGObject;
-import viewer.Button;
 import viewer.DisplayBox;
 import viewer.Panel;
 import viewer.TurtleDisplay;
@@ -23,7 +22,7 @@ public class Toggles extends Panel {
 	
     protected List<Button> buttonList;
     private JGColor backgroundColor;
-    private JGObject turtleImage;
+    private int turtleImageNum;
     private JGColor penColor;
     private TurtleDisplay myTurtleDisplay;
     private boolean gridOn;
@@ -52,7 +51,6 @@ public class Toggles extends Panel {
     }
     
     public void setBackgroundColor(JGColor color) {
-    	System.out.println("Set Background Color clicked");
     	myTurtleDisplay.setBackGroundColor(color);
     	this.backgroundColor = color;
     }
@@ -61,13 +59,13 @@ public class Toggles extends Panel {
     	return this.backgroundColor;
     }
     
-    public void setTurtleImage(JGObject image) {
-    	System.out.println("Set Turtle Image clicked");
-    	this.turtleImage = image;
+    public void setTurtleImage(int imageNum) {
+        myTurtleDisplay.setTurtleImageNumber(imageNum);
+        this.turtleImageNum = imageNum;
     }
     
-    public JGObject getTurtleImage() {
-    	return this.turtleImage;
+    public int getTurtleImage() {
+    	return this.turtleImageNum;
     }
     
     public void setPenColor(JGColor color) {

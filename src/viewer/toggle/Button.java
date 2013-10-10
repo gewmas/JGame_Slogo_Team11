@@ -1,14 +1,15 @@
-package viewer;
+package viewer.toggle;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JButton;
-
+import viewer.Panel;
 import jgame.JGColor;
 
-public class Button extends JButton {
+public abstract class Button extends JButton {
 
     private static final int BUTTON_WIDTH=180;
     private static final int BUTTON_HEIGHT=20;
@@ -28,10 +29,13 @@ public class Button extends JButton {
 				buttonPushed();
 			}
         });
+		/*this.addMouseListener(new MouseAdapter(){
+		    public void mousePressed(MouseEvent e){
+		        buttonPushed(e);
+		    }
+		})*/;
 	}
 	
-	public void buttonPushed() {
-		//overridden by each button to add action for that button
-	}
+	public abstract void buttonPushed();
 	
 }
