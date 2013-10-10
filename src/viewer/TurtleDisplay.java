@@ -100,6 +100,18 @@ public abstract class TurtleDisplay extends JGEngine {
                 myGrid=new Grid((int)(myWidth),(int)(myHeight),NUM_GRID_X,NUM_GRID_Y);
         }
         
+        public void clearScreen(){
+            Point2D origin=getDisplayCoordinates(0,0);
+            myDisplayTurtle.setPosition(origin.getX(), origin.getY());
+            myDisplayTurtle.setRotation(90);
+            myTurtleList.clear();
+            for (DisplayPath path:myPaths){
+                path.remove();
+            }
+            myPaths.clear();
+            myTurtleNumber=1;
+        }
+        
         public void addPath(double x1, double y1, double x2, double y2){
             myPaths.add(new DisplayPath(x1,y1,x2,y2,myPenColor));
         }
@@ -138,9 +150,9 @@ public abstract class TurtleDisplay extends JGEngine {
                         Point2D lastPos=getDisplayCoordinates(lastCommand.getX(),lastCommand.getY());
                         TurtleCommand thisCommand=myTurtleList.get(i);
                         Point2D thisPos=getDisplayCoordinates(thisCommand.getX(),thisCommand.getY());
-                        System.out.println(i);
+                        //System.out.println(i);
                         if (lastCommand.isPenDown()){
-                            System.out.println(lastCommand.getX()+" "+lastCommand.getY()+" "+thisCommand.getX()+" "+thisCommand.getY());
+                            //System.out.println(lastCommand.getX()+" "+lastCommand.getY()+" "+thisCommand.getX()+" "+thisCommand.getY());
                             myPaths.add(new DisplayPath(lastPos.getX(), 
                                                         lastPos.getY(),
                                                         thisPos.getX(),
@@ -152,7 +164,6 @@ public abstract class TurtleDisplay extends JGEngine {
                     TurtleCommand endCommand=myTurtleList.get(myTurtleList.size()-1);
                     Point2D endPos=getDisplayCoordinates(endCommand.getX(),endCommand.getY());
                     setTurtlePosition(endPos.getX(),endPos.getY());
-                    System.out.println(endCommand.getDirection());
                     myDisplayTurtle.setRotation(endCommand.getDirection());
                 }
             } catch (Exception e){

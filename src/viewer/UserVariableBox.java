@@ -18,10 +18,10 @@ public class UserVariableBox extends EditableListTable{
     protected JList myVariableNameList, myVariableValueList;
     public UserVariableBox(int width, int height){
         super(width,height,columnNames);
-        String[] test={"Hi","Hello"};
+        /*String[] test={"Hi","Hello"};
         for (int i = 0; i < 5; i++) {
             myTableModel.addRow(test);
 		}
-        //Automate value entry?
+        //Automate value entry?*/
     }
 }

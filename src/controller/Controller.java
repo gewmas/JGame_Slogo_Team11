@@ -78,7 +78,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     
     //Turtle queries function call
     public void clearScreen(){
-        //view.clearScreen()
+        ((SLogoViewer) viewer).clearScreen();
     }
     
     public void xCor(){

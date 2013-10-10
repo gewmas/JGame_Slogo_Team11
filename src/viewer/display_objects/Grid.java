@@ -21,7 +21,7 @@ public class Grid extends JGObject{
         myHorizontalSeparation=myDisplayWidth/numHorizontal;
         myVerticalSeparation=myDisplayWidth/numVertical;
         myEngine=eng;
-        System.out.println(myDisplayWidth + " " + myDisplayHeight);
+        //System.out.println(myDisplayWidth + " " + myDisplayHeight);
         resume_in_view=false;
     }
     

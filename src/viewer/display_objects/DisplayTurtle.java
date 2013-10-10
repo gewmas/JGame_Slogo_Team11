@@ -35,7 +35,7 @@ public class DisplayTurtle extends JGObject{
     public void setImageNumber (int imageNumber) {
         this.myImageNumber = imageNumber;
     }
-
+    
     public void setRotation(double direction){
         if (-45<=direction && direction<45) setGraphic("turtle"+myImageNumber+"right");
         if (45<=direction && direction<135) setGraphic("turtle"+myImageNumber+"up");
