@@ -69,7 +69,6 @@ public class Toggles extends Panel {
     }
     
     public void setPenColor(JGColor color) {
-    	System.out.println("Set Pen Color clicked");
     	myTurtleDisplay.setPenColor(color);
     	this.penColor = color;
     }
@@ -79,7 +78,6 @@ public class Toggles extends Panel {
     }
     
     public void toggleGrid() {
-    	System.out.println("Toggle Grid clicked");
     	myTurtleDisplay.toggleGrid();
     	this.gridOn = !this.gridOn;
     }
