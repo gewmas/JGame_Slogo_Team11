@@ -16,7 +16,7 @@ import jgame.JGColor;
 import jgame.JGObject;
 import viewer.DisplayBox;
 import viewer.Panel;
-import viewer.TurtleDisplay;
+import viewer.display_objects.TurtleDisplay;
 
 public class Toggles extends Panel {
 	

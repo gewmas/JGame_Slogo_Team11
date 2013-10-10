@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import jgame.JGPoint;
 import controller.Controller;
+import viewer.display_objects.TurtleDisplay;
 import viewer.toggle.Toggles;
 
 public class SLogoViewer extends Viewer{

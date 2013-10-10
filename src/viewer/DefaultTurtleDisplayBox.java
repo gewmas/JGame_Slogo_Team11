@@ -9,6 +9,7 @@ import controller.TurtleCommand;
 import controller.TurtleTrace;
 import viewer.display_objects.DisplayPath;
 import viewer.display_objects.DisplayTurtle;
+import viewer.display_objects.TurtleDisplay;
 import jgame.JGColor;
 import jgame.JGPoint;
 import jgame.platform.JGEngine;

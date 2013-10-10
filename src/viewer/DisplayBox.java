@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import viewer.display_objects.TurtleDisplay;
 import controller.Controller;
 import controller.TurtleTrace;
 import jgame.JGPoint;

@@ -1,4 +1,4 @@
-package viewer;
+package viewer.display_objects;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -7,9 +7,6 @@ import controller.Controller;
 import controller.Turtle;
 import controller.TurtleCommand;
 import controller.TurtleTrace;
-import viewer.display_objects.DisplayPath;
-import viewer.display_objects.DisplayTurtle;
-import viewer.display_objects.Grid;
 import jgame.JGColor;
 import jgame.JGPoint;
 import jgame.platform.JGEngine;
@@ -37,7 +34,7 @@ public abstract class TurtleDisplay extends JGEngine {
         protected Controller myController;
         protected List<TurtleCommand> myTurtleList;
         protected int myTurtleNumber;
-        protected Grid myGrid;
+        protected DisplayGrid myGrid;
         protected JGColor myPenColor;
         /** The parameterless constructor is called by the browser, in case we're
          * an applet. */
@@ -97,7 +94,7 @@ public abstract class TurtleDisplay extends JGEngine {
                 Point2D thispoint=getDisplayCoordinates(0,0);
                 myDisplayTurtle=new DisplayTurtle(thispoint.getX(),thispoint.getY());
                 //myDisplayTurtle.setGraphic("turtle1up");
-                myGrid=new Grid((int)(myWidth),(int)(myHeight),NUM_GRID_X,NUM_GRID_Y);
+                myGrid=new DisplayGrid((int)(myWidth),(int)(myHeight),NUM_GRID_X,NUM_GRID_Y);
         }
         
         public void clearScreen(){

@@ -4,7 +4,7 @@ import jgame.JGColor;
 import jgame.JGObject;
 import jgame.impl.JGEngineInterface;
 
-public class Grid extends JGObject{
+public class DisplayGrid extends JGObject{
     private static final int GRID_COLID=4;
     private static final double GRID_THICKNESS=2;
     private static final JGColor GRID_COLOR=JGColor.blue;
@@ -14,7 +14,7 @@ public class Grid extends JGObject{
     protected int myVerticalSeparation;
     protected JGEngineInterface myEngine;
     
-    public Grid(int displayWidth, int displayHeight,int numHorizontal, int numVertical){
+    public DisplayGrid(int displayWidth, int displayHeight,int numHorizontal, int numVertical){
         super("Grid", true, displayWidth/2, displayHeight/2, GRID_COLID,null);
         myDisplayWidth=displayWidth;
         myDisplayHeight=displayHeight;
