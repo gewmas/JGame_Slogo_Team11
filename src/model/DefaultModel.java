@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import controller.Controller;
+import controller.ControllerToModelInterface;
 import controller.SlogoError;
 import controller.Turtle;
 import controller.TurtleCommand;
@@ -18,7 +19,7 @@ public class DefaultModel extends Model {
     private static Map<String, Expression> functionMap;
     private static Map<String, Expression> globalVariables;
 
-    private Controller controller;
+    private ControllerToModelInterface controller;
     List<Turtle> activeTurtle;
     TurtleTrace turtleTrace;
 
@@ -28,7 +29,7 @@ public class DefaultModel extends Model {
         this.controller = controller;
     }
 
-    public void updateAvtiveTurtle(){
+    public void updateActiveTurtle(){
         activeTurtle = controller.getActiveTurtles();
     }
 
@@ -47,7 +48,7 @@ public class DefaultModel extends Model {
         }
 
         //get TurtleTrace of every activeTurtle
-        updateAvtiveTurtle();
+        updateActiveTurtle();
         for(Turtle turtle : activeTurtle){
             turtleTrace = turtle.getTurtleTrace();
 
@@ -62,6 +63,13 @@ public class DefaultModel extends Model {
                 if(expression instanceof MakeExpression) {
                     MakeExpression makeExp = (MakeExpression) expression;
                     makeExp.setIsGlobal(true);
+                    makeExp.evaluate();
+                    continue;
+                }
+                
+                // Skip FunctionDeclarationExpression
+                if(expression instanceof FunctionDeclarationExpression){
+                    continue;
                 }
 
                 //Here check IF expression is of type that doesnt return turtleCommand.  ????

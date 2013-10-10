@@ -2,6 +2,7 @@ package model.expression;
 
 import java.util.List;
 import controller.Controller;
+import controller.ControllerToModelInterface;
 
 public abstract class QueryExpression extends Expression {
 
@@ -17,6 +18,6 @@ public abstract class QueryExpression extends Expression {
         return null;
     }
     
-    public abstract void executeControllerCommand(Controller controller);
+    public abstract void executeControllerCommand(ControllerToModelInterface controller);
 
 }
