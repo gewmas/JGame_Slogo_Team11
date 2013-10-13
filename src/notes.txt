@@ -1,0 +1,2 @@
+pen is not down on first command from initialization (default pen only goes down on second command)
+
