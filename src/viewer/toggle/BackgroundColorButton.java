@@ -27,10 +27,8 @@ public class BackgroundColorButton extends SelectableListButton {
         private static final String[] BG_COLORS={"Black","Blue","Cyan","Gray","Green","Magenta","Orange","Pink","Red","White","Yellow"};
 	
 	public BackgroundColorButton(Panel panel) {
-	        super(panel, BG_COLORS, BUTTON_TITLE, DIALOG_MESSAGE);
+		super(panel, BG_COLORS, BUTTON_TITLE, DIALOG_MESSAGE);
 	}
-	
-	
 
     @Override
     public void callReturn () {
