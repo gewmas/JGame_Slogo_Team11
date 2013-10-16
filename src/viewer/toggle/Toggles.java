@@ -24,7 +24,7 @@ public class Toggles extends Panel {
     private JGColor backgroundColor;
     private int turtleImageNum;
     private JGColor penColor;
-    private TurtleDisplay myTurtleDisplay;
+    private TurtleDisplay turtleDisplay;
     private boolean gridOn;
     
     public Toggles(int width, int height, TurtleDisplay turtledisplay){
@@ -45,13 +45,13 @@ public class Toggles extends Panel {
 			add(buttonList.get(i));
 		}        
                 
-        myTurtleDisplay=turtledisplay;
+        turtleDisplay=turtledisplay;
         
         setVisible(true);
     }
     
     public void setBackgroundColor(JGColor color) {
-    	myTurtleDisplay.setBackGroundColor(color);
+    	turtleDisplay.setBackGroundColor(color);
     	this.backgroundColor = color;
     }
     
@@ -60,7 +60,7 @@ public class Toggles extends Panel {
     }
     
     public void setTurtleImage(int imageNum) {
-        myTurtleDisplay.setTurtleImageNumber(imageNum);
+        turtleDisplay.setTurtleImageNumber(imageNum);
         this.turtleImageNum = imageNum;
     }
     
@@ -69,7 +69,7 @@ public class Toggles extends Panel {
     }
     
     public void setPenColor(JGColor color) {
-    	myTurtleDisplay.setPenColor(color);
+    	turtleDisplay.setPenColor(color);
     	this.penColor = color;
     }
     
@@ -78,7 +78,7 @@ public class Toggles extends Panel {
     }
     
     public void toggleGrid() {
-    	myTurtleDisplay.toggleGrid();
+    	turtleDisplay.toggleGrid();
     	this.gridOn = !this.gridOn;
     }
     
