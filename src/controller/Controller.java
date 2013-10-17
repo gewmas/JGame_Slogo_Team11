@@ -18,8 +18,8 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     public Controller () {
         model = new DefaultModel(this);
-//        viewer = new SLogoViewer(); // new SLogoViewer(ControllerToViewInterface this);
-        
+        viewer = new SLogoViewer(this);
+
         turtles = new ArrayList<Turtle>();
         activeTurtles = new ArrayList<Turtle>();
         
@@ -79,7 +79,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     
     //Turtle queries function call
     public void clearScreen(){
-        //view.clearScreen()
+        ((SLogoViewer) viewer).clearScreen();
     }
     
     public void xCor(){
