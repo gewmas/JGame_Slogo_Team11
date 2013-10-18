@@ -2,10 +2,11 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 
 public class NotExpression extends OneParameterExpression {
 
-    public NotExpression (List<String> cmdList) {
+    public NotExpression (List<String> cmdList) throws SlogoException {
         super(cmdList);
         // TODO Auto-generated constructor stub
     }

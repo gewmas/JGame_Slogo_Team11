@@ -2,10 +2,11 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 
 public class SinExpression extends OneParameterExpression {
 
-    public SinExpression (List<String> cmdList) {
+    public SinExpression (List<String> cmdList) throws SlogoException {
         super(cmdList);
     }
     

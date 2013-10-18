@@ -2,10 +2,11 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 
 public class OrExpression extends TwoParameterExpression {
 
-    public OrExpression (List<String> cmdList) {
+    public OrExpression (List<String> cmdList) throws SlogoException {
         super(cmdList);
         // TODO Auto-generated constructor stub
     }

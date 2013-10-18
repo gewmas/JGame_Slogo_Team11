@@ -5,7 +5,6 @@ import java.util.List;
 
 public class TurtleTrace {
     List<TurtleCommand> commandList;
-    SlogoError error;
  
     public TurtleTrace(){
         commandList = new ArrayList<TurtleCommand>();
@@ -52,14 +51,6 @@ public class TurtleTrace {
     
     public void setTurtlePenColor(){
         
-    }
-
-    public SlogoError getError () {
-        return error;
-    }
-
-    public void setSlogoError (SlogoError error) {
-        this.error = error;
     }
     
 }

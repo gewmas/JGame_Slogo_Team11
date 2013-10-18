@@ -7,6 +7,7 @@ public class Workspace {
 
     List<Turtle> turtles;
     List<Turtle> activeTurtles;
+    SlogoError error;
     
     String backgroundColor;
     
@@ -46,6 +47,14 @@ public class Workspace {
 
     public String getBackgroundColor () {
         return backgroundColor;
+    }
+    
+    public SlogoError getError () {
+        return error;
+    }
+
+    public void setSlogoError (SlogoError error) {
+        this.error = error;
     }
     
 }

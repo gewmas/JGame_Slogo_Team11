@@ -2,12 +2,13 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 
 
 public class ForwardExpression extends OneParameterExpression {
 
-    public ForwardExpression (List<String> cmdList) {
+    public ForwardExpression (List<String> cmdList) throws SlogoException {
         super(cmdList);
     }
 

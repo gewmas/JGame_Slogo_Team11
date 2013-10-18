@@ -2,11 +2,12 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 
 public class SetXYExpression extends TwoParameterExpression {
 
-    public SetXYExpression (List<String> cmdList) {
+    public SetXYExpression (List<String> cmdList) throws SlogoException {
         super(cmdList);
     }
     

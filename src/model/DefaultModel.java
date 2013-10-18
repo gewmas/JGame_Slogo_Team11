@@ -34,7 +34,7 @@ public class DefaultModel extends Model {
         activeTurtle = controller.getActiveTurtles();
     }
 
-    public void updateTrace (String userInput) {
+    public void updateTrace (String userInput) throws SlogoException {
         TurtleCommand latestTurtleCommand;
         List<TurtleCommand> tempTurtleCommand;
 
@@ -42,14 +42,7 @@ public class DefaultModel extends Model {
         List<String> commandInput = new ArrayList<String>(Arrays.asList(userInput.split("[\\s,;\\n\\t]+")));//"\\s+")));       
         Parser parser = new DefaultParser();
         List<Expression> expressionList;
-        try {
-            expressionList = parser.execute(commandInput, functionMap);
-        } catch (SlogoException e) {
-            //e.printStackTrace();
-            SlogoError error = new SlogoError("Parse Error", "A syntax error occured while parsing your script");
-            turtleTrace.setSlogoError(error);
-            return;
-        }
+        expressionList = parser.execute(commandInput, functionMap);
 
         //get TurtleTrace of every activeTurtle
         updateActiveTurtle();
