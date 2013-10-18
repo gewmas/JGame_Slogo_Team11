@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ControllerToModelInterface {
     public List<Turtle> getActiveTurtles();
-    public void setActiveTurtle (List<String> turtleIds);
+//    public void setActiveTurtle (List<String> turtleIds);
     
     
     //Turtle queries function call

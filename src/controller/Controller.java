@@ -1,32 +1,29 @@
 package controller;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import viewer.SLogoViewer;
 import viewer.Viewer;
 import model.DefaultModel;
 import model.Model;
 
 
-public class Controller implements ControllerToViewInterface, ControllerToModelInterface {
+public class Controller implements ControllerToModelInterface, ControllerToViewInterface {
     Model model;
     Viewer viewer;
 
-    List<Turtle> turtles;
-    List<Turtle> activeTurtles;
-    String backgroundColor;
+    Map<String, Workspace> workspaces;
+    Workspace currentWorkspace;
 
     public Controller () {
         model = new DefaultModel(this);
         viewer = new SLogoViewer(this);
-
-        turtles = new ArrayList<Turtle>();
-        activeTurtles = new ArrayList<Turtle>();
         
-        //Assuming always one turtle created for user
-        Turtle turtle = new DefaultTurtle();
-        turtles.add(turtle);
-        activeTurtles.add(turtle);
+        //default workspace with id "1"
+        workspaces = new HashMap<String, Workspace>();
+        currentWorkspace = new Workspace();
+        workspaces.put("1", currentWorkspace);
     }
 
     // Take the commands typed by the user and updates the TurtleTrace accordingly.
@@ -35,51 +32,32 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         // view.paintFrame(getTurtleTraces);
     }
 
-    //Now getTurtles & getActiveTurtle return the same only turtle
+    public Workspace getCurrentWorkspace () {
+        return currentWorkspace;
+    }
+
+    public void setCurrentWorkspace (String workspaceId) {
+        Workspace tempWorkspace = workspaces.get(workspaceId);
+        
+        if(tempWorkspace == null){
+            tempWorkspace = new Workspace();
+            workspaces.put(workspaceId, tempWorkspace);
+        }
+        
+        currentWorkspace = tempWorkspace;
+    }
+    
     public List<Turtle> getTurtles () {
-        return turtles;
+        return currentWorkspace.getTurtles();
     }
     
     public List<Turtle> getActiveTurtles() {
-        return activeTurtles;
-    }
-    
-    public void setActiveTurtle (List<String> turtleIds) {
-        activeTurtles.clear();
-        //Bad Method, Modify!
-        for(Turtle turtle : turtles){
-            for(String s : turtleIds){
-                if(turtle.getId().equals(s)){
-                    activeTurtles.add(turtle);
-                }
-            }
-        }
+        return currentWorkspace.getActiveTurtles();
     }
 
-    // Returns the active TurtleTrace object which is outlined below
-//    private List<TurtleTrace> getTurtleTraces () {
-//        List<TurtleTrace> turtleTraces = new ArrayList<TurtleTrace>();
-//
-//        for (Turtle turtle : turtles) {
-//            turtleTraces.add(turtle.getTurtleTrace());
-//        }
-//
-//        return turtleTraces;
-//    }
-
-    // Additional getters/setters
-    public void setBackgroundColor (String backgroundColor) {
-        this.backgroundColor = backgroundColor;
-    }
-
-    public String getBackgroundColor () {
-        return backgroundColor;
-    }
-    
-    
     //Turtle queries function call
     public void clearScreen(){
-        ((SLogoViewer) viewer).clearScreen();
+//        ((SLogoViewer) viewer).clearScreen();
     }
     
     public void xCor(){
@@ -101,7 +79,5 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     public void isShowing(){
       //view.isShowing();
     }
-                          
-    
     
 }
