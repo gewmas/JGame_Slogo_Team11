@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 import controller.TurtleTrace;
 import model.parser.DefaultParser;
@@ -25,7 +26,7 @@ public class FunctionExpression extends ScopedExpression {
     }
 
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0);
         
        for (Expression varExpression : declaration.variables) {

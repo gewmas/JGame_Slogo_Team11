@@ -2,10 +2,11 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 
 public class ProductExpression extends TwoParameterExpression {
 
-    public ProductExpression (List<String> cmdList) {
+    public ProductExpression (List<String> cmdList) throws SlogoException {
         super(cmdList);
         // TODO Auto-generated constructor stub
     }

@@ -2,11 +2,12 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 
 public class BackExpression extends OneParameterExpression {
 
-    public BackExpression (List<String> cmdList) {
+    public BackExpression (List<String> cmdList) throws SlogoException {
         super(cmdList);
     }
     

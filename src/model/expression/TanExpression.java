@@ -2,10 +2,11 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 
 public class TanExpression extends OneParameterExpression {
 
-    public TanExpression (List<String> cmdList) {
+    public TanExpression (List<String> cmdList) throws SlogoException {
         super(cmdList);
     }
     

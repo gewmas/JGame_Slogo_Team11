@@ -2,6 +2,7 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 import model.parser.DefaultParser;
 import controller.TurtleCommand;
 
@@ -9,12 +10,12 @@ import controller.TurtleCommand;
 public abstract class OneParameterExpression extends Expression {
     Expression expression;
 
-    public OneParameterExpression (List<String> cmdList) {
+    public OneParameterExpression (List<String> cmdList) throws SlogoException {
         convert(cmdList);
     }
 
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0);
 
         try

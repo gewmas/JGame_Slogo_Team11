@@ -2,6 +2,7 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 import model.parser.DefaultParser;
 
@@ -10,13 +11,13 @@ public class RepeatExpression extends ScopedExpression {
     //    Expression expression2;
     List<Expression> commandExpression;
 
-    public RepeatExpression(List<String> cmdList){
+    public RepeatExpression(List<String> cmdList) throws SlogoException{
         commandExpression = new ArrayList<Expression>();
         convert(cmdList);
     }
 
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0);
 
         int openBracketIndex = -1;

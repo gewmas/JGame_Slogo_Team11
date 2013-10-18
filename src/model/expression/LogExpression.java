@@ -2,10 +2,11 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 
 public class LogExpression extends OneParameterExpression {
 
-    public LogExpression (List<String> cmdList) {
+    public LogExpression (List<String> cmdList) throws SlogoException {
         super(cmdList);
         // TODO Auto-generated constructor stub
     }

@@ -12,6 +12,8 @@ public class Workspace {
 
     private List<Turtle> turtles;
     private List<Turtle> activeTurtles;
+
+    private SlogoError error;
     
     private Map<String, Expression> definedFunction;
     private Map<String, Expression> runningFunction;
@@ -83,6 +85,14 @@ public class Workspace {
 
     public String getBackgroundColor () {
         return backgroundColor;
+    }
+    
+    public SlogoError getError () {
+        return error;
+    }
+
+    public void setSlogoError (SlogoError error) {
+        this.error = error;
     }
     
 }

@@ -2,6 +2,7 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 import model.parser.DefaultParser;
 
@@ -10,11 +11,11 @@ public class TwoParameterExpression extends Expression {
     Expression expression2;
     
 
-    public TwoParameterExpression(List<String> cmdList) {
+    public TwoParameterExpression(List<String> cmdList) throws SlogoException {
         convert(cmdList);
     }
 
-    public void convert(List<String> cmdList) {
+    public void convert(List<String> cmdList) throws SlogoException {
         cmdList.remove(0);
         
         // sum sum 1 2 sum 3 4

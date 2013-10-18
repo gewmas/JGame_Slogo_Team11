@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import Exceptions.SlogoException;
 import controller.Controller;
 import controller.ControllerToModelInterface;
 import controller.SlogoError;
@@ -33,19 +34,15 @@ public class DefaultModel extends Model {
         activeTurtle = controller.getActiveTurtles();
     }
 
-    public void updateTrace (String userInput) {
+    public void updateTrace (String userInput) throws SlogoException {
         TurtleCommand latestTurtleCommand;
         List<TurtleCommand> tempTurtleCommand;
 
         // convert command
         List<String> commandInput = new ArrayList<String>(Arrays.asList(userInput.split("[\\s,;\\n\\t]+")));//"\\s+")));       
         Parser parser = new DefaultParser();
-        List<Expression> expressionList = parser.execute(commandInput, functionMap);
-
-        if(expressionList == null) {
-            SlogoError error = new SlogoError("Parse Error", "A syntax error occured while parsing your script");
-            turtleTrace.setSlogoError(error);
-        }
+        List<Expression> expressionList;
+        expressionList = parser.execute(commandInput, functionMap);
 
         //get TurtleTrace of every activeTurtle
         updateActiveTurtle();

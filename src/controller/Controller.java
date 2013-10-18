@@ -3,6 +3,7 @@ package controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import Exceptions.SlogoException;
 import viewer.SLogoViewer;
 import viewer.Viewer;
 import model.DefaultModel;
@@ -29,7 +30,14 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
 
     // Take the commands typed by the user and updates the TurtleTrace accordingly.
     public void interpretCommand(String userInput) {
-        model.updateTrace(userInput);
+        try {
+            model.updateTrace(userInput);
+        } catch (SlogoException e) {
+            //e.printStackTrace();
+            SlogoError error = new SlogoError("Parse Error", "A syntax error occured while parsing your script");
+            currentWorkspace.setSlogoError(error);
+            return;
+        }
         // view.paintFrame(getTurtleTraces);
     }
 
