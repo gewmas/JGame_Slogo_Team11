@@ -9,6 +9,7 @@ public class TurtleTrace {
  
     public TurtleTrace(){
         commandList = new ArrayList<TurtleCommand>();
+        commandList.add(new TurtleCommand(0, 0, 90)); //default TurtleCommand
     }
     
     public void add(TurtleCommand turtleCommand){
@@ -34,6 +35,7 @@ public class TurtleTrace {
     
     public void clearCommandList(){
         commandList.clear();
+        commandList.add(new TurtleCommand(0, 0, 90));
     }
     
     public void setTurtlePenUp(){

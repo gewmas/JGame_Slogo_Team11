@@ -7,7 +7,6 @@ public class SinExpression extends OneParameterExpression {
 
     public SinExpression (List<String> cmdList) {
         super(cmdList);
-        // TODO Auto-generated constructor stub
     }
     
     @Override

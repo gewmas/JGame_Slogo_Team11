@@ -1,9 +1,5 @@
 package test;
 
-import static org.junit.Assert.*;
-import java.util.Arrays;
-import java.util.List;
-import model.DefaultModel;
 import model.Model;
 import org.junit.After;
 import org.junit.Before;

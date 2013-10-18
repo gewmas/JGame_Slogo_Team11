@@ -6,6 +6,15 @@ import org.junit.Test;
 public class TestProceduresWithParametersExample extends TestExample {
     
     @Test
+    public void testDash(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
     public void testFace () {
         /*
          * 
@@ -51,5 +60,59 @@ public class TestProceduresWithParametersExample extends TestExample {
         assertTrue(isPenDown);
         assertTrue(isVisible);
         turtleTrace.clearCommandList();
+    }
+    
+    @Test
+    public void testFlower(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
+    public void testHouse(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
+    public void testPolyFun(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
+    public void testRandomRange(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
+    public void testRegularShape(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
+    public void testSquare(){
+      //TODO
+        /*
+         * 
+         */
+
     }
 }

@@ -6,6 +6,15 @@ import org.junit.Test;
 public class TestProceduresExample extends TestExample {
 
     @Test
+    public void testDash(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
     public void testGeometry () {
         /*
          * to triangle [ ]
@@ -55,6 +64,42 @@ public class TestProceduresExample extends TestExample {
         assertTrue(isPenDown);
         assertTrue(isVisible);
         turtleTrace.clearCommandList();
+    }
+    
+    @Test
+    public void testPinwheel(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
+    public void testPizza(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
+    public void testStar(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
+    public void testTunnel(){
+      //TODO
+        /*
+         * 
+         */
+
     }
     
 }

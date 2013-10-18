@@ -49,8 +49,40 @@ public class TestLoopsExample extends TestExample {
         turtleTrace.clearCommandList();
     }
     
+    
+    
     @Test
-    public void doubleTriangle () {
+    public void testDash () {
+        /*
+         * set :count 12
+    
+            to dash [ ]
+            [
+              repeat :count 
+              [
+                pu fd 4 pd fd 4
+              ]
+            ]
+    
+            dash
+         */
+        updateActiveTurtle();
+        //Test ExpressionList, Passed..  To be done: createTurtleCommand
+        controller.interpretCommand("set :count 12 to dash [ ] [ repeat :count [ pu fd 4 pd fd 4 ] ] dash");
+    
+        updateLatestCommandOfFirstActiveTurtle();
+        assertTrue(x == 0.0);
+        assertTrue(y == 96.0);
+        assertTrue(direction == 90.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
+    }
+   
+
+    @Test
+    public void testDoubleTriangle () {
+      //TODO make it work
         /*
          * 
          * setxy -300 0
@@ -89,32 +121,66 @@ public class TestLoopsExample extends TestExample {
     }
 
     @Test
-    public void testDash () {
+    public void testDragon(){
+        //TODO
         /*
-         * set :count 12
-
-            to dash [ ]
-            [
-              repeat :count 
-              [
-                pu fd 4 pd fd 4
-              ]
-            ]
-
-            dash
+         * 
          */
-        updateActiveTurtle();
-        //Test ExpressionList, Passed..  To be done: createTurtleCommand
-        controller.interpretCommand("set :count 12 to dash [ ] [ repeat :count [ pu fd 4 pd fd 4 ] ] dash");
 
-        updateLatestCommandOfFirstActiveTurtle();
-        assertTrue(x == 0.0);
-        assertTrue(y == 96.0);
-        assertTrue(direction == 90.0);
-        assertTrue(isPenDown);
-        assertTrue(isVisible);
-        turtleTrace.clearCommandList();
+    }
+    
+    @Test
+    public void testFlower(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
+    public void testPinwheel(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
+    public void testRandom(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
+    @Test
+    public void testSpiroSmall(){
+      //TODO
+        /*
+         * 
+         */
+
     }
 
+    @Test
+    public void testStar(){
+      //TODO
+        /*
+         * 
+         */
 
+    }
+    
+    @Test
+    public void testStop(){
+      //TODO
+        /*
+         * 
+         */
+
+    }
+    
 }
