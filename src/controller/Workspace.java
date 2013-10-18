@@ -1,14 +1,23 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import model.expression.Expression;
+import model.expression.ScopedExpression;
 
 public class Workspace {
 
-    List<Turtle> turtles;
-    List<Turtle> activeTurtles;
+    private List<Turtle> turtles;
+    private List<Turtle> activeTurtles;
     
-    String backgroundColor;
+    private Map<String, Expression> definedFunction;
+    private Map<String, Expression> runningFunction;
+    private Map<String, Expression> globalVariables;
+    
+    private String backgroundColor;
     
     public Workspace(){
         turtles = new ArrayList<Turtle>();
@@ -40,6 +49,34 @@ public class Workspace {
         }
     }
     
+    public Map<String, Expression> getDefinedFunction () {
+        return definedFunction;
+    }
+
+    public Map<String, Expression> getRunningFunction () {
+        return runningFunction;
+    }
+
+    public Map<String, Expression> getGlobalVariables () {
+        return globalVariables;
+    }
+    
+    public Map<String,  Map<String, Expression>> getLocalVariables () {
+        Map<String,  Map<String, Expression>> allLocalVariables = new HashMap<String,  Map<String, Expression>>();
+        
+        //loop through all local variables in running function
+        for(Entry<String, Expression> e : runningFunction.entrySet()){
+           String functionId = e.getKey();
+           
+           ScopedExpression scopedExpression = (ScopedExpression) e.getValue();
+           Map<String, Expression> functionLocalVariables = scopedExpression.getLocalVariables();
+           
+           allLocalVariables.put(functionId, functionLocalVariables);
+        }
+        
+        return allLocalVariables;
+    }
+
     public void setBackgroundColor (String backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
