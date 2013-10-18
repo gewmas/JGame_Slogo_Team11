@@ -2,6 +2,7 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 import model.parser.DefaultParser;
 
@@ -14,13 +15,13 @@ public class IfExpression extends Expression {
      * IF expr [ command(s) ]
      * if lessp 2 3 [ fd sum 1 2 ]
      */
-    public IfExpression(List<String> cmdList){
+    public IfExpression(List<String> cmdList) throws SlogoException{
         commandExpression = new ArrayList<Expression>();
         convert(cmdList);
     }
 
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0); // remove if
 
         int openBracketIndex = -1;

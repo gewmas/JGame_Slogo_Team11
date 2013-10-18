@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import Exceptions.SlogoException;
 import controller.Controller;
 import controller.ControllerToModelInterface;
 import controller.SlogoError;
@@ -40,11 +41,14 @@ public class DefaultModel extends Model {
         // convert command
         List<String> commandInput = new ArrayList<String>(Arrays.asList(userInput.split("[\\s,;\\n\\t]+")));//"\\s+")));       
         Parser parser = new DefaultParser();
-        List<Expression> expressionList = parser.execute(commandInput, functionMap);
-
-        if(expressionList == null) {
+        List<Expression> expressionList;
+        try {
+            expressionList = parser.execute(commandInput, functionMap);
+        } catch (SlogoException e) {
+            //e.printStackTrace();
             SlogoError error = new SlogoError("Parse Error", "A syntax error occured while parsing your script");
             turtleTrace.setSlogoError(error);
+            return;
         }
 
         //get TurtleTrace of every activeTurtle

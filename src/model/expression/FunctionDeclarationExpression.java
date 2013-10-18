@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 import model.parser.*;
 
@@ -12,7 +13,7 @@ public class FunctionDeclarationExpression extends Expression {
     List<Expression> variables;
     List<Expression> expressions;
 
-    public FunctionDeclarationExpression(List<String> cmdList){
+    public FunctionDeclarationExpression(List<String> cmdList) throws SlogoException{
 //        variables = new HashMap<String, Expression>();
         variables = new ArrayList<Expression>();
         expressions = new ArrayList<Expression>();
@@ -20,7 +21,7 @@ public class FunctionDeclarationExpression extends Expression {
     }
 
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0);
 
         /*

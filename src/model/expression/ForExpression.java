@@ -2,6 +2,7 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 import model.parser.DefaultParser;
 
@@ -20,13 +21,13 @@ public class ForExpression extends ScopedExpression{
      * for [ :i sum 1 3 sum 1 3 sum 1 3 ] [  fd 23 fd 23 ]
      * 
      */
-    public ForExpression(List<String> cmdList){
+    public ForExpression(List<String> cmdList) throws SlogoException{
         commandExpression = new ArrayList<Expression>();
         convert(cmdList);
     }
     
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0);
         
         int openBracketIndex = -1;

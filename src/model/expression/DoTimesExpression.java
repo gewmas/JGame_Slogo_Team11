@@ -3,6 +3,7 @@ package model.expression;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import Exceptions.SlogoException;
 import model.parser.DefaultParser;
 import controller.TurtleCommand;
 
@@ -23,14 +24,14 @@ public class DoTimesExpression extends ScopedExpression {
      * note, variable is assigned to each succeeding value so that it can be accessed by the commands
      * 
      */
-    public DoTimesExpression(List<String> cmdList){
+    public DoTimesExpression(List<String> cmdList) throws SlogoException{
         limitExpression = new ArrayList<Expression>();
         commandExpression = new ArrayList<Expression>();
         convert(cmdList);
     }
 
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0);
 
         int openBracketIndex = -1;

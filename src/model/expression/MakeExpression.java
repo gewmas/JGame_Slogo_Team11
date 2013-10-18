@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import Exceptions.SlogoException;
 import model.DefaultModel;
 import model.parser.DefaultParser;
 
@@ -18,14 +19,14 @@ public class MakeExpression extends Expression {
     Map<String, Expression> variables; //Though assuming one variable, making it map for extend
     boolean isGlobal;
     
-    public MakeExpression(List<String> cmdList){
+    public MakeExpression(List<String> cmdList) throws SlogoException{
         variables = new HashMap<String, Expression>();
         isGlobal = false;
         convert(cmdList);
     }
     
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0); //remove make
         
         String id = cmdList.get(0).substring(1);

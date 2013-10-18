@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import Exceptions.SlogoException;
 import model.expression.*;
 
 public class DefaultParser extends Parser {
@@ -12,23 +13,20 @@ public class DefaultParser extends Parser {
     public DefaultParser(){
     }
     
-    public List<Expression> execute(List<String> commandInput, Map<String, Expression> functionMap){
+    public List<Expression> execute(List<String> commandInput, Map<String, Expression> functionMap) throws SlogoException {
         DefaultParser.functionMap = functionMap;
         
         List<Expression> expressionList = new ArrayList<Expression>();
         
         while(!commandInput.isEmpty()){
-            Expression parsedExpression = DefaultParser.parse(commandInput);
-            if(parsedExpression == null) {
-                return null;
-            }
-            expressionList.add(parsedExpression);
+                Expression parsedExpression = DefaultParser.parse(commandInput);
+                expressionList.add(parsedExpression);
         }
         
         return expressionList;
     }
     
-    public static Expression parse (List<String> commandInput) {
+    public static Expression parse (List<String> commandInput) throws SlogoException {
         String s = commandInput.get(0).toLowerCase();
 
         
@@ -198,8 +196,9 @@ public class DefaultParser extends Parser {
         }
         else if(commandInput.get(0).charAt(0) == ':'){
             return new VariableExpression(commandInput);
+        } else {
+            throw new SlogoException("Command not recognized");
         }
 
-        return null;
     }
 }

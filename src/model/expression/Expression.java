@@ -1,6 +1,7 @@
 package model.expression;
 
 import java.util.List;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 
 public class Expression extends AbstractExpression{
@@ -16,7 +17,7 @@ public class Expression extends AbstractExpression{
     }
 
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
         // TODO Auto-generated method stub
         
     }

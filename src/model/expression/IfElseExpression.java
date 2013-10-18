@@ -2,6 +2,7 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 import model.parser.DefaultParser;
 
@@ -16,14 +17,14 @@ public class IfElseExpression extends Expression {
      * if lessp 2 3 [ fd sum 1 2 ] [ fd sum 1 sum 1 2 ]
      */
     
-    public IfElseExpression(List<String> cmdList){
+    public IfElseExpression(List<String> cmdList) throws SlogoException{
         ifCommandExpression = new ArrayList<Expression>();
         elseCommandExpression = new ArrayList<Expression>();
         convert(cmdList);
     }
     
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0); // remove if
 
         int openBracketIndex = -1;
