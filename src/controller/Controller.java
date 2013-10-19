@@ -20,9 +20,16 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
     Map<String, Workspace> workspaces;
     Workspace currentWorkspace;
     ResourceBundle messages;
+    HashMap<String, String> languageToCountry;
+    HashMap<Double, ColorIndex> colorIndexes;
 
     public Controller () {
-        setLanguage("en", "US");
+        languageToCountry = new HashMap<String, String>();
+        languageToCountry.put("en", "US");
+        languageToCountry.put("fr", "FR");
+        languageToCountry.put("pt", "PT");
+        languageToCountry.put("it", "IT");
+        setLanguage("en");
         
         model = new DefaultModel(this);
         viewer = new SLogoViewer(this);
@@ -61,7 +68,9 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
         currentWorkspace = tempWorkspace;
     }
     
-    public void setLanguage(String language, String country) {
+    public void setLanguage(String language) {
+        
+        String country = languageToCountry.get(language);
         
         Locale currentLocale;
         currentLocale = new Locale(language, country);
@@ -100,6 +109,14 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
     
     public Map<String, Map<String, Expression>> getLocalVariables () {
         return currentWorkspace.getLocalVariables();
+    }
+    
+    public ColorIndex getRGBForIndex(String index) {
+        return colorIndexes.get(index);
+    }
+    
+    public void addColorIndex(ColorIndex index) {
+        colorIndexes.put(index.index, index);
     }
 
     //Turtle queries function call

@@ -61,7 +61,7 @@ public class DefaultModel extends Model {
 
             // evaluate & create TurtleCommand
             for (Expression expression : expressionList) {
-                if(expression.getClass().getSuperclass().getSimpleName().equals("QueryExpression")){
+                if(expression.getClass().getSuperclass().getSimpleName().equals("QueryExpression") || expression.getClass().getSuperclass().getSimpleName().equals("FourParameterExpression")){
                     ((QueryExpression) expression).executeControllerCommand(controller);
                     continue;
                 }
