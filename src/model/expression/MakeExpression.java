@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import Exceptions.SlogoException;
 import model.DefaultModel;
+import model.Model;
 import model.parser.DefaultParser;
 
 /**
@@ -19,7 +20,8 @@ public class MakeExpression extends Expression {
     Map<String, Expression> variables; //Though assuming one variable, making it map for extend
     boolean isGlobal;
     
-    public MakeExpression(List<String> cmdList) throws SlogoException{
+    public MakeExpression(List<String> cmdList, Model model) throws SlogoException{
+        super(model);
         variables = new HashMap<String, Expression>();
         isGlobal = false;
         convert(cmdList);
@@ -37,12 +39,12 @@ public class MakeExpression extends Expression {
         
         try
         {
-            expression = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+            expression = new NumberExpression(Double.parseDouble(cmdList.get(0)), model);
             cmdList.remove(0);
         }
         catch(NumberFormatException e)
         {
-            expression = DefaultParser.parse(cmdList);
+            expression = parser.parse(cmdList);
         }
         
         
@@ -55,10 +57,12 @@ public class MakeExpression extends Expression {
         for (Map.Entry<String, Expression> entry : variables.entrySet()) {
                         
                 if(isGlobal) {
-                    Map<String, Expression> globalVars = DefaultModel.getGlobalVariables();
+                    Map<String, Expression> globalVars = model.getGlobalVariables();
                     globalVars.put(entry.getKey(), entry.getValue());
                 } else {
-                    Map<String, Expression> localVars = FunctionExpression.getLocalVariables();
+                    //TO-DO NOT sure get function name
+                    ScopedExpression scopedExpression = (ScopedExpression) model.getRunningFunction().get("");
+                    Map<String, Expression> localVars = scopedExpression.getLocalVariables();
                     localVars.put(entry.getKey(), entry.getValue());
                 }
             }

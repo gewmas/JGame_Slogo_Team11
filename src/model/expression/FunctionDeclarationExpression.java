@@ -6,15 +6,17 @@ import java.util.List;
 import java.util.Map;
 import Exceptions.SlogoException;
 import controller.TurtleCommand;
+import model.Model;
 import model.parser.*;
 
 public class FunctionDeclarationExpression extends Expression {
-//    Map<String, Expression> variables;
+    //    Map<String, Expression> variables;
     List<Expression> variables;
     List<Expression> expressions;
 
-    public FunctionDeclarationExpression(List<String> cmdList) throws SlogoException{
-//        variables = new HashMap<String, Expression>();
+    public FunctionDeclarationExpression(List<String> cmdList, Model model) throws SlogoException{
+        super(model);
+        //        variables = new HashMap<String, Expression>();
         variables = new ArrayList<Expression>();
         expressions = new ArrayList<Expression>();
         convert(cmdList);
@@ -56,10 +58,10 @@ public class FunctionDeclarationExpression extends Expression {
 
         //Within [ :count ]
         for(int i = openBracketIndex+1; i < closeBracketIndex; i++){
-            variables.add(new VariableExpression(cmdList.subList(i, closeBracketIndex)));
-//            variables.put(cmdList.get(i).substring(1), new VariableExpression(cmdList));
+            variables.add(new VariableExpression(cmdList.subList(i, closeBracketIndex), model));
+            //            variables.put(cmdList.get(i).substring(1), new VariableExpression(cmdList));
         }
-        
+
 
         //Remove [ :count ]
         cmdList.remove(0); // remove [
@@ -90,7 +92,7 @@ public class FunctionDeclarationExpression extends Expression {
 
         List<String> expressionCmdList = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
         while(!expressionCmdList.isEmpty()){
-            expressions.add(DefaultParser.parse(expressionCmdList));
+            expressions.add(parser.parse(expressionCmdList));
         }
 
         for(int i = 0; i <= closeBracketIndex; i++){
@@ -101,16 +103,15 @@ public class FunctionDeclarationExpression extends Expression {
 
     @Override
     public List<Expression> evaluate () {
-        // TODO Auto-generated method stub
         List<Expression> finalExpressionList = new ArrayList<Expression>();
         return finalExpressionList;
     }
-    
+
     @Override
     public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCommand) {
         return new ArrayList<TurtleCommand>();
     }
-    
+
     public int numberOfVariables() {
         return variables.size();
     }

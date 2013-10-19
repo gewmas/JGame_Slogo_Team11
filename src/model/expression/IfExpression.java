@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Exceptions.SlogoException;
 import controller.TurtleCommand;
+import model.Model;
 import model.parser.DefaultParser;
 
 public class IfExpression extends Expression {
@@ -15,7 +16,8 @@ public class IfExpression extends Expression {
      * IF expr [ command(s) ]
      * if lessp 2 3 [ fd sum 1 2 ]
      */
-    public IfExpression(List<String> cmdList) throws SlogoException{
+    public IfExpression(List<String> cmdList, Model model) throws SlogoException{
+        super(model);
         commandExpression = new ArrayList<Expression>();
         convert(cmdList);
     }
@@ -44,11 +46,11 @@ public class IfExpression extends Expression {
             }
         }
 
-        conditionExpression = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
+        conditionExpression = parser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
 
         List<String> commandCmdList = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
         while(!commandCmdList.isEmpty()){
-            commandExpression.add(DefaultParser.parse(commandCmdList));
+            commandExpression.add(parser.parse(commandCmdList));
         }
 
         for(int i = 0; i <= closeBracketIndex; i++){

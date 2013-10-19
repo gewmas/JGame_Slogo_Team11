@@ -18,37 +18,46 @@ import model.parser.Parser;
 import model.expression.*;
 
 public class DefaultModel extends Model {
-//    private static Map<String, Expression> functionMap;
-//    private static Map<String, Expression> globalVariables;
-
     private ControllerToModelInterface controller;
+    private Parser parser;
+    
+    //temp instance variable from current workspace, update everytime model get called
+    private Map<String, Expression> definedFunction;
+    private Map<String, Expression> runningFunction;
+    private Map<String, Expression> globalVariables;
+
     List<Turtle> activeTurtle;
-    TurtleTrace turtleTrace;
 
     public DefaultModel(Controller controller){
-        functionMap = new HashMap<String, Expression>();
-        globalVariables = new HashMap<String, Expression>();
         this.controller = controller;
+        parser = new DefaultParser(this);
     }
-
-    public void updateActiveTurtle(){
+    
+    private void updateInstanceVariable(){
+        definedFunction = controller.getDefinedFunction();
+        runningFunction = controller.getRunningFunction();
+        globalVariables = controller.getGlobalVariables();
+        
+      //get TurtleTrace of every activeTurtle
         activeTurtle = controller.getActiveTurtles();
     }
 
     public void updateTrace (String userInput, ResourceBundle messages) throws SlogoException {
+
+        updateInstanceVariable();
+        
         TurtleCommand latestTurtleCommand;
         List<TurtleCommand> tempTurtleCommand;
 
         // convert command
         List<String> commandInput = new ArrayList<String>(Arrays.asList(userInput.split("[\\s,;\\n\\t]+")));//"\\s+")));       
-        Parser parser = new DefaultParser();
+        
         List<Expression> expressionList;
-        expressionList = parser.execute(commandInput, functionMap);
+        expressionList = parser.execute(commandInput, definedFunction);
 
-        //get TurtleTrace of every activeTurtle
-        updateActiveTurtle();
+      
         for(Turtle turtle : activeTurtle){
-            turtleTrace = turtle.getTurtleTrace();
+            TurtleTrace turtleTrace = turtle.getTurtleTrace();
 
             // evaluate & create TurtleCommand
             for (Expression expression : expressionList) {
@@ -77,14 +86,20 @@ public class DefaultModel extends Model {
             }
             
         }
-
-
-
+        
     }
 
-    public static Map<String, Expression> getGlobalVariables() {
+    public Map<String, Expression> getGlobalVariables () {
         return globalVariables;
     }
 
+    public Parser getParser () {
+        return parser;
+    }
 
+    public Map<String, Expression> getRunningFunction () {
+        return runningFunction;
+    }
+
+    
 }

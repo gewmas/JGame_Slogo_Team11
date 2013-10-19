@@ -8,6 +8,7 @@ import model.expression.Expression;
 public abstract class Parser {
 
     public abstract List<Expression> execute(List<String> commandInput,  Map<String, Expression> functionMap) throws SlogoException;
+    public abstract Expression parse (List<String> commandInput) throws SlogoException;
 //    public abstract Expression parse (List<String> asList, int i);
     
 //    public abstract Expression parse(List<String> commandInput);

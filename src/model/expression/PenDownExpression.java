@@ -2,10 +2,15 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Model;
 import controller.TurtleCommand;
 
 public class PenDownExpression extends ZeroParameterExpression {
     
+    public PenDownExpression (Model model) {
+        super(model);
+    }
+
     @Override
     public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCmd) {
 

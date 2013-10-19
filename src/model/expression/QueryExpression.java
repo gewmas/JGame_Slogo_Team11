@@ -1,20 +1,23 @@
 package model.expression;
 
 import java.util.List;
+import model.Model;
 import controller.Controller;
 import controller.ControllerToModelInterface;
 
 public abstract class QueryExpression extends Expression {
 
+    public QueryExpression (Model model) {
+        super(model);
+    }
+
     @Override
     public void convert (List<String> cmdList) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public List<Expression> evaluate () {
-        // TODO Auto-generated method stub
         return null;
     }
     
