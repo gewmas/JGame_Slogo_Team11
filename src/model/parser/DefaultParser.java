@@ -196,7 +196,20 @@ public class DefaultParser extends Parser {
         }
         else if(commandInput.get(0).charAt(0) == ':'){
             return new VariableExpression(commandInput);
-        } else {
+        }
+        
+        // Display Commands
+        else if(s.equals("setbackground")) {
+            return new setBackgroundExpression(commandInput);
+        } else if(s.equals("setpencolor")) {
+            return new setBackgroundExpression(commandInput);
+        } else if(s.equals("setpensize")) {
+            return new setBackgroundExpression(commandInput);
+        } else if(s.equals("setshape")) {
+            return new setBackgroundExpression(commandInput);
+        } 
+        
+        else {
             throw new SlogoException("Command not recognized");
         }
 

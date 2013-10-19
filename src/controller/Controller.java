@@ -68,8 +68,17 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
 //        ((SLogoViewer) viewer).clearScreen();
     }
     
+    // Get the given attribute from latest turtletrace and show to user
     public void xCor(){
       //view.xCor();
+    }
+    
+    public void penColor() {
+        //view.penColor();
+    }
+    
+    public void turtleShape() {
+        //view.turtleShape();
     }
     
     public void yCor(){

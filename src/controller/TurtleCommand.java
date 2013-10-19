@@ -6,12 +6,58 @@ public class TurtleCommand {
     private double direction;
     private boolean isPenDown;
     private boolean isVisible;
+    private double background;
+    private double penColor;
+    private double penSize;
+    private double shape;
+    private boolean stamp;
+    private boolean clearStamps;
     //color
     
     public TurtleCommand(){
         this(0.0, 0.0, 90.0);
     }
     
+    public double getBackground () {
+        return background;
+    }
+
+    public void setBackground (double background) {
+        this.background = background;
+    }
+
+    public double getPenColor () {
+        return penColor;
+    }
+
+    public void setPenColor (double penColor) {
+        this.penColor = penColor;
+    }
+
+    public double getShape () {
+        return shape;
+    }
+
+    public void setShape (double shape) {
+        this.shape = shape;
+    }
+
+    public boolean isStamp () {
+        return stamp;
+    }
+
+    public void setStamp (boolean stamp) {
+        this.stamp = stamp;
+    }
+
+    public boolean isClearStamps () {
+        return clearStamps;
+    }
+
+    public void setClearStamps (boolean clearStamps) {
+        this.clearStamps = clearStamps;
+    }
+
     public TurtleCommand(double x, double y, double direction){
         this.x = x;
         this.y = y;
@@ -67,6 +113,14 @@ public class TurtleCommand {
 
     public void setPenDown (boolean isPenDown) {
         this.isPenDown = isPenDown;
+    }
+
+    public double getPenSize () {
+        return penSize;
+    }
+
+    public void setPenSize (double penSize) {
+        this.penSize = penSize;
     }
     
     
