@@ -121,6 +121,7 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
 
     //Turtle queries function call
     public void clearScreen(){
+        currentWorkspace.clear();
 //        ((SLogoViewer) viewer).clearScreen();
     }
     

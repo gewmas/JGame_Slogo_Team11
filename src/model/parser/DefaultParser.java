@@ -50,7 +50,6 @@ public class DefaultParser extends Parser {
     public Expression parse (List<String> commandInput) throws SlogoException {
         String s = commandInput.get(0).toLowerCase();
 
-        System.out.println(messages.getString("Forward"));
         //Turtle Commands
         if (equals(s, messages.getString("Forward"))){
             return new ForwardExpression(commandInput, model);
@@ -191,7 +190,7 @@ public class DefaultParser extends Parser {
         }
         else if (equals(s, messages.getString("Repeat"))){
             return new RepeatExpression(commandInput, model);
-        } else if(functionMap.containsKey(s)) {
+        } else if(functionMap != null && functionMap.containsKey(s)) {
             FunctionExpression functionExp = new FunctionExpression(commandInput, model);
             functionExp.checkFunctionDeclaration(functionMap.get(s));
             functionExp.convert(commandInput);
@@ -258,6 +257,8 @@ public class DefaultParser extends Parser {
         else {
             throw new SlogoException("Command not recognized");
         }
+        
+        return null;
 
     }
 }

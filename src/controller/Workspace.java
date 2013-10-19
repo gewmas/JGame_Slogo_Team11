@@ -29,6 +29,11 @@ public class Workspace {
         Turtle turtle = new DefaultTurtle();
         turtles.put(turtle.id, turtle);
         activeTurtles.add(turtle);
+        
+        definedFunction = new HashMap<String, Expression>();
+        runningFunction = new HashMap<String, Expression>();
+        globalVariables = new HashMap<String, Expression>();
+                
     }
     
     public List<Turtle> getTurtles () {
@@ -117,6 +122,12 @@ public class Workspace {
 
     public void setSlogoError (SlogoError error) {
         this.error = error;
+    }
+    
+    public void clear(){
+        definedFunction.clear();
+        runningFunction.clear();
+        globalVariables.clear();
     }
     
 }

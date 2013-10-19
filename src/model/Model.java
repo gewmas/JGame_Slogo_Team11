@@ -3,6 +3,7 @@ package model;
 import java.util.ResourceBundle;
 import java.util.Map;
 import controller.ControllerToModelInterface;
+import java.util.Stack;
 import model.expression.Expression;
 import model.parser.Parser;
 import Exceptions.SlogoException;
@@ -13,8 +14,6 @@ public abstract class Model {
     public abstract Map<String, Expression> getGlobalVariables ();
     public abstract Map<String, Expression> getRunningFunction ();
     public abstract Parser getParser();
-    public ControllerToModelInterface getController () {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    public abstract ControllerToModelInterface getController ();
+    public abstract Stack<String> getFunctionStack ();
 }
