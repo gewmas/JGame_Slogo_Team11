@@ -20,4 +20,6 @@ public interface ControllerToModelInterface {
     public void heading();
     public void isPenDown();
     public void isShowing();
+    public void penColor ();
+    public void turtleShape ();
 }

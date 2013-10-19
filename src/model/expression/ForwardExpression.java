@@ -53,8 +53,6 @@ public class ForwardExpression extends OneParameterExpression {
         // turtleCmd.setY(turtleCmd.getY() + exp.getNumber() *
         // Math.round(Math.sin(Math.toRadians(turtleCmd.getDirection()))));
         
-        
-        
         list.add(turtleCmd);
         return list;
     }
