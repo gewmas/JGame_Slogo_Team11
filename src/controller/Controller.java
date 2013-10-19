@@ -8,6 +8,7 @@ import viewer.SLogoViewer;
 import viewer.Viewer;
 import model.DefaultModel;
 import model.Model;
+import model.expression.Expression;
 
 
 public class Controller implements ControllerToModelInterface, ControllerToViewInterface {
@@ -61,6 +62,18 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
     
     public List<Turtle> getActiveTurtles() {
         return currentWorkspace.getActiveTurtles();
+    }
+    
+    public Map<String, Expression> getFunctionMap () {
+        return currentWorkspace.getDefinedFunction();
+    }
+
+    public Map<String, Expression> getGlobalVariables () {
+        return currentWorkspace.getGlobalVariables();
+    }
+    
+    public Map<String, Map<String, Expression>> getLocalVariables () {
+        return currentWorkspace.getLocalVariables();
     }
 
     //Turtle queries function call

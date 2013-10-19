@@ -17,8 +17,8 @@ import model.parser.Parser;
 import model.expression.*;
 
 public class DefaultModel extends Model {
-    private static Map<String, Expression> functionMap;
-    private static Map<String, Expression> globalVariables;
+//    private static Map<String, Expression> functionMap;
+//    private static Map<String, Expression> globalVariables;
 
     private ControllerToModelInterface controller;
     List<Turtle> activeTurtle;
