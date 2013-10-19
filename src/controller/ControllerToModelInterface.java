@@ -22,4 +22,5 @@ public interface ControllerToModelInterface {
     public void isShowing();
     public void penColor ();
     public void turtleShape ();
+    public void addColorIndex (ColorIndex index);
 }
