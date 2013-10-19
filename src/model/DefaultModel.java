@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import Exceptions.SlogoException;
 import controller.Controller;
 import controller.ControllerToModelInterface;
@@ -34,7 +35,7 @@ public class DefaultModel extends Model {
         activeTurtle = controller.getActiveTurtles();
     }
 
-    public void updateTrace (String userInput) throws SlogoException {
+    public void updateTrace (String userInput, ResourceBundle messages) throws SlogoException {
         TurtleCommand latestTurtleCommand;
         List<TurtleCommand> tempTurtleCommand;
 

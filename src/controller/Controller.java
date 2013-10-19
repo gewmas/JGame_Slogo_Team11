@@ -2,7 +2,9 @@ package controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import Exceptions.SlogoException;
 import viewer.SLogoViewer;
 import viewer.Viewer;
@@ -17,6 +19,7 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
 
     Map<String, Workspace> workspaces;
     Workspace currentWorkspace;
+    ResourceBundle messages;
 
     public Controller () {
         model = new DefaultModel(this);
@@ -26,12 +29,13 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
         workspaces = new HashMap<String, Workspace>();
         currentWorkspace = new Workspace();
         workspaces.put("1", currentWorkspace);
+        setLanguage("en", "US");
     }
 
     // Take the commands typed by the user and updates the TurtleTrace accordingly.
     public void interpretCommand(String userInput) {
         try {
-            model.updateTrace(userInput);
+            model.updateTrace(userInput, messages);
         } catch (SlogoException e) {
             //e.printStackTrace();
             SlogoError error = new SlogoError("Parse Error", "A syntax error occured while parsing your script");
@@ -54,6 +58,13 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
         }
         
         currentWorkspace = tempWorkspace;
+    }
+    
+    public void setLanguage(String language, String country) {
+        
+        Locale currentLocale;
+        currentLocale = new Locale(language, country);
+        messages = ResourceBundle.getBundle("MessagesBundle", currentLocale);
     }
     
     public List<Turtle> getTurtles () {
