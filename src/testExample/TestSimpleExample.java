@@ -106,7 +106,118 @@ public class TestSimpleExample extends TestExample {
 
     @Test
     public void testRandomFunLots () {
-      //TODO
+        /*
+         * # random fun repeated a lot
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+            
+            fd sum 1 random 100
+            rt random 360
+            fd product random 10 sum 1 random 10
+            lt random 360
+         */
+        updateActiveTurtle();
+        controller
+                .interpretCommand("fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  fd sum 1 random 100 rt random 360 fd product random 10 sum 1 random 10 lt random 360  ");
+        updateLatestCommandOfFirstActiveTurtle();
+//        assertTrue(x == 0.0);
+//        assertTrue(y == 0.0);
+//        assertTrue(direction == 90.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
     }
 
     @Test
@@ -136,12 +247,59 @@ public class TestSimpleExample extends TestExample {
 
     @Test
     public void testSquareCentered () {
-      //TODO
+        /*
+         * # move to side of square
+            pu
+            fd 50
+            rt 90
+            
+            # draw square
+            pd
+            fd 50
+            rt 90
+            fd 100
+            rt 90
+            fd 100
+            rt 90
+            fd 100
+            rt 90
+            fd 50
+            
+            # move back to center
+            pu
+            home
+         */
+        updateActiveTurtle();
+        controller.interpretCommand("pu             fd 50             rt 90                          pd             fd 50             rt 90             fd 100             rt 90             fd 100             rt 90             fd 100             rt 90             fd 50                          pu             home  ");
+        updateLatestCommandOfFirstActiveTurtle();
+        assertTrue(x == 0.0);
+        assertTrue(y == 0.0);
+        assertTrue(direction == 0.0);
+        assertTrue(!isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
     }
 
     @Test
     public void testTriangle () {
-      //TODO
+        /*
+         * fd 50
+            rt 120
+            fd 100
+            rt 120
+            fd 100
+            rt 120
+            fd 50
+         */
+        updateActiveTurtle();
+        controller.interpretCommand("fd 50             rt 120             fd 100             rt 120             fd 100             rt 120             fd 50 ");
+        updateLatestCommandOfFirstActiveTurtle();
+        assertTrue(x == 0.0);
+        assertTrue(y == 0.0);
+        assertTrue(direction == 90.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
     }
 
 }

@@ -100,4 +100,10 @@ public class Workspace {
         this.error = error;
     }
     
+    public void clear(){
+        definedFunction.clear();
+        runningFunction.clear();
+        globalVariables.clear();
+    }
+    
 }

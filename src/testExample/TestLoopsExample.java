@@ -184,47 +184,115 @@ public class TestLoopsExample extends TestExample {
     
     @Test
     public void testPinwheel(){
-      //TODO
         /*
-         * 
+         * repeat 18
+        [
+          forward 50
+          right 150
+          forward 60                       
+          right 100
+          forward 30
+          right 90
+        ]
          */
-
+        updateActiveTurtle();
+        controller.interpretCommand("repeat 18 [   forward 50   right 150   forward 60                          right 100   forward 30   right 90 ]   ");
+        updateLatestCommandOfFirstActiveTurtle();
+        assertTrue(Math.abs(x) <= 0.000001);
+        assertTrue(Math.abs(y) <= 0.000001);
+        assertTrue(direction == 90.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
     }
     
     @Test
     public void testRandom(){
-      //TODO
         /*
-         * 
+         * repeat 16 
+        [
+          fd random 500
+          rt random 360
+        ]
          */
-
+        updateActiveTurtle();
+        controller.interpretCommand("repeat 16  [   fd random 500   rt random 360 ]  ");
+        updateLatestCommandOfFirstActiveTurtle();
+//        assertTrue(Math.abs(x) <= 0.000001);
+//        assertTrue(Math.abs(y) <= 0.000001);
+//        assertTrue(direction == 90.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
     }
     
     @Test
     public void testSpiroSmall(){
-      //TODO
         /*
-         * 
-         */
+         * home
 
+        repeat 30 
+        [
+          repeat 20 
+          [
+            fd 10
+            rt 10
+          ]
+          repeat 10
+          [
+            fd 20
+            rt 100
+          ]
+        ]
+         */
+        updateActiveTurtle();
+        controller.interpretCommand("home  repeat 30  [   repeat 20    [     fd 10     rt 10   ]   repeat 10   [     fd 20     rt 100   ] ] ");
+        updateLatestCommandOfFirstActiveTurtle();
+        assertTrue(Math.abs(x) <= 0.000001);
+        assertTrue(Math.abs(y) <= 0.000001);
+        assertTrue(direction == 90.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
     }
 
     @Test
     public void testStar(){
-      //TODO
         /*
-         * 
+         * repeat 5 
+        [ 
+          fd 50
+          rt 144
+        ]
          */
-
+        updateActiveTurtle();
+        controller.interpretCommand("repeat 5  [    fd 50   rt 144 ]  ");
+        updateLatestCommandOfFirstActiveTurtle();
+        assertTrue(Math.abs(x) <= 0.000001);
+        assertTrue(Math.abs(y) <= 0.000001);
+        assertTrue(direction == 90.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
     }
     
     @Test
     public void testStop(){
-      //TODO
         /*
-         * 
+         * repeat 8 [
+          fd 10
+          rt 45
+        ]
          */
-
+        updateActiveTurtle();
+        controller.interpretCommand("repeat 8 [   fd 10   rt 45 ]  ");
+        updateLatestCommandOfFirstActiveTurtle();
+        assertTrue(Math.abs(x) <= 0.000001);
+        assertTrue(Math.abs(y) <= 0.000001);
+        assertTrue(direction == 90.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
     }
     
 }

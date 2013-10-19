@@ -38,11 +38,19 @@ public class VariableExpression extends Expression{
         Map<String, Expression> globalVars = model.getGlobalVariables();
         Map<String, Expression> localVars = null;
         
-        ScopedExpression scopedExpression = (ScopedExpression) model.getRunningFunction().get(functionId);
+        String withinFunction = null;
+        ScopedExpression scopedExpression = null;
+        
+        if(!model.getFunctionStack().empty()){
+            withinFunction = model.getFunctionStack().peek();
+        }
+        if(withinFunction != null){
+            scopedExpression = (ScopedExpression) model.getRunningFunction().get(withinFunction);   
+        }
         if(scopedExpression != null){
             localVars = scopedExpression.getLocalVariables();
         }
-        
+  
         if(localVars != null && localVars.containsKey(id)) {
             Expression expression = localVars.get(id);
             finalExpressionList.addAll(expression.evaluate());

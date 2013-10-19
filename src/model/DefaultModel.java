@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Stack;
 import Exceptions.SlogoException;
 import controller.Controller;
 import controller.ControllerToModelInterface;
@@ -25,18 +26,23 @@ public class DefaultModel extends Model {
     private Map<String, Expression> definedFunction;
     private Map<String, Expression> runningFunction;
     private Map<String, Expression> globalVariables;
+    //keep track of whether within FunctionExpression
+    private Stack<String> functionStack;
 
     List<Turtle> activeTurtle;
 
     public DefaultModel(Controller controller){
         this.controller = controller;
         parser = new DefaultParser(this, controller.getMessages());
+        functionStack = new Stack<String>();
     }
     
     private void updateInstanceVariable(){
         definedFunction = controller.getDefinedFunction();
         runningFunction = controller.getRunningFunction();
         globalVariables = controller.getGlobalVariables();
+        
+        functionStack.clear();
         
       //get TurtleTrace of every activeTurtle
         activeTurtle = controller.getActiveTurtles();
@@ -78,6 +84,12 @@ public class DefaultModel extends Model {
                 if(expression instanceof FunctionDeclarationExpression){
                     continue;
                 }
+                
+                if(expression instanceof FunctionExpression){
+                    FunctionDeclarationExpression functionDeclaration = ((FunctionExpression) expression).getFunctionDeclaration();
+                    String functionName = functionDeclaration.getFunctionName();
+                    runningFunction.put(functionName, expression);
+                }
 
                 //Here check IF expression is of type that doesnt return turtleCommand.  ????
                 latestTurtleCommand = new TurtleCommand(turtleTrace.getLatest());
@@ -99,6 +111,10 @@ public class DefaultModel extends Model {
 
     public Map<String, Expression> getRunningFunction () {
         return runningFunction;
+    }
+
+    public Stack<String> getFunctionStack () {
+        return functionStack;
     }
 
     

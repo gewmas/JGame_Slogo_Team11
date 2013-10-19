@@ -11,6 +11,7 @@ import model.parser.*;
 
 public class FunctionDeclarationExpression extends Expression {
     //    Map<String, Expression> variables;
+    String functionName;
     List<Expression> variables;
     List<Expression> expressions;
 
@@ -24,6 +25,7 @@ public class FunctionDeclarationExpression extends Expression {
 
     @Override
     public void convert (List<String> cmdList) throws SlogoException {
+        functionName = cmdList.get(0);
         cmdList.remove(0);
 
         /*
@@ -114,6 +116,10 @@ public class FunctionDeclarationExpression extends Expression {
 
     public int numberOfVariables() {
         return variables.size();
+    }
+
+    public String getFunctionName () {
+        return functionName;
     }
 
 }

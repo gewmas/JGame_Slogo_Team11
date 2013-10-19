@@ -13,7 +13,7 @@ import model.parser.DefaultParser;
 public class FunctionExpression extends ScopedExpression {
 
 //    List<String> commandList;
-    FunctionDeclarationExpression declaration;
+    FunctionDeclarationExpression functionDeclaration;
     
 
     /*
@@ -31,7 +31,7 @@ public class FunctionExpression extends ScopedExpression {
     public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0);
         
-       for (Expression varExpression : declaration.variables) {
+       for (Expression varExpression : functionDeclaration.variables) {
            VariableExpression var = (VariableExpression) varExpression;     
            try
            {
@@ -48,16 +48,18 @@ public class FunctionExpression extends ScopedExpression {
     }
     
     public void checkFunctionDeclaration(Expression exp) {
-        declaration = (FunctionDeclarationExpression) exp;
+        functionDeclaration = (FunctionDeclarationExpression) exp;
     }
     
     @Override
     public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCommand) throws SlogoException {
+        model.getFunctionStack().push(functionDeclaration.getFunctionName());
+        
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
         
         TurtleCommand latestTurtleCommand = turtleCommand;
 
-        for (Expression expression : declaration.expressions) {
+        for (Expression expression : functionDeclaration.expressions) {
 //            List<Expression> evaluatedExpressions = expression.evaluate();
 //            for (Expression evalExpression : evaluatedExpressions) {
                 List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
@@ -69,9 +71,18 @@ public class FunctionExpression extends ScopedExpression {
         }
         
         //clean localVariable
+        model.getFunctionStack().pop();
         localVariables.clear();
         
         return commandList;
+    }
+    
+    public Map<String, Expression> getLocalVariables () {
+        return super.getLocalVariables();
+    }
+
+    public FunctionDeclarationExpression getFunctionDeclaration () {
+        return functionDeclaration;
     }
     
     
