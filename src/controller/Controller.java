@@ -65,7 +65,7 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
         
         Locale currentLocale;
         currentLocale = new Locale(language, country);
-        messages = ResourceBundle.getBundle("MessagesBundle", currentLocale);
+        messages = ResourceBundle.getBundle("Languages.MessagesBundle", currentLocale);
     }
     
     public List<Turtle> getTurtles () {
