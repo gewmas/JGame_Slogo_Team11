@@ -29,6 +29,11 @@ public class Workspace {
         Turtle turtle = new DefaultTurtle();
         turtles.add(turtle);
         activeTurtles.add(turtle);
+        
+        definedFunction = new HashMap<String, Expression>();
+        runningFunction = new HashMap<String, Expression>();
+        globalVariables = new HashMap<String, Expression>();
+                
     }
     
     public List<Turtle> getTurtles () {

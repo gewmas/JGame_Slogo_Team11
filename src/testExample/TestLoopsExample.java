@@ -82,7 +82,6 @@ public class TestLoopsExample extends TestExample {
 
     @Test
     public void testDoubleTriangle () {
-      //TODO make it work
         /*
          * 
          * setxy -300 0
@@ -109,32 +108,77 @@ public class TestLoopsExample extends TestExample {
          */
         updateActiveTurtle();
         //Test ExpressionList, Passed..  To be done: createTurtleCommand
-//        controller.interpretCommand("setxy -300 0 repeat 8 [ forward 50 repeat 3 [ fd 50 rt 120 ] ] setxy -300 0 repeat 8 [ forward 50 repeat 3 [ fd 50 lt 120 ] ]");
-//
-//        updateLatestCommandOfFirstActiveTurtle();
-//        assertTrue(Math.abs(x) <= 0.0000000001);
-//        assertTrue(Math.abs(y) <= 0.0000000001);
-//        assertTrue(direction == 90.0);
-//        assertTrue(isPenDown);
-//        assertTrue(isVisible);
-//        turtleTrace.clearCommandList();
+        controller.interpretCommand("setxy -300 0 repeat 8 [ forward 50 repeat 3 [ fd 50 rt 120 ] ] setxy -300 0 repeat 8 [ forward 50 repeat 3 [ fd 50 lt 120 ] ]");
+
+        updateLatestCommandOfFirstActiveTurtle();
+        assertTrue(x == -300.0);
+        assertTrue(y == 400.0);
+        assertTrue(direction == 90.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
     }
 
     @Test
     public void testDragon(){
-        //TODO
         /*
-         * 
+         * repeat 4
+        [
+          fd 100
+          rt 90
+          fd 100
+          rt 90
+          fd 50
+          rt 90
+          fd 50
+          rt 90
+          fd 100
+          rt 90
+          fd 25
+          rt 90
+          fd 25
+          rt 90
+          fd 50
+        ]
          */
+        updateActiveTurtle();
+        controller.interpretCommand("repeat 4 [   fd 100   rt 90   fd 100   rt 90   fd 50   rt 90   fd 50   rt 90   fd 100   rt 90   fd 25   rt 90   fd 25   rt 90   fd 50 ] ");
+        updateLatestCommandOfFirstActiveTurtle();
+        assertTrue(x == 0.0);
+        assertTrue(y == 0.0);
+        assertTrue(direction == 90.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
 
     }
     
     @Test
     public void testFlower(){
-      //TODO
         /*
-         * 
+         * repeat 6
+        [
+          repeat 2
+          [
+            repeat 30
+            [
+              fd 1
+              rt 2
+            ]
+            rt 120
+          ]
+          rt 60
+        ]
          */
+        updateActiveTurtle();
+        controller.interpretCommand("repeat 6         [           repeat 2           [             repeat 30             [               fd 1               rt 2             ]             rt 120           ]           rt 60         ]  ");
+        updateLatestCommandOfFirstActiveTurtle();
+        assertTrue(Math.abs(x) <= 0.000001);
+        assertTrue(Math.abs(y) <= 0.000001);
+        assertTrue(direction == 90.0);
+        assertTrue(isPenDown);
+        assertTrue(isVisible);
+        turtleTrace.clearCommandList();
 
     }
     
