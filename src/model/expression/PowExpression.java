@@ -2,13 +2,13 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Model;
 import Exceptions.SlogoException;
 
 public class PowExpression extends OneParameterExpression {
 
-    public PowExpression (List<String> cmdList) throws SlogoException {
-        super(cmdList);
-        // TODO Auto-generated constructor stub
+    public PowExpression (List<String> cmdList, Model model) throws SlogoException {
+        super(cmdList, model);
     }
     
     @Override

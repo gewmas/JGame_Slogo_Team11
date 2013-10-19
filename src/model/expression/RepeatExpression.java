@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Exceptions.SlogoException;
 import controller.TurtleCommand;
+import model.Model;
 import model.parser.DefaultParser;
 
 public class RepeatExpression extends ScopedExpression {
@@ -11,7 +12,8 @@ public class RepeatExpression extends ScopedExpression {
     //    Expression expression2;
     List<Expression> commandExpression;
 
-    public RepeatExpression(List<String> cmdList) throws SlogoException{
+    public RepeatExpression(List<String> cmdList, Model model) throws SlogoException{
+        super(model);
         commandExpression = new ArrayList<Expression>();
         convert(cmdList);
     }
@@ -41,19 +43,19 @@ public class RepeatExpression extends ScopedExpression {
 
         try
         {
-            variableExpression = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+            variableExpression = new NumberExpression(Double.parseDouble(cmdList.get(0)), model);
             //            cmdList.remove(0);
         }
         catch(NumberFormatException e)
         {
-            variableExpression = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
+            variableExpression = parser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
         }
 
         //        expression1 = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
 
         List<String> expression2CmdList = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
         while(!expression2CmdList.isEmpty()){
-            commandExpression.add(DefaultParser.parse(expression2CmdList));
+            commandExpression.add(parser.parse(expression2CmdList));
         }
 
         for(int i = 0; i <= closeBracketIndex; i++){

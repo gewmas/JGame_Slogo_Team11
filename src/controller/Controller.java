@@ -64,8 +64,12 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
         return currentWorkspace.getActiveTurtles();
     }
     
-    public Map<String, Expression> getFunctionMap () {
+    public Map<String, Expression> getDefinedFunction () {
         return currentWorkspace.getDefinedFunction();
+    }
+    
+    public Map<String, Expression> getRunningFunction () {
+        return currentWorkspace.getRunningFunction();
     }
 
     public Map<String, Expression> getGlobalVariables () {

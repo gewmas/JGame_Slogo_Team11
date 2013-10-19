@@ -2,13 +2,14 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Model;
 import Exceptions.SlogoException;
 import controller.TurtleCommand;
 
 public class SetHeadingExpression extends OneParameterExpression{
 
-    public SetHeadingExpression (List<String> cmdList) throws SlogoException {
-        super(cmdList);
+    public SetHeadingExpression (List<String> cmdList, Model model) throws SlogoException {
+        super(cmdList, model);
     }
     
     @Override

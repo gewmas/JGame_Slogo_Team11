@@ -3,20 +3,24 @@ package model.expression;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import model.DefaultModel;
+import model.Model;
 
 public class VariableExpression extends Expression{
     String id;
+    String functionId;
     
-    public VariableExpression(String id){
+    public VariableExpression(String id, String functionId, Model model){
+        super(model);
         this.id = id;
+        this.functionId = functionId;
     }
     
-    public VariableExpression(VariableExpression rhs){
-        this(rhs.getId());
+    public VariableExpression(VariableExpression rhs, Model model){
+        this(rhs.getId(), "global", model);
     }
     
-    public VariableExpression(List<String> cmdList){
+    public VariableExpression(List<String> cmdList, Model model){
+        super(model);
         id = cmdList.get(0).substring(1);
         cmdList.remove(0);
     }
@@ -30,8 +34,10 @@ public class VariableExpression extends Expression{
     public List<Expression> evaluate () {
         List<Expression> finalExpressionList = new ArrayList<Expression>();
 
-        Map<String, Expression> globalVars = DefaultModel.getGlobalVariables();
-        Map<String, Expression> localVars = ScopedExpression.getLocalVariables();
+        Map<String, Expression> globalVars = model.getGlobalVariables();
+        
+        ScopedExpression scopedExpression = (ScopedExpression) model.getRunningFunction().get(functionId);
+        Map<String, Expression> localVars = scopedExpression.getLocalVariables();
         
         if(localVars.containsKey(id)) {
             Expression expression = localVars.get(id);

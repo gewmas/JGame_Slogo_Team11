@@ -2,12 +2,13 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Model;
 import Exceptions.SlogoException;
 
 public class SumExpression extends TwoParameterExpression {
 
-    public SumExpression(List<String> cmdList) throws SlogoException {
-        super(cmdList);
+    public SumExpression(List<String> cmdList, Model model) throws SlogoException {
+        super(cmdList, model);
     }
 
     @Override

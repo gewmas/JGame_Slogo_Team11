@@ -7,6 +7,7 @@ import java.util.Map;
 import Exceptions.SlogoException;
 import controller.TurtleCommand;
 import controller.TurtleTrace;
+import model.Model;
 import model.parser.DefaultParser;
 
 public class FunctionExpression extends ScopedExpression {
@@ -21,7 +22,8 @@ public class FunctionExpression extends ScopedExpression {
      * 
      */
     
-    public FunctionExpression(List<String> cmdList){
+    public FunctionExpression(List<String> cmdList, Model model){
+        super(model);
 //        commandList = cmdList;
     }
 
@@ -33,13 +35,13 @@ public class FunctionExpression extends ScopedExpression {
            VariableExpression var = (VariableExpression) varExpression;     
            try
            {
-               NumberExpression finalExp = new NumberExpression(Double.parseDouble(cmdList.get(0)));
-               ScopedExpression.getLocalVariables().put(var.getId(), finalExp);
+               NumberExpression finalExp = new NumberExpression(Double.parseDouble(cmdList.get(0)), model);
+               localVariables.put(var.getId(), finalExp);
                cmdList.remove(0);
            }
            catch (NumberFormatException e)
            {
-               ScopedExpression.getLocalVariables().put(var.getId(), DefaultParser.parse(cmdList));
+               localVariables.put(var.getId(), parser.parse(cmdList));
            }  
        }
                            
@@ -67,7 +69,7 @@ public class FunctionExpression extends ScopedExpression {
         }
         
         //clean localVariable
-        ScopedExpression.getLocalVariables().clear();
+        localVariables.clear();
         
         return commandList;
     }

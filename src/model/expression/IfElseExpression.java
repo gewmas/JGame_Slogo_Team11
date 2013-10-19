@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Exceptions.SlogoException;
 import controller.TurtleCommand;
+import model.Model;
 import model.parser.DefaultParser;
 
 public class IfElseExpression extends Expression {
@@ -17,7 +18,8 @@ public class IfElseExpression extends Expression {
      * if lessp 2 3 [ fd sum 1 2 ] [ fd sum 1 sum 1 2 ]
      */
     
-    public IfElseExpression(List<String> cmdList) throws SlogoException{
+    public IfElseExpression(List<String> cmdList, Model model) throws SlogoException{
+        super(model);
         ifCommandExpression = new ArrayList<Expression>();
         elseCommandExpression = new ArrayList<Expression>();
         convert(cmdList);
@@ -49,12 +51,12 @@ public class IfElseExpression extends Expression {
 
         
         
-        conditionExpression = DefaultParser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
+        conditionExpression = parser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
 
       //Within [ ifCommand ]
         List<String> ifCommand = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
         while(!ifCommand.isEmpty()){
-            ifCommandExpression.add(DefaultParser.parse(ifCommand));
+            ifCommandExpression.add(parser.parse(ifCommand));
         }
         
         
@@ -85,7 +87,7 @@ public class IfElseExpression extends Expression {
 
         List<String> elseCommands = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
         while(!elseCommands.isEmpty()){
-            elseCommandExpression.add(DefaultParser.parse(elseCommands));
+            elseCommandExpression.add(parser.parse(elseCommands));
         }
 
         for(int i = 0; i <= closeBracketIndex; i++){

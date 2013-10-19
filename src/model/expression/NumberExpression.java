@@ -3,6 +3,7 @@ package model.expression;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import model.Model;
 
 
 public class NumberExpression extends Expression {
@@ -12,19 +13,19 @@ public class NumberExpression extends Expression {
 //        
 //    }
     
-    public NumberExpression (double d) {
+    public NumberExpression (double d, Model model) {
+        super(model);
         number = d;
     }
 
     @Override
     public void convert (List<String> cmdList) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public List<Expression> evaluate () {
-        // TODO Auto-generated method stub
+        
         List<Expression> finalExpressionList = new ArrayList<Expression>();
         finalExpressionList.add(this);
         return finalExpressionList;
@@ -36,7 +37,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression sum (NumberExpression rhs) {
-        return new NumberExpression(getNumber() + rhs.getNumber());
+        return new NumberExpression(getNumber() + rhs.getNumber(), model);
     }
     
     /**
@@ -45,7 +46,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression subtract (NumberExpression rhs) {
-        return new NumberExpression(getNumber() - rhs.getNumber());
+        return new NumberExpression(getNumber() - rhs.getNumber(), model);
     }
     
     /**
@@ -54,7 +55,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression multiply (NumberExpression rhs) {
-        return new NumberExpression(getNumber() * rhs.getNumber());
+        return new NumberExpression(getNumber() * rhs.getNumber(), model);
     }
     
     /**
@@ -63,7 +64,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression divide (NumberExpression rhs) {
-        return new NumberExpression(getNumber() / rhs.getNumber());
+        return new NumberExpression(getNumber() / rhs.getNumber(), model);
     }
     
     /**
@@ -72,7 +73,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression remainder (NumberExpression rhs) {
-        return new NumberExpression(getNumber() % rhs.getNumber());
+        return new NumberExpression(getNumber() % rhs.getNumber(), model);
     }
     
     /**
@@ -81,7 +82,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression minus () {
-        return new NumberExpression(getNumber() * -1);
+        return new NumberExpression(getNumber() * -1, model);
     }
     
     /**
@@ -92,7 +93,7 @@ public class NumberExpression extends Expression {
     public Expression random () {
         Random rand = new Random();
         int  n = rand.nextInt((int) getNumber());
-        return new NumberExpression(n);
+        return new NumberExpression(n, model);
     }
     
     /**
@@ -101,7 +102,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression sin () {
-        return new NumberExpression(Math.round(Math.sin(Math.toRadians(getNumber()))));
+        return new NumberExpression(Math.round(Math.sin(Math.toRadians(getNumber()))), model);
     }
     
     /**
@@ -110,7 +111,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression cos () {
-        return new NumberExpression(Math.round(Math.cos(Math.toRadians(getNumber()))));
+        return new NumberExpression(Math.round(Math.cos(Math.toRadians(getNumber()))), model);
     }
     
     /**
@@ -119,7 +120,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression tan () {
-        return new NumberExpression(Math.round(Math.tan(Math.toRadians(getNumber()))));
+        return new NumberExpression(Math.round(Math.tan(Math.toRadians(getNumber()))), model);
     }
     
     /**
@@ -128,7 +129,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression atan () {
-        return new NumberExpression(Math.round(Math.atan(Math.toRadians(getNumber()))));
+        return new NumberExpression(Math.round(Math.atan(Math.toRadians(getNumber()))), model);
     }
     
     /**
@@ -137,7 +138,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression log () {
-        return new NumberExpression(Math.log(getNumber()));
+        return new NumberExpression(Math.log(getNumber()), model);
     }
     
     /**
@@ -146,7 +147,7 @@ public class NumberExpression extends Expression {
      * @return
      */
     public Expression pow () {
-        return new NumberExpression(Math.pow(getNumber(), 2));
+        return new NumberExpression(Math.pow(getNumber(), 2), model);
     }
     
     /**
@@ -159,7 +160,7 @@ public class NumberExpression extends Expression {
         if(getNumber() < rhs.getNumber()) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
     
     /**
@@ -172,7 +173,7 @@ public class NumberExpression extends Expression {
         if(getNumber() > rhs.getNumber()) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
     
     /**
@@ -185,7 +186,7 @@ public class NumberExpression extends Expression {
         if(getNumber() == rhs.getNumber()) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
     
     /**
@@ -198,7 +199,7 @@ public class NumberExpression extends Expression {
         if(getNumber() != rhs.getNumber()) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
     
     /**
@@ -211,7 +212,7 @@ public class NumberExpression extends Expression {
         if(getNumber() != 0 && rhs.getNumber() != 0) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
     
     /**
@@ -224,7 +225,7 @@ public class NumberExpression extends Expression {
         if(getNumber() != 0 || rhs.getNumber() != 0) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
     
     /**
@@ -237,7 +238,7 @@ public class NumberExpression extends Expression {
         if(getNumber() == 0) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
 
     public double getNumber () {
