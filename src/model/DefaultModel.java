@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import Exceptions.SlogoException;
 import controller.Controller;
 import controller.ControllerToModelInterface;
@@ -29,7 +30,7 @@ public class DefaultModel extends Model {
 
     public DefaultModel(Controller controller){
         this.controller = controller;
-        parser = new DefaultParser(this);
+        parser = new DefaultParser(this, controller.getMessages());
     }
     
     private void updateInstanceVariable(){
