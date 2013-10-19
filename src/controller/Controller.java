@@ -77,6 +77,16 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
         messages = ResourceBundle.getBundle("Languages.MessagesBundle", currentLocale);
     }
     
+    //save functions/variables of current workspace
+    public void saveFile(){
+        
+    }
+    
+    //load functions/variables to current workspace
+    public void readFile(){
+        
+    }
+    
     public List<Turtle> getTurtles () {
         return currentWorkspace.getTurtles();
     }
