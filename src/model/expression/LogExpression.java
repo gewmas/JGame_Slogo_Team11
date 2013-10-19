@@ -12,7 +12,7 @@ public class LogExpression extends OneParameterExpression {
     }
     
     @Override
-    public List<Expression> evaluate () {
+    public List<Expression> evaluate () throws SlogoException {
         List<Expression> finalExpressionList = new ArrayList<Expression>();
         NumberExpression exp = (NumberExpression) expression;
         finalExpressionList.add(exp.log());

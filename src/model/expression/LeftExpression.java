@@ -13,7 +13,7 @@ public class LeftExpression extends OneParameterExpression {
     }
 
     @Override
-    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCmd) {
+    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCmd) throws SlogoException {
         expression = expression.evaluate().get(0);
         
         if(!(expression instanceof NumberExpression)) {

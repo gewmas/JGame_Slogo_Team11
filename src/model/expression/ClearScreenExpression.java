@@ -1,12 +1,13 @@
 package model.expression;
 
+import Exceptions.SlogoException;
 import model.Model;
 import controller.Controller;
 import controller.ControllerToModelInterface;
 
 public class ClearScreenExpression extends QueryExpression {
 
-    public ClearScreenExpression (Model model) {
+    public ClearScreenExpression (Model model) throws SlogoException {
         super(model);
     }
 

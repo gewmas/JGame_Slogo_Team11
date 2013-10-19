@@ -99,7 +99,7 @@ public class DoTimesExpression extends ScopedExpression {
         }
     }
 
-    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) throws SlogoException {
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
 
         // create local variable :i from 0 to limit

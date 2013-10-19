@@ -1,12 +1,13 @@
 package model.expression;
 
 import java.util.List;
+import Exceptions.SlogoException;
 import model.Model;
 import controller.TurtleCommand;
 
 public class ZeroParameterExpression extends Expression {
 
-    public ZeroParameterExpression (Model model) {
+    public ZeroParameterExpression (Model model) throws SlogoException {
         super(model);
     }
 

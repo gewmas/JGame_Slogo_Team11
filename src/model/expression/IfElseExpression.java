@@ -102,7 +102,7 @@ public class IfElseExpression extends Expression {
     }
     
     @Override
-    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCommand) {
+    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCommand) throws SlogoException {
 
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
 
@@ -115,7 +115,7 @@ public class IfElseExpression extends Expression {
         return commandList;
     }
     
-    public List<TurtleCommand> makeTurtleCommands(List<Expression> commandExpression, TurtleCommand turtleCommand) {
+    public List<TurtleCommand> makeTurtleCommands(List<Expression> commandExpression, TurtleCommand turtleCommand) throws SlogoException {
         
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
         TurtleCommand latestTurtleCommand = turtleCommand;

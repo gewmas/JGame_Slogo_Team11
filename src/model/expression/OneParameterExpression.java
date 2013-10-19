@@ -33,7 +33,7 @@ public abstract class OneParameterExpression extends Expression {
     }
 
     @Override
-    public List<Expression> evaluate () {
+    public List<Expression> evaluate () throws SlogoException {
         List<Expression> finalExpressionList = new ArrayList<Expression>();
         finalExpressionList.addAll(expression.evaluate());
         return finalExpressionList;

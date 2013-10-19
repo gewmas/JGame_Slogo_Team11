@@ -130,7 +130,7 @@ public class ForExpression extends ScopedExpression{
         }
     }
 
-    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) throws SlogoException {
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
         
         // assuming not changing afterwards

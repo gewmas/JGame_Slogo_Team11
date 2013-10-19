@@ -3,23 +3,24 @@ package model.expression;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import Exceptions.SlogoException;
 import model.Model;
 
 public class VariableExpression extends Expression{
     String id;
     String functionId;
     
-    public VariableExpression(String id, String functionId, Model model){
+    public VariableExpression(String id, String functionId, Model model) throws SlogoException{
         super(model);
         this.id = id;
         this.functionId = functionId;
     }
     
-    public VariableExpression(VariableExpression rhs, Model model){
+    public VariableExpression(VariableExpression rhs, Model model) throws SlogoException{
         this(rhs.getId(), "global", model);
     }
     
-    public VariableExpression(List<String> cmdList, Model model){
+    public VariableExpression(List<String> cmdList, Model model) throws SlogoException{
         super(model);
         id = cmdList.get(0).substring(1);
         cmdList.remove(0);
@@ -31,7 +32,7 @@ public class VariableExpression extends Expression{
     }
 
     @Override
-    public List<Expression> evaluate () {
+    public List<Expression> evaluate () throws SlogoException {
         List<Expression> finalExpressionList = new ArrayList<Expression>();
 
         Map<String, Expression> globalVars = model.getGlobalVariables();

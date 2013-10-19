@@ -12,7 +12,7 @@ public class RemainderExpression extends TwoParameterExpression {
     }
     
     @Override
-    public List<Expression> evaluate () {
+    public List<Expression> evaluate () throws SlogoException {
         
         List<NumberExpression> expList = preEvaluate();
         

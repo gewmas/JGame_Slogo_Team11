@@ -44,12 +44,12 @@ public class TwoParameterExpression extends Expression {
     }
 
     @Override
-    public List<Expression> evaluate () {
+    public List<Expression> evaluate () throws SlogoException {
         List<Expression> finalExpressionList = new ArrayList<Expression>();
         return finalExpressionList;
     }
     
-    public List<NumberExpression> preEvaluate () {
+    public List<NumberExpression> preEvaluate () throws SlogoException {
       Expression evaluatedExpression1 = expression1;
       Expression evaluatedExpression2 = expression2;
         

@@ -1,13 +1,14 @@
 package model.expression;
 
 import java.util.List;
+import Exceptions.SlogoException;
 import model.Model;
 import controller.Controller;
 import controller.ControllerToModelInterface;
 
 public abstract class QueryExpression extends Expression {
 
-    public QueryExpression (Model model) {
+    public QueryExpression (Model model) throws SlogoException {
         super(model);
     }
 

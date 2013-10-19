@@ -208,14 +208,16 @@ public class DefaultParser extends Parser {
         
         // Display Commands
         else if(s.equals("setbackground")) {
-            return new setBackgroundExpression(commandInput);
+            return new SetBackgroundExpression(commandInput, model );
         } else if(s.equals("setpencolor")) {
-            return new setBackgroundExpression(commandInput);
+            return new SetPenColorExpression(commandInput, model);
         } else if(s.equals("setpensize")) {
-            return new setBackgroundExpression(commandInput);
+            return new SetPenSizeExpression(commandInput, model);
         } else if(s.equals("setshape")) {
-            return new setBackgroundExpression(commandInput);
-        } 
+            return new SetShapeExpression(commandInput, model);
+        } else if(s.equals("setpalette")) {
+            return new SetShapeExpression(commandInput, model);
+        }
         
         else {
             throw new SlogoException("Command not recognized");

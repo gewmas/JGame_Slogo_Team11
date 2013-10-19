@@ -2,12 +2,13 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 import model.Model;
 import controller.TurtleCommand;
 
 public class HomeExpression extends ZeroParameterExpression {
 
-    public HomeExpression (Model model) {
+    public HomeExpression (Model model) throws SlogoException {
         super(model);
     }
 

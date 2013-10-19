@@ -22,7 +22,7 @@ public class FunctionExpression extends ScopedExpression {
      * 
      */
     
-    public FunctionExpression(List<String> cmdList, Model model){
+    public FunctionExpression(List<String> cmdList, Model model) throws SlogoException{
         super(model);
 //        commandList = cmdList;
     }
@@ -52,7 +52,7 @@ public class FunctionExpression extends ScopedExpression {
     }
     
     @Override
-    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCommand) {
+    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCommand) throws SlogoException {
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
         
         TurtleCommand latestTurtleCommand = turtleCommand;

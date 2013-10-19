@@ -1,12 +1,13 @@
 package model.expression;
 
+import Exceptions.SlogoException;
 import model.Model;
 import controller.Controller;
 import controller.ControllerToModelInterface;
 
 public class IsPenDownExpression extends QueryExpression {
 
-    public IsPenDownExpression (Model model) {
+    public IsPenDownExpression (Model model) throws SlogoException {
         super(model);
     }
 

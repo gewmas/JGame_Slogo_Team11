@@ -15,26 +15,23 @@ public class Expression extends AbstractExpression{
 //        this();
 //    }
 
-    public Expression (Model model) {
+    public Expression (Model model) throws SlogoException {
         this.model = model;
         this.parser = model.getParser();
     }
 
     @Override
     public void convert (List<String> cmdList) throws SlogoException {
-        // TODO Auto-generated method stub
         
     }
 
     @Override
-    public List<Expression> evaluate () {
-        // TODO Auto-generated method stub
+    public List<Expression> evaluate () throws SlogoException {
         return null;
     }
 
     @Override
-    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
-        // TODO Auto-generated method stub
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) throws SlogoException {
         return null;
     }
 

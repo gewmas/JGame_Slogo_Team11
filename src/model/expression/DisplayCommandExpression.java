@@ -2,27 +2,27 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Model;
 import controller.TurtleCommand;
 import Exceptions.SlogoException;
 
 public class DisplayCommandExpression extends OneParameterExpression {
 
-    public DisplayCommandExpression (List<String> cmdList) throws SlogoException {
-        super(cmdList);
-        // TODO Auto-generated constructor stub
+    public DisplayCommandExpression (List<String> cmdList, Model model) throws SlogoException {
+        super(cmdList, model);
     }
     
     @Override
-    public List<Expression> evaluate () {
+    public List<Expression> evaluate () throws SlogoException {
         List<Expression> finalExpressionList = new ArrayList<Expression>();
         finalExpressionList.addAll(expression.evaluate());
         return finalExpressionList;
     }
     
-    public NumberExpression turtleCommandPrep(TurtleCommand turtleCmd, List<TurtleCommand> list) {
+    public NumberExpression turtleCommandPrep(TurtleCommand turtleCmd, List<TurtleCommand> list) throws SlogoException {
         turtleCmd = new TurtleCommand(turtleCmd);
         
-        if(expression instanceof setBackgroundExpression){
+        if(expression instanceof SetBackgroundExpression){
             List<TurtleCommand> currentExpressionCmdlist = expression.createTurtleCommands(turtleCmd);
             list.addAll(currentExpressionCmdlist);
             turtleCmd = currentExpressionCmdlist.get(0);

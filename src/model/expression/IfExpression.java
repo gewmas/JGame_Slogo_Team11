@@ -59,7 +59,7 @@ public class IfExpression extends Expression {
     }
 
     @Override
-    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCommand) {
+    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCommand) throws SlogoException {
 
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
 

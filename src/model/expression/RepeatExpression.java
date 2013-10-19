@@ -80,7 +80,7 @@ public class RepeatExpression extends ScopedExpression {
     	return finalExpressionList;
     }*/
 
-    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) throws SlogoException {
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
         NumberExpression repeatNumberExp = (NumberExpression) variableExpression.evaluate().get(0); //Assume variable is NumberExpression
 

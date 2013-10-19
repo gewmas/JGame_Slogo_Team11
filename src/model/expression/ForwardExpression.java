@@ -14,14 +14,14 @@ public class ForwardExpression extends OneParameterExpression {
     }
 
     @Override
-    public List<Expression> evaluate () {
+    public List<Expression> evaluate () throws SlogoException {
         List<Expression> finalExpressionList = new ArrayList<Expression>();
         finalExpressionList.addAll(expression.evaluate());
         return finalExpressionList;
     }
 
     @Override
-    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) throws SlogoException {
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
         turtleCmd = new TurtleCommand(turtleCmd);
         

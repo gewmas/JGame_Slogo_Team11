@@ -1,12 +1,13 @@
     package model.expression;
 
+import Exceptions.SlogoException;
 import model.Model;
 import controller.Controller;
 import controller.ControllerToModelInterface;
 
 public class YCorExpression extends QueryExpression {
 
-    public YCorExpression (Model model) {
+    public YCorExpression (Model model) throws SlogoException {
         super(model);
     }
 
