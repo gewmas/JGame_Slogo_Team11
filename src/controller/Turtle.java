@@ -6,6 +6,7 @@ public abstract class Turtle {
     
     public Turtle(){
         turtleTrace = new TurtleTrace();
+        id = "1";
     }
 
     public TurtleTrace getTurtleTrace () {

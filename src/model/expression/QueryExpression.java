@@ -13,7 +13,7 @@ public abstract class QueryExpression extends Expression {
     }
 
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
 
     }
 

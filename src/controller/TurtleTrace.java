@@ -21,6 +21,13 @@ public class TurtleTrace {
         }
     }
     
+    public void add(TurtleTrace trace){
+        List<TurtleCommand> turtleCmd = trace.getCommandList();
+        for(TurtleCommand turtleCommand : turtleCmd){
+            commandList.add(turtleCommand);
+        }
+    }
+    
     public TurtleCommand getLatest() {
         if(commandList.size() == 0) {
             return new TurtleCommand(0, 0, 90);

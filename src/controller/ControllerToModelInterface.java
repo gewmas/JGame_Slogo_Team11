@@ -23,4 +23,5 @@ public interface ControllerToModelInterface {
     public void penColor ();
     public void turtleShape ();
     public void addColorIndex (ColorIndex index);
+    public Workspace getCurrentWorkspace ();
 }

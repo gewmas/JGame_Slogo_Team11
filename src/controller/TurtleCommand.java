@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 public class TurtleCommand {
     private double x;
     private double y;
@@ -12,10 +14,26 @@ public class TurtleCommand {
     private double shape;
     private boolean stamp;
     private boolean clearStamps;
-    //color
     
     public TurtleCommand(){
         this(0.0, 0.0, 90.0);
+    }
+    
+    public TurtleCommand(double x, double y, double direction){
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
+        this.isPenDown = true;
+        this.isVisible = true;
+       
+    }
+    
+    public TurtleCommand(TurtleCommand rhs){
+        this.x = rhs.x;
+        this.y = rhs.y;
+        this.direction = rhs.direction;
+        this.isPenDown = rhs.isPenDown;
+        this.isVisible = rhs.isVisible;
     }
     
     public double getBackground () {
@@ -56,22 +74,6 @@ public class TurtleCommand {
 
     public void setClearStamps (boolean clearStamps) {
         this.clearStamps = clearStamps;
-    }
-
-    public TurtleCommand(double x, double y, double direction){
-        this.x = x;
-        this.y = y;
-        this.direction = direction;
-        this.isPenDown = true;
-        this.isVisible = true;
-    }
-    
-    public TurtleCommand(TurtleCommand rhs){
-        this.x = rhs.x;
-        this.y = rhs.y;
-        this.direction = rhs.direction;
-        this.isPenDown = rhs.isPenDown;
-        this.isVisible = rhs.isVisible;
     }
     
     public boolean isVisible () {

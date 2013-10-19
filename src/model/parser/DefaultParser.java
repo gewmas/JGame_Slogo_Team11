@@ -222,19 +222,38 @@ public class DefaultParser extends Parser {
         } 
         
         // Display Commands
-
         else if(equals(s, messages.getString("SetBackground"))) {
             return new SetBackgroundExpression(commandInput, model );
-        } else if(equals(s, messages.getString("SetPenColor"))) {
+        } 
+        else if(equals(s, messages.getString("SetPenColor"))) {
             return new SetPenColorExpression(commandInput, model);
-        } else if(equals(s, messages.getString("SetPenSize"))) {
+        } 
+        else if(equals(s, messages.getString("SetPenSize"))) {
             return new SetPenSizeExpression(commandInput, model);
-        } else if(equals(s, messages.getString("SetShape"))) {
+        } 
+        else if(equals(s, messages.getString("SetShape"))) {
             return new SetShapeExpression(commandInput, model);
-        } else if(equals(s, messages.getString("SetPalette"))) {
+        } 
+        else if(equals(s, messages.getString("SetPalette"))) {
             return new SetShapeExpression(commandInput, model);
         }
         
+        else if(equals(s, messages.getString("Tell"))) {
+            return new TellDefaultExpression(model);
+        } 
+        else if(equals(s, messages.getString("TellEven"))) {
+            return new TellEvenExpression(model);
+        }
+        else if(equals(s, messages.getString("TellOdd"))) {
+            return new TellOddExpression(model);
+        }
+        else if(equals(s, messages.getString("Ask"))) {
+            return new AskExpression(commandInput, model);
+        }
+        // TODO ask with here
+        else if(equals(s, messages.getString("AskWith"))) {
+            //return new AskWithExpression(commandInput, model);
+        }
         
         else {
             throw new SlogoException("Command not recognized");

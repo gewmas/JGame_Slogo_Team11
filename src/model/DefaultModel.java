@@ -59,10 +59,17 @@ public class DefaultModel extends Model {
         for(Turtle turtle : activeTurtle){
             TurtleTrace turtleTrace = turtle.getTurtleTrace();
 
+            //TODO: evaluate Tell, TellEven, TellOdd, Ask, AskWith
+            
             // evaluate & create TurtleCommand
             for (Expression expression : expressionList) {
                 if(expression.getClass().getSuperclass().getSimpleName().equals("QueryExpression") || expression.getClass().getSuperclass().getSimpleName().equals("FourParameterExpression")){
                     ((QueryExpression) expression).executeControllerCommand(controller);
+                    continue;
+                }
+                
+                if(expression.getClass().getSuperclass().getSimpleName().equals("FourParameterExpression")){
+                    ((SetPaletteExpression) expression).executeControllerCommand(controller);
                     continue;
                 }
 

@@ -10,7 +10,7 @@ import model.expression.ScopedExpression;
 
 public class Workspace {
 
-    private List<Turtle> turtles;
+    private HashMap<String, Turtle> turtles;
     private List<Turtle> activeTurtles;
 
     private SlogoError error;
@@ -22,17 +22,21 @@ public class Workspace {
     private String backgroundColor;
     
     public Workspace(){
-        turtles = new ArrayList<Turtle>();
+        turtles = new HashMap<String, Turtle>();
         activeTurtles = new ArrayList<Turtle>();
         
         //Assuming always one turtle created for user
         Turtle turtle = new DefaultTurtle();
-        turtles.add(turtle);
+        turtles.put(turtle.id, turtle);
         activeTurtles.add(turtle);
     }
     
     public List<Turtle> getTurtles () {
-        return turtles;
+        ArrayList<Turtle> turtleList = new ArrayList<Turtle>();
+        for(Entry<String, Turtle> e : turtles.entrySet()){
+            turtleList.add(e.getValue());
+        }
+        return turtleList;
     }
     
     public List<Turtle> getActiveTurtles() {
@@ -42,13 +46,33 @@ public class Workspace {
     public void setActiveTurtle (List<String> turtleIds) {
         activeTurtles.clear();
         //Bad Method, Modify!
-        for(Turtle turtle : turtles){
+        for(Entry<String, Turtle> e : turtles.entrySet()){
             for(String s : turtleIds){
-                if(turtle.getId().equals(s)){
-                    activeTurtles.add(turtle);
+                if(e.getValue().getId().equals(s)){
+                    activeTurtles.add(e.getValue());
                 }
             }
         }
+    }
+    
+    public void setEvenActiveTurtle () {
+        ArrayList<String> newActive = new ArrayList<String>();
+        for(Entry<String, Turtle> e : turtles.entrySet()){
+            if((Integer.parseInt(e.getKey()) % 2) == 0) {
+                newActive.add(e.getKey());
+            }
+        }
+        setActiveTurtle(newActive);
+    }
+    
+    public void setOddActiveTurtle () {
+        ArrayList<String> newActive = new ArrayList<String>();
+        for(Entry<String, Turtle> e : turtles.entrySet()){
+            if((Integer.parseInt(e.getKey()) % 2) != 0) {
+                newActive.add(e.getKey());
+            }
+        }
+        setActiveTurtle(newActive);
     }
     
     public Map<String, Expression> getDefinedFunction () {
