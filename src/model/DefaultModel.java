@@ -30,7 +30,7 @@ public class DefaultModel extends Model {
 
     public DefaultModel(Controller controller){
         this.controller = controller;
-        parser = new DefaultParser(this);
+        parser = new DefaultParser(this, controller.getMessages());
     }
     
     private void updateInstanceVariable(){
@@ -42,7 +42,7 @@ public class DefaultModel extends Model {
         activeTurtle = controller.getActiveTurtles();
     }
 
-    public void updateTrace (String userInput, ResourceBundle messages) throws SlogoException {
+    public void updateTrace (String userInput) throws SlogoException {
 
         updateInstanceVariable();
         

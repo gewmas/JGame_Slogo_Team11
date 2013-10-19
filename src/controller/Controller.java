@@ -22,6 +22,8 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
     ResourceBundle messages;
 
     public Controller () {
+        setLanguage("en", "US");
+        
         model = new DefaultModel(this);
         viewer = new SLogoViewer(this);
         
@@ -29,13 +31,12 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
         workspaces = new HashMap<String, Workspace>();
         currentWorkspace = new Workspace();
         workspaces.put("1", currentWorkspace);
-        setLanguage("en", "US");
     }
 
     // Take the commands typed by the user and updates the TurtleTrace accordingly.
     public void interpretCommand(String userInput) {
         try {
-            model.updateTrace(userInput, messages);
+            model.updateTrace(userInput);
         } catch (SlogoException e) {
             //e.printStackTrace();
             SlogoError error = new SlogoError("Parse Error", "A syntax error occured while parsing your script");
@@ -123,6 +124,10 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
     
     public void isShowing(){
       //view.isShowing();
+    }
+
+    public ResourceBundle getMessages () {
+        return messages;
     }
     
 }
