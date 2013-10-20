@@ -2,16 +2,18 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Model;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 
 public class BackExpression extends OneParameterExpression {
 
-    public BackExpression (List<String> cmdList) {
-        super(cmdList);
+    public BackExpression (List<String> cmdList, Model model) throws SlogoException {
+        super(cmdList, model);
     }
     
     @Override
-    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCmd) {
+    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCmd) throws SlogoException {
         expression = expression.evaluate().get(0);
         
         if(!(expression instanceof NumberExpression)) {

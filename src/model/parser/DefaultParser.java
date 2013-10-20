@@ -4,202 +4,261 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
+import Exceptions.SlogoException;
+import model.Model;
 import model.expression.*;
 
 public class DefaultParser extends Parser {
-    private static Map<String, Expression> functionMap;
+    
+    private Model model;
+    private Map<String, Expression> functionMap;
+    ResourceBundle messages;
 
-    public DefaultParser(){
+    public DefaultParser(Model model, ResourceBundle messages){
+        this.model = model;
+        this.messages = messages;
     }
     
-    public List<Expression> execute(List<String> commandInput, Map<String, Expression> functionMap){
-        DefaultParser.functionMap = functionMap;
+    public List<Expression> execute(List<String> commandInput, Map<String, Expression> functionMap) throws SlogoException {
+        this.functionMap = functionMap;
         
         List<Expression> expressionList = new ArrayList<Expression>();
         
         while(!commandInput.isEmpty()){
-            Expression parsedExpression = DefaultParser.parse(commandInput);
-            if(parsedExpression == null) {
-                return null;
-            }
-            expressionList.add(parsedExpression);
+            Expression parsedExpression = parse(commandInput);
+//                Expression parsedExpression = DefaultParser.parse(commandInput);
+                expressionList.add(parsedExpression);
         }
         
         return expressionList;
     }
     
-    public static Expression parse (List<String> commandInput) {
+    public boolean equals(String command, String message) {
+        
+        String[] messages = message.split(",");
+        
+        for (String msg : messages) {
+            if(command.equals(msg)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    public Expression parse (List<String> commandInput) throws SlogoException {
         String s = commandInput.get(0).toLowerCase();
 
-        
         //Turtle Commands
-        if (s.equals("fd") || s.equals("forward")){
-            return new ForwardExpression(commandInput);
+        if (equals(s, messages.getString("Forward"))){
+            return new ForwardExpression(commandInput, model);
         }
-        else if (s.equals("bk") || s.equals("back")){
-            return new BackExpression(commandInput);
+        else if (equals(s, messages.getString("Backward"))){
+            return new BackExpression(commandInput, model);
         }
-        else if (s.equals("lt") || s.equals("left")){
-            return new LeftExpression(commandInput);
+        else if (equals(s, messages.getString("Left"))){
+            return new LeftExpression(commandInput, model);
         }
-        else if (s.equals("rt") || s.equals("right")){
-            return new RightExpression(commandInput);
+        else if (equals(s, messages.getString("Right"))){
+            return new RightExpression(commandInput, model);
         }
-        else if (s.equals("seth") || s.equals("setheading")){
-            return new SetHeadingExpression(commandInput);
+        else if (equals(s, messages.getString("SetHeading"))){
+            return new SetHeadingExpression(commandInput, model);
         }
-        else if (s.equals("towards")){
-            return new TowardsExpression(commandInput);
+        else if (equals(s, messages.getString("SetTowards"))){
+            return new TowardsExpression(commandInput, model);
         }
-        else if (s.equals("setxy") || s.equals("goto")){
-            return new SetXYExpression(commandInput);
+        else if (equals(s, messages.getString("SetPosition"))){
+            return new SetXYExpression(commandInput, model);
         }
-        else if (s.equals("pd") || s.equals("pendown")){
+        else if (equals(s, messages.getString("PenDown"))){
             commandInput.remove(0);
-            return new PenDownExpression();
+            return new PenDownExpression(model);
         }
-        else if (s.equals("pu") || s.equals("penup")){
+        else if (equals(s, messages.getString("PenUp"))){
             commandInput.remove(0);
-            return new PenUpExpression();
+            return new PenUpExpression(model);
         }
-        else if (s.equals("st") || s.equals("showturtle")){
+        else if (equals(s, messages.getString("ShowTurtle"))){
             commandInput.remove(0);
-            return new ShowTurtleExpression();
+            return new ShowTurtleExpression(model);
         }
-        else if (s.equals("ht") || s.equals("hideturtle")){
+        else if (equals(s, messages.getString("HideTurtle"))){
             commandInput.remove(0);
-            return new HideTurtleExpression();
+            return new HideTurtleExpression(model);
         }
-        else if (s.equals("home")){
+        else if (equals(s, messages.getString("Home"))){
             commandInput.remove(0);
-            return new HomeExpression();
+            return new HomeExpression(model);
         }
-        else if (s.equals("cs") || s.equals("clearscreen")){
+        else if (equals(s, messages.getString("ClearScreen"))){
             commandInput.remove(0);
-            return new ClearScreenExpression();
+            return new ClearScreenExpression(model);
         }
         
         //Turtle Queries
-        else if (s.equals("xcor")){
+        else if (equals(s, messages.getString("XCoordinate"))){
             commandInput.remove(0);
-            return new XCorExpression();
+            return new XCorExpression(model);
         }
-        else if (s.equals("ycor")){
+        else if (equals(s, messages.getString("YCoordinate"))){
             commandInput.remove(0);
-            return new YCorExpression();
+            return new YCorExpression(model);
         }
-        else if (s.equals("heading")){
+        else if (equals(s, messages.getString("Heading"))){
             commandInput.remove(0);
-            return new HeadingExpression();
+            return new HeadingExpression(model);
         }
-        else if (s.equals("pendownp") || s.equals("pendown?")){
+        else if (equals(s, messages.getString("IsPenDown"))){
             commandInput.remove(0);
-            return new IsPenDownExpression();
+            return new IsPenDownExpression(model);
         }
-        else if (s.equals("showingp") || s.equals("showing?")){
+        else if (equals(s, messages.getString("IsShowing"))){
             commandInput.remove(0);
-            return new IsShowingExpression();
+            return new IsShowingExpression(model);
         }
         
         //Math Operations
-        else if (s.equals("sum")){
-            return new SumExpression(commandInput);
+        else if (equals(s, messages.getString("Sum"))){
+            return new SumExpression(commandInput, model);
         }
-        else if (s.equals("difference")){
-            return new DifferenceExpression(commandInput);
+        else if (equals(s, messages.getString("Difference"))){
+            return new DifferenceExpression(commandInput, model);
         }
-        else if (s.equals("product")){
-            return new ProductExpression(commandInput);
+        else if (equals(s, messages.getString("Product"))){
+            return new ProductExpression(commandInput, model);
         }
-        else if (s.equals("quotient")){
-            return new QuotientExpression(commandInput);
+        else if (equals(s, messages.getString("Quotient"))){
+            return new QuotientExpression(commandInput, model);
         }
-        else if (s.equals("remainder")){
-            return new RemainderExpression(commandInput);
+        else if (equals(s, messages.getString("Remainder"))){
+            return new RemainderExpression(commandInput, model);
         }
-        else if (s.equals("minus")){
-            return new MinusExpression(commandInput);
+        else if (equals(s, messages.getString("Minus"))){
+            return new MinusExpression(commandInput, model);
         }
-        else if (s.equals("random")){
-            return new RandomExpression(commandInput);
+        else if (equals(s, messages.getString("Random"))){
+            return new RandomExpression(commandInput, model);
         }
-        else if (s.equals("sin")){
-            return new SinExpression(commandInput);
+        else if (equals(s, messages.getString("Sine"))){
+            return new SinExpression(commandInput, model);
         }
-        else if (s.equals("cos")){
-            return new CosExpression(commandInput);
+        else if (equals(s, messages.getString("Cosine"))){
+            return new CosExpression(commandInput, model);
         }
-        else if (s.equals("tan")){
-            return new TanExpression(commandInput);
+        else if (equals(s, messages.getString("Tangent"))){
+            return new TanExpression(commandInput, model);
         }
-        else if (s.equals("atan")){
-            return new ATanExpression(commandInput);
+        else if (equals(s, messages.getString("ArcTangent"))){
+            return new ATanExpression(commandInput, model);
         }
-        else if (s.equals("log")){
-            return new LogExpression(commandInput);
+        else if (equals(s, messages.getString("NaturalLog"))){
+            return new LogExpression(commandInput, model);
         }
-        else if (s.equals("pow")){
-            return new PowExpression(commandInput);
+        else if (equals(s, messages.getString("Power"))){
+            return new PowExpression(commandInput, model);
         }
         
         //Boolean Operations
-        else if (s.equals("lessp") || s.equals("less?")){
-            return new LessExpression(commandInput);
+        
+        else if (equals(s, messages.getString("LessThan"))){
+            return new LessExpression(commandInput, model);
         }
-        else if (s.equals("greaterp") || s.equals("greater?")){
-            return new GreaterExpression(commandInput);
+        else if (equals(s, messages.getString("GreaterThan"))){
+            return new GreaterExpression(commandInput, model);
         }
-        else if (s.equals("equalp") || s.equals("equal?")){
-            return new EqualExpression(commandInput);
+        else if (equals(s, messages.getString("Equal"))){
+            return new EqualExpression(commandInput, model);
         }
-        else if (s.equals("notequalp") || s.equals("notequal?")){
-            return new NotEqualExpression(commandInput);
+        else if (equals(s, messages.getString("NotEqual"))){
+            return new NotEqualExpression(commandInput, model);
         }
-        else if (s.equals("and")){
-            return new AndExpression(commandInput);
+        else if (equals(s, messages.getString("And"))){
+            return new AndExpression(commandInput, model);
         }
-        else if (s.equals("or")){
-            return new OrExpression(commandInput);
+        else if (equals(s, messages.getString("Or"))){
+            return new OrExpression(commandInput, model);
         }
-        else if (s.equals("not")){
-            return new NotExpression(commandInput);
+        else if (equals(s, messages.getString("Not"))){
+            return new NotExpression(commandInput, model);
         }
         
         // Variables, Control Structures, and User-Defined Commands
-        else if (s.equals("make") || s.equals("set")){
-            return new MakeExpression(commandInput);
+        else if (equals(s, messages.getString("MakeVariable"))){
+            return new MakeExpression(commandInput, model);
         }
-        else if (s.equals("repeat")){
-            return new RepeatExpression(commandInput);
-        } else if(functionMap.containsKey(s)) {
-            FunctionExpression functionExp = new FunctionExpression(commandInput);
+        else if (equals(s, messages.getString("Repeat"))){
+            return new RepeatExpression(commandInput, model);
+        } else if(functionMap != null && functionMap.containsKey(s)) {
+            FunctionExpression functionExp = new FunctionExpression(commandInput, model);
             functionExp.checkFunctionDeclaration(functionMap.get(s));
             functionExp.convert(commandInput);
             return functionExp;
         }
-        else if (s.equals("dotimes")){
-            return new DoTimesExpression(commandInput);
+        else if (equals(s, messages.getString("DoTimes"))){
+            return new DoTimesExpression(commandInput, model);
         }
-        else if (s.equals("for")){
-            return new ForExpression(commandInput);
+        else if (equals(s, messages.getString("For"))){
+            return new ForExpression(commandInput, model);
         }
-        else if (s.equals("if")){
-            return new IfExpression(commandInput);
+        else if (equals(s, messages.getString("If"))){
+            return new IfExpression(commandInput, model);
         }
-        else if (s.equals("ifelse")){
-            return new IfElseExpression(commandInput);
+        else if (equals(s, messages.getString("IfElse"))){
+            return new IfElseExpression(commandInput, model);
         }
-        else if(s.equals("to")){
+        else if(equals(s, messages.getString("MakeUserInstruction"))){
             commandInput.remove(0);
             String funName = commandInput.get(0);
-            FunctionDeclarationExpression functionDeclaration = new FunctionDeclarationExpression(commandInput);
+            FunctionDeclarationExpression functionDeclaration = new FunctionDeclarationExpression(commandInput, model);
             functionMap.put(funName, functionDeclaration);
             return functionDeclaration;
         }
         else if(commandInput.get(0).charAt(0) == ':'){
-            return new VariableExpression(commandInput);
-        }
 
+            return new VariableExpression(commandInput, model);
+        } 
+        
+        // Display Commands
+        else if(equals(s, messages.getString("SetBackground"))) {
+            return new SetBackgroundExpression(commandInput, model );
+        } 
+        else if(equals(s, messages.getString("SetPenColor"))) {
+            return new SetPenColorExpression(commandInput, model);
+        } 
+        else if(equals(s, messages.getString("SetPenSize"))) {
+            return new SetPenSizeExpression(commandInput, model);
+        } 
+        else if(equals(s, messages.getString("SetShape"))) {
+            return new SetShapeExpression(commandInput, model);
+        } 
+        else if(equals(s, messages.getString("SetPalette"))) {
+            return new SetShapeExpression(commandInput, model);
+        }
+        
+        else if(equals(s, messages.getString("Tell"))) {
+            return new TellDefaultExpression(model);
+        } 
+        else if(equals(s, messages.getString("TellEven"))) {
+            return new TellEvenExpression(model);
+        }
+        else if(equals(s, messages.getString("TellOdd"))) {
+            return new TellOddExpression(model);
+        }
+        else if(equals(s, messages.getString("Ask"))) {
+            return new AskExpression(commandInput, model);
+        }
+        // TODO ask with here
+        else if(equals(s, messages.getString("AskWith"))) {
+            //return new AskWithExpression(commandInput, model);
+        }
+        
+        else {
+            throw new SlogoException("Command not recognized");
+        }
+        
         return null;
+
     }
 }

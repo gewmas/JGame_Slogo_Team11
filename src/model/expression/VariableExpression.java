@@ -3,38 +3,55 @@ package model.expression;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import model.DefaultModel;
+import Exceptions.SlogoException;
+import model.Model;
 
 public class VariableExpression extends Expression{
     String id;
+    String functionId;
     
-    public VariableExpression(String id){
+    public VariableExpression(String id, String functionId, Model model) throws SlogoException{
+        super(model);
         this.id = id;
+        this.functionId = functionId;
     }
     
-    public VariableExpression(VariableExpression rhs){
-        this(rhs.getId());
+    public VariableExpression(VariableExpression rhs, Model model) throws SlogoException{
+        this(rhs.getId(), "global", model);
     }
     
-    public VariableExpression(List<String> cmdList){
+    public VariableExpression(List<String> cmdList, Model model) throws SlogoException{
+        super(model);
         id = cmdList.get(0).substring(1);
         cmdList.remove(0);
     }
     
     @Override
     public void convert (List<String> cmdList) {
-        // TODO Auto-generated method stub
         
     }
 
     @Override
-    public List<Expression> evaluate () {
+    public List<Expression> evaluate () throws SlogoException {
         List<Expression> finalExpressionList = new ArrayList<Expression>();
 
-        Map<String, Expression> globalVars = DefaultModel.getGlobalVariables();
-        Map<String, Expression> localVars = ScopedExpression.getLocalVariables();
+        Map<String, Expression> globalVars = model.getGlobalVariables();
+        Map<String, Expression> localVars = null;
         
-        if(localVars.containsKey(id)) {
+        String withinFunction = null;
+        ScopedExpression scopedExpression = null;
+        
+        if(!model.getFunctionStack().empty()){
+            withinFunction = model.getFunctionStack().peek();
+        }
+        if(withinFunction != null){
+            scopedExpression = (ScopedExpression) model.getRunningFunction().get(withinFunction);   
+        }
+        if(scopedExpression != null){
+            localVars = scopedExpression.getLocalVariables();
+        }
+  
+        if(localVars != null && localVars.containsKey(id)) {
             Expression expression = localVars.get(id);
             finalExpressionList.addAll(expression.evaluate());
             return finalExpressionList;
@@ -42,9 +59,10 @@ public class VariableExpression extends Expression{
         } else if(globalVars.containsKey(id)) {
             Expression expression = globalVars.get(id);
             finalExpressionList.addAll(expression.evaluate());
+            return finalExpressionList;
         }
         
-        return finalExpressionList;
+        throw new SlogoException("Can not evaluate variable" + id);
         
     }
 

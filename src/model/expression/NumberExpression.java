@@ -3,6 +3,8 @@ package model.expression;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import Exceptions.SlogoException;
+import model.Model;
 
 
 public class NumberExpression extends Expression {
@@ -12,19 +14,19 @@ public class NumberExpression extends Expression {
 //        
 //    }
     
-    public NumberExpression (double d) {
+    public NumberExpression (double d, Model model) throws SlogoException {
+        super(model);
         number = d;
     }
 
     @Override
     public void convert (List<String> cmdList) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public List<Expression> evaluate () {
-        // TODO Auto-generated method stub
+        
         List<Expression> finalExpressionList = new ArrayList<Expression>();
         finalExpressionList.add(this);
         return finalExpressionList;
@@ -34,9 +36,10 @@ public class NumberExpression extends Expression {
      * @purpose Sum two NumberExpressions
      * @param rhs
      * @return
+     * @throws SlogoException 
      */
-    public Expression sum (NumberExpression rhs) {
-        return new NumberExpression(getNumber() + rhs.getNumber());
+    public Expression sum (NumberExpression rhs) throws SlogoException {
+        return new NumberExpression(getNumber() + rhs.getNumber(), model);
     }
     
     /**
@@ -44,8 +47,8 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression subtract (NumberExpression rhs) {
-        return new NumberExpression(getNumber() - rhs.getNumber());
+    public Expression subtract (NumberExpression rhs) throws SlogoException{
+        return new NumberExpression(getNumber() - rhs.getNumber(), model);
     }
     
     /**
@@ -53,17 +56,18 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression multiply (NumberExpression rhs) {
-        return new NumberExpression(getNumber() * rhs.getNumber());
+    public Expression multiply (NumberExpression rhs) throws SlogoException{
+        return new NumberExpression(getNumber() * rhs.getNumber(), model);
     }
     
     /**
      * @purpose divide two NumberExpressions
      * @param rhs
      * @return
+     * @throws SlogoException 
      */
-    public Expression divide (NumberExpression rhs) {
-        return new NumberExpression(getNumber() / rhs.getNumber());
+    public Expression divide (NumberExpression rhs) throws SlogoException {
+        return new NumberExpression(getNumber() / rhs.getNumber(), model);
     }
     
     /**
@@ -71,8 +75,8 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression remainder (NumberExpression rhs) {
-        return new NumberExpression(getNumber() % rhs.getNumber());
+    public Expression remainder (NumberExpression rhs) throws SlogoException{
+        return new NumberExpression(getNumber() % rhs.getNumber(), model);
     }
     
     /**
@@ -80,8 +84,8 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression minus () {
-        return new NumberExpression(getNumber() * -1);
+    public Expression minus () throws SlogoException{
+        return new NumberExpression(getNumber() * -1, model);
     }
     
     /**
@@ -89,10 +93,10 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression random () {
+    public Expression random () throws SlogoException{
         Random rand = new Random();
         int  n = rand.nextInt((int) getNumber());
-        return new NumberExpression(n);
+        return new NumberExpression(n, model);
     }
     
     /**
@@ -100,8 +104,8 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression sin () {
-        return new NumberExpression(Math.round(Math.sin(Math.toRadians(getNumber()))));
+    public Expression sin () throws SlogoException{
+        return new NumberExpression(Math.round(Math.sin(Math.toRadians(getNumber()))), model);
     }
     
     /**
@@ -109,8 +113,8 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression cos () {
-        return new NumberExpression(Math.round(Math.cos(Math.toRadians(getNumber()))));
+    public Expression cos () throws SlogoException{
+        return new NumberExpression(Math.round(Math.cos(Math.toRadians(getNumber()))), model);
     }
     
     /**
@@ -118,8 +122,8 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression tan () {
-        return new NumberExpression(Math.round(Math.tan(Math.toRadians(getNumber()))));
+    public Expression tan () throws SlogoException{
+        return new NumberExpression(Math.round(Math.tan(Math.toRadians(getNumber()))), model);
     }
     
     /**
@@ -127,8 +131,8 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression atan () {
-        return new NumberExpression(Math.round(Math.atan(Math.toRadians(getNumber()))));
+    public Expression atan () throws SlogoException{
+        return new NumberExpression(Math.round(Math.atan(Math.toRadians(getNumber()))), model);
     }
     
     /**
@@ -136,8 +140,8 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression log () {
-        return new NumberExpression(Math.log(getNumber()));
+    public Expression log () throws SlogoException{
+        return new NumberExpression(Math.log(getNumber()), model);
     }
     
     /**
@@ -145,8 +149,8 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression pow () {
-        return new NumberExpression(Math.pow(getNumber(), 2));
+    public Expression pow () throws SlogoException{
+        return new NumberExpression(Math.pow(getNumber(), 2), model);
     }
     
     /**
@@ -154,12 +158,12 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression less (NumberExpression rhs) {
+    public Expression less (NumberExpression rhs) throws SlogoException{
         double num = 0;
         if(getNumber() < rhs.getNumber()) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
     
     /**
@@ -167,12 +171,12 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression greater (NumberExpression rhs) {
+    public Expression greater (NumberExpression rhs) throws SlogoException{
         double num = 0;
         if(getNumber() > rhs.getNumber()) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
     
     /**
@@ -180,12 +184,12 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression equal (NumberExpression rhs) {
+    public Expression equal (NumberExpression rhs) throws SlogoException{
         double num = 0;
         if(getNumber() == rhs.getNumber()) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
     
     /**
@@ -193,12 +197,12 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression notEqual (NumberExpression rhs) {
+    public Expression notEqual (NumberExpression rhs) throws SlogoException{
         double num = 0;
         if(getNumber() != rhs.getNumber()) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
     
     /**
@@ -206,12 +210,12 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression and (NumberExpression rhs) {
+    public Expression and (NumberExpression rhs) throws SlogoException{
         double num = 0;
         if(getNumber() != 0 && rhs.getNumber() != 0) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
     
     /**
@@ -219,12 +223,12 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression or (NumberExpression rhs) {
+    public Expression or (NumberExpression rhs) throws SlogoException{
         double num = 0;
         if(getNumber() != 0 || rhs.getNumber() != 0) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
     
     /**
@@ -232,12 +236,12 @@ public class NumberExpression extends Expression {
      * @param rhs
      * @return
      */
-    public Expression not () {
+    public Expression not () throws SlogoException{
         double num = 0;
         if(getNumber() == 0) {
             num = 1;
         }
-        return new NumberExpression(num);
+        return new NumberExpression(num, model);
     }
 
     public double getNumber () {

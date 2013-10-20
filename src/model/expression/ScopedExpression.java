@@ -2,12 +2,20 @@ package model.expression;
 
 import java.util.HashMap;
 import java.util.Map;
+import Exceptions.SlogoException;
+import model.Model;
+
 
 public class ScopedExpression extends Expression {
 
-    private static Map<String, Expression> localVariables = new HashMap<String, Expression>();
-    
-    public static Map<String, Expression> getLocalVariables() {
+    protected String functionId;
+    protected Map<String, Expression> localVariables = new HashMap<String, Expression>();
+
+    public ScopedExpression (Model model) throws SlogoException {
+        super(model);
+    }
+
+    public Map<String, Expression> getLocalVariables () {
         return localVariables;
     }
 }

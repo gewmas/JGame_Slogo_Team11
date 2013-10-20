@@ -2,16 +2,18 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Model;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 
 public class RightExpression extends OneParameterExpression {
 
-    public RightExpression (List<String> cmdList) {
-        super(cmdList);
+    public RightExpression (List<String> cmdList, Model model) throws SlogoException {
+        super(cmdList, model);
     }
     
     @Override
-    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCmd) {
+    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCmd) throws SlogoException {
 
         expression = expression.evaluate().get(0);
         

@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 public class TurtleCommand {
     private double x;
     private double y;
@@ -7,7 +9,13 @@ public class TurtleCommand {
     private boolean isPenDown;
     private boolean isVisible;
     private boolean isActive;
-    //color
+
+    private double background;
+    private double penColor;
+    private double penSize;
+    private double shape;
+    private boolean stamp;
+    private boolean clearStamps;
     
     public TurtleCommand(){
         this(0.0, 0.0, 90.0);
@@ -19,6 +27,7 @@ public class TurtleCommand {
         this.direction = direction;
         this.isPenDown = true;
         this.isVisible = true;
+       
     }
     
     public TurtleCommand(TurtleCommand rhs){
@@ -27,6 +36,46 @@ public class TurtleCommand {
         this.direction = rhs.direction;
         this.isPenDown = rhs.isPenDown;
         this.isVisible = rhs.isVisible;
+    }
+    
+    public double getBackground () {
+        return background;
+    }
+
+    public void setBackground (double background) {
+        this.background = background;
+    }
+
+    public double getPenColor () {
+        return penColor;
+    }
+
+    public void setPenColor (double penColor) {
+        this.penColor = penColor;
+    }
+
+    public double getShape () {
+        return shape;
+    }
+
+    public void setShape (double shape) {
+        this.shape = shape;
+    }
+
+    public boolean isStamp () {
+        return stamp;
+    }
+
+    public void setStamp (boolean stamp) {
+        this.stamp = stamp;
+    }
+
+    public boolean isClearStamps () {
+        return clearStamps;
+    }
+
+    public void setClearStamps (boolean clearStamps) {
+        this.clearStamps = clearStamps;
     }
     
     public boolean isVisible () {
@@ -75,6 +124,14 @@ public class TurtleCommand {
 
     public void setPenDown (boolean isPenDown) {
         this.isPenDown = isPenDown;
+    }
+
+    public double getPenSize () {
+        return penSize;
+    }
+
+    public void setPenSize (double penSize) {
+        this.penSize = penSize;
     }
     
     

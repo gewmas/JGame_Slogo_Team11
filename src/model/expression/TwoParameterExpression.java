@@ -2,7 +2,9 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
+import model.Model;
 import model.parser.DefaultParser;
 
 public class TwoParameterExpression extends Expression {
@@ -10,48 +12,49 @@ public class TwoParameterExpression extends Expression {
     Expression expression2;
     
 
-    public TwoParameterExpression(List<String> cmdList) {
+    public TwoParameterExpression(List<String> cmdList, Model model) throws SlogoException {
+        super(model);
         convert(cmdList);
     }
 
-    public void convert(List<String> cmdList) {
+    public void convert(List<String> cmdList) throws SlogoException {
         cmdList.remove(0);
         
         // sum sum 1 2 sum 3 4
         try
         {
-            expression1 = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+            expression1 = new NumberExpression(Double.parseDouble(cmdList.get(0)), model);
             cmdList.remove(0);
         }
         catch(NumberFormatException e)
         {
-            expression1 = DefaultParser.parse(cmdList);
+            expression1 = model.getParser().parse(cmdList);
         }
 
         try
         {
-            expression2 = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+            expression2 = new NumberExpression(Double.parseDouble(cmdList.get(0)), model);
             cmdList.remove(0);
         }
         catch(NumberFormatException e)
         {
-            expression2 = DefaultParser.parse(cmdList);
+            expression2 = parser.parse(cmdList);
         }
 
     }
 
     @Override
-    public List<Expression> evaluate () {
+    public List<Expression> evaluate () throws SlogoException {
         List<Expression> finalExpressionList = new ArrayList<Expression>();
         return finalExpressionList;
     }
     
-    public List<NumberExpression> preEvaluate () {
+    public List<NumberExpression> preEvaluate () throws SlogoException {
       Expression evaluatedExpression1 = expression1;
       Expression evaluatedExpression2 = expression2;
         
         if(expression1 instanceof VariableExpression){
-            evaluatedExpression1 = new VariableExpression((VariableExpression)expression1);
+            evaluatedExpression1 = new VariableExpression((VariableExpression)expression1, model);
         }
         
         if(!(expression1 instanceof NumberExpression)){
@@ -59,7 +62,7 @@ public class TwoParameterExpression extends Expression {
         }
         
         if(expression2 instanceof VariableExpression){
-            evaluatedExpression2 = new VariableExpression((VariableExpression)expression2);
+            evaluatedExpression2 = new VariableExpression((VariableExpression)expression2, model);
         }
         
         if(!(expression2 instanceof NumberExpression)){

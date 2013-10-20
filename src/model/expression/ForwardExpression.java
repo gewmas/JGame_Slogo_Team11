@@ -2,24 +2,26 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Model;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
 
 
 public class ForwardExpression extends OneParameterExpression {
 
-    public ForwardExpression (List<String> cmdList) {
-        super(cmdList);
+    public ForwardExpression (List<String> cmdList, Model model) throws SlogoException {
+        super(cmdList, model);
     }
 
     @Override
-    public List<Expression> evaluate () {
+    public List<Expression> evaluate () throws SlogoException {
         List<Expression> finalExpressionList = new ArrayList<Expression>();
         finalExpressionList.addAll(expression.evaluate());
         return finalExpressionList;
     }
 
     @Override
-    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) throws SlogoException {
         List<TurtleCommand> list = new ArrayList<TurtleCommand>();
         turtleCmd = new TurtleCommand(turtleCmd);
         
@@ -50,8 +52,6 @@ public class ForwardExpression extends OneParameterExpression {
         // Math.round(Math.cos(Math.toRadians(turtleCmd.getDirection()))));
         // turtleCmd.setY(turtleCmd.getY() + exp.getNumber() *
         // Math.round(Math.sin(Math.toRadians(turtleCmd.getDirection()))));
-        
-        
         
         list.add(turtleCmd);
         return list;

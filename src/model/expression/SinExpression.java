@@ -2,16 +2,17 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Model;
+import Exceptions.SlogoException;
 
 public class SinExpression extends OneParameterExpression {
 
-    public SinExpression (List<String> cmdList) {
-        super(cmdList);
-        // TODO Auto-generated constructor stub
+    public SinExpression (List<String> cmdList, Model model) throws SlogoException {
+        super(cmdList, model);
     }
     
     @Override
-    public List<Expression> evaluate () {
+    public List<Expression> evaluate () throws SlogoException {
         List<Expression> finalExpressionList = new ArrayList<Expression>();
         NumberExpression exp = (NumberExpression) expression;
         finalExpressionList.add(exp.sin());

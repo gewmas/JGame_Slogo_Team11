@@ -10,4 +10,5 @@ public interface ControllerToViewInterface {
     
     public void setBackgroundColor (JGColor backgroundColor);
     public JGColor getBackgroundColor ();
+
 }

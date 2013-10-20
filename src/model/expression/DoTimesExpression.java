@@ -3,6 +3,8 @@ package model.expression;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import Exceptions.SlogoException;
+import model.Model;
 import model.parser.DefaultParser;
 import controller.TurtleCommand;
 
@@ -23,14 +25,15 @@ public class DoTimesExpression extends ScopedExpression {
      * note, variable is assigned to each succeeding value so that it can be accessed by the commands
      * 
      */
-    public DoTimesExpression(List<String> cmdList){
+    public DoTimesExpression(List<String> cmdList, Model model) throws SlogoException{
+        super(model);
         limitExpression = new ArrayList<Expression>();
         commandExpression = new ArrayList<Expression>();
         convert(cmdList);
     }
 
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0);
 
         int openBracketIndex = -1;
@@ -54,10 +57,10 @@ public class DoTimesExpression extends ScopedExpression {
         }
 
         //Within [ variable limit ]
-        variableExpression = new VariableExpression(new ArrayList<String>(cmdList.subList(1, 2))); // assuming just on variable
+        variableExpression = new VariableExpression(new ArrayList<String>(cmdList.subList(1, 2)), model); // assuming just on variable
         List<String> limits = new ArrayList<String>(cmdList.subList(openBracketIndex+2, closeBracketIndex));
         while(!limits.isEmpty()){
-            limitExpression.add(DefaultParser.parse(limits));
+            limitExpression.add(parser.parse(limits));
         }
 
 
@@ -88,7 +91,7 @@ public class DoTimesExpression extends ScopedExpression {
 
         List<String> commands = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
         while(!commands.isEmpty()){
-            commandExpression.add(DefaultParser.parse(commands));
+            commandExpression.add(parser.parse(commands));
         }
 
         for(int i = 0; i <= closeBracketIndex; i++){
@@ -96,14 +99,14 @@ public class DoTimesExpression extends ScopedExpression {
         }
     }
 
-    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) throws SlogoException {
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
 
         // create local variable :i from 0 to limit
-        ScopedExpression.getLocalVariables().put(variableExpression.getId(), new NumberExpression(0));
+        localVariables.put(variableExpression.getId(), new NumberExpression(0, model));
         NumberExpression limit = (NumberExpression) limitExpression.get(0).evaluate().get(0); //Assuming get a NumberExpression
 
-        NumberExpression variableNumber = (NumberExpression) ScopedExpression.getLocalVariables().get(variableExpression.getId());
+        NumberExpression variableNumber = (NumberExpression) localVariables.get(variableExpression.getId());
 
         TurtleCommand latestTurtleCommand = turtleCmd;
 
@@ -118,11 +121,11 @@ public class DoTimesExpression extends ScopedExpression {
             }
 
 
-            ScopedExpression.getLocalVariables().put(variableExpression.getId(), variableNumber.sum(new NumberExpression(1)));
-            variableNumber = (NumberExpression) ScopedExpression.getLocalVariables().get(variableExpression.getId());
+            localVariables.put(variableExpression.getId(), variableNumber.sum(new NumberExpression(1, model)));
+            variableNumber = (NumberExpression) localVariables.get(variableExpression.getId());
         }
 
-        ScopedExpression.getLocalVariables().clear();
+        localVariables.clear();
 
         return commandList;
     }

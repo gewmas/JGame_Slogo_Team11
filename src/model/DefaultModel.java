@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.Stack;
+import Exceptions.SlogoException;
 import controller.Controller;
 import controller.ControllerToModelInterface;
 import controller.SlogoError;
@@ -16,46 +19,63 @@ import model.parser.Parser;
 import model.expression.*;
 
 public class DefaultModel extends Model {
-    private static Map<String, Expression> functionMap;
-    private static Map<String, Expression> globalVariables;
-
     private ControllerToModelInterface controller;
+    private Parser parser;
+    
+    //temp instance variable from current workspace, update everytime model get called
+    private Map<String, Expression> definedFunction;
+    private Map<String, Expression> runningFunction;
+    private Map<String, Expression> globalVariables;
+    //keep track of whether within FunctionExpression
+    private Stack<String> functionStack;
+
     List<Turtle> activeTurtle;
-    TurtleTrace turtleTrace;
 
     public DefaultModel(Controller controller){
-        functionMap = new HashMap<String, Expression>();
-        globalVariables = new HashMap<String, Expression>();
         this.controller = controller;
+        parser = new DefaultParser(this, controller.getMessages());
+        functionStack = new Stack<String>();
     }
-
-    public void updateActiveTurtle(){
+    
+    private void updateInstanceVariable(){
+        definedFunction = controller.getDefinedFunction();
+        runningFunction = controller.getRunningFunction();
+        globalVariables = controller.getGlobalVariables();
+        
+        functionStack.clear();
+        
+      //get TurtleTrace of every activeTurtle
         activeTurtle = controller.getActiveTurtles();
     }
 
-    public void updateTrace (String userInput) {
+    public void updateTrace (String userInput) throws SlogoException {
+
+        updateInstanceVariable();
+        
         TurtleCommand latestTurtleCommand;
         List<TurtleCommand> tempTurtleCommand;
 
         // convert command
         List<String> commandInput = new ArrayList<String>(Arrays.asList(userInput.split("[\\s,;\\n\\t]+")));//"\\s+")));       
-        Parser parser = new DefaultParser();
-        List<Expression> expressionList = parser.execute(commandInput, functionMap);
+        
+        List<Expression> expressionList;
+        expressionList = parser.execute(commandInput, definedFunction);
 
-        if(expressionList == null) {
-            SlogoError error = new SlogoError("Parse Error", "A syntax error occured while parsing your script");
-            turtleTrace.setSlogoError(error);
-        }
-
-        //get TurtleTrace of every activeTurtle
-        updateActiveTurtle();
+      
         for(Turtle turtle : activeTurtle){
-            turtleTrace = turtle.getTurtleTrace();
+            TurtleTrace turtleTrace = turtle.getTurtleTrace();
 
+            //TODO: evaluate Tell, TellEven, TellOdd, Ask, AskWith
+            
             // evaluate & create TurtleCommand
             for (Expression expression : expressionList) {
-                if(expression.getClass().getSuperclass().getSimpleName().equals("QueryExpression")){
+                if(expression.getClass().getSuperclass().getSimpleName().equals("QueryExpression") || expression.getClass().getSuperclass().getSimpleName().equals("FourParameterExpression")){
                     ((QueryExpression) expression).executeControllerCommand(controller);
+                    continue;
+                }
+                
+                if(expression.getClass().getSuperclass().getSimpleName().equals("FourParameterExpression")){
+                    ((SetPaletteExpression) expression).executeControllerCommand(controller);
                     continue;
                 }
 
@@ -71,6 +91,12 @@ public class DefaultModel extends Model {
                 if(expression instanceof FunctionDeclarationExpression){
                     continue;
                 }
+                
+                /*if(expression instanceof FunctionExpression){
+                    FunctionDeclarationExpression functionDeclaration = ((FunctionExpression) expression).getFunctionDeclaration();
+                    String functionName = functionDeclaration.getFunctionName();
+                    runningFunction.put(functionName, expression);
+                }*/
 
                 //Here check IF expression is of type that doesnt return turtleCommand.  ????
                 latestTurtleCommand = new TurtleCommand(turtleTrace.getLatest());
@@ -79,14 +105,29 @@ public class DefaultModel extends Model {
             }
             
         }
-
-
-
+        
     }
 
-    public static Map<String, Expression> getGlobalVariables() {
+    public Map<String, Expression> getGlobalVariables () {
         return globalVariables;
     }
 
+    public Parser getParser () {
+        return parser;
+    }
 
+    public Map<String, Expression> getRunningFunction () {
+        return runningFunction;
+    }
+
+    public Stack<String> getFunctionStack () {
+        return functionStack;
+    }
+
+    @Override
+    public ControllerToModelInterface getController () {
+        return controller;
+    }
+
+    
 }

@@ -2,7 +2,9 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import Exceptions.SlogoException;
 import controller.TurtleCommand;
+import model.Model;
 import model.parser.DefaultParser;
 
 public class ForExpression extends ScopedExpression{
@@ -20,13 +22,14 @@ public class ForExpression extends ScopedExpression{
      * for [ :i sum 1 3 sum 1 3 sum 1 3 ] [  fd 23 fd 23 ]
      * 
      */
-    public ForExpression(List<String> cmdList){
+    public ForExpression(List<String> cmdList, Model model) throws SlogoException{
+        super(model);
         commandExpression = new ArrayList<Expression>();
         convert(cmdList);
     }
     
     @Override
-    public void convert (List<String> cmdList) {
+    public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0);
         
         int openBracketIndex = -1;
@@ -50,39 +53,39 @@ public class ForExpression extends ScopedExpression{
         }
 
         //Within [ variable start end increment ]
-        variableExpression = new VariableExpression(new ArrayList<String>(cmdList.subList(1, 2))); // assuming just on variable
+        variableExpression = new VariableExpression(new ArrayList<String>(cmdList.subList(1, 2)), model); // assuming just on variable
         cmdList.remove(0); // remove [
         cmdList.remove(0); // remove variable
         
         //condition
         try
         {
-            startExpression = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+            startExpression = new NumberExpression(Double.parseDouble(cmdList.get(0)), model);
             cmdList.remove(0);
         }
         catch(NumberFormatException e)
         {
-            startExpression = DefaultParser.parse(cmdList);
+            startExpression = parser.parse(cmdList);
         }
         
         try
         {
-            endExpression = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+            endExpression = new NumberExpression(Double.parseDouble(cmdList.get(0)), model);
             cmdList.remove(0);
         }
         catch(NumberFormatException e)
         {
-            endExpression = DefaultParser.parse(cmdList);
+            endExpression = parser.parse(cmdList);
         }
         
         try
         {
-            incrementExpression = new NumberExpression(Double.parseDouble(cmdList.get(0)));
+            incrementExpression = new NumberExpression(Double.parseDouble(cmdList.get(0)), model);
             cmdList.remove(0);
         }
         catch(NumberFormatException e)
         {
-            incrementExpression = DefaultParser.parse(cmdList);
+            incrementExpression = parser.parse(cmdList);
         }
         
 //        startExpression = DefaultParser.parse(cmdList);
@@ -119,7 +122,7 @@ public class ForExpression extends ScopedExpression{
 
         List<String> commands = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
         while(!commands.isEmpty()){
-            commandExpression.add(DefaultParser.parse(commands));
+            commandExpression.add(parser.parse(commands));
         }
 
         for(int i = 0; i <= closeBracketIndex; i++){
@@ -127,7 +130,7 @@ public class ForExpression extends ScopedExpression{
         }
     }
 
-    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) {
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) throws SlogoException {
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
         
         // assuming not changing afterwards
@@ -136,9 +139,9 @@ public class ForExpression extends ScopedExpression{
         NumberExpression increment = (NumberExpression) incrementExpression.evaluate().get(0);
         
         // create local variable
-        ScopedExpression.getLocalVariables().put(variableExpression.getId(), start);
+        localVariables.put(variableExpression.getId(), start);
         
-        NumberExpression variableNumber = (NumberExpression) ScopedExpression.getLocalVariables().get(variableExpression.getId());
+        NumberExpression variableNumber = (NumberExpression) localVariables.get(variableExpression.getId());
         TurtleCommand latestTurtleCommand = turtleCmd;
         
         
@@ -154,13 +157,13 @@ public class ForExpression extends ScopedExpression{
             }
             
             
-            ScopedExpression.getLocalVariables().put(variableExpression.getId(), variableNumber.sum(increment));
-            variableNumber = (NumberExpression) ScopedExpression.getLocalVariables().get(variableExpression.getId());
+            localVariables.put(variableExpression.getId(), variableNumber.sum(increment));
+            variableNumber = (NumberExpression) localVariables.get(variableExpression.getId());
         }
         
         
         
-        ScopedExpression.getLocalVariables().clear();
+        localVariables.clear();
         
         return commandList;
     }
