@@ -9,13 +9,20 @@ import model.Model;
 
 
 public class Controller implements ControllerToViewInterface, ControllerToModelInterface {
+    private static final String CLEARSCREEN="clearscreen";
+    
     Model model;
     Viewer viewer;
 
     List<Turtle> turtles;
     List<Turtle> activeTurtles;
+    List<String> commandList;
+    int currentCommand;
     String backgroundColor;
+    String penColor;
 
+    private Boolean gridOnOff;
+    
     public Controller () {
         model = new DefaultModel(this);
         viewer = new SLogoViewer(this);
@@ -26,12 +33,41 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         Turtle turtle = new DefaultTurtle();
         turtles.add(turtle);
         activeTurtles.add(turtle);
+        
+        commandList=new ArrayList<String>();
+        currentCommand=commandList.size();
+        
+        gridOnOff=true;
     }
 
     // Take the commands typed by the user and updates the TurtleTrace accordingly.
     public void interpretCommand(String userInput) {
         model.updateTrace(userInput);
         // view.paintFrame(getTurtleTraces);
+    }
+    
+    public void addCommand(String userInput){
+        if (commandList.size()!=currentCommand){
+            commandList=commandList.subList(0, currentCommand);
+        }
+        commandList.add(userInput);
+        currentCommand++;
+        interpretCommand(userInput);
+    }
+    
+    public void undo(){
+        currentCommand--;
+        interpretCommand(CLEARSCREEN);
+        for (String command:commandList.subList(0, currentCommand)){
+            interpretCommand(command);
+        }
+    }
+    
+    public void redo(){
+        if (currentCommand<commandList.size()-1){
+            currentCommand++;
+            interpretCommand(commandList.get(currentCommand));
+        }
     }
 
     //Now getTurtles & getActiveTurtle return the same only turtle
@@ -75,10 +111,24 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         return backgroundColor;
     }
     
+    public void setPenColor (String penColor) {
+        this.penColor = penColor;
+    }
+
+    public String getPenColor () {
+        return penColor;
+    }
+    
+    public void setGrid(Boolean gridValue){
+        this.gridOnOff=gridValue;
+    }
     
     //Turtle queries function call
     public void clearScreen(){
         ((SLogoViewer) viewer).clearScreen();
+        setBackgroundColor("White");
+        setGrid(false);
+        setPenColor("Black");
     }
     
     public void xCor(){

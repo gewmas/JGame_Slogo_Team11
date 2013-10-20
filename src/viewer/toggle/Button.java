@@ -13,15 +13,13 @@ public abstract class Button extends JButton {
 
     private static final int BUTTON_WIDTH=180;
     private static final int BUTTON_HEIGHT=20;
-    protected Panel myPanel;
 
-	public Button(Panel myPanel) {
-		this(myPanel, "Button Text");
+	public Button() {
+		this("Button Text");
 	}
 	
-	public Button(Panel myPanel, String buttonText) {
+	public Button(String buttonText) {
 		super(buttonText);
-		this.myPanel = myPanel;
 		setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 		this.addActionListener(new ActionListener() {
 			@Override

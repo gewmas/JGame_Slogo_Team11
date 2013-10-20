@@ -45,7 +45,7 @@ public class SLogoViewer extends Viewer{
         myLeftPanel.add(new CommandEntryBox(600,30,myPastCommandBox,controller));
         myRightPanel.add(new UserVariableBox(200,190));
         myRightPanel.add(new UserDefinedCommandsBox(200,190));
-        myRightPanel.add(new Toggles(200,190,myTurtleDisplay));
+        myRightPanel.add(new Toggles(200,190,controller));
         pack();
         setVisible(true);
     }
