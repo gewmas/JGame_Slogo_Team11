@@ -92,11 +92,11 @@ public class DefaultModel extends Model {
                     continue;
                 }
                 
-                if(expression instanceof FunctionExpression){
+                /*if(expression instanceof FunctionExpression){
                     FunctionDeclarationExpression functionDeclaration = ((FunctionExpression) expression).getFunctionDeclaration();
                     String functionName = functionDeclaration.getFunctionName();
                     runningFunction.put(functionName, expression);
-                }
+                }*/
 
                 //Here check IF expression is of type that doesnt return turtleCommand.  ????
                 latestTurtleCommand = new TurtleCommand(turtleTrace.getLatest());

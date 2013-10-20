@@ -53,6 +53,11 @@ public class FunctionExpression extends ScopedExpression {
     
     @Override
     public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCommand) throws SlogoException {
+        //add to runningFunction Map
+        FunctionDeclarationExpression functionDeclaration = getFunctionDeclaration();
+        String functionName = functionDeclaration.getFunctionName();
+        model.getRunningFunction().put(functionName, this);
+        
         model.getFunctionStack().push(functionDeclaration.getFunctionName());
         
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
@@ -62,6 +67,8 @@ public class FunctionExpression extends ScopedExpression {
         for (Expression expression : functionDeclaration.expressions) {
 //            List<Expression> evaluatedExpressions = expression.evaluate();
 //            for (Expression evalExpression : evaluatedExpressions) {
+            
+            
                 List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
                 if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds return
                     latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
@@ -71,6 +78,7 @@ public class FunctionExpression extends ScopedExpression {
         }
         
         //clean localVariable
+        model.getRunningFunction().remove(functionName);
         model.getFunctionStack().pop();
         localVariables.clear();
         
