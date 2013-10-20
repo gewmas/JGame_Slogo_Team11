@@ -126,7 +126,6 @@ public class DefaultModel extends Model {
 
     @Override
     public ControllerToModelInterface getController () {
-        // TODO Auto-generated method stub
         return controller;
     }
 

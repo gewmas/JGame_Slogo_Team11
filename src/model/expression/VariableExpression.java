@@ -59,9 +59,10 @@ public class VariableExpression extends Expression{
         } else if(globalVars.containsKey(id)) {
             Expression expression = globalVars.get(id);
             finalExpressionList.addAll(expression.evaluate());
+            return finalExpressionList;
         }
         
-        return finalExpressionList;
+        throw new SlogoException("Can not evaluate variable" + id);
         
     }
 

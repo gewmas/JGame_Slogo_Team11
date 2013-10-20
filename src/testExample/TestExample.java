@@ -34,7 +34,7 @@ public class TestExample {
     }
     
     public void updateActiveTurtle(){
-        controller.clearScreen();
+        controller.clearWorkspace();
         activeTurtle = controller.getActiveTurtles();
     }
     
