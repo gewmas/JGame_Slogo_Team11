@@ -188,8 +188,10 @@ public abstract class TurtleDisplay extends JGEngine {
         * paintFrame to do that. */
         public void doFrame() {
             drawTurtle();
-            myInfoTable.setTable("0",String.valueOf(endCommand.getX()), String.valueOf(endCommand.getY())
+            if (endCommand!=null){
+                myInfoTable.setTable("0",String.valueOf(endCommand.getX()), String.valueOf(endCommand.getY())
                                  , String.valueOf(endCommand.getDirection()), String.valueOf(endCommand.isPenDown()));
+            }
             moveObjects();
         }
         
