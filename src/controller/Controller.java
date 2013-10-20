@@ -127,6 +127,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         ((SLogoViewer)viewer).highlightTurtles(boxOnOff);
     }
     
+    public void toggleData(){
+        //Add toggle method here
+    }
+    
     //Turtle queries function call
     public void clearScreen(){
         ((SLogoViewer) viewer).clearScreen();

@@ -3,6 +3,7 @@ package viewer.display_objects;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
+import viewer.InformationTable;
 import controller.Controller;
 import controller.Turtle;
 import controller.TurtleCommand;
@@ -37,6 +38,8 @@ public abstract class TurtleDisplay extends JGEngine {
         protected DisplayGrid myGrid;
         protected JGColor myPenColor;
         protected boolean myHighlightTurtles;
+        protected InformationTable myInfoTable;
+        protected TurtleCommand endCommand;
         /** The parameterless constructor is called by the browser, in case we're
          * an applet. */
         public TurtleDisplay(Controller controller) {
@@ -165,7 +168,7 @@ public abstract class TurtleDisplay extends JGEngine {
                         }
                     }
                     myTurtleNumber=myTurtleList.size();
-                    TurtleCommand endCommand=myTurtleList.get(myTurtleList.size()-1);
+                    endCommand=myTurtleList.get(myTurtleList.size()-1);
                     Point2D endPos=getDisplayCoordinates(endCommand.getX(),endCommand.getY());
                     setTurtlePosition(endPos.getX(),endPos.getY());
                     myDisplayTurtle.setRotation(endCommand.getDirection());
@@ -177,12 +180,16 @@ public abstract class TurtleDisplay extends JGEngine {
             }
         }
         
-        
+        public void addInformationTable(InformationTable table){
+            myInfoTable=table;
+        }
         
         /** Game logic is done here.  No painting can be done here, define
         * paintFrame to do that. */
         public void doFrame() {
             drawTurtle();
+            myInfoTable.setTable("0",String.valueOf(endCommand.getX()), String.valueOf(endCommand.getY())
+                                 , String.valueOf(endCommand.getDirection()), String.valueOf(endCommand.isPenDown()));
             moveObjects();
         }
         

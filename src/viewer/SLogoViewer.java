@@ -41,7 +41,7 @@ public class SLogoViewer extends Viewer{
         setTitle("SLogo");
         myTurtleDisplay=new DefaultTurtleDisplayBox(new JGPoint(DISPLAY_WIDTH-10,DISPLAY_HEIGHT-10), controller);
         myPastCommandBox=new PastCommandBox(600,80);
-        myLeftPanel.add(new DisplayBox(DISPLAY_WIDTH,DISPLAY_HEIGHT,myTurtleDisplay,controller));
+        myLeftPanel.add(new LayeredDisplay(DISPLAY_WIDTH,DISPLAY_HEIGHT,myTurtleDisplay,controller));
         myLeftPanel.add(myPastCommandBox);
         myLeftPanel.add(new CommandEntryBox(600,30,myPastCommandBox,controller));
         myRightPanel.add(new UserVariableBox(200,190));
@@ -66,7 +66,7 @@ public class SLogoViewer extends Viewer{
     public void highlightTurtles(Boolean boxOnOff){
         myTurtleDisplay.highLightTurtles(boxOnOff);
     }
-    
+        
     public void clearScreen(){
         myTurtleDisplay.clearScreen();
     }

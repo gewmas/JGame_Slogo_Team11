@@ -19,7 +19,7 @@ public class DisplayBox extends Panel {
     public DisplayBox(int width, int height,TurtleDisplay turtledisplay,Controller controller){
         super(width,height);
         //setVisible(true);
-        setBorder(BorderFactory.createLineBorder(Color.black));
+//        setBorder(BorderFactory.createLineBorder(Color.black));
         this.setName("Display");
         this.setOpaque(false);
         myTurtleDisplay = turtledisplay;
