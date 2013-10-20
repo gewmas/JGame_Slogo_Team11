@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import jgame.JGColor;
 import viewer.SLogoViewer;
 import viewer.Viewer;
 import model.DefaultModel;
@@ -16,12 +17,11 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     List<Turtle> turtles;
     List<Turtle> activeTurtles;
-    List<String> commandList;
-    int currentCommand;
-    String backgroundColor;
-    String penColor;
-
-    private Boolean gridOnOff;
+    
+    private List<String> commandList;
+    private int currentCommand;
+    private JGColor backgroundColor;
+    private JGColor penColor;
     
     public Controller () {
         model = new DefaultModel(this);
@@ -36,8 +36,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         
         commandList=new ArrayList<String>();
         currentCommand=commandList.size();
-        
-        gridOnOff=true;
     }
 
     // Take the commands typed by the user and updates the TurtleTrace accordingly.
@@ -103,32 +101,37 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 //    }
 
     // Additional getters/setters
-    public void setBackgroundColor (String backgroundColor) {
+    public void setBackgroundColor (JGColor backgroundColor) {
+        ((SLogoViewer)viewer).setBackgroundColor(backgroundColor);
         this.backgroundColor = backgroundColor;
     }
 
-    public String getBackgroundColor () {
+    public JGColor getBackgroundColor () {
         return backgroundColor;
     }
     
-    public void setPenColor (String penColor) {
+    public void setPenColor (JGColor penColor) {
+        ((SLogoViewer)viewer).setPenColor(backgroundColor);
         this.penColor = penColor;
     }
 
-    public String getPenColor () {
+    public JGColor getPenColor () {
         return penColor;
     }
     
-    public void setGrid(Boolean gridValue){
-        this.gridOnOff=gridValue;
+    public void toggleGrid(){
+        ((SLogoViewer)viewer).toggleGrid();;
+    }
+    
+    public void highlightTurtles(Boolean boxOnOff){
+        ((SLogoViewer)viewer).highlightTurtles(boxOnOff);
     }
     
     //Turtle queries function call
     public void clearScreen(){
         ((SLogoViewer) viewer).clearScreen();
-        setBackgroundColor("White");
-        setGrid(false);
-        setPenColor("Black");
+//        setBackgroundColor(JGColor.white);
+//        setPenColor(JGColor.black);
     }
     
     public void xCor(){

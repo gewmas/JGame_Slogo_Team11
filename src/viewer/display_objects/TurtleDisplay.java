@@ -36,6 +36,7 @@ public abstract class TurtleDisplay extends JGEngine {
         protected int myTurtleNumber;
         protected DisplayGrid myGrid;
         protected JGColor myPenColor;
+        protected boolean myHighlightTurtles;
         /** The parameterless constructor is called by the browser, in case we're
          * an applet. */
         public TurtleDisplay(Controller controller) {
@@ -95,6 +96,8 @@ public abstract class TurtleDisplay extends JGEngine {
                 myDisplayTurtle=new DisplayTurtle(thispoint.getX(),thispoint.getY());
                 //myDisplayTurtle.setGraphic("turtle1up");
                 myGrid=new DisplayGrid((int)(myWidth),(int)(myHeight),NUM_GRID_X,NUM_GRID_Y);
+                myHighlightTurtles=false;
+                myPenColor=JGColor.black;
         }
         
         public void clearScreen(){
@@ -123,6 +126,10 @@ public abstract class TurtleDisplay extends JGEngine {
         
         public void toggleGrid(){
             myGrid.toggleOn();
+        }
+        
+        public void highLightTurtles(boolean highlight){
+            myHighlightTurtles=highlight;
         }
         
         protected Point2D getDisplayCoordinates(double x, double y){
@@ -162,6 +169,8 @@ public abstract class TurtleDisplay extends JGEngine {
                     Point2D endPos=getDisplayCoordinates(endCommand.getX(),endCommand.getY());
                     setTurtlePosition(endPos.getX(),endPos.getY());
                     myDisplayTurtle.setRotation(endCommand.getDirection());
+                    if (endCommand.isActive() && myHighlightTurtles) myDisplayTurtle.activateBox();
+                    else myDisplayTurtle.suspendBox();
                 }
             } catch (Exception e){
 

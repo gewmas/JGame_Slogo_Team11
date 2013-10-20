@@ -42,6 +42,7 @@ public class Toggles extends Panel {
         buttonList.add(new TurtleImageButton(controller));
         buttonList.add(new PenColorButton(controller));
         buttonList.add(new GridButton(controller));   
+        buttonList.add(new BoxButton(controller));
         
         for (int i = 0; i < buttonList.size(); i++) {
 			add(buttonList.get(i));

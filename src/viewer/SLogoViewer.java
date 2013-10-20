@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import jgame.JGColor;
 import jgame.JGPoint;
 import controller.Controller;
 import viewer.display_objects.TurtleDisplay;
@@ -48,6 +49,22 @@ public class SLogoViewer extends Viewer{
         myRightPanel.add(new Toggles(200,190,controller));
         pack();
         setVisible(true);
+    }
+    
+    public void setBackgroundColor (JGColor backgroundColor) {
+        myTurtleDisplay.setBackGroundColor(backgroundColor);;
+    }
+    
+    public void setPenColor (JGColor penColor) {
+        myTurtleDisplay.setPenColor(penColor);
+    }
+    
+    public void toggleGrid(){
+        myTurtleDisplay.toggleGrid();
+    }
+    
+    public void highlightTurtles(Boolean boxOnOff){
+        myTurtleDisplay.highLightTurtles(boxOnOff);
     }
     
     public void clearScreen(){
