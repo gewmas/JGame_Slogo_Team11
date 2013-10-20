@@ -1,0 +1,3 @@
+pen is not down on first command from initialization (default pen only goes down on second command)
+
+ADD POPUP AT STARTUP OF SLOGO TO ALLOW USERS TO SELECT WHICH PANELS ARE VIEWABLE/NOT VIEWABLE

@@ -30,8 +30,6 @@ public class BackgroundColorButton extends SelectableListButton {
 	public BackgroundColorButton(Controller controller) {
 	        super(BG_COLORS,BG_COLORS,COMMAND, BUTTON_TITLE, DIALOG_MESSAGE,controller);
 	}
-	
-	
 
 //    @Override
 //    public void callReturn () {

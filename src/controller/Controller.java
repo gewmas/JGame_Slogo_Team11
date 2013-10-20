@@ -114,6 +114,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         ((SLogoViewer)viewer).setPenColor(backgroundColor);
         this.penColor = penColor;
     }
+    
+    public void setTurtleImage(int imageNum){
+        //Insert method call here
+    }
 
     public JGColor getPenColor () {
         return penColor;
@@ -123,8 +127,9 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         ((SLogoViewer)viewer).toggleGrid();;
     }
     
-    public void highlightTurtles(Boolean boxOnOff){
-        ((SLogoViewer)viewer).highlightTurtles(boxOnOff);
+    public void toggleHighlightTurtles(){
+        //Insert toggle method call here
+        //((SLogoViewer)viewer).highlightTurtles(boxOnOff);
     }
     
     public void toggleData(){
