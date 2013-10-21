@@ -150,30 +150,32 @@ public abstract class TurtleDisplay extends JGEngine {
 
         private void drawTurtle(){
             try {
-                myTurtleCommandList=myController.getTurtles().get(0).getTurtleTrace().getCommandList();
-                if (!myTurtleCommandList.isEmpty()) {
-                    for (int i=myTurtleNumber;i<myTurtleCommandList.size();i++){
-                        TurtleCommand lastCommand=myTurtleCommandList.get(i-1);
-                        Point2D lastPos=getDisplayCoordinates(lastCommand.getX(),lastCommand.getY());
-                        TurtleCommand thisCommand=myTurtleCommandList.get(i);
-                        Point2D thisPos=getDisplayCoordinates(thisCommand.getX(),thisCommand.getY());
-                        //System.out.println(i);
-                        if (lastCommand.isPenDown()){
-                            //System.out.println(lastCommand.getX()+" "+lastCommand.getY()+" "+thisCommand.getX()+" "+thisCommand.getY());
-                            myPaths.add(new DisplayPath(lastPos.getX(), 
-                                                        lastPos.getY(),
-                                                        thisPos.getX(),
-                                                        thisPos.getY(),
-                                                        myPenColor));
-                        }
-                    }
-                    myTurtleNumber=myTurtleCommandList.size();
-                    endCommand=myTurtleCommandList.get(myTurtleCommandList.size()-1);
-                    Point2D endPos=getDisplayCoordinates(endCommand.getX(),endCommand.getY());
-                    setTurtlePosition(endPos.getX(),endPos.getY());
-                    myDisplayTurtle.setRotation(endCommand.getDirection());
-                    if (endCommand.isActive() && myHighlightTurtles) myDisplayTurtle.activateBox();
-                    else myDisplayTurtle.suspendBox();
+            	for (Turtle turtle : myController.getTurtles()) {
+					myTurtleCommandList = turtle.getTurtleTrace().getCommandList();
+	                if (!myTurtleCommandList.isEmpty()) {
+	                    for (int i=myTurtleNumber;i<myTurtleCommandList.size();i++){
+	                        TurtleCommand lastCommand=myTurtleCommandList.get(i-1);
+	                        Point2D lastPos=getDisplayCoordinates(lastCommand.getX(),lastCommand.getY());
+	                        TurtleCommand thisCommand=myTurtleCommandList.get(i);
+	                        Point2D thisPos=getDisplayCoordinates(thisCommand.getX(),thisCommand.getY());
+	                        //System.out.println(i);
+	                        if (lastCommand.isPenDown()){
+	                            //System.out.println(lastCommand.getX()+" "+lastCommand.getY()+" "+thisCommand.getX()+" "+thisCommand.getY());
+	                            myPaths.add(new DisplayPath(lastPos.getX(), 
+	                                                        lastPos.getY(),
+	                                                        thisPos.getX(),
+	                                                        thisPos.getY(),
+	                                                        myPenColor));
+	                        }
+	                    }
+	                    myTurtleNumber=myTurtleCommandList.size();
+	                    endCommand=myTurtleCommandList.get(myTurtleCommandList.size()-1);
+	                    Point2D endPos=getDisplayCoordinates(endCommand.getX(),endCommand.getY());
+	                    setTurtlePosition(endPos.getX(),endPos.getY());
+	                    myDisplayTurtle.setRotation(endCommand.getDirection());
+	                    if (endCommand.isActive() && myHighlightTurtles) myDisplayTurtle.activateBox();
+	                    else myDisplayTurtle.suspendBox();
+	                }
                 }
             } catch (Exception e){
 
