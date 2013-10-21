@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-
 public class TurtleCommand {
     private double x;
     private double y;
@@ -16,28 +14,28 @@ public class TurtleCommand {
     private double shape;
     private boolean stamp;
     private boolean clearStamps;
-    
-    public TurtleCommand(){
+
+    public TurtleCommand () {
         this(0.0, 0.0, 90.0);
     }
-    
-    public TurtleCommand(double x, double y, double direction){
+
+    public TurtleCommand (double x, double y, double direction) {
         this.x = x;
         this.y = y;
         this.direction = direction;
-        this.isPenDown = true;
-        this.isVisible = true;
-       
+        isPenDown = true;
+        isVisible = true;
+
     }
-    
-    public TurtleCommand(TurtleCommand rhs){
-        this.x = rhs.x;
-        this.y = rhs.y;
-        this.direction = rhs.direction;
-        this.isPenDown = rhs.isPenDown;
-        this.isVisible = rhs.isVisible;
+
+    public TurtleCommand (TurtleCommand rhs) {
+        x = rhs.x;
+        y = rhs.y;
+        direction = rhs.direction;
+        isPenDown = rhs.isPenDown;
+        isVisible = rhs.isVisible;
     }
-    
+
     public double getBackground () {
         return background;
     }
@@ -77,7 +75,7 @@ public class TurtleCommand {
     public void setClearStamps (boolean clearStamps) {
         this.clearStamps = clearStamps;
     }
-    
+
     public boolean isVisible () {
         return isVisible;
     }
@@ -86,11 +84,11 @@ public class TurtleCommand {
         this.isVisible = isVisible;
     }
 
-    public void setActive(boolean isActive){
-        this.isActive=isActive;
+    public void setActive (boolean isActive) {
+        this.isActive = isActive;
     }
-    
-    public boolean isActive(){
+
+    public boolean isActive () {
         return isActive;
     }
 
@@ -133,6 +131,5 @@ public class TurtleCommand {
     public void setPenSize (double penSize) {
         this.penSize = penSize;
     }
-    
-    
+
 }

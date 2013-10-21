@@ -2,7 +2,6 @@
 
 import Exceptions.SlogoException;
 import model.Model;
-import controller.Controller;
 import controller.ControllerToModelInterface;
 
 public class YCorExpression extends QueryExpression {

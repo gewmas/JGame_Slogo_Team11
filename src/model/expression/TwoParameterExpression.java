@@ -3,9 +3,7 @@ package model.expression;
 import java.util.ArrayList;
 import java.util.List;
 import Exceptions.SlogoException;
-import controller.TurtleCommand;
 import model.Model;
-import model.parser.DefaultParser;
 
 public class TwoParameterExpression extends Expression {
     Expression expression1;

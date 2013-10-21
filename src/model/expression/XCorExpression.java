@@ -2,7 +2,6 @@ package model.expression;
 
 import Exceptions.SlogoException;
 import model.Model;
-import controller.Controller;
 import controller.ControllerToModelInterface;
 
 public class XCorExpression extends QueryExpression {

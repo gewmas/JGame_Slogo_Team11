@@ -3,7 +3,6 @@ package model.expression;
 import java.util.List;
 import Exceptions.SlogoException;
 import model.Model;
-import controller.TurtleCommand;
 
 public class ZeroParameterExpression extends Expression {
 

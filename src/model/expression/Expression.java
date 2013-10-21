@@ -1,29 +1,29 @@
 package model.expression;
 
-import java.util.ArrayList;
 import java.util.List;
 import model.Model;
 import model.parser.Parser;
 import Exceptions.SlogoException;
 import controller.TurtleCommand;
 
-public class Expression extends AbstractExpression{
 
-     Model model;
-     Parser parser;
+public class Expression extends AbstractExpression {
 
-//    public Expression (Expression expression) {
-//        this();
-//    }
+    Model model;
+    Parser parser;
+
+    // public Expression (Expression expression) {
+    // this();
+    // }
 
     public Expression (Model model) throws SlogoException {
         this.model = model;
-        this.parser = model.getParser();
+        parser = model.getParser();
     }
 
     @Override
     public void convert (List<String> cmdList) throws SlogoException {
-        
+
     }
 
     @Override
@@ -33,8 +33,7 @@ public class Expression extends AbstractExpression{
 
     @Override
     public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCmd) throws SlogoException {
-       return null;
+        return null;
     }
 
-    
 }

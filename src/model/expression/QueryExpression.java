@@ -1,10 +1,10 @@
 package model.expression;
 
 import java.util.List;
-import Exceptions.SlogoException;
 import model.Model;
-import controller.Controller;
+import Exceptions.SlogoException;
 import controller.ControllerToModelInterface;
+
 
 public abstract class QueryExpression extends Expression {
 
@@ -21,7 +21,7 @@ public abstract class QueryExpression extends Expression {
     public List<Expression> evaluate () {
         return null;
     }
-    
-    public abstract void executeControllerCommand(ControllerToModelInterface controller);
+
+    public abstract void executeControllerCommand (ControllerToModelInterface controller);
 
 }

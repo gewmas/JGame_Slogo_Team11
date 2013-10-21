@@ -2,21 +2,21 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Model;
 import Exceptions.SlogoException;
 import controller.TurtleCommand;
-import model.Model;
-import model.parser.DefaultParser;
+
 
 public class IfExpression extends Expression {
 
-    Expression conditionExpression; //assuming one expression
+    Expression conditionExpression; // assuming one expression
     List<Expression> commandExpression;
 
     /*
      * IF expr [ command(s) ]
      * if lessp 2 3 [ fd sum 1 2 ]
      */
-    public IfExpression(List<String> cmdList, Model model) throws SlogoException{
+    public IfExpression (List<String> cmdList, Model model) throws SlogoException {
         super(model);
         commandExpression = new ArrayList<Expression>();
         convert(cmdList);
@@ -30,58 +30,61 @@ public class IfExpression extends Expression {
         int closeBracketIndex = -1;
         int bracketNumber = 0;
 
-        //Problem with following codes if repeat [] inside another repeat
-        for(int i = 0; i < cmdList.size(); i++){
-            if(cmdList.get(i).equals("[")){
-                if(openBracketIndex == -1){
+        // Problem with following codes if repeat [] inside another repeat
+        for (int i = 0; i < cmdList.size(); i++) {
+            if (cmdList.get(i).equals("[")) {
+                if (openBracketIndex == -1) {
                     openBracketIndex = i;
                 }
                 bracketNumber++;
-            }else if(cmdList.get(i).equals("]")){
+            }
+            else if (cmdList.get(i).equals("]")) {
                 bracketNumber--;
-                if(bracketNumber == 0){
+                if (bracketNumber == 0) {
                     closeBracketIndex = i;
                     break;
                 }
             }
         }
 
-        conditionExpression = parser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
+        conditionExpression =
+                parser.parse(new ArrayList<String>(cmdList.subList(0, openBracketIndex)));
 
-        List<String> commandCmdList = new ArrayList<String>(cmdList.subList(openBracketIndex+1, closeBracketIndex));
-        while(!commandCmdList.isEmpty()){
+        List<String> commandCmdList =
+                new ArrayList<String>(cmdList.subList(openBracketIndex + 1, closeBracketIndex));
+        while (!commandCmdList.isEmpty()) {
             commandExpression.add(parser.parse(commandCmdList));
         }
 
-        for(int i = 0; i <= closeBracketIndex; i++){
+        for (int i = 0; i <= closeBracketIndex; i++) {
             cmdList.remove(0);
         }
     }
 
     @Override
-    public List<TurtleCommand> createTurtleCommands(TurtleCommand turtleCommand) throws SlogoException {
+    public List<TurtleCommand> createTurtleCommands (TurtleCommand turtleCommand)
+                                                                                 throws SlogoException {
 
         List<TurtleCommand> commandList = new ArrayList<TurtleCommand>();
 
         TurtleCommand latestTurtleCommand = turtleCommand;
 
         NumberExpression condition = (NumberExpression) conditionExpression.evaluate().get(0);
-        if(condition.getNumber() == 1) {
+        if (condition.getNumber() == 1) {
 
             for (Expression expression : commandExpression) {
-                
-                    List<TurtleCommand> turtleCmds = expression.createTurtleCommands(latestTurtleCommand);
-                    if(turtleCmds.size() != 0) {  //if call another fun inside the fun, no Cmds reutrn
-                        latestTurtleCommand = turtleCmds.get(turtleCmds.size() -1);
-                    }
-                    commandList.addAll(turtleCmds);
+
+                List<TurtleCommand> turtleCmds =
+                        expression.createTurtleCommands(latestTurtleCommand);
+                if (turtleCmds.size() != 0) {  // if call another fun inside the fun, no Cmds reutrn
+                    latestTurtleCommand = turtleCmds.get(turtleCmds.size() - 1);
+                }
+                commandList.addAll(turtleCmds);
             }
 
         }
-        
+
         return commandList;
     }
-
-
 
 }

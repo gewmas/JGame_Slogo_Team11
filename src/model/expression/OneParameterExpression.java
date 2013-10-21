@@ -2,10 +2,8 @@ package model.expression;
 
 import java.util.ArrayList;
 import java.util.List;
-import Exceptions.SlogoException;
 import model.Model;
-import model.parser.DefaultParser;
-import controller.TurtleCommand;
+import Exceptions.SlogoException;
 
 
 public abstract class OneParameterExpression extends Expression {
@@ -38,7 +36,5 @@ public abstract class OneParameterExpression extends Expression {
         finalExpressionList.addAll(expression.evaluate());
         return finalExpressionList;
     }
-
-   
 
 }

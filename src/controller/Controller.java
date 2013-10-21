@@ -19,7 +19,16 @@ import viewer.SLogoViewer;
 import viewer.Viewer;
 import Exceptions.SlogoException;
 
-
+/**
+ * 
+ * Controller is responsible for storing instances of Turtle and servers interface for View and Model. 
+ * View will call a function in Controller to pass command strings to Model, 
+ * set activeTurtle and get multiple properties of the activeTurtle, background color. 
+ * Model will update the TurtleTrace of the activeTurtle.
+ * 
+ * @author Yuhua, Fabio
+ *
+ */
 public class Controller implements ControllerToViewInterface, ControllerToModelInterface {
     private static final String CLEARSCREEN = "clearscreen";
 

@@ -1,9 +1,9 @@
 package model.expression;
 
-import Exceptions.SlogoException;
 import model.Model;
-import controller.Controller;
+import Exceptions.SlogoException;
 import controller.ControllerToModelInterface;
+
 
 public class IsShowingExpression extends QueryExpression {
 
