@@ -44,6 +44,11 @@ public class Toggles extends Panel {
         buttonList.add(new GridButton(controller));   
         buttonList.add(new BoxButton(controller));
         buttonList.add(new InfoTableButton(controller));
+        buttonList.add(new UndoButton(controller));
+        buttonList.add(new RedoButton(controller));
+        buttonList.add(new SavePreferencesButton(controller));
+        buttonList.add(new LoadPreferencesButton(controller));
+
         
         for (int i = 0; i < buttonList.size(); i++) {
 			add(buttonList.get(i));

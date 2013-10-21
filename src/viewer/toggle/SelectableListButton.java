@@ -25,12 +25,12 @@ public abstract class SelectableListButton extends Button {
 	private String[] myListValues;
 	private String myDialogMessage;
 	private String myCommand;
-        protected JList myList;	
-        protected Controller myController;
+    protected JList myList;	
+    protected Controller myController;
 	
 	public SelectableListButton(String[] listStrings,String[] listValues,String command
 	                            ,String buttonTitle,String dialogMessage, Controller controller) {
-		super(buttonTitle);
+		super(buttonTitle, controller);
 		myController=controller;
 		myDialogMessage=dialogMessage;
 		myListStrings=listStrings;

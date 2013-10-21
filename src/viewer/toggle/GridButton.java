@@ -8,11 +8,11 @@ import viewer.Panel;
 public class GridButton extends Button {
     private static final String LABEL="Toggle Grid";
     private static final String COMMAND="GRIDTOGGLE";
-    protected Controller myController;
+    //protected Controller myController;
     
     public GridButton(Controller controller) {
-        super(LABEL);
-        myController=controller;
+        super(LABEL, controller);
+        //myController=controller;
     }
 
     @Override

@@ -29,7 +29,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     private int currentCommand;
     
 
-
     Map<String, Workspace> workspaces;
     Workspace currentWorkspace;
     ResourceBundle messages;

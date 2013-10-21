@@ -8,11 +8,11 @@ import viewer.Panel;
 public class BoxButton extends Button {
     private static final String LABEL="Highlight Active Turtles";
     private static final String COMMAND="BOXTOGGLE";
-    protected Controller myController;
+    //protected Controller myController;
     
     public BoxButton(Controller controller) {
-        super(LABEL);
-        myController=controller;
+        super(LABEL, controller);
+        //myController=controller;
     }
 
     @Override
