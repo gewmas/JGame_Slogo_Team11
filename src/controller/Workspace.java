@@ -127,7 +127,18 @@ public class Workspace {
         this.error = error;
     }
     
-    public void clear(){
+    public void clearScreen(){
+        turtles.clear();
+        activeTurtles.clear();
+        Turtle turtle = new DefaultTurtle();
+        turtles.put(turtle.id, turtle);
+        activeTurtles.add(turtle);
+//        for(Entry<String, Turtle> e : turtles.entrySet()){
+//            e.getValue().clearTurtleTrace();
+//        }
+    }
+    
+    public void clearWorkspace(){
         definedFunction.clear();
         runningFunction.clear();
         globalVariables.clear();

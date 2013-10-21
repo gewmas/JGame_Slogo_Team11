@@ -16,5 +16,9 @@ public abstract class Turtle {
     public String getId () {
         return id;
     }
+    
+    public void clearTurtleTrace(){
+        turtleTrace.clearCommandList();
+    }
    
 }
