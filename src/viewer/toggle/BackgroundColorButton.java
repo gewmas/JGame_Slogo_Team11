@@ -36,7 +36,6 @@ public class BackgroundColorButton extends SelectableListButton {
     public void buttonPushed () {
     	super.buttonPushed();
     	this.myController.setBackgroundColor(BG_JGCOLORS[myList.getSelectedIndex()]);
-        //((Toggles) this.myPanel).setBackgroundColor(BG_JGCOLORS[myList.getSelectedIndex()]);
     }
 	
 }

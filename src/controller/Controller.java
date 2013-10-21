@@ -209,8 +209,8 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         return currentWorkspace.getPenColor();
     }
 
-    public void setTurtleImage (int imageNum) {
-        // Insert method call here
+    public void setTurtleImage (String imageNumber) {
+        ((SLogoViewer) viewer).setTurtleImage(Integer.parseInt(imageNumber));
     }
 
     public void toggleGrid () {
