@@ -7,7 +7,7 @@ public class LoadPreferencesButton extends SelectableListButton {
 
 	private static final String BUTTON_TITLE = "Load Preferences";
 	private static final String DIALOG_MESSAGE = "Please select preferences to load.";
-	protected static String[] PREFERENCES = {};
+	protected static String[] PREFERENCES = {"1", "2", "3"};
 	private static final String COMMAND = "LOADPREFS";
 	//protected TurtleCommand turtleCmd;
 	
@@ -24,7 +24,8 @@ public class LoadPreferencesButton extends SelectableListButton {
 		for (Integer i = 0; i < preferenceNames.length; i++) {
 			preferenceNames[i] = i.toString();
 		}
-		return preferenceNames;
+		//return preferenceNames;
+		return PREFERENCES;
 	}
 	
 //	@Override
