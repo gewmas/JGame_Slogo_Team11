@@ -64,7 +64,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
             System.out.println("Update Trace Finished!");
         }
         catch (SlogoException e) {
-            // e.printStackTrace();
+            //e.printStackTrace();
             SlogoError error =
                     new SlogoError("Parse Error",
                                    "A syntax error occured while parsing your script");
