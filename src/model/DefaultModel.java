@@ -69,7 +69,7 @@ public class DefaultModel extends Model {
         List<Expression> tempExpressionList = new ArrayList<Expression>();
       
         for(Turtle turtle : activeTurtles){
-            TurtleTrace turtleTrace = turtle.getTurtleTrace();            
+            TurtleTrace turtleTrace = turtle.getTurtleTrace();          
             
             // evaluate & create TurtleCommand
             for (int i = 0; i < expressionList.size(); i++) {
