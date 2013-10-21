@@ -8,11 +8,11 @@ import viewer.Panel;
 public class InfoTableButton extends Button {
     private static final String LABEL="Toggle Data Panel";
     private static final String COMMAND="DATATOGGLE";
-    protected Controller myController;
+    //protected Controller myController;
     
     public InfoTableButton(Controller controller) {
-        super(LABEL);
-        myController=controller;
+        super(LABEL, controller);
+        //myController=controller;
     }
 
     @Override

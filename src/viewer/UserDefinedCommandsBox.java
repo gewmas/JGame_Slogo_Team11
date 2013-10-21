@@ -1,10 +1,12 @@
 package viewer;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
@@ -21,9 +23,10 @@ public class UserDefinedCommandsBox extends Panel {
     public UserDefinedCommandsBox(int width, int height){
         super(width,height);
         myListModel=new DefaultListModel();
-        myDefinedCommands=new JList();
+        myDefinedCommands=new JList(myListModel);
         add(HEADER);
         add(myDefinedCommands);
         setBorder(BorderFactory.createLineBorder(Color.black));
+//        myListModel.addElement(new Function Name);;
     }
 }
