@@ -20,7 +20,6 @@ public class Workspace {
     private Map<String, Expression> runningFunction;
     private Map<String, Expression> globalVariables;
     
-//    private String backgroundColor;
     private JGColor backgroundColor;
     private JGColor penColor;
     
@@ -53,14 +52,24 @@ public class Workspace {
     
     public void setActiveTurtle (List<String> turtleIds) {
         activeTurtles.clear();
+        
         //Bad Method, Modify!
-        for(Entry<String, Turtle> e : turtles.entrySet()){
-            for(String s : turtleIds){
-                if(e.getValue().getId().equals(s)){
-                    activeTurtles.add(e.getValue());
-                }
+        for(String turtleId : turtleIds){
+            if(!turtles.containsKey(turtleId)){
+                Turtle turtle = new DefaultTurtle(turtleId);
+                turtles.put(turtleId, turtle);
             }
+            
+            activeTurtles.add(turtles.get(turtleId));
+            
         }
+//        for(Entry<String, Turtle> e : turtles.entrySet()){
+//            for(String s : turtleIds){
+//                if(e.getValue().getId().equals(s)){
+//                    activeTurtles.add(e.getValue());
+//                }
+//            }
+//        }
     }
     
     public void setEvenActiveTurtle () {
@@ -127,7 +136,18 @@ public class Workspace {
         this.error = error;
     }
     
-    public void clear(){
+    public void clearScreen(){
+        turtles.clear();
+        activeTurtles.clear();
+        Turtle turtle = new DefaultTurtle();
+        turtles.put(turtle.id, turtle);
+        activeTurtles.add(turtle);
+//        for(Entry<String, Turtle> e : turtles.entrySet()){
+//            e.getValue().clearTurtleTrace();
+//        }
+    }
+    
+    public void clearWorkspace(){
         definedFunction.clear();
         runningFunction.clear();
         globalVariables.clear();

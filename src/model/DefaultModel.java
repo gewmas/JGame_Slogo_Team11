@@ -29,7 +29,7 @@ public class DefaultModel extends Model {
     //keep track of whether within FunctionExpression
     private Stack<String> functionStack;
 
-    List<Turtle> activeTurtle;
+    List<Turtle> activeTurtles;
 
     public DefaultModel(Controller controller){
         this.controller = controller;
@@ -45,30 +45,52 @@ public class DefaultModel extends Model {
         functionStack.clear();
         
       //get TurtleTrace of every activeTurtle
-        activeTurtle = controller.getActiveTurtles();
+      activeTurtles = controller.getActiveTurtles();
     }
 
     public void updateTrace (String userInput) throws SlogoException {
 
         updateInstanceVariable();
-        
-        TurtleCommand latestTurtleCommand;
-        List<TurtleCommand> tempTurtleCommand;
 
         // convert command
         List<String> commandInput = new ArrayList<String>(Arrays.asList(userInput.split("[\\s,;\\n\\t]+")));//"\\s+")));       
         
-        List<Expression> expressionList;
-        expressionList = parser.execute(commandInput, definedFunction);
-
+        List<Expression> expressionList = parser.execute(commandInput, definedFunction);
+        
+        createTraceForTurtles(expressionList);
+        
+    }
+    
+    public void createTraceForTurtles(List<Expression> expressionList) throws SlogoException {
+        
+        TurtleCommand latestTurtleCommand;
+        List<TurtleCommand> tempTurtleCommand;
+        
+        List<Turtle> tempActiveTurtles = new ArrayList<Turtle>(activeTurtles);
+        
+        List<Expression> tempExpressionList = new ArrayList<Expression>();
       
-        for(Turtle turtle : activeTurtle){
-            TurtleTrace turtleTrace = turtle.getTurtleTrace();
-
-            //TODO: evaluate Tell, TellEven, TellOdd, Ask, AskWith
+        for(Turtle turtle : tempActiveTurtles){
+            TurtleTrace turtleTrace = turtle.getTurtleTrace();          
             
             // evaluate & create TurtleCommand
-            for (Expression expression : expressionList) {
+            for (int i = 0; i < expressionList.size(); i++) {
+                Expression expression = expressionList.get(i);
+                
+                //TODO: evaluate Tell, TellEven, TellOdd, Ask, AskWith
+                if(expression.getClass().getSuperclass().getSimpleName().equals("TellExpression")) {
+                    //The activeTurtles is going to change from here on out.
+                    //create list of remaining commands
+                    
+//                    tempExpressionList.addAll(expressionList);
+                  
+//                    tempExpressionList.remove(i);
+                    
+                    tempExpressionList = new ArrayList<Expression>(expressionList.subList(i+1, expressionList.size()));
+                    ((TellExpression) expression).executeControllerCommand(controller);
+                    break;
+                }
+                
                 if(expression.getClass().getSuperclass().getSimpleName().equals("QueryExpression") || expression.getClass().getSuperclass().getSimpleName().equals("FourParameterExpression")){
                     ((QueryExpression) expression).executeControllerCommand(controller);
                     continue;
@@ -98,7 +120,6 @@ public class DefaultModel extends Model {
                     runningFunction.put(functionName, expression);
                 }*/
 
-                //Here check IF expression is of type that doesnt return turtleCommand.  ????
                 latestTurtleCommand = new TurtleCommand(turtleTrace.getLatest());
                 tempTurtleCommand = expression.createTurtleCommands(latestTurtleCommand);
                 turtleTrace.add(tempTurtleCommand);
@@ -106,6 +127,10 @@ public class DefaultModel extends Model {
             
         }
         
+        if(tempExpressionList.size() > 0) {
+            createTraceForTurtles(tempExpressionList);
+        }
+
     }
 
     public Map<String, Expression> getGlobalVariables () {

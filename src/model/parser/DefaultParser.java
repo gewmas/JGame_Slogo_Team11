@@ -27,8 +27,7 @@ public class DefaultParser extends Parser {
         
         while(!commandInput.isEmpty()){
             Expression parsedExpression = parse(commandInput);
-//                Expression parsedExpression = DefaultParser.parse(commandInput);
-                expressionList.add(parsedExpression);
+            expressionList.add(parsedExpression);
         }
         
         return expressionList;
@@ -237,13 +236,19 @@ public class DefaultParser extends Parser {
             return new SetShapeExpression(commandInput, model);
         }
         
+        else if(equals(s, messages.getString("ID"))){
+            commandInput.remove(0);
+            return new IDExpression(model);
+        }
         else if(equals(s, messages.getString("Tell"))) {
-            return new TellDefaultExpression(model);
+            return new TellDefaultExpression(commandInput, model);
         } 
         else if(equals(s, messages.getString("TellEven"))) {
+            commandInput.remove(0);
             return new TellEvenExpression(model);
         }
         else if(equals(s, messages.getString("TellOdd"))) {
+            commandInput.remove(0);
             return new TellOddExpression(model);
         }
         else if(equals(s, messages.getString("Ask"))) {
@@ -251,14 +256,12 @@ public class DefaultParser extends Parser {
         }
         // TODO ask with here
         else if(equals(s, messages.getString("AskWith"))) {
-            //return new AskWithExpression(commandInput, model);
+            return new AskWithExpression(commandInput, model);
         }
         
         else {
             throw new SlogoException("Command not recognized");
         }
-        
-        return null;
 
     }
 }

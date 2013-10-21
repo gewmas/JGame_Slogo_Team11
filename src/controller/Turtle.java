@@ -5,8 +5,12 @@ public abstract class Turtle {
     TurtleTrace turtleTrace;
     
     public Turtle(){
+        this("1");
+    }
+    
+    public Turtle(String id){
         turtleTrace = new TurtleTrace();
-        id = "1";
+        this.id = id;
     }
 
     public TurtleTrace getTurtleTrace () {
@@ -15,6 +19,10 @@ public abstract class Turtle {
 
     public String getId () {
         return id;
+    }
+    
+    public void clearTurtleTrace(){
+        turtleTrace.clearCommandList();
     }
    
 }
