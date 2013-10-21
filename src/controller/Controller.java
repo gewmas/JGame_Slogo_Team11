@@ -5,12 +5,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+
 import javax.swing.JFileChooser;
+
 import jgame.JGColor;
 import model.DefaultModel;
 import model.Model;
@@ -85,6 +88,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     public void undo () {
+    	System.out.println("hello");
         currentCommand--;
         interpretCommand(CLEARSCREEN);
         for (String command : commandList.subList(0, currentCommand)) {
@@ -105,6 +109,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     public void setCurrentWorkspace (String workspaceId) {
+    	System.out.println("adam");
         Workspace tempWorkspace = workspaces.get(workspaceId);
 
         if (tempWorkspace == null) {
@@ -210,7 +215,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     public void toggleGrid () {
         ((SLogoViewer) viewer).toggleGrid();
-        ;
     }
 
     public void toggleHighlightTurtles () {

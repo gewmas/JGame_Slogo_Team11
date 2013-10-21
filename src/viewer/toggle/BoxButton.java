@@ -8,7 +8,6 @@ import viewer.Panel;
 public class BoxButton extends Button {
     private static final String LABEL="Highlight Active Turtles";
     private static final String COMMAND="BOXTOGGLE";
-    //protected Controller myController;
     
     public BoxButton(Controller controller) {
         super(LABEL, controller);

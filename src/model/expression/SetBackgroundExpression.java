@@ -18,7 +18,7 @@ public class SetBackgroundExpression extends DisplayCommandExpression {
         
         NumberExpression exp = super.turtleCommandPrep(turtleCmd, list);
         
-        turtleCmd.setBackground(exp.getNumber());
+//        turtleCmd.setBackground(exp.getNumber());
         
         list.add(turtleCmd);
         return list;

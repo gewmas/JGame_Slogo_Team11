@@ -33,7 +33,7 @@ public abstract class TurtleDisplay extends JGEngine {
         protected DisplayTurtle myDisplayTurtle;
         protected double myWidth, myHeight;
         protected Controller myController;
-        protected List<TurtleCommand> myTurtleList;
+        protected List<TurtleCommand> myTurtleCommandList;
         protected int myTurtleNumber;
         protected DisplayGrid myGrid;
         protected JGColor myPenColor;
@@ -107,7 +107,7 @@ public abstract class TurtleDisplay extends JGEngine {
             Point2D origin=getDisplayCoordinates(0,0);
             myDisplayTurtle.setPosition(origin.getX(), origin.getY());
             myDisplayTurtle.setRotation(90);
-            myTurtleList.clear();
+            myTurtleCommandList.clear();
             for (DisplayPath path:myPaths){
                 path.remove();
             }
@@ -150,12 +150,12 @@ public abstract class TurtleDisplay extends JGEngine {
 
         private void drawTurtle(){
             try {
-                myTurtleList=myController.getTurtles().get(0).getTurtleTrace().getCommandList();
-                if (!myTurtleList.isEmpty()) {
-                    for (int i=myTurtleNumber;i<myTurtleList.size();i++){
-                        TurtleCommand lastCommand=myTurtleList.get(i-1);
+                myTurtleCommandList=myController.getTurtles().get(0).getTurtleTrace().getCommandList();
+                if (!myTurtleCommandList.isEmpty()) {
+                    for (int i=myTurtleNumber;i<myTurtleCommandList.size();i++){
+                        TurtleCommand lastCommand=myTurtleCommandList.get(i-1);
                         Point2D lastPos=getDisplayCoordinates(lastCommand.getX(),lastCommand.getY());
-                        TurtleCommand thisCommand=myTurtleList.get(i);
+                        TurtleCommand thisCommand=myTurtleCommandList.get(i);
                         Point2D thisPos=getDisplayCoordinates(thisCommand.getX(),thisCommand.getY());
                         //System.out.println(i);
                         if (lastCommand.isPenDown()){
@@ -167,8 +167,8 @@ public abstract class TurtleDisplay extends JGEngine {
                                                         myPenColor));
                         }
                     }
-                    myTurtleNumber=myTurtleList.size();
-                    endCommand=myTurtleList.get(myTurtleList.size()-1);
+                    myTurtleNumber=myTurtleCommandList.size();
+                    endCommand=myTurtleCommandList.get(myTurtleCommandList.size()-1);
                     Point2D endPos=getDisplayCoordinates(endCommand.getX(),endCommand.getY());
                     setTurtlePosition(endPos.getX(),endPos.getY());
                     myDisplayTurtle.setRotation(endCommand.getDirection());

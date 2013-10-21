@@ -32,11 +32,11 @@ public abstract class Button extends JButton {
 				buttonPushed();
 			}
         });
-		/*this.addMouseListener(new MouseAdapter(){
-		    public void mousePressed(MouseEvent e){
-		        buttonPushed(e);
-		    }
-		})*/;
+//		this.addMouseListener(new MouseAdapter(){
+//		    public void mousePressed(MouseEvent e){
+//		        buttonPushed(e);
+//		    }
+//		});
 	}
 	
 	public abstract void buttonPushed();

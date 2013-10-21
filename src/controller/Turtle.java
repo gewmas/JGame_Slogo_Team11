@@ -1,5 +1,7 @@
 package controller;
 
+import jgame.JGColor;
+
 public abstract class Turtle {
     String id;
     TurtleTrace turtleTrace;
@@ -24,5 +26,6 @@ public abstract class Turtle {
     public void clearTurtleTrace(){
         turtleTrace.clearCommandList();
     }
+
    
 }

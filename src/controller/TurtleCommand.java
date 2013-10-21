@@ -13,20 +13,13 @@ public class TurtleCommand {
     private boolean isVisible;
     private boolean isActive;
 
-    private static final String BACKGROUND = "background";
-    private static final String PEN_COLOR = "penColor";
-    private static final String PEN_SIZE = "penSize";
-    private static final String SHAPE = "shape";
-
-    private double background;
+//    private double background;
     private double penColor;
     private double penSize;
     private double shape;
     private boolean stamp;
     private boolean clearStamps;
-    
-    private static List<HashMap<String, Double>> preferencesMap;
-    
+        
     public TurtleCommand(){
         this(0.0, 0.0, 90.0);
     }
@@ -49,9 +42,17 @@ public class TurtleCommand {
 //        this.isVisible = rhs.isVisible;
     }
     
+    private static final String BACKGROUND = "background";
+    private static final String PEN_COLOR = "penColor";
+    private static final String PEN_SIZE = "penSize";
+    private static final String SHAPE = "shape";
+
+    private static List<HashMap<String, Double>> preferencesMap;
+    
 	public Map<String, Double> getCurrentPreferences() {
 		Map<String, Double> preference = new HashMap<String, Double>();
-		preference.put(BACKGROUND, this.getBackground());
+
+//		preference.put(BACKGROUND, this.getBackground());
 		preference.put(PEN_COLOR, this.getPenColor());
 		preference.put(SHAPE, this.getShape());
 		preference.put(PEN_SIZE, this.getPenSize());
@@ -64,7 +65,7 @@ public class TurtleCommand {
     
     public void loadPreferences (int index) {
     	Map<String, Double> map = this.preferencesMap.get(index);
-    	this.setBackground(map.get(BACKGROUND));
+//    	this.setBackground(map.get(BACKGROUND));
     	this.setPenColor(map.get(PEN_COLOR));
     	this.setPenSize(map.get(PEN_SIZE));
     	this.setShape(map.get(SHAPE));
@@ -72,15 +73,15 @@ public class TurtleCommand {
     
     public static List<HashMap<String, Double>> getAllPreferences() {
     	return (ArrayList<HashMap<String, Double>>) preferencesMap;
-    }
+    }    
     
-    public double getBackground () {
-        return background;
-    }
-
-    public void setBackground (double background) {
-        this.background = background;
-    }
+//    public double getBackground () {
+//        return  background;
+//    }
+//
+//    public void setBackground (double background) {
+//        this.background = background;
+//    }
 
     public double getPenColor () {
         return penColor;

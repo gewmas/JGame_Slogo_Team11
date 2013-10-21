@@ -3,8 +3,11 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import jgame.JGColor;
+
 public class TurtleTrace {
     List<TurtleCommand> commandList;
+    JGColor penColor;
  
     public TurtleTrace(){
         commandList = new ArrayList<TurtleCommand>();
@@ -56,8 +59,8 @@ public class TurtleTrace {
         
     }
     
-    public void setTurtlePenColor(){
-        
+    public void setTurtlePenColor(JGColor color){
+    	this.penColor = color;
     }
     
 }

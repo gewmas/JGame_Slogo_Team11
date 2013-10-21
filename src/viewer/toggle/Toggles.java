@@ -21,11 +21,11 @@ import viewer.display_objects.TurtleDisplay;
 public class Toggles extends Panel {
 	
     protected List<Button> buttonList;
-//    private JGColor backgroundColor;
-//    private int turtleImageNum;
-//    private JGColor penColor;
-//    private TurtleDisplay myTurtleDisplay;
-//    private boolean gridOn;
+    private JGColor backgroundColor;
+    private int turtleImageNum;
+    private JGColor penColor;
+    private TurtleDisplay myTurtleDisplay;
+    private boolean gridOn;
     
     public Toggles(int width, int height, Controller controller){
         super(width,height);
@@ -59,39 +59,39 @@ public class Toggles extends Panel {
         setVisible(true);
     }
     
-//    public void setBackgroundColor(JGColor color) {
-//    	myTurtleDisplay.setBackGroundColor(color);
-//    	this.backgroundColor = color;
-//    }
-//    
-//    public JGColor getBackgroundColor() {
-//    	return this.backgroundColor;
-//    }
-//    
-//    public void setTurtleImage(int imageNum) {
-//        myTurtleDisplay.setTurtleImageNumber(imageNum);
-//        this.turtleImageNum = imageNum;
-//    }
-//    
-//    public int getTurtleImage() {
-//    	return this.turtleImageNum;
-//    }
-//    
-//    public void setPenColor(JGColor color) {
-//    	myTurtleDisplay.setPenColor(color);
-//    	this.penColor = color;
-//    }
-//    
-//    public JGColor getPenColor() {
-//    	return this.penColor;
-//    }
-//    
-//    public void toggleGrid() {
-//    	myTurtleDisplay.toggleGrid();
-//    	this.gridOn = !this.gridOn;
-//    }
-//    
-//    public boolean getGridStatus() {
-//    	return this.gridOn;
-//    }
+    public void setBackgroundColor(JGColor color) {
+    	myTurtleDisplay.setBackGroundColor(color);
+    	this.backgroundColor = color;
+    }
+    
+    public JGColor getBackgroundColor() {
+    	return this.backgroundColor;
+    }
+    
+    public void setTurtleImage(int imageNum) {
+        myTurtleDisplay.setTurtleImageNumber(imageNum);
+        this.turtleImageNum = imageNum;
+    }
+    
+    public int getTurtleImage() {
+    	return this.turtleImageNum;
+    }
+    
+    public void setPenColor(JGColor color) {
+    	myTurtleDisplay.setPenColor(color);
+    	this.penColor = color;
+    }
+    
+    public JGColor getPenColor() {
+    	return this.penColor;
+    }
+    
+    public void toggleGrid() {
+    	myTurtleDisplay.toggleGrid();
+    	this.gridOn = !this.gridOn;
+    }
+    
+    public boolean getGridStatus() {
+    	return this.gridOn;
+    }
 }

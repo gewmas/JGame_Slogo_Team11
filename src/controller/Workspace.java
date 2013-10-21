@@ -20,6 +20,7 @@ public class Workspace {
     private Map<String, Expression> runningFunction;
     private Map<String, Expression> globalVariables;
     
+    private boolean gridOn;
     private JGColor backgroundColor;
     private JGColor penColor;
     
@@ -125,7 +126,11 @@ public class Workspace {
     }
 
     public JGColor getBackgroundColor () {
-        return backgroundColor;
+        return this.backgroundColor;
+    }
+    
+    public void toggleGrid() {
+    	this.gridOn = !this.gridOn;
     }
     
     public SlogoError getError () {

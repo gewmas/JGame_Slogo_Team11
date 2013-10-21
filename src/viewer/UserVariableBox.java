@@ -23,5 +23,6 @@ public class UserVariableBox extends EditableListTable{
             myTableModel.addRow(test);
 		}
         //Automate value entry?*/
+        
     }
 }

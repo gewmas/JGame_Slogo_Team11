@@ -15,7 +15,8 @@ public class UndoButton extends Button {
 	@Override
 	public void buttonPushed() {
 		// TODO Auto-generated method stub
-        myController.interpretCommand(COMMAND);
+		this.myController.undo();
+//        myController.interpretCommand(COMMAND);
 	}
 
 }
