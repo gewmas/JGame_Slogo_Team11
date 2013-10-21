@@ -20,7 +20,6 @@ public class Workspace {
     private Map<String, Expression> runningFunction;
     private Map<String, Expression> globalVariables;
     
-//    private String backgroundColor;
     private JGColor backgroundColor;
     private JGColor penColor;
     

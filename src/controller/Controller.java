@@ -296,6 +296,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     public void isShowing () {
         // view.isShowing();
     }
+    
+    public void id(){
+        // view show ids
+    }
 
     public ResourceBundle getMessages () {
         return messages;

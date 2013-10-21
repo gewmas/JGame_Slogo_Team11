@@ -236,6 +236,10 @@ public class DefaultParser extends Parser {
             return new SetShapeExpression(commandInput, model);
         }
         
+        else if(equals(s, messages.getString("ID"))){
+            commandInput.remove(0);
+            return new IDExpression(model);
+        }
         else if(equals(s, messages.getString("Tell"))) {
             return new TellDefaultExpression(commandInput, model);
         } 
@@ -252,14 +256,12 @@ public class DefaultParser extends Parser {
         }
         // TODO ask with here
         else if(equals(s, messages.getString("AskWith"))) {
-            //return new AskWithExpression(commandInput, model);
+            return new AskWithExpression(commandInput, model);
         }
         
         else {
             throw new SlogoException("Command not recognized");
         }
-        
-        return null;
 
     }
 }
