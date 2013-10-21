@@ -237,7 +237,7 @@ public class DefaultParser extends Parser {
         }
         
         else if(equals(s, messages.getString("Tell"))) {
-            return new TellDefaultExpression(model);
+            return new TellDefaultExpression(commandInput, model);
         } 
         else if(equals(s, messages.getString("TellEven"))) {
             return new TellEvenExpression(model);

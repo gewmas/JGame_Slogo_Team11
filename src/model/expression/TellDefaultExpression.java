@@ -10,9 +10,10 @@ public class TellDefaultExpression extends TellExpression {
     
     private ArrayList<String> turtleIds;
     
-    public TellDefaultExpression (Model model) throws SlogoException {
+    public TellDefaultExpression (List<String> cmdList, Model model) throws SlogoException {
         super(model);
         turtleIds = new ArrayList<String>();
+        convert(cmdList);
     }
     
     @Override
@@ -41,7 +42,7 @@ public class TellDefaultExpression extends TellExpression {
         //Within [ :count ]
         for(int i = openBracketIndex+1; i < closeBracketIndex; i++){
             turtleIds.add(cmdList.get(i));
-            cmdList.remove(0);
+            cmdList.remove(1);
         }
         
         cmdList.remove(0); // remove [

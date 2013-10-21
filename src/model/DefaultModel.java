@@ -79,7 +79,12 @@ public class DefaultModel extends Model {
                 if(expression.getClass().getSuperclass().getSimpleName().equals("TellExpression")) {
                     //The activeTurtles is going to change from here on out.
                     //create list of remaining commands
-                    tempExpressionList = expressionList.subList(i+1, expressionList.size()-1);
+                    
+//                    tempExpressionList.addAll(expressionList);
+                  
+//                    tempExpressionList.remove(i);
+                    
+                    tempExpressionList = new ArrayList<Expression>(expressionList.subList(i+1, expressionList.size()));
                     ((TellExpression) expression).executeControllerCommand(controller);
                     break;
                 }

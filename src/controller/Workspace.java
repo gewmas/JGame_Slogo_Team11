@@ -53,14 +53,24 @@ public class Workspace {
     
     public void setActiveTurtle (List<String> turtleIds) {
         activeTurtles.clear();
+        
         //Bad Method, Modify!
-        for(Entry<String, Turtle> e : turtles.entrySet()){
-            for(String s : turtleIds){
-                if(e.getValue().getId().equals(s)){
-                    activeTurtles.add(e.getValue());
-                }
+        for(String turtleId : turtleIds){
+            if(!turtles.containsKey(turtleId)){
+                Turtle turtle = new DefaultTurtle(turtleId);
+                turtles.put(turtleId, turtle);
             }
+            
+            activeTurtles.add(turtles.get(turtleId));
+            
         }
+//        for(Entry<String, Turtle> e : turtles.entrySet()){
+//            for(String s : turtleIds){
+//                if(e.getValue().getId().equals(s)){
+//                    activeTurtles.add(e.getValue());
+//                }
+//            }
+//        }
     }
     
     public void setEvenActiveTurtle () {

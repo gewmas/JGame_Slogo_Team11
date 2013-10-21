@@ -8,6 +8,10 @@ public class DefaultTurtle extends Turtle {
         super();
     }
     
+    public DefaultTurtle(String id){
+        super(id);
+    }
+    
     public void setTurtleColor(String color){
         this.color = color;
     }
