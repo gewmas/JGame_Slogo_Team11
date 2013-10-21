@@ -20,7 +20,6 @@ public class TurtleImageButton extends SelectableListButton {
     @Override
     public void buttonPushed() {
     	super.buttonPushed();
-    	
     	this.myController.setTurtleImage(IMAGE_NUMBERS[myList.getSelectedIndex()]);
     }
 

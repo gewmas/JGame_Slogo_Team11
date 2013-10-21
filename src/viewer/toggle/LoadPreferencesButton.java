@@ -20,7 +20,7 @@ public class LoadPreferencesButton extends SelectableListButton {
 	}
 	
 	private String[] getAllPreferenceNames() {
-		String[] preferenceNames = new String[TurtleCommand.getAllPreferences().size()];
+		String[] preferenceNames = new String[Controller.getAllPreferences().size()];
 		for (Integer i = 0; i < preferenceNames.length; i++) {
 			preferenceNames[i] = i.toString();
 		}

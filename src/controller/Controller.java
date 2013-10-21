@@ -20,6 +20,8 @@ import model.Model;
 import model.expression.Expression;
 import viewer.SLogoViewer;
 import viewer.Viewer;
+import viewer.toggle.BackgroundColorButton;
+import viewer.toggle.PenColorButton;
 import Exceptions.SlogoException;
 
 
@@ -40,18 +42,21 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     ResourceBundle messages;
     HashMap<String, String> languageToCountry;
     HashMap<Double, ColorIndex> colorIndexes;
+    private static final String BACKGROUND = "background";
+    private static final String PEN_COLOR = "penColor";
+    private static final String PEN_SIZE = "penSize";
+    private static final String SHAPE = "shape";
+
+    private static List<HashMap<String, Double>> preferencesMap;
+    
 
     public Controller () {
-        languageToCountry = new HashMap<String, String>();
-        languageToCountry.put("en", "US");
-        languageToCountry.put("fr", "FR");
-        languageToCountry.put("pt", "PT");
-        languageToCountry.put("it", "IT");
-        setLanguage("en");
+    	buildLanguageMap();
 
         model = new DefaultModel(this);
         viewer = new SLogoViewer(this);
 
+        preferencesMap = new ArrayList<HashMap<String, Double>>();
         // default workspace with id "1"
         workspaces = new HashMap<String, Workspace>();
         currentWorkspace = new Workspace();
@@ -59,7 +64,16 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     }
 
-    // Take the commands typed by the user and updates the TurtleTrace accordingly.
+    private void buildLanguageMap() {
+        languageToCountry = new HashMap<String, String>();
+        languageToCountry.put("en", "US");
+        languageToCountry.put("fr", "FR");
+        languageToCountry.put("pt", "PT");
+        languageToCountry.put("it", "IT");
+        setLanguage("en");		
+	}
+
+	// Take the commands typed by the user and updates the TurtleTrace accordingly.
     @Override
     public void interpretCommand (String userInput) {
         try {
@@ -77,6 +91,31 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         }
         // view.paintFrame(getTurtleTraces);
     }
+    
+	public Map<String, Double> getCurrentPreferences() {
+		Map<String, Double> preference = new HashMap<String, Double>();
+		preference.put(BACKGROUND, BackgroundColorButton.getColorIdFromColor(this.getBackgroundColor()));
+		preference.put(PEN_COLOR, PenColorButton.getColorIdFromColor(this.getPenColor()));
+		preference.put(SHAPE, (double) this.getTurtleImage());
+//		preference.put(PEN_SIZE, this.getPenSize());
+		return preference;
+	}
+    
+    public void savePreferences (Map<String, Double> preference) {
+    	this.preferencesMap.add((HashMap<String, Double>) preference);
+    }
+    
+    public void loadPreferences (int index) {
+    	Map<String, Double> map = this.preferencesMap.get(index);
+    	this.setBackgroundColor(BackgroundColorButton.getColorFromColorId(map.get(BACKGROUND)));
+    	this.setPenColor(PenColorButton.getColorFromColorId(map.get(PEN_COLOR)));
+//    	this.setPenSize(map.get(PEN_SIZE));
+    	this.setTurtleImage(Double.toString(map.get(SHAPE)));
+    }
+    
+    public static List<HashMap<String, Double>> getAllPreferences() {
+    	return (ArrayList<HashMap<String, Double>>) preferencesMap;
+    }    
 
     public void addCommand (String userInput) {
         if (commandList.size() != currentCommand) {
@@ -189,13 +228,11 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     // Additional getters/setters
-    @Override
     public void setBackgroundColor (JGColor backgroundColor) {
         ((SLogoViewer) viewer).setBackgroundColor(backgroundColor);
         currentWorkspace.setBackgroundColor(backgroundColor);
     }
 
-    @Override
     public JGColor getBackgroundColor () {
         return currentWorkspace.getBackgroundColor();
     }
@@ -211,6 +248,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     public void setTurtleImage (String imageNumber) {
         ((SLogoViewer) viewer).setTurtleImage(Integer.parseInt(imageNumber));
+    }
+    
+    public Double getTurtleImage() {
+    	return (double) ((SLogoViewer) viewer).getTurtleImage();
     }
 
     public void toggleGrid () {

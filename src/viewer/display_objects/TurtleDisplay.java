@@ -147,6 +147,10 @@ public abstract class TurtleDisplay extends JGEngine {
             myDisplayTurtle.setImageNumber(imageNum);
             myDisplayTurtle.setRotation(myDisplayTurtle.getRotation());
         }
+        
+        public int getTurtleImageNumber() {
+        	return myDisplayTurtle.getImageNumber();
+        }
 
         private void drawTurtle(){
             try {
