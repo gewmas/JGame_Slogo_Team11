@@ -27,8 +27,7 @@ public class DefaultParser extends Parser {
         
         while(!commandInput.isEmpty()){
             Expression parsedExpression = parse(commandInput);
-//                Expression parsedExpression = DefaultParser.parse(commandInput);
-                expressionList.add(parsedExpression);
+            expressionList.add(parsedExpression);
         }
         
         return expressionList;

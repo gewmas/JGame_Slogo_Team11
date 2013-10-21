@@ -12,7 +12,8 @@ public class TestSimpleExample extends TestExample {
 
         // # go forward 70 (the hard way)
         updateActiveTurtle();
-        controller.interpretCommand("fd sum sum sum sum 10 20 30 5 5");
+        //fd sum sum sum sum 10 20 30 5 5
+        controller.interpretCommand("tell [ 3 ] fd 5");
         updateLatestCommandOfFirstActiveTurtle();
         assertTrue(x == 0.0);
         assertTrue(y == 70.0);
