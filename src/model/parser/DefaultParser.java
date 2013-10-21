@@ -240,9 +240,11 @@ public class DefaultParser extends Parser {
             return new TellDefaultExpression(commandInput, model);
         } 
         else if(equals(s, messages.getString("TellEven"))) {
+            commandInput.remove(0);
             return new TellEvenExpression(model);
         }
         else if(equals(s, messages.getString("TellOdd"))) {
+            commandInput.remove(0);
             return new TellOddExpression(model);
         }
         else if(equals(s, messages.getString("Ask"))) {

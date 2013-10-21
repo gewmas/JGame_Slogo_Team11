@@ -66,9 +66,11 @@ public class DefaultModel extends Model {
         TurtleCommand latestTurtleCommand;
         List<TurtleCommand> tempTurtleCommand;
         
+        List<Turtle> tempActiveTurtles = new ArrayList<Turtle>(activeTurtles);
+        
         List<Expression> tempExpressionList = new ArrayList<Expression>();
       
-        for(Turtle turtle : activeTurtles){
+        for(Turtle turtle : tempActiveTurtles){
             TurtleTrace turtleTrace = turtle.getTurtleTrace();          
             
             // evaluate & create TurtleCommand
@@ -124,9 +126,6 @@ public class DefaultModel extends Model {
             }
             
         }
-        
-        //Change the active turtle to new active turtle
-        activeTurtles = controller.getActiveTurtles();
         
         if(tempExpressionList.size() > 0) {
             createTraceForTurtles(tempExpressionList);
