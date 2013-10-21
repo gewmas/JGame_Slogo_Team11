@@ -15,26 +15,33 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import controller.Controller;
 import jgame.JGColor;
 import viewer.Panel;
 
 public abstract class SelectableListButton extends Button {
         
 	private String[] myListStrings;
+	private String[] myListValues;
 	private String myDialogMessage;
+	private String myCommand;
         protected JList myList;	
+        protected Controller myController;
 	
-	public SelectableListButton(Panel panel,String[] listStrings,String buttonTitle,
-	                            String dialogMessage) {
-		super(panel, buttonTitle);
+	public SelectableListButton(String[] listStrings,String[] listValues,String command
+	                            ,String buttonTitle,String dialogMessage, Controller controller) {
+		super(buttonTitle);
+		myController=controller;
 		myDialogMessage=dialogMessage;
 		myListStrings=listStrings;
+		myListValues=listValues;
+		myCommand=command;
 		myList=new JList(myListStrings);
 		myList.addListSelectionListener(new ListSelectionListener(){
 		    @Override
 		    public void valueChanged(ListSelectionEvent arg0){
 		        if (!arg0.getValueIsAdjusting()){
-		            callReturn();
+		            myController.interpretCommand(myCommand+myListValues[myList.getSelectedIndex()]);;
 		        }
 		    }
 		});
@@ -45,7 +52,6 @@ public abstract class SelectableListButton extends Button {
             JOptionPane.showMessageDialog(this, myList, myDialogMessage, JOptionPane.PLAIN_MESSAGE);
         }
 	
-	public abstract void callReturn();
-	
+//	public abstract String getCommand();
 	
 }

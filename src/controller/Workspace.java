@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import jgame.JGColor;
 import model.expression.Expression;
 import model.expression.ScopedExpression;
 
@@ -19,7 +20,9 @@ public class Workspace {
     private Map<String, Expression> runningFunction;
     private Map<String, Expression> globalVariables;
     
-    private String backgroundColor;
+//    private String backgroundColor;
+    private JGColor backgroundColor;
+    private JGColor penColor;
     
     public Workspace(){
         turtles = new HashMap<String, Turtle>();
@@ -108,11 +111,11 @@ public class Workspace {
         return allLocalVariables;
     }
 
-    public void setBackgroundColor (String backgroundColor) {
+    public void setBackgroundColor (JGColor backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
 
-    public String getBackgroundColor () {
+    public JGColor getBackgroundColor () {
         return backgroundColor;
     }
     
@@ -128,6 +131,14 @@ public class Workspace {
         definedFunction.clear();
         runningFunction.clear();
         globalVariables.clear();
+    }
+
+    public JGColor getPenColor () {
+        return penColor;
+    }
+
+    public void setPenColor (JGColor penColor) {
+        this.penColor = penColor;
     }
     
 }

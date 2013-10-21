@@ -217,7 +217,7 @@ public class TestProceduresExample extends TestExample {
             tunnel
          */
         updateActiveTurtle();
-        //TODO
+       
         controller.interpretCommand("set :distance 50 set :angle 10  to square [ ] [   repeat 4   [     fd :distance     rt 90   ] ]  to tunnel [ ] [   repeat 10   [     square     set :distance sum :distance 10   ] ]  to warp [ ] [   repeat 10   [     square     rt :angle     set :distance sum :distance 10   ] ]   cs tunnel ");
         updateLatestCommandOfFirstActiveTurtle();
         assertTrue(x == 0.0);

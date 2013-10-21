@@ -107,11 +107,11 @@ public class DefaultModel extends Model {
                     continue;
                 }
                 
-                if(expression instanceof FunctionExpression){
+                /*if(expression instanceof FunctionExpression){
                     FunctionDeclarationExpression functionDeclaration = ((FunctionExpression) expression).getFunctionDeclaration();
                     String functionName = functionDeclaration.getFunctionName();
                     runningFunction.put(functionName, expression);
-                }
+                }*/
 
                 latestTurtleCommand = new TurtleCommand(turtleTrace.getLatest());
                 tempTurtleCommand = expression.createTurtleCommands(latestTurtleCommand);
@@ -147,7 +147,6 @@ public class DefaultModel extends Model {
 
     @Override
     public ControllerToModelInterface getController () {
-        // TODO Auto-generated method stub
         return controller;
     }
 

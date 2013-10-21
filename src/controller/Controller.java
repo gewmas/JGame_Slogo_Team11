@@ -2,10 +2,13 @@ package controller;
 
 import java.util.HashMap;
 import java.util.List;
+import jgame.JGColor;
+
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import Exceptions.SlogoException;
+
 import viewer.SLogoViewer;
 import viewer.Viewer;
 import model.DefaultModel;
@@ -13,9 +16,19 @@ import model.Model;
 import model.expression.Expression;
 
 
-public class Controller implements ControllerToModelInterface, ControllerToViewInterface {
+public class Controller implements ControllerToViewInterface, ControllerToModelInterface {
+    private static final String CLEARSCREEN="clearscreen";
+    
     Model model;
     Viewer viewer;
+
+    List<Turtle> turtles;
+    List<Turtle> activeTurtles;
+    
+    private List<String> commandList;
+    private int currentCommand;
+    
+
 
     Map<String, Workspace> workspaces;
     Workspace currentWorkspace;
@@ -34,10 +47,12 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
         model = new DefaultModel(this);
         viewer = new SLogoViewer(this);
         
+
         //default workspace with id "1"
         workspaces = new HashMap<String, Workspace>();
         currentWorkspace = new Workspace();
         workspaces.put("1", currentWorkspace);
+
     }
 
     // Take the commands typed by the user and updates the TurtleTrace accordingly.
@@ -51,6 +66,30 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
             return;
         }
         // view.paintFrame(getTurtleTraces);
+    }
+    
+    public void addCommand(String userInput){
+        if (commandList.size()!=currentCommand){
+            commandList=commandList.subList(0, currentCommand);
+        }
+        commandList.add(userInput);
+        currentCommand++;
+        interpretCommand(userInput);
+    }
+    
+    public void undo(){
+        currentCommand--;
+        interpretCommand(CLEARSCREEN);
+        for (String command:commandList.subList(0, currentCommand)){
+            interpretCommand(command);
+        }
+    }
+    
+    public void redo(){
+        if (currentCommand<commandList.size()-1){
+            currentCommand++;
+            interpretCommand(commandList.get(currentCommand));
+        }
     }
 
     public Workspace getCurrentWorkspace () {
@@ -94,6 +133,45 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
     public List<Turtle> getActiveTurtles() {
         return currentWorkspace.getActiveTurtles();
     }
+
+
+    // Additional getters/setters
+    public void setBackgroundColor (JGColor backgroundColor) {
+        ((SLogoViewer)viewer).setBackgroundColor(backgroundColor);
+        currentWorkspace.setBackgroundColor(backgroundColor);
+    }
+
+    public JGColor getBackgroundColor () {
+        return currentWorkspace.getBackgroundColor();
+    }
+    
+    public void setPenColor (JGColor penColor) {
+        ((SLogoViewer)viewer).setPenColor(penColor);
+        currentWorkspace.setPenColor(penColor);
+    }
+    
+    public JGColor getPenColor () {
+        return currentWorkspace.getPenColor();
+    }
+    
+    public void setTurtleImage(int imageNum){
+        //Insert method call here
+    }
+
+    
+    
+    public void toggleGrid(){
+        ((SLogoViewer)viewer).toggleGrid();;
+    }
+    
+    public void toggleHighlightTurtles(){
+        //Insert toggle method call here
+        //((SLogoViewer)viewer).highlightTurtles(boxOnOff);
+    }
+    
+    public void toggleData(){
+        //Add toggle method here
+    }
     
     public Map<String, Expression> getDefinedFunction () {
         return currentWorkspace.getDefinedFunction();
@@ -121,8 +199,11 @@ public class Controller implements ControllerToModelInterface, ControllerToViewI
 
     //Turtle queries function call
     public void clearScreen(){
-        currentWorkspace.clear();
 //        ((SLogoViewer) viewer).clearScreen();
+    }
+    
+    public void clearWorkspace(){
+        currentWorkspace.clear();
     }
     
     // Get the given attribute from latest turtletrace and show to user

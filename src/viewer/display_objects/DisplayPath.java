@@ -7,7 +7,7 @@ import jgame.impl.JGEngineInterface;
 public class DisplayPath extends JGObject{
 
     private static final int PATH_COLID=2;
-    private static final double PATH_THICKNESS=5;
+    private static final double PATH_THICKNESS=2;
     private static final String DISPLAY_PATH_NAME="display_path";
     
     protected JGColor myColor;

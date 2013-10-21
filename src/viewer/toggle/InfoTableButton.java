@@ -5,12 +5,12 @@ import java.awt.event.MouseEvent;
 import controller.Controller;
 import viewer.Panel;
 
-public class GridButton extends Button {
-    private static final String LABEL="Toggle Grid";
-    private static final String COMMAND="GRIDTOGGLE";
+public class InfoTableButton extends Button {
+    private static final String LABEL="Toggle Data Panel";
+    private static final String COMMAND="DATATOGGLE";
     protected Controller myController;
     
-    public GridButton(Controller controller) {
+    public InfoTableButton(Controller controller) {
         super(LABEL);
         myController=controller;
     }

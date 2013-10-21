@@ -8,6 +8,8 @@ public class TurtleCommand {
     private double direction;
     private boolean isPenDown;
     private boolean isVisible;
+    private boolean isActive;
+
     private double background;
     private double penColor;
     private double penSize;
@@ -84,6 +86,13 @@ public class TurtleCommand {
         this.isVisible = isVisible;
     }
 
+    public void setActive(boolean isActive){
+        this.isActive=isActive;
+    }
+    
+    public boolean isActive(){
+        return isActive;
+    }
 
     public double getX () {
         return x;
