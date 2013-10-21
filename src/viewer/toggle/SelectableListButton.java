@@ -28,8 +28,8 @@ public abstract class SelectableListButton extends Button {
     protected JList myList;	
     protected Controller myController;
 	
-	public SelectableListButton(String[] listStrings,String[] listValues,String command
-	                            ,String buttonTitle,String dialogMessage, Controller controller) {
+	public SelectableListButton(String[] listStrings,String[] listValues,String command,
+	                            String buttonTitle,String dialogMessage, Controller controller) {
 		super(buttonTitle, controller);
 		myController=controller;
 		myDialogMessage=dialogMessage;
@@ -48,9 +48,9 @@ public abstract class SelectableListButton extends Button {
 	}
 	
 	@Override
-        public void buttonPushed() {
-            JOptionPane.showMessageDialog(this, myList, myDialogMessage, JOptionPane.PLAIN_MESSAGE);
-        }
+    public void buttonPushed() {
+        JOptionPane.showMessageDialog(this, myList, myDialogMessage, JOptionPane.PLAIN_MESSAGE);
+    }
 	
 //	public abstract String getCommand();
 	

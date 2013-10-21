@@ -1,6 +1,9 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TurtleCommand {
     private double x;
@@ -10,12 +13,19 @@ public class TurtleCommand {
     private boolean isVisible;
     private boolean isActive;
 
+    private static final String BACKGROUND = "background";
+    private static final String PEN_COLOR = "penColor";
+    private static final String PEN_SIZE = "penSize";
+    private static final String SHAPE = "shape";
+
     private double background;
     private double penColor;
     private double penSize;
     private double shape;
     private boolean stamp;
     private boolean clearStamps;
+    
+    private List<HashMap<String, Double>> preferencesMap;
     
     public TurtleCommand(){
         this(0.0, 0.0, 90.0);
@@ -27,15 +37,37 @@ public class TurtleCommand {
         this.direction = direction;
         this.isPenDown = true;
         this.isVisible = true;
-       
+        this.preferencesMap = new ArrayList<HashMap<String, Double>>();
     }
     
     public TurtleCommand(TurtleCommand rhs){
-        this.x = rhs.x;
-        this.y = rhs.y;
-        this.direction = rhs.direction;
-        this.isPenDown = rhs.isPenDown;
-        this.isVisible = rhs.isVisible;
+    	this(rhs.x, rhs.y, rhs.direction);
+//        this.x = rhs.x;
+//        this.y = rhs.y;
+//        this.direction = rhs.direction;
+//        this.isPenDown = rhs.isPenDown;
+//        this.isVisible = rhs.isVisible;
+    }
+    
+	public Map<String, Double> getCurrentPreferences() {
+		Map<String, Double> preference = new HashMap<String, Double>();
+		preference.put(BACKGROUND, this.getBackground());
+		preference.put(PEN_COLOR, this.getPenColor());
+		preference.put(SHAPE, this.getShape());
+		preference.put(PEN_SIZE, this.getPenSize());
+		return preference;
+	}
+    
+    public void savePreferences (Map<String, Double> preference) {
+    	this.preferencesMap.add((HashMap<String, Double>) preference);
+    }
+    
+    public void loadPreferences (int index) {
+    	Map<String, Double> map = this.preferencesMap.get(index);
+    	this.setBackground(map.get(BACKGROUND));
+    	this.setPenColor(map.get(PEN_COLOR));
+    	this.setPenSize(map.get(PEN_SIZE));
+    	this.setShape(map.get(SHAPE));
     }
     
     public double getBackground () {

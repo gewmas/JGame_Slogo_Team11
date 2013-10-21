@@ -12,5 +12,11 @@ public class LoadPreferencesButton extends SelectableListButton {
 	public LoadPreferencesButton(Controller controller) {
 		super(PREFERENCES, PREFERENCES, COMMAND, BUTTON_TITLE, DIALOG_MESSAGE, controller);
 	}
+	
+//	@Override
+//	public void buttonPushed() {
+//		// TODO Auto-generated method stub
+//        myController.interpretCommand(COMMAND);
+//	}
 
 }

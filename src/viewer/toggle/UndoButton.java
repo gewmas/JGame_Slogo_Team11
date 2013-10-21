@@ -8,12 +8,8 @@ public class UndoButton extends Button {
 	private static final String COMMAND = "REDO";
 	
 	public UndoButton(Controller controller) {
-		this(BUTTON_TITLE, controller);
+		super(BUTTON_TITLE, controller);
 		// TODO Auto-generated constructor stub
-	}
-	
-	public UndoButton(String label, Controller controller) {
-		super(label, controller);
 	}
 
 	@Override

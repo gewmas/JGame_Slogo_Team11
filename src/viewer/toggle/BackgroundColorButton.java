@@ -29,7 +29,7 @@ public class BackgroundColorButton extends SelectableListButton {
 	private static final String COMMAND="SETBG ";
 	
 	public BackgroundColorButton(Controller controller) {
-	        super(BG_COLORS,BG_COLORS,COMMAND, BUTTON_TITLE, DIALOG_MESSAGE,controller);
+		super(BG_COLORS,BG_COLORS,COMMAND, BUTTON_TITLE, DIALOG_MESSAGE,controller);
 	}
 
 //    @Override

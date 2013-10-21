@@ -17,7 +17,7 @@ public class BoxButton extends Button {
 
     @Override
     public void buttonPushed() {
-//        ((Toggles) this.myPanel).toggleGrid();
+    	//((Toggles) this.myPanel).toggleGrid();
         myController.interpretCommand(COMMAND);
     }
 	
