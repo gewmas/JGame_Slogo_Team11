@@ -25,7 +25,7 @@ public class TurtleCommand {
     private boolean stamp;
     private boolean clearStamps;
     
-    private List<HashMap<String, Double>> preferencesMap;
+    private static List<HashMap<String, Double>> preferencesMap;
     
     public TurtleCommand(){
         this(0.0, 0.0, 90.0);
@@ -68,6 +68,10 @@ public class TurtleCommand {
     	this.setPenColor(map.get(PEN_COLOR));
     	this.setPenSize(map.get(PEN_SIZE));
     	this.setShape(map.get(SHAPE));
+    }
+    
+    public static List<HashMap<String, Double>> getAllPreferences() {
+    	return (ArrayList<HashMap<String, Double>>) preferencesMap;
     }
     
     public double getBackground () {
