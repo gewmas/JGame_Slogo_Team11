@@ -111,12 +111,18 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     	this.setTurtleImage(Double.toString(map.get(SHAPE)));
     }
     
+    private void storeCurrentWorkspacePreferences(String workspaceId) {
+		currentPreferencesOfWorkspaces.put(workspaceId, (HashMap<String, Double>) this.getCurrentPreferences());
+    	System.out.println("store " + Double.toString(this.getCurrentPreferences().get(SHAPE)));
+	}
+    
     public void loadLastPreferences(String workspaceId) {
     	if (this.currentPreferencesOfWorkspaces.containsKey(workspaceId)) {
         	Map<String, Double> map = this.currentPreferencesOfWorkspaces.get(workspaceId);
         	this.setBackgroundColor(BackgroundColorButton.getColorFromColorId(map.get(BACKGROUND)));
         	this.setPenColor(PenColorButton.getColorFromColorId(map.get(PEN_COLOR)));
         	this.setTurtleImage(Double.toString(map.get(SHAPE)));
+        	System.out.println("load " + Double.toString(map.get(SHAPE)));
     	} else {
     		this.setBackgroundColor(JGColor.white);
     		this.setTurtleImage("1");
@@ -179,10 +185,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         ((SLogoViewer)viewer).clearDataTables();
         this.loadLastPreferences(workspaceId);
     }
-
-    private void storeCurrentWorkspacePreferences(String workspaceId) {
-		currentPreferencesOfWorkspaces.put(workspaceId, (HashMap<String, Double>) this.getCurrentPreferences());
-	}
 
 	public void setLanguage (String language) {
 
