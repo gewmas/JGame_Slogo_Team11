@@ -29,9 +29,6 @@ public class Toggles extends Panel {
     
     public Toggles(int width, int height, Controller controller){
         super(width,height);
-    	//setVisible(true);
-        //Put toggles into list of some kind and automate creation - but then how do we
-        //define listener callbacks?
         setBorder(BorderFactory.createLineBorder(Color.black));
         this.setName("Togggle Controls");
         
@@ -48,8 +45,8 @@ public class Toggles extends Panel {
         buttonList.add(new RedoButton(controller));
         buttonList.add(new SavePreferencesButton(controller));
         buttonList.add(new LoadPreferencesButton(controller));
+        buttonList.add(new HelpButton(controller));
 
-        
         for (int i = 0; i < buttonList.size(); i++) {
 			add(buttonList.get(i));
 		}        
