@@ -250,6 +250,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     public JGColor getPenColor () {
         return currentWorkspace.getPenColor();
     }
+    
+//    public double getPenSize (){
+//        return this.PEN_SIZE;
+//    }
 
     public void setTurtleImage (String imageNumber) {
         ((SLogoViewer) viewer).setTurtleImage(Integer.parseInt(imageNumber));
