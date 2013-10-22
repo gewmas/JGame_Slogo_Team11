@@ -47,10 +47,10 @@ public class SLogoViewer extends Viewer{
 
         setTitle("SLogo");
         myInformationTableBox=new InformationTableBox(200,110);
-        myUserVariableBox=new UserVariableBox(200,180);
-        myUserCommandsBox = new UserDefinedCommandsBox(200,180);
+        myUserVariableBox=new UserVariableBox(200,170,controller);
+        myUserCommandsBox = new UserDefinedCommandsBox(200,170);
         myTurtleDisplay=new DefaultTurtleDisplayWindow(new JGPoint(DISPLAY_WIDTH-10,DISPLAY_HEIGHT-10), controller,myInformationTableBox);
-        myPastCommandBox=new PastCommandBox(600,140);
+        myPastCommandBox=new PastCommandBox(600,140,controller);
         myLeftPanel.add(new DisplayBox(DISPLAY_WIDTH,DISPLAY_HEIGHT,myTurtleDisplay,controller));
         myLeftPanel.add(myPastCommandBox);
         myLeftPanel.add(new CommandEntryBox(600,30,myPastCommandBox,controller));
@@ -58,7 +58,7 @@ public class SLogoViewer extends Viewer{
         myRightPanel.add(myInformationTableBox);
         myRightPanel.add(myUserVariableBox);
         myRightPanel.add(myUserCommandsBox);
-        myRightPanel.add(new Toggles(200,300,controller));
+        myRightPanel.add(new Toggles(200,310,controller));
         pack();
         setVisible(true);
     }
@@ -105,6 +105,10 @@ public class SLogoViewer extends Viewer{
     
     public void updateUserCommandList(Map<String, Expression> functionList){
         myUserCommandsBox.updateFunctionList(functionList);
+    }
+    
+    public void updatePastCommandsBox(List<String> commands){
+        myPastCommandBox.updateCommands(commands);
     }
 
     public void clearDataTables(){
