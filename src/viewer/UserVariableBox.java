@@ -32,16 +32,7 @@ public class UserVariableBox extends EditableListTable{
         myController=controller;
         myVariablePositions=new HashMap<String,Integer>();
         update=true;
-        myTableModel.addTableModelListener(new TableModelListener(){
-            public void tableChanged(TableModelEvent e){
-                if (update){
-                    for (int i=e.getFirstRow();i<=e.getLastRow();i++){
-                        myController.interpretCommand(SET_VARIABLE_COMMAND+
-                                myTableModel.getValueAt(i, 0)+" "+myTableModel.getValueAt(i,1));
-                    }
-                }
-            }
-        });
+        addTableListener();
     }
     
     public void updateVariableTable(Map<String,Expression> variableMap){
@@ -60,9 +51,24 @@ public class UserVariableBox extends EditableListTable{
         update=true;
     }
     
+    public void addTableListener(){
+        myTableModel.addTableModelListener(new TableModelListener(){
+            public void tableChanged(TableModelEvent e){
+                if (update){
+                    for (int i=e.getFirstRow();i<=e.getLastRow();i++){
+                        System.out.println("Change!");
+                        myController.interpretCommand(SET_VARIABLE_COMMAND+
+                                myTableModel.getValueAt(i, 0)+" "+myTableModel.getValueAt(i,1));
+                    }
+                }
+            }
+        });
+    }
+    
     public void clearVariableTable(){
         update=false;
         myTableModel=new DataTableModel(null,myColumnNames);
+        addTableListener();
         myElementTable.setModel(myTableModel);
         myVariablePositions.clear();
         update=true;
