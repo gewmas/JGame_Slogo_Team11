@@ -173,7 +173,8 @@ public abstract class TurtleDisplayWindow extends JGEngine {
         }
         
         public int getTurtleImageNumber() {
-        	return myActiveTurtles.get(0).getImageNumber();
+            System.out.println(myActiveTurtles.get("1").toString());
+        	return myActiveTurtles.get("1").getImageNumber();
         }
 
         private void drawTurtle(){
