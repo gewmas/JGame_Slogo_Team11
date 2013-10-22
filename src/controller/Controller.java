@@ -46,7 +46,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     private static final String PEN_SIZE = "penSize";
     private static final String SHAPE = "shape";
 
-    private static List<HashMap<String, Double>> preferencesMap;
+    private List<HashMap<String, Double>> preferencesMap;
 
     public Controller () {
     	buildLanguageMap();
@@ -112,7 +112,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     	this.setTurtleImage(Double.toString(map.get(SHAPE)));
     }
     
-    public static List<HashMap<String, Double>> getAllPreferences() {
+    public List<HashMap<String, Double>> getAllPreferences() {
     	return (ArrayList<HashMap<String, Double>>) preferencesMap;
     }    
 
@@ -136,10 +136,8 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     public void redo () {
-    	System.out.println(commandList.size());
         if (currentCommand < commandList.size()-1) {
             currentCommand++;
-            System.out.println(commandList.get(currentCommand));
             interpretCommand(commandList.get(currentCommand));
         }
     }
