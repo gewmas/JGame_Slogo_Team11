@@ -18,7 +18,7 @@ public class InformationTableBox extends EditableListTable {
     private static final int Y_ROW=1;
     private static final int DIR_ROW=2;
     private static final String[] COLUMNNAMES={"Variable","Value"};
-    private static final String[] DATA={"Turtle #","x","y","direction","penup"};
+    private static final String[] DATA={"Turtle #","x","y","direction","pendown"};
 //    private static final JLabel HEADER=new JLabel("Data");
     protected JLabel myVariables;
 //    protected JList myDefinedCommands;
@@ -40,7 +40,6 @@ public class InformationTableBox extends EditableListTable {
     public void setTable(String turtlenum,String x, String y, String dir, String penup){
         String[] parameters=new String[]{turtlenum,x,y,dir,penup};
         for (int i=0;i<parameters.length;i++){
-//PENUP AND PENDOWN ARE BACKWARDS IN DISPLAY OF THIS TABLE
             myTableModel.setValueAt(parameters[i], i, 1);
         }
     }
