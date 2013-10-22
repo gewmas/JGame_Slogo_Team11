@@ -22,8 +22,10 @@ public class UserVariableBox extends EditableListTable{
     protected JLabel myVariables;
     protected HashMap<String,String> myElementMap;
     protected JList myVariableNameList, myVariableValueList;
+    HashMap<String, Integer> myVariablePositions;
     public UserVariableBox(int width, int height){
         super(width,height,columnNames);
+        myVariablePositions=new HashMap<String,Integer>();
 //        String[] test={"Hi","Hello"};
 //        Map<String, Expression> map = MakeExpression.getVariables();
 //        for (String key : map.keySet()) {
@@ -37,13 +39,19 @@ public class UserVariableBox extends EditableListTable{
             String variableName=(String) variableMap.keySet().toArray()[i];
             Expression variableExpression=variableMap.get(variableName);
             String variableValue=((NumberExpression)variableExpression).getNumber().toString();
-            if (i<myTableModel.getRowCount()){
-                if(!(myTableModel.getValueAt(i,1).equals(variableValue))){
-                    myTableModel.setValueAt(variableValue, i, 1);
-                }
-            } else {
+            if (!myVariablePositions.containsKey(variableName)){
                 myTableModel.addRow(new String[] {variableName,variableValue});
+                myVariablePositions.put(variableName, myVariablePositions.size());
+            } else {
+                myTableModel.setValueAt(variableValue, myVariablePositions.get(variableName), 1);
             }
+//            if (i<myTableModel.getRowCount()){
+//                if(!(myTableModel.getValueAt(i,1).equals(variableValue))){
+//                    myTableModel.setValueAt(variableValue, i, 1);
+//                }
+//            } else {
+//                myTableModel.addRow(new String[] {variableName,variableValue});
+//            }
         }
     }
     
