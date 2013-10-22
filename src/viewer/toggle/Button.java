@@ -16,10 +16,11 @@ public abstract class Button extends JButton {
 
     private static final int BUTTON_WIDTH=180;
     private static final int BUTTON_HEIGHT=20;
+    private static final String LABEL = "Button Text";
     protected Controller myController;
     
 	public Button(Controller controller) {
-		this("Button Text", controller);
+		this(LABEL, controller);
 	}
 	
 	public Button(String buttonText, Controller controller) {

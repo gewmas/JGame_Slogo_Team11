@@ -11,8 +11,10 @@ import controller.Turtle;
 import viewer.Panel;
 
 public class DataPopupButton extends SelectableListButton {
+	
     private static final String LABEL="View Data";
     private static final String DIALOG_MESSAGE="Please select a turtle to monitor";
+    
     public DataPopupButton(Controller controller) {
         super(new String[] {}, new String[] {}, LABEL,DIALOG_MESSAGE, controller);
     }
@@ -30,9 +32,6 @@ public class DataPopupButton extends SelectableListButton {
         if (selectedItem!=-1){
             myController.setTrackedTurtle((String) myListModel.get(myList.getSelectedIndex()));
         }
-    	//this.myController.getCurrentWorkspace().getActiveTurtles().
     }
     
-    
-	
 }
