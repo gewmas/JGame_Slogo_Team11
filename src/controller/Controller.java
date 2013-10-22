@@ -82,6 +82,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     public void interpretCommand (String userInput) {
         try {
             model.updateTrace(userInput);
+            ((SLogoViewer)viewer).updatePastCommandsBox(commandList.subList(0,currentCommand+1));
             System.out.println("Update Trace Finished!");
         }
         catch (SlogoException e) {
@@ -154,6 +155,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
             currentCommand++;
             interpretCommand(commandList.get(currentCommand));
         }
+    }
+    
+    public List<String> getCurrentCommands(){
+        return commandList.subList(0, currentCommand+1);
     }
 
     @Override
