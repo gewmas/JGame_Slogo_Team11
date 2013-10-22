@@ -33,8 +33,11 @@ public class UserVariableBox extends EditableListTable{
         //Automate value entry?*/
     }
     
-    public static void addVariable(String key, String value) {
-    	String[] row = {key, value};
+    public static void addVariable(String key, Expression expression) {
+        String expressionValue = ((NumberExpression) expression).getNumber().toString();
+    	String[] row = {key, expressionValue};
+    	System.out.println(key + " " + expressionValue);
+    	System.out.println(myTableModel.getColumnCount());
     	myTableModel.addRow(row);
     }
 }

@@ -52,9 +52,9 @@ public class MakeExpression extends Expression {
         {
             expression = parser.parse(cmdList);
         }
-//        Double expressionValue = ((NumberExpression) expression).getNumber();
+        Double expressionValue = ((NumberExpression) expression).getNumber();
         variables.put(id, expression);
-        UserVariableBox.addVariable(variable, value);
+        UserVariableBox.addVariable(variable, expression);
     }
 
     @Override
