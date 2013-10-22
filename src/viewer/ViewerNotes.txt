@@ -7,3 +7,8 @@ SLogoViewer monitors toggles and changes display accordingly
 Display class is a JGObject
 
 add action listeners/callback functions for toggle buttons
+
+PENUP AND PENDOWN APPEAR BACKWARDS IN THE INFORMATIONTABLEBOX
+
+tell [ 1 2 ] doesnt point to turtles 1 and 2
+

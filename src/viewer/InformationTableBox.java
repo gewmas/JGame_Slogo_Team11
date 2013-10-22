@@ -41,7 +41,7 @@ public class InformationTableBox extends EditableListTable {
     public void setTable(String turtlenum,String x, String y, String dir, String penup){
         String[] parameters=new String[]{turtlenum,x,y,dir,penup};
         for (int i=0;i<parameters.length;i++){
-//            System.out.println(parameters[0]+parameters[1]+parameters[2]+parameters[3]);
+//PENUP AND PENDOWN ARE BACKWARDS IN DISPLAY OF THIS TABLE
             myTableModel.setValueAt(parameters[i], i, 1);
         }
     }
