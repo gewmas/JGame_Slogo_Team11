@@ -34,6 +34,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     List<Turtle> activeTurtles;
 
     private List<String> commandList;
+    private List<String> undoneList;
     private int currentCommand;
 
     Map<String, Workspace> workspaces;
@@ -60,6 +61,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         currentWorkspace = new Workspace();
         workspaces.put("1", currentWorkspace);
         commandList=new ArrayList<String>();
+        undoneList = new ArrayList<String>();
     }
 
     private void buildLanguageMap() {
@@ -116,7 +118,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }    
 
     public void addCommand (String userInput) {
-        if (commandList.size() != currentCommand) {
+        if (commandList.size() != currentCommand && !commandList.isEmpty()) {
             commandList = commandList.subList(0, currentCommand);
         }
         commandList.add(userInput);
@@ -125,21 +127,20 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     public void undo () {
-        currentCommand--;
-        interpretCommand(CLEARSCREEN);
-        for (String command : commandList.subList(0, currentCommand)) {
-            interpretCommand(command);
-            System.out.println(command);
-        }
+    	if (!commandList.isEmpty()) {
+        	undoneList.add(commandList.remove(commandList.size()-1));
+            interpretCommand(CLEARSCREEN);
+            for (String command : commandList) { //.subList(0, currentCommand+1)) {
+                interpretCommand(command);
+            }
+    	}
     }
 
     public void redo () {
-    	System.out.println(commandList.size());
-        if (currentCommand < commandList.size() - 1) {
-            currentCommand++;
-            System.out.println(commandList.get(currentCommand));
-            interpretCommand(commandList.get(currentCommand));
-        }
+    	if (!undoneList.isEmpty()) {
+        	commandList.add(undoneList.remove(0));
+            interpretCommand(commandList.get(commandList.size()-1));
+    	}
     }
 
     @Override
