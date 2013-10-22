@@ -30,7 +30,6 @@ public class UserVariableBox extends EditableListTable{
 ////			String[] row = {key, map.get(key).toString()};
 //            myTableModel.addRow(test);
 //		}
-        //Automate value entry?*/
     }
     
     public static void addVariable(String key, Expression expression) {
@@ -40,4 +39,6 @@ public class UserVariableBox extends EditableListTable{
     	System.out.println(myTableModel.getColumnCount());
     	myTableModel.addRow(row);
     }
+    
+    
 }
