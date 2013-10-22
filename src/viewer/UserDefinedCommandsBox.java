@@ -1,23 +1,18 @@
 package viewer;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.awt.Label;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JPanel;
 
 //Should also extend EditableListTable?
 public class UserDefinedCommandsBox extends Panel {
     private static final JLabel HEADER=new JLabel("User Defined Functions");
     protected JLabel myVariables;
-    protected JList myDefinedCommands;
+    protected static JList myDefinedCommands;
     protected DefaultListModel myListModel;
     
     public UserDefinedCommandsBox(int width, int height){
@@ -29,4 +24,10 @@ public class UserDefinedCommandsBox extends Panel {
         setBorder(BorderFactory.createLineBorder(Color.black));
 //        myListModel.addElement(new Function Name);;
     }
+    
+    public static void addFunction(String key) {
+    	System.out.println("hello");
+    	myDefinedCommands.add(new Label(key));
+    }
+
 }

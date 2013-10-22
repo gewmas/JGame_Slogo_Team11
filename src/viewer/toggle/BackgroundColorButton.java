@@ -44,24 +44,26 @@ public class BackgroundColorButton extends SelectableListButton {
     public void buttonPushed () {
     	super.buttonPushed();
 		buildColorMap();
-//    	this.myController.setBackgroundColor(BACKGROUND_COLORS[myList.getSelectedIndex()]);
     	this.myController.setBackgroundColor(BG_JGCOLORS[myList.getSelectedIndex()]);
     }
     
     protected static void buildColorMap() {
 		colorMap = new HashMap<Double, JGColor>();
-		colorMap.put(0d, new JGColor(256, 0, 0));
-		colorMap.put(1d, new JGColor(0, 256, 0));
-		colorMap.put(2d, new JGColor(0, 0, 256));
-//		colorMap.put(3d, JGColor.gray);
-//		colorMap.put(4d, JGColor.green);
-//		colorMap.put(5d, JGColor.magenta);
-//		colorMap.put(6d, JGColor.orange);
-//		colorMap.put(7d, JGColor.pink);
-//		colorMap.put(8d, JGColor.red);
-//		colorMap.put(9d, JGColor.white);
-//		colorMap.put(10d,JGColor.yellow);
-    }
+		colorMap.put(0d, JGColor.black);
+		colorMap.put(1d, JGColor.blue);
+		colorMap.put(2d, JGColor.cyan);
+		colorMap.put(3d, JGColor.gray);
+		colorMap.put(4d, JGColor.green);
+		colorMap.put(5d, JGColor.magenta);
+		colorMap.put(6d, JGColor.orange);
+		colorMap.put(7d, JGColor.pink);
+		colorMap.put(8d, JGColor.red);
+		colorMap.put(9d, JGColor.white);
+		colorMap.put(10d,JGColor.yellow);
+		colorMap.put(11d, new JGColor(256, 0, 0));
+		colorMap.put(12d, new JGColor(0, 256, 0));
+		colorMap.put(13d, new JGColor(0, 0, 256));
+}
     
     public static Double getColorIdFromColor(jgame.JGColor jgColor) {
     	for (Double id : colorMap.keySet()) {

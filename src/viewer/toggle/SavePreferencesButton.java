@@ -13,7 +13,6 @@ public class SavePreferencesButton extends Button {
 	@Override
 	public void buttonPushed() {
 		this.myController.savePreferences(this.myController.getCurrentPreferences());
-		System.out.println(this.myController.getCurrentPreferences().get("background"));
 	}
 
 }
