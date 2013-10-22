@@ -4,11 +4,10 @@ import controller.Controller;
 
 public class RedoButton extends Button {
 
-	private static final String BUTTON_TITLE = "Redo";
+	private static final String LABEL = "Redo";
 
 	public RedoButton(Controller controller) {
-		super(BUTTON_TITLE, controller);
-		// TODO Auto-generated constructor stub
+		super(LABEL, controller);
 	}
 
 	@Override

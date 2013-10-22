@@ -22,8 +22,7 @@ import viewer.Panel;
 
 public abstract class SelectableListButton extends Button {
 
-    private String[] myListStrings;
-    private String[] myListValues;
+	private String[] myListStrings;
     private String myDialogMessage;
     protected JList myList;	
     protected Controller myController;
@@ -35,27 +34,16 @@ public abstract class SelectableListButton extends Button {
         myController=controller;
         myDialogMessage=dialogMessage;
         myListStrings=listStrings;
-        myListValues=listValues;
         myListModel=new DefaultListModel();
         for (String val:myListStrings){
             myListModel.addElement(val);
         }
         myList=new JList(myListModel);
-        //		myList.addListSelectionListener(new ListSelectionListener(){
-        //		    @Override
-        //		    public void valueChanged(ListSelectionEvent arg0){
-        //		        if (!arg0.getValueIsAdjusting()){
-        //		            myController.interpretCommand(myCommand+myListValues[myList.getSelectedIndex()]);;
-        //		        }
-        //		    }
-        //		});
     }
 
     @Override
     public void buttonPushed() {
         JOptionPane.showMessageDialog(this, myList, myDialogMessage, JOptionPane.PLAIN_MESSAGE);
     }
-
-    //	public abstract String getCommand();
 
 }

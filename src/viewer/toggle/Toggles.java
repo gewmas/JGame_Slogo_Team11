@@ -50,8 +50,6 @@ public class Toggles extends Panel {
         for (int i = 0; i < buttonList.size(); i++) {
 			add(buttonList.get(i));
 		}        
-                
-//        myTurtleDisplay=turtledisplay;
         
         setVisible(true);
     }

@@ -30,9 +30,8 @@ public class WorkspaceButton extends SelectableListButton {
         protected int numWorkspaces;
 	        
 	public WorkspaceButton(Controller controller) {
-	        super(WORKSPACE_VALUES,WORKSPACE_NUMBERS,
-	              BUTTON_TITLE, DIALOG_MESSAGE,controller);
-	        numWorkspaces=1;
+		super(WORKSPACE_VALUES, WORKSPACE_NUMBERS, BUTTON_TITLE, DIALOG_MESSAGE, controller);
+		numWorkspaces=1;
 	}
 	
 	@Override
@@ -50,14 +49,6 @@ public class WorkspaceButton extends SelectableListButton {
 	    } else if (selectedItem>0) {
 	        myController.setCurrentWorkspace(String.valueOf(selectedItem));
 	    }
-	    //this.myController.getCurrentWorkspace().getActiveTurtles().
 	}
-	    
-	
-//    @Override
-//    public String getCommand () {
-//        return COMMAND+WORKSPACE_NUMBERS[myList.getSelectedIndex()];
-////        ((Toggles) this.myPanel).setWorkspace(BG_JGCOLORS[myList.getSelectedIndex()]);
-//    }
-	
+	 
 }

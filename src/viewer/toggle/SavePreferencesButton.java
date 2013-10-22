@@ -4,10 +4,10 @@ import controller.Controller;
 
 public class SavePreferencesButton extends Button {
 
-	private static final String BUTTON_TITLE = "Save Preferences";
+	private static final String LABEL = "Save Preferences";
 	
 	public SavePreferencesButton(Controller controller) {
-		super(BUTTON_TITLE, controller);
+		super(LABEL, controller);
 	}
 
 	@Override

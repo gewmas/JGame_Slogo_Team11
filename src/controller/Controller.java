@@ -165,7 +165,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     
 
     public void setCurrentWorkspace (String workspaceId) {
-    	//store previous workspace preferences
     	this.storeCurrentWorkspacePreferences(this.getCurrentWorkspace().getWorkspaceId());
     	
     	Workspace tempWorkspace = workspaces.get(workspaceId);
@@ -183,9 +182,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     private void storeCurrentWorkspacePreferences(String workspaceId) {
 		currentPreferencesOfWorkspaces.put(workspaceId, (HashMap<String, Double>) this.getCurrentPreferences());
-		System.out.println("store background" + currentPreferencesOfWorkspaces.get(workspaceId).get(BACKGROUND));
-		System.out.println("store pencolor" + currentPreferencesOfWorkspaces.get(workspaceId).get(PEN_COLOR));
-		System.out.println("store turtleimage" + currentPreferencesOfWorkspaces.get(workspaceId).get(SHAPE));
 	}
 
 	public void setLanguage (String language) {

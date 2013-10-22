@@ -13,7 +13,7 @@ public class TurtleImageButton extends SelectableListButton {
     private static final String[] IMAGE_NAMES={"Turtle 1", "Turtle 2"};
 
     public TurtleImageButton(Controller controller) {
-        super(IMAGE_NAMES,IMAGE_NUMBERS, BUTTON_TITLE, DIALOG_MESSAGE,controller);
+        super(IMAGE_NAMES, IMAGE_NUMBERS, BUTTON_TITLE, DIALOG_MESSAGE, controller);
     }
 
     @Override
@@ -24,10 +24,5 @@ public class TurtleImageButton extends SelectableListButton {
             this.myController.setTurtleImage(IMAGE_NUMBERS[myList.getSelectedIndex()]);
         }
     }
-
-//    @Override
-//    public void callReturn () {
-//        ((Toggles) this.myPanel).setTurtleImage(IMAGE_NUMBERS[myList.getSelectedIndex()]);
-//    }
 
 }

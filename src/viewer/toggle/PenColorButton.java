@@ -33,6 +33,7 @@ public class PenColorButton extends SelectableListButton {
 	public static Double getColorIdFromColor(JGColor penColor) {
 		return BackgroundColorButton.getColorIdFromColor(penColor);
 	}
+	
 	public static JGColor getColorFromColorId(Double id) {
 		return BackgroundColorButton.getColorFromColorId(id);
 	}
