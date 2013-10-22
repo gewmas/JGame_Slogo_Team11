@@ -31,7 +31,6 @@ public class SLogoViewer extends Viewer{
 
     public SLogoViewer(Controller controller){
         super();
-        //Don't need main panel if we're going to separate into left and right anyway?
         myLeftPanel=new Panel();
         myRightPanel=new Panel();
         myLeftPanel.setPreferredSize(new Dimension(600,800));

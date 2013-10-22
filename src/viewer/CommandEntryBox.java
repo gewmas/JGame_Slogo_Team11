@@ -20,14 +20,12 @@ public class CommandEntryBox extends Panel implements ActionListener{
         myController=controller;
         myPastCommandBox=pastcommandbox;
         myTextField.setPreferredSize(new Dimension(width,height-5));
-        //setPreferredSize(new Dimension(200,20));
     }
 
     @Override
     public void actionPerformed (ActionEvent arg0) {
         String text = myTextField.getText();
         myController.addCommand(text);
-//        myPastCommandBox.addCommand(text);
         myTextField.setText("");
     }
 }
