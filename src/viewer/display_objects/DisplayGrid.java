@@ -5,6 +5,7 @@ import jgame.JGObject;
 import jgame.impl.JGEngineInterface;
 
 public class DisplayGrid extends JGObject{
+	
     private static final int GRID_COLID=4;
     private static final double GRID_THICKNESS=2;
     private static final JGColor GRID_COLOR=JGColor.blue;
@@ -21,7 +22,6 @@ public class DisplayGrid extends JGObject{
         myHorizontalSeparation=myDisplayWidth/numHorizontal;
         myVerticalSeparation=myDisplayWidth/numVertical;
         myEngine=eng;
-        //System.out.println(myDisplayWidth + " " + myDisplayHeight);
         resume_in_view=false;
         suspend();
     }
@@ -35,13 +35,10 @@ public class DisplayGrid extends JGObject{
     }
     
     @Override
-    public void move(){
-        
-    }    
+    public void move() {}    
     
     @Override
     public void paint(){
-        //Draw horizontal lines
         for (int row=myVerticalSeparation;row<myEngine.pfHeight();row+=myVerticalSeparation){
             myEngine.drawLine(0, row,myEngine.pfWidth(),row,GRID_THICKNESS,GRID_COLOR);
         }
@@ -49,6 +46,5 @@ public class DisplayGrid extends JGObject{
             myEngine.drawLine(col,0,col,myEngine.pfHeight(),GRID_THICKNESS,GRID_COLOR);
         }
     }
-    
     
 }

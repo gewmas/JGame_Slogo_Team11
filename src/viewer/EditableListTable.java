@@ -24,7 +24,6 @@ public abstract class EditableListTable extends Panel {
         myElements=new HashMap<String,Double>();
         myElementTable=new JTable(){
             @Override  
-            //Override method to allow cells to be deselected
             public void changeSelection(int rowIndex, int columnIndex,  
                     boolean toggle, boolean extend) {  
                 super.changeSelection(rowIndex, columnIndex, true, false);  

@@ -23,13 +23,12 @@ import jgame.platform.JGEngine;
  * application.
  */
 public class DefaultTurtleDisplayWindow extends TurtleDisplayWindow {
-        public DefaultTurtleDisplayWindow(Controller controller,InformationTableBox infotable) {
-                // This inits the engine as an applet.
-                this(new JGPoint(500,500),controller,infotable); 
-        }
+	public DefaultTurtleDisplayWindow(Controller controller,InformationTableBox infotable) {
+		this(new JGPoint(500,500),controller,infotable); 
+	}
 
-        /** We use a separate constructor for starting as an application. */
-        public DefaultTurtleDisplayWindow(JGPoint size, Controller controller,InformationTableBox infotable) {
-            super(size,controller,infotable); 
-        }
+	/** We use a separate constructor for starting as an application. */
+	public DefaultTurtleDisplayWindow(JGPoint size, Controller controller,InformationTableBox infotable) {
+		super(size,controller,infotable); 
+	}
 }

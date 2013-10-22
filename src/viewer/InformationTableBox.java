@@ -19,20 +19,15 @@ public class InformationTableBox extends EditableListTable {
     private static final int DIR_ROW=2;
     private static final String[] COLUMNNAMES={"Variable","Value"};
     private static final String[] DATA={"Turtle #","x","y","direction","pendown"};
-//    private static final JLabel HEADER=new JLabel("Data");
     protected JLabel myVariables;
-//    protected JList myDefinedCommands;
     protected DefaultListModel myListModel;
     
     public InformationTableBox(int width, int height){
         super(width,height,COLUMNNAMES);
         myListModel=new DefaultListModel();
-//        myDefinedCommands=new JList();
         for (String data:DATA){
             myTableModel.addRow(new String[] {data,""});
         }
-//        add(HEADER);
-//        add(myDefinedCommands);
         setBorder(BorderFactory.createLineBorder(Color.black));
         setVisible(true);
     }

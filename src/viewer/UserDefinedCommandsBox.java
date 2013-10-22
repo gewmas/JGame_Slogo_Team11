@@ -12,7 +12,6 @@ import javax.swing.JScrollPane;
 import model.expression.Expression;
 import model.expression.NumberExpression;
 
-//Should also extend EditableListTable?
 public class UserDefinedCommandsBox extends Panel {
     private static final JLabel HEADER=new JLabel("User Defined Functions");
     protected JLabel myVariables;
@@ -29,16 +28,8 @@ public class UserDefinedCommandsBox extends Panel {
         myScrollPane.setPreferredSize(new Dimension(width-5,height-30));
         myScrollPane.setBackground(this.getBackground());
         add(myScrollPane);
-//        add(myDefinedCommands);
         setBorder(BorderFactory.createLineBorder(Color.black));
-//        myListModel.addElement(new Function Name);;
     }
-    
-//    public static void addFunction(String key) {
-//    	System.out.println("hello");
-//    	myDefinedCommands.add(new Label(key));
-//    	myListModel.addElement(new Label(key));
-//    }
     
     public void updateFunctionList(Map<String,Expression> variableMap){
         for (int i=0;i<variableMap.size();i++){

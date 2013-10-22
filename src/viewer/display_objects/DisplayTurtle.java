@@ -16,9 +16,7 @@ public class DisplayTurtle extends JGObject{
     protected JGEngineInterface myEngine;
     protected DisplayRect myBox;
     
-    public DisplayTurtle (double x,
-                          double y,
-                          double direction) {
+    public DisplayTurtle (double x, double y, double direction) {
         super(DISPLAY_TURTLE_NAME, true, x-16, y-16, TURTLE_COLID,null);
         myBox=new DisplayRect(x,y,TURTLE_SIZE,TURTLE_SIZE,this);
         myColor=JGColor.black;
@@ -66,8 +64,6 @@ public class DisplayTurtle extends JGObject{
     }
     
     @Override
-    public void paint(){
-        
-    }
+    public void paint() {}
     
 }

@@ -26,7 +26,7 @@ public class Panel extends JPanel {
 	
 	public Panel(int width,int height) {
             this(width,height,new FlowLayout());
-        }
+    }
 	
 	public Panel(int width,int height,LayoutManager layout) {
 		this(layout);

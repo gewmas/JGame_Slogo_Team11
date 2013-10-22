@@ -5,6 +5,7 @@ import jgame.impl.JGEngineInterface;
 
 
 public class DisplayRect extends JGObject {
+	
     private static final String RECTANGLE_NAME="turtle_rect";
     private static final int RECTANGLE_COLID=1;
     private static final int RECTANGLE_THICKNESS=2;
