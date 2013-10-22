@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import viewer.UserVariableBox;
 import controller.TurtleCommand;
 import Exceptions.SlogoException;
 import model.DefaultModel;
@@ -18,7 +20,7 @@ import model.parser.DefaultParser;
  */
 
 public class MakeExpression extends Expression {
-    Map<String, Expression> variables; //Though assuming one variable, making it map for extend
+    static Map<String, Expression> variables; //Though assuming one variable, making it map for extend
     boolean isGlobal;
     
     public MakeExpression(List<String> cmdList, Model model) throws SlogoException{
@@ -30,11 +32,14 @@ public class MakeExpression extends Expression {
     
     @Override
     public void convert (List<String> cmdList) throws SlogoException {
+    	
+
         cmdList.remove(0); //remove make
-        
+    	String variable = cmdList.get(0);
+    	String value = cmdList.get(1);
+
         String id = cmdList.get(0).substring(1);
         cmdList.remove(0); // remove :random
-        
 
         Expression expression;
         
@@ -47,9 +52,9 @@ public class MakeExpression extends Expression {
         {
             expression = parser.parse(cmdList);
         }
-        
-        
+//        Double expressionValue = ((NumberExpression) expression).getNumber();
         variables.put(id, expression);
+        UserVariableBox.addVariable(variable, value);
     }
 
     @Override
@@ -101,8 +106,11 @@ public class MakeExpression extends Expression {
         evaluate();
         
         return commandList;
-     }
+    }
     
+    public static HashMap<String, Expression> getVariables() {
+    	return (HashMap<String, Expression>) variables;
+    }
     
     
 }

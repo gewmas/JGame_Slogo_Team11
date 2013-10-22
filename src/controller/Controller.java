@@ -40,15 +40,14 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     Map<String, Workspace> workspaces;
     Workspace currentWorkspace;
     ResourceBundle messages;
-    HashMap<String, String> languageToCountry;
-    HashMap<Double, ColorIndex> colorIndexes;
+    Map<String, String> languageToCountry;
+    Map<Double, ColorIndex> colorIndexes;
     private static final String BACKGROUND = "background";
     private static final String PEN_COLOR = "penColor";
     private static final String PEN_SIZE = "penSize";
     private static final String SHAPE = "shape";
 
     private static List<HashMap<String, Double>> preferencesMap;
-    
 
     public Controller () {
     	buildLanguageMap();

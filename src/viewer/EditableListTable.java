@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 public abstract class EditableListTable extends Panel {
     protected JTable myElementTable; 
-    protected DefaultTableModel myTableModel;
+    protected static DefaultTableModel myTableModel;
     protected JScrollPane myScrollPane;
     
     protected HashMap<String,Double> myElements;

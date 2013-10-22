@@ -12,10 +12,6 @@ public class Expression extends AbstractExpression{
      Model model;
      Parser parser;
 
-//    public Expression (Expression expression) {
-//        this();
-//    }
-
     public Expression (Model model) throws SlogoException {
         this.model = model;
         this.parser = model.getParser();

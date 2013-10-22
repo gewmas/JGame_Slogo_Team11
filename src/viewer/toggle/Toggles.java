@@ -43,7 +43,7 @@ public class Toggles extends Panel {
         buttonList.add(new PenColorButton(controller));
         buttonList.add(new GridButton(controller));   
         buttonList.add(new BoxButton(controller));
-        buttonList.add(new InfoTableButton(controller));
+        buttonList.add(new DataPopupButton(controller));
         buttonList.add(new UndoButton(controller));
         buttonList.add(new RedoButton(controller));
         buttonList.add(new SavePreferencesButton(controller));

@@ -95,7 +95,7 @@ public class NumberExpression extends Expression {
      */
     public Expression random () throws SlogoException{
         Random rand = new Random();
-        int  n = rand.nextInt((int) getNumber());
+        int n = rand.nextInt(getNumber().intValue());
         return new NumberExpression(n, model);
     }
     
@@ -244,7 +244,7 @@ public class NumberExpression extends Expression {
         return new NumberExpression(num, model);
     }
 
-    public double getNumber () {
+    public Double getNumber () {
         return number;
     }
 
