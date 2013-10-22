@@ -53,13 +53,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     public Controller () {
     	buildLanguageMap();
-
         model = new DefaultModel(this);
         viewer = new SLogoViewer(this);
-
         preferencesMap = new ArrayList<HashMap<String, Double>>();
         currentPreferencesOfWorkspaces = new HashMap<String, HashMap<String, Double>>();
-        // default workspace with id "1"
         workspaces = new HashMap<String, Workspace>();
         currentWorkspace = new Workspace();
         workspaces.put("1", currentWorkspace);
@@ -74,7 +71,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         languageToCountry.put("fr", "FR");
         languageToCountry.put("pt", "PT");
         languageToCountry.put("it", "IT");
-        setLanguage("en");		
+        setLanguage("en");
 	}
 
 	// Take the commands typed by the user and updates the TurtleTrace accordingly.
