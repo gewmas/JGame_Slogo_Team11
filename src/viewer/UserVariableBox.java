@@ -45,6 +45,8 @@ public class UserVariableBox extends EditableListTable{
     
     public void clearVariableTable(){
         myTableModel=new DataTableModel(null,myColumnNames);
+        myElementTable.setModel(myTableModel);
+        myVariablePositions.clear();
     }
     
 }

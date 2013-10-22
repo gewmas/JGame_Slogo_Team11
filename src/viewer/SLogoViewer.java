@@ -107,5 +107,9 @@ public class SLogoViewer extends Viewer{
         myUserCommandsBox.updateFunctionList(functionList);
     }
 
+    public void clearDataTables(){
+        myUserVariableBox.clearVariableTable();
+        myUserCommandsBox.clearFunctionList();
+    }
 
 }

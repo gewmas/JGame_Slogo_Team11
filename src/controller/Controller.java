@@ -149,15 +149,15 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     public void setCurrentWorkspace (String workspaceId) {
-    	System.out.println("adam");
         Workspace tempWorkspace = workspaces.get(workspaceId);
 
         if (tempWorkspace == null) {
             tempWorkspace = new Workspace();
             workspaces.put(workspaceId, tempWorkspace);
         }
-
         currentWorkspace = tempWorkspace;
+        ((SLogoViewer)viewer).clearScreen();
+        ((SLogoViewer)viewer).clearDataTables();
     }
 
     public void setLanguage (String language) {
