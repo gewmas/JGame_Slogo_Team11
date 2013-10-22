@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import viewer.InformationTable;
+import viewer.InformationTableBox;
 import controller.Controller;
 import controller.Turtle;
 import controller.TurtleCommand;
@@ -23,7 +23,7 @@ import jgame.platform.JGEngine;
  * constructor with a size parameter to initialise the engine as an
  * application.
  */
-public abstract class TurtleDisplay extends JGEngine {
+public abstract class TurtleDisplayWindow extends JGEngine {
         private static final int ZERO_OFFSET=50;
         private static final int NUM_TILES_WIDTH=20;
         private static final int NUM_TILES_HEIGHT=20;
@@ -41,18 +41,18 @@ public abstract class TurtleDisplay extends JGEngine {
         protected DisplayGrid myGrid;
         protected JGColor myPenColor;
         protected boolean myHighlightTurtles;
-        protected InformationTable myInfoTable;
+        protected InformationTableBox myInfoTable;
         protected TurtleCommand myEndCommand;
         protected String myTrackedTurtle;
         /** The parameterless constructor is called by the browser, in case we're
          * an applet. */
-        public TurtleDisplay(Controller controller,InformationTable infotable) {
+        public TurtleDisplayWindow(Controller controller,InformationTableBox infotable) {
                 // This inits the engine as an applet.
                 this(new JGPoint(500,500),controller,infotable); 
         }
 
         /** We use a separate constructor for starting as an application. */
-        public TurtleDisplay(JGPoint size, Controller controller, InformationTable infotable) {
+        public TurtleDisplayWindow(JGPoint size, Controller controller, InformationTableBox infotable) {
             myWidth=(int)(size.x/NUM_TILES_WIDTH)*(NUM_TILES_WIDTH);
             myHeight=(int)(size.y/NUM_TILES_HEIGHT)*(NUM_TILES_HEIGHT);
             myController=controller;
@@ -207,7 +207,7 @@ public abstract class TurtleDisplay extends JGEngine {
 	                    myTurtleCommandNumbers.put(turtleID,myTurtleCommandList.size()-1);
 	                    setTurtlePosition(turtleID,endPos.getX(),endPos.getY(),myEndCommand.getDirection());
 //	                    myDisplayTurtle.setRotation(endCommand.getDirection());
-	                    if (myEndCommand.isActive() && myHighlightTurtles) {
+	                    if (/*myEndCommand.isActive()*/myController.getActiveTurtles().contains(turtle) && myHighlightTurtles) {
 	                        myActiveTurtles.get(turtleID).activateBox();
 	                    }
 	                    else {
@@ -230,22 +230,24 @@ public abstract class TurtleDisplay extends JGEngine {
             }
         }
         
-        public void highlightActiveTurtles(){
-            for (DisplayTurtle myTurtle:myActiveTurtles.values()){
-                myTurtle.suspendBox();
-            }
-            if (myHighlightTurtles){
-                for (Turtle turtle:myController.getActiveTurtles()){
-                    myActiveTurtles.get(Integer.parseInt(turtle.getId())).activateBox();
-                }
-            }
-        }
+//        public void highlightActiveTurtles(){
+//            for (DisplayTurtle myTurtle:myActiveTurtles.values()){
+//                myTurtle.suspendBox();
+//            }
+//            System.out.println(myHighlightTurtles);
+//            if (myHighlightTurtles){
+//                for (Turtle turtle:myController.getActiveTurtles()){
+//                    System.out.println(turtle.getId());
+//                    myActiveTurtles.get(Integer.parseInt(turtle.getId())).activateBox();
+//                }
+//            }
+//        }
         
         /** Game logic is done here.  No painting can be done here, define
         * paintFrame to do that. */
         public void doFrame() {
             drawTurtle();
-            highlightActiveTurtles();
+//            highlightActiveTurtles();
             moveObjects();
             myController.updateUserVariableBox();
             myController.updateUserDefinedCommandsBox();

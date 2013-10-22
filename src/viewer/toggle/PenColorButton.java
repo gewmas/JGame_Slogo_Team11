@@ -24,7 +24,10 @@ public class PenColorButton extends SelectableListButton {
 	public void buttonPushed() {
 	    super.buttonPushed();
 	    BackgroundColorButton.buildColorMap();
-	    this.myController.setPenColor(PEN_JGCOLORS[myList.getSelectedIndex()]);
+	    int selectedItem=myList.getSelectedIndex();
+	    if (selectedItem!=-1){
+	        this.myController.setPenColor(PEN_JGCOLORS[myList.getSelectedIndex()]);
+	    }
 	}
 
 	public static Double getColorIdFromColor(JGColor penColor) {

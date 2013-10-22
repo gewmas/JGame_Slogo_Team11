@@ -1,4 +1,4 @@
-package viewer;
+package viewer.display_objects;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -7,9 +7,7 @@ import controller.Controller;
 import controller.Turtle;
 import controller.TurtleCommand;
 import controller.TurtleTrace;
-import viewer.display_objects.DisplayPath;
-import viewer.display_objects.DisplayTurtle;
-import viewer.display_objects.TurtleDisplay;
+import viewer.InformationTableBox;
 import jgame.JGColor;
 import jgame.JGPoint;
 import jgame.platform.JGEngine;
@@ -24,14 +22,14 @@ import jgame.platform.JGEngine;
  * constructor with a size parameter to initialise the engine as an
  * application.
  */
-public class DefaultTurtleDisplayBox extends TurtleDisplay {
-        public DefaultTurtleDisplayBox(Controller controller,InformationTable infotable) {
+public class DefaultTurtleDisplayWindow extends TurtleDisplayWindow {
+        public DefaultTurtleDisplayWindow(Controller controller,InformationTableBox infotable) {
                 // This inits the engine as an applet.
                 this(new JGPoint(500,500),controller,infotable); 
         }
 
         /** We use a separate constructor for starting as an application. */
-        public DefaultTurtleDisplayBox(JGPoint size, Controller controller,InformationTable infotable) {
+        public DefaultTurtleDisplayWindow(JGPoint size, Controller controller,InformationTableBox infotable) {
             super(size,controller,infotable); 
         }
 }

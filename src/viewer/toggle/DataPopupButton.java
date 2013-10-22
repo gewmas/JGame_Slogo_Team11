@@ -26,8 +26,10 @@ public class DataPopupButton extends SelectableListButton {
             myListModel.addElement(turtle.getId());
         }
         super.buttonPushed();
-        System.out.println(myListModel.get(myList.getSelectedIndex()));
-        myController.setTrackedTurtle((String) myListModel.get(myList.getSelectedIndex()));
+        int selectedItem=myList.getSelectedIndex();
+        if (selectedItem!=-1){
+            myController.setTrackedTurtle((String) myListModel.get(myList.getSelectedIndex()));
+        }
     	//this.myController.getCurrentWorkspace().getActiveTurtles().
     }
     

@@ -13,7 +13,8 @@ import model.expression.Expression;
 import jgame.JGColor;
 import jgame.JGPoint;
 import controller.Controller;
-import viewer.display_objects.TurtleDisplay;
+import viewer.display_objects.DefaultTurtleDisplayWindow;
+import viewer.display_objects.TurtleDisplayWindow;
 import viewer.toggle.Toggles;
 
 public class SLogoViewer extends Viewer{
@@ -22,11 +23,11 @@ public class SLogoViewer extends Viewer{
 
     protected Panel myLeftPanel;
     protected Panel myRightPanel;
-    protected TurtleDisplay myTurtleDisplay;
+    protected TurtleDisplayWindow myTurtleDisplay;
     protected PastCommandBox myPastCommandBox;
     protected UserDefinedCommandsBox myUserCommandsBox;
     protected UserVariableBox myUserVariableBox;
-    protected InformationTable myInformationTableBox;
+    protected InformationTableBox myInformationTableBox;
 
     public SLogoViewer(Controller controller){
         super();
@@ -45,10 +46,10 @@ public class SLogoViewer extends Viewer{
         myMainPanel.add(myRightPanel, BorderLayout.EAST);
 
         setTitle("SLogo");
-        myInformationTableBox=new InformationTable(200,110);
+        myInformationTableBox=new InformationTableBox(200,110);
         myUserVariableBox=new UserVariableBox(200,180);
         myUserCommandsBox = new UserDefinedCommandsBox(200,180);
-        myTurtleDisplay=new DefaultTurtleDisplayBox(new JGPoint(DISPLAY_WIDTH-10,DISPLAY_HEIGHT-10), controller,myInformationTableBox);
+        myTurtleDisplay=new DefaultTurtleDisplayWindow(new JGPoint(DISPLAY_WIDTH-10,DISPLAY_HEIGHT-10), controller,myInformationTableBox);
         myPastCommandBox=new PastCommandBox(600,140);
         myLeftPanel.add(new DisplayBox(DISPLAY_WIDTH,DISPLAY_HEIGHT,myTurtleDisplay,controller));
         myLeftPanel.add(myPastCommandBox);

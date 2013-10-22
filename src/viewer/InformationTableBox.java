@@ -11,10 +11,10 @@ import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import viewer.display_objects.TurtleDisplay;
+import viewer.display_objects.TurtleDisplayWindow;
 
 //Should also extend EditableListTable?
-public class InformationTable extends EditableListTable {
+public class InformationTableBox extends EditableListTable {
     private static final int X_ROW=0;
     private static final int Y_ROW=1;
     private static final int DIR_ROW=2;
@@ -25,7 +25,7 @@ public class InformationTable extends EditableListTable {
 //    protected JList myDefinedCommands;
     protected DefaultListModel myListModel;
     
-    public InformationTable(int width, int height){
+    public InformationTableBox(int width, int height){
         super(width,height,COLUMNNAMES);
         myListModel=new DefaultListModel();
 //        myDefinedCommands=new JList();

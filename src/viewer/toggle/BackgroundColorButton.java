@@ -42,8 +42,11 @@ public class BackgroundColorButton extends SelectableListButton {
     @Override
     public void buttonPushed () {
     	super.buttonPushed();
-		buildColorMap();
-    	this.myController.setBackgroundColor(BG_JGCOLORS[myList.getSelectedIndex()]);
+    	buildColorMap();
+    	int selectedItem=myList.getSelectedIndex();
+    	if (selectedItem!=-1){
+    	    this.myController.setBackgroundColor(BG_JGCOLORS[myList.getSelectedIndex()]);
+    	}
     }
     
     protected static void buildColorMap() {

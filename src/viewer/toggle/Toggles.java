@@ -16,7 +16,7 @@ import jgame.JGColor;
 import jgame.JGObject;
 import viewer.DisplayBox;
 import viewer.Panel;
-import viewer.display_objects.TurtleDisplay;
+import viewer.display_objects.TurtleDisplayWindow;
 
 public class Toggles extends Panel {
 	
@@ -24,7 +24,7 @@ public class Toggles extends Panel {
     private JGColor backgroundColor;
     private int turtleImageNum;
     private JGColor penColor;
-    private TurtleDisplay myTurtleDisplay;
+    private TurtleDisplayWindow myTurtleDisplay;
     private boolean gridOn;
     
     public Toggles(int width, int height, Controller controller){

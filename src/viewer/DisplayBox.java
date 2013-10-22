@@ -7,16 +7,16 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-import viewer.display_objects.TurtleDisplay;
+import viewer.display_objects.TurtleDisplayWindow;
 import controller.Controller;
 import controller.TurtleTrace;
 import jgame.JGPoint;
 
 public class DisplayBox extends Panel {
 	
-    protected TurtleDisplay myTurtleDisplay;
+    protected TurtleDisplayWindow myTurtleDisplay;
     
-    public DisplayBox(int width, int height,TurtleDisplay turtledisplay,Controller controller){
+    public DisplayBox(int width, int height,TurtleDisplayWindow turtledisplay,Controller controller){
         super(width,height);
         //setVisible(true);
         setBorder(BorderFactory.createLineBorder(Color.black));
