@@ -8,7 +8,6 @@ public class LoadPreferencesButton extends SelectableListButton {
 	private static final String BUTTON_TITLE = "Load Preferences";
 	private static final String DIALOG_MESSAGE = "Please select preferences to load.";
 	protected static String[] PREFERENCES = {"1", "2", "3"};
-	private static final String COMMAND = "LOADPREFS";
 	//protected TurtleCommand turtleCmd;
 	
 //	public LoadPreferencesButton(Controller controller, TurtleCommand turtleCmd) {
@@ -16,7 +15,7 @@ public class LoadPreferencesButton extends SelectableListButton {
 //		this.turtleCmd = turtleCmd;
 //	}
 	public LoadPreferencesButton(Controller controller) {
-		super(PREFERENCES, PREFERENCES, COMMAND, BUTTON_TITLE, DIALOG_MESSAGE, controller);
+		super(PREFERENCES, PREFERENCES, BUTTON_TITLE, DIALOG_MESSAGE, controller);
 	}
 	
 	private String[] getAllPreferenceNames() {

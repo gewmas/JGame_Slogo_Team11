@@ -14,8 +14,9 @@ import javax.swing.table.DefaultTableModel;
 
 public abstract class EditableListTable extends Panel {
     protected JTable myElementTable; 
-    protected static DefaultTableModel myTableModel;
+    protected DefaultTableModel myTableModel;
     protected JScrollPane myScrollPane;
+    protected String[] myColumnNames;
     
     protected HashMap<String,Double> myElements;
     public EditableListTable(int width, int height, String[] columnNames){
@@ -29,6 +30,7 @@ public abstract class EditableListTable extends Panel {
                 super.changeSelection(rowIndex, columnIndex, true, false);  
             }  
         };       
+        myColumnNames=columnNames;
         myTableModel=new DataTableModel(null,columnNames);
         myElementTable.setModel(myTableModel);
         myElementTable.setBackground(this.getBackground());

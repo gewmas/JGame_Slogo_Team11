@@ -20,10 +20,10 @@ public class LayeredDisplay extends LayeredPanel {
         setBorder(BorderFactory.createLineBorder(Color.black));
         myDisplayBox=new DisplayBox(width,height,myTurtleDisplay,controller);
         myDisplayBox.setBounds(0,0,width,height);
-        myInformationTable=new InformationTable(200,110 ,myTurtleDisplay);
+        myInformationTable=new InformationTable(200,110);
         myInformationTable.setBounds(0,0,200,110);
         add(myDisplayBox,JLayeredPane.DEFAULT_LAYER);
-        myTurtleDisplay.addInformationTable(myInformationTable);
+//        myTurtleDisplay.addInformationTable(myInformationTable);
         add(myInformationTable,JLayeredPane.POPUP_LAYER);
         this.setOpaque(false);
 //        myDisplayBox.set

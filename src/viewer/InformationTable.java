@@ -22,20 +22,18 @@ public class InformationTable extends EditableListTable {
     private static final String[] DATA={"Turtle #","x","y","direction","penup"};
 //    private static final JLabel HEADER=new JLabel("Data");
     protected JLabel myVariables;
-    protected JList myDefinedCommands;
+//    protected JList myDefinedCommands;
     protected DefaultListModel myListModel;
-    protected TurtleDisplay myTurtleDisplay;
     
-    public InformationTable(int width, int height,TurtleDisplay turtledisplay){
+    public InformationTable(int width, int height){
         super(width,height,COLUMNNAMES);
-        myTurtleDisplay=turtledisplay;
         myListModel=new DefaultListModel();
-        myDefinedCommands=new JList();
+//        myDefinedCommands=new JList();
         for (String data:DATA){
             myTableModel.addRow(new String[] {data,""});
         }
 //        add(HEADER);
-        add(myDefinedCommands);
+//        add(myDefinedCommands);
         setBorder(BorderFactory.createLineBorder(Color.black));
         setVisible(true);
     }
@@ -43,6 +41,7 @@ public class InformationTable extends EditableListTable {
     public void setTable(String turtlenum,String x, String y, String dir, String penup){
         String[] parameters=new String[]{turtlenum,x,y,dir,penup};
         for (int i=0;i<parameters.length;i++){
+//            System.out.println(parameters[0]+parameters[1]+parameters[2]+parameters[3]);
             myTableModel.setValueAt(parameters[i], i, 1);
         }
     }

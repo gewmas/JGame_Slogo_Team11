@@ -15,17 +15,16 @@ public class PenColorButton extends SelectableListButton {
                                               JGColor.gray,JGColor.green,JGColor.magenta,
                                               JGColor.orange,JGColor.pink,JGColor.red,JGColor.white,JGColor.yellow};
     private static final String[] PEN_COLORS={"Black","Blue","Cyan","Gray","Green","Magenta","Orange","Pink","Red","White","Yellow"};
-    private static final String COMMAND="SETPEN ";
     
 	public PenColorButton(Controller controller) {
-		super(PEN_COLORS, PEN_COLORS, COMMAND, BUTTON_TITLE, DIALOG_MESSAGE,controller);
+		super(PEN_COLORS, PEN_COLORS, BUTTON_TITLE, DIALOG_MESSAGE,controller);
 	}
 	
 	@Override
 	public void buttonPushed() {
-    	super.buttonPushed();
-    	BackgroundColorButton.buildColorMap();
-    	this.myController.setPenColor(PEN_JGCOLORS[myList.getSelectedIndex()]);
+	    super.buttonPushed();
+	    BackgroundColorButton.buildColorMap();
+	    this.myController.setPenColor(PEN_JGCOLORS[myList.getSelectedIndex()]);
 	}
 
 	public static Double getColorIdFromColor(JGColor penColor) {

@@ -6,12 +6,10 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-
 import model.expression.Expression;
 import model.expression.MakeExpression;
 import model.expression.NumberExpression;
@@ -32,13 +30,33 @@ public class UserVariableBox extends EditableListTable{
 //		}
     }
     
-    public static void addVariable(String key, Expression expression) {
-    	String expressionValue = ((NumberExpression) expression).getNumber().toString();
-    	String[] row = {key, expressionValue};
-    	System.out.println(key + " " + expressionValue);
-    	System.out.println(myTableModel.getColumnCount());
-    	myTableModel.addRow(row);
+    public void updateVariableTable(Map<String,Expression> variableMap){
+        for (int i=0;i<variableMap.size();i++){
+            String variableName=(String) variableMap.keySet().toArray()[i];
+            Expression variableExpression=variableMap.get(variableName);
+            String variableValue=((NumberExpression)variableExpression).getNumber().toString();
+            if (i<myTableModel.getRowCount()){
+                if(!(myTableModel.getValueAt(i,1).equals(variableValue))){
+                    myTableModel.setValueAt(variableValue, i, 1);
+                }
+            } else {
+                myTableModel.addRow(new String[] {variableName,variableValue});
+            }
+        }
     }
+    
+    public void clearVariableTable(){
+        myTableModel=new DataTableModel(null,myColumnNames);
+    }
+    
+//    public void addVariable(String key, Expression expression) {
+//        myTableModel.getRowCount();
+//    	String expressionValue = ((NumberExpression) expression).getNumber().toString();
+//    	String[] row = {key, expressionValue};
+//    	System.out.println(key + " " + expressionValue);
+////    	System.out.println(myTableModel.getColumnCount());
+//    	myTableModel.addRow(row);
+//    }
     
     
 }

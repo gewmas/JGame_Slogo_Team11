@@ -11,10 +11,9 @@ public class TurtleImageButton extends SelectableListButton {
     private static final String DIALOG_MESSAGE="Please select a turtle image";
     private static final String[] IMAGE_NUMBERS={"1","2"};
     private static final String[] IMAGE_NAMES={"Turtle 1", "Turtle 2"};
-    private static final String COMMAND="SETTURTLEIMAGE ";
 
     public TurtleImageButton(Controller controller) {
-        super(IMAGE_NAMES,IMAGE_NUMBERS,COMMAND, BUTTON_TITLE, DIALOG_MESSAGE,controller);
+        super(IMAGE_NAMES,IMAGE_NUMBERS, BUTTON_TITLE, DIALOG_MESSAGE,controller);
     }
 
     @Override

@@ -13,7 +13,6 @@ public class ScopedExpression extends Expression {
 
     public ScopedExpression (Model model) throws SlogoException {
         super(model);
-        UserDefinedCommandsBox.addFunction(this.functionId);
     }
 
     public Map<String, Expression> getLocalVariables () {

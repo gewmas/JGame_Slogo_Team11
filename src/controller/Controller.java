@@ -11,9 +11,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
-
+import java.util.Set;
 import javax.swing.JFileChooser;
-
 import jgame.JGColor;
 import model.DefaultModel;
 import model.Model;
@@ -240,6 +239,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         ((SLogoViewer) viewer).setPenColor(penColor);
         currentWorkspace.setPenColor(penColor);
     }
+    
+    public void setTrackedTurtle(String turtleNum){
+        ((SLogoViewer) viewer).setTrackedTurtle(turtleNum);
+    }
 
     public JGColor getPenColor () {
         return currentWorkspace.getPenColor();
@@ -259,11 +262,33 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     public void toggleHighlightTurtles () {
         // Insert toggle method call here
-        // ((SLogoViewer)viewer).highlightTurtles(boxOnOff);
+         ((SLogoViewer)viewer).toggleHighlightTurtles();
     }
 
     public void toggleData () {
         // Add toggle method here
+    }
+    
+    public void updateUserVariableBox(){
+        try{
+            Map<String, Expression> variableMap=getGlobalVariables();
+            if (variableMap!=null){
+                ((SLogoViewer)viewer).updateUserVariableTable(variableMap);
+            }
+        } catch(Exception e){
+            
+        }
+    }
+    
+    public void updateUserDefinedCommandsBox(){
+        try{
+            Map<String, Expression> functionList=getDefinedFunction();
+            if (functionList!=null){
+                ((SLogoViewer)viewer).updateUserCommandList(functionList);
+            }
+        } catch(Exception e){
+            
+        }
     }
 
     @Override

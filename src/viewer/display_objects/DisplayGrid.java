@@ -23,6 +23,7 @@ public class DisplayGrid extends JGObject{
         myEngine=eng;
         //System.out.println(myDisplayWidth + " " + myDisplayHeight);
         resume_in_view=false;
+        suspend();
     }
     
     public void toggleOn(){

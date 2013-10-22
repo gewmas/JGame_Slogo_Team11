@@ -54,7 +54,7 @@ public class MakeExpression extends Expression {
         }
         Double expressionValue = ((NumberExpression) expression).getNumber();
         variables.put(id, expression);
-        UserVariableBox.addVariable(variable, expression);
+//        UserVariableBox.addVariable(variable, expression);
     }
 
     @Override

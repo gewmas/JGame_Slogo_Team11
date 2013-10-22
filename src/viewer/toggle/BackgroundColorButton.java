@@ -32,11 +32,10 @@ public class BackgroundColorButton extends SelectableListButton {
                                                   JGColor.gray,JGColor.green,JGColor.magenta,
                                                   JGColor.orange,JGColor.pink,JGColor.red,JGColor.white,JGColor.yellow};
     private static final String[] BG_COLORS={"Black","Blue","Cyan","Gray","Green","Magenta","Orange","Pink","Red","White","Yellow"};
-    private static final String COMMAND="SETBG";
 	protected static Map<Double, JGColor> colorMap;
 
 	public BackgroundColorButton(Controller controller) {
-		super(BG_COLORS,BG_COLORS,COMMAND, BUTTON_TITLE, DIALOG_MESSAGE,controller);
+		super(BG_COLORS,BG_COLORS, BUTTON_TITLE, DIALOG_MESSAGE,controller);
 		buildColorMap();
 	}
 
@@ -65,7 +64,7 @@ public class BackgroundColorButton extends SelectableListButton {
 		colorMap.put(13d, new JGColor(0, 0, 256));
 }
     
-    public static Double getColorIdFromColor(jgame.JGColor jgColor) {
+    public static Double getColorIdFromColor(JGColor jgColor) {
     	for (Double id : colorMap.keySet()) {
     		if (colorMap.get(id) == jgColor) return id;
     	}
