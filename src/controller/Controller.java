@@ -49,6 +49,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     private static final String SHAPE = "shape";
 
     private List<HashMap<String, Double>> preferencesMap;
+    public Map<String, HashMap<String, Double>> currentPreferencesOfWorkspaces;
 
     public Controller () {
     	buildLanguageMap();
@@ -57,7 +58,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         viewer = new SLogoViewer(this);
 
         preferencesMap = new ArrayList<HashMap<String, Double>>();
-//        preferencesMap.add(defaultPreferences());
+        currentPreferencesOfWorkspaces = new HashMap<String, HashMap<String, Double>>();
         // default workspace with id "1"
         workspaces = new HashMap<String, Workspace>();
         currentWorkspace = new Workspace();
@@ -111,6 +112,19 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     	this.setTurtleImage(Double.toString(map.get(SHAPE)));
     }
     
+    public void loadLastPreferences(String workspaceId) {
+    	if (this.currentPreferencesOfWorkspaces.containsKey(workspaceId)) {
+        	Map<String, Double> map = this.currentPreferencesOfWorkspaces.get(workspaceId);
+        	this.setBackgroundColor(BackgroundColorButton.getColorFromColorId(map.get(BACKGROUND)));
+        	this.setPenColor(PenColorButton.getColorFromColorId(map.get(PEN_COLOR)));
+        	this.setTurtleImage(Double.toString(map.get(SHAPE)));
+    	} else {
+    		this.setBackgroundColor(JGColor.white);
+    		this.setTurtleImage("1");
+    		this.setPenColor(JGColor.black);
+    	}
+    }
+        
     public List<HashMap<String, Double>> getAllPreferences() {
     	return (ArrayList<HashMap<String, Double>>) this.preferencesMap;
     }    
@@ -145,20 +159,33 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     public Workspace getCurrentWorkspace () {
         return currentWorkspace;
     }
+    
 
     public void setCurrentWorkspace (String workspaceId) {
-        Workspace tempWorkspace = workspaces.get(workspaceId);
+    	//store previous workspace preferences
+    	this.storeCurrentWorkspacePreferences(this.getCurrentWorkspace().getWorkspaceId());
+    	
+    	Workspace tempWorkspace = workspaces.get(workspaceId);
 
         if (tempWorkspace == null) {
             tempWorkspace = new Workspace();
             workspaces.put(workspaceId, tempWorkspace);
         }
         currentWorkspace = tempWorkspace;
+        currentWorkspace.setWorkspaceId(workspaceId);
         ((SLogoViewer)viewer).clearScreen();
         ((SLogoViewer)viewer).clearDataTables();
+        this.loadLastPreferences(workspaceId);
     }
 
-    public void setLanguage (String language) {
+    private void storeCurrentWorkspacePreferences(String workspaceId) {
+		currentPreferencesOfWorkspaces.put(workspaceId, (HashMap<String, Double>) this.getCurrentPreferences());
+		System.out.println("store background" + currentPreferencesOfWorkspaces.get(workspaceId).get(BACKGROUND));
+		System.out.println("store pencolor" + currentPreferencesOfWorkspaces.get(workspaceId).get(PEN_COLOR));
+		System.out.println("store turtleimage" + currentPreferencesOfWorkspaces.get(workspaceId).get(SHAPE));
+	}
+
+	public void setLanguage (String language) {
 
         String country = languageToCountry.get(language);
 

@@ -26,6 +26,7 @@ public class Workspace {
     private JGColor backgroundColor;
     private JGColor penColor;
 	private int turtleImage;
+	private String workspaceId;
     
     public Workspace(){
         turtles = new HashMap<String, Turtle>();
@@ -175,5 +176,13 @@ public class Workspace {
 
 	public void setTurtleImage(int image) {
 		this.turtleImage = image;
+	}
+
+	public String getWorkspaceId() {
+		return this.workspaceId;
+	}
+	
+	public void setWorkspaceId(String workspaceId) {
+		this.workspaceId = workspaceId;
 	}    
 }
