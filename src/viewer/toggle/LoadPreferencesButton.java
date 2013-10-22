@@ -10,21 +10,12 @@ public class LoadPreferencesButton extends SelectableListButton {
 	protected static String[] PREFERENCES = {};
 	//protected TurtleCommand turtleCmd;
 	
-//	public LoadPreferencesButton(Controller controller, TurtleCommand turtleCmd) {
-//		super(PREFERENCES, PREFERENCES, COMMAND, BUTTON_TITLE, DIALOG_MESSAGE, controller);
-//		this.turtleCmd = turtleCmd;
-//	}
 	public LoadPreferencesButton(Controller controller) {
 		super(PREFERENCES, PREFERENCES, BUTTON_TITLE, DIALOG_MESSAGE, controller);
 	}
 	
 	private int getAllPreferenceNames() {
-//		int[] preferenceNames = new int[this.myController.getAllPreferences().size()];
-//		for (Integer i = 0; i < preferenceNames.length; i++) {
-//			preferenceNames[i] = i;
-//		}
 		return this.myController.getAllPreferences().size();
-//		return preferenceNames.length;
 	}
 	
 	@Override

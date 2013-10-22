@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import viewer.SLogoViewer;
 import jgame.JGColor;
 import model.expression.Expression;
 import model.expression.ScopedExpression;
@@ -23,6 +25,7 @@ public class Workspace {
     private boolean gridOn;
     private JGColor backgroundColor;
     private JGColor penColor;
+	private int turtleImage;
     
     public Workspace(){
         turtles = new HashMap<String, Turtle>();
@@ -36,10 +39,16 @@ public class Workspace {
         definedFunction = new HashMap<String, Expression>();
         runningFunction = new HashMap<String, Expression>();
         globalVariables = new HashMap<String, Expression>();
-                
+        this.setDefaultPreferences();
     }
     
-    public List<Turtle> getTurtles () {
+    private void setDefaultPreferences() {
+    	this.backgroundColor = JGColor.white;
+    	this.penColor = JGColor.black;
+    	this.turtleImage = 1;
+	}
+
+	public List<Turtle> getTurtles () {
         ArrayList<Turtle> turtleList = new ArrayList<Turtle>();
         for(Entry<String, Turtle> e : turtles.entrySet()){
             turtleList.add(e.getValue());
@@ -64,13 +73,7 @@ public class Workspace {
             activeTurtles.add(turtles.get(turtleId));
             
         }
-//        for(Entry<String, Turtle> e : turtles.entrySet()){
-//            for(String s : turtleIds){
-//                if(e.getValue().getId().equals(s)){
-//                    activeTurtles.add(e.getValue());
-//                }
-//            }
-//        }
+
     }
     
     public void setEvenActiveTurtle () {
@@ -165,5 +168,12 @@ public class Workspace {
     public void setPenColor (JGColor penColor) {
         this.penColor = penColor;
     }
-    
+
+    public Double getTurtleImage() {
+    	return (double) this.turtleImage;
+    }
+
+	public void setTurtleImage(int image) {
+		this.turtleImage = image;
+	}    
 }
