@@ -9,6 +9,7 @@ public class LoadPreferencesButton extends SelectableListButton {
 	private static final String DIALOG_MESSAGE = "Please select preferences to load.";
 
 	protected static String[] PREFERENCES = {};
+
 	public LoadPreferencesButton(Controller controller) {
 		super(PREFERENCES, PREFERENCES, BUTTON_TITLE, DIALOG_MESSAGE, controller);
 	}

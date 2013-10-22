@@ -12,7 +12,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+
 import javax.swing.JFileChooser;
+
 import jgame.JGColor;
 import model.DefaultModel;
 import model.Model;
@@ -34,7 +36,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     List<Turtle> activeTurtles;
 
     private List<String> commandList;
-    private List<String> undoneList;
+//    private List<String> undoneList;
     private int currentCommand;
 
     Map<String, Workspace> workspaces;
@@ -44,7 +46,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     Map<Double, ColorIndex> colorIndexes;
     private static final String BACKGROUND = "background";
     private static final String PEN_COLOR = "penColor";
-    private static final String PEN_SIZE = "penSize";
     private static final String SHAPE = "shape";
 
     private List<HashMap<String, Double>> preferencesMap;
@@ -56,6 +57,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         viewer = new SLogoViewer(this);
 
         preferencesMap = new ArrayList<HashMap<String, Double>>();
+//        preferencesMap.add(defaultPreferences());
         // default workspace with id "1"
         workspaces = new HashMap<String, Workspace>();
         currentWorkspace = new Workspace();
@@ -64,7 +66,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         currentCommand=-1;
     }
 
-    private void buildLanguageMap() {
+	private void buildLanguageMap() {
         languageToCountry = new HashMap<String, String>();
         languageToCountry.put("en", "US");
         languageToCountry.put("fr", "FR");
@@ -81,7 +83,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
             System.out.println("Update Trace Finished!");
         }
         catch (SlogoException e) {
-            //e.printStackTrace();
             SlogoError error =
                     new SlogoError("Parse Error",
                                    "A syntax error occured while parsing your script");
@@ -89,15 +90,13 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
             System.out.println("Error!");
             return;
         }
-        // view.paintFrame(getTurtleTraces);
     }
     
 	public Map<String, Double> getCurrentPreferences() {
 		Map<String, Double> preference = new HashMap<String, Double>();
-		preference.put(BACKGROUND, BackgroundColorButton.getColorIdFromColor(this.getBackgroundColor()));
-		preference.put(PEN_COLOR, PenColorButton.getColorIdFromColor(this.getPenColor()));
-		preference.put(SHAPE, (double) this.getTurtleImage());
-//		preference.put(PEN_SIZE, this.getPenSize());
+		preference.put(BACKGROUND, BackgroundColorButton.getColorIdFromColor(this.getCurrentWorkspace().getBackgroundColor()));
+		preference.put(PEN_COLOR, PenColorButton.getColorIdFromColor(this.getCurrentWorkspace().getPenColor()));
+		preference.put(SHAPE, (double) this.getCurrentWorkspace().getTurtleImage());
 		return preference;
 	}
     
@@ -109,7 +108,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     	Map<String, Double> map = this.preferencesMap.get(index);
     	this.setBackgroundColor(BackgroundColorButton.getColorFromColorId(map.get(BACKGROUND)));
     	this.setPenColor(PenColorButton.getColorFromColorId(map.get(PEN_COLOR)));
-//    	this.setPenSize(map.get(PEN_SIZE));
     	this.setTurtleImage(Double.toString(map.get(SHAPE)));
     }
     
@@ -211,10 +209,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
             catch (IOException e) {
                 e.printStackTrace();
             }
-
-            // System.out.println(result);
             interpretCommand(result);
-
         }
     }
 
@@ -256,7 +251,8 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 //    }
 
     public void setTurtleImage (String imageNumber) {
-        ((SLogoViewer) viewer).setTurtleImage(Integer.parseInt(imageNumber));
+        ((SLogoViewer) viewer).setTurtleImage((int) (Double.parseDouble(imageNumber)));
+        this.currentWorkspace.setTurtleImage((int) (Double.parseDouble(imageNumber)));
     }
     
     public Double getTurtleImage() {
@@ -374,7 +370,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         // view.isShowing();
     }
     
-    public void id(){
+    public void id() {
         // view show ids
     }
 
