@@ -65,6 +65,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         workspaces.put("1", currentWorkspace);
         commandList=new ArrayList<String>();
         currentCommand=-1;
+        setCurrentWorkspace("1");
     }
 
 	private void buildLanguageMap() {
