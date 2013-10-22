@@ -4,8 +4,7 @@ import controller.Controller;
 
 public class UndoButton extends Button {
 
-	private static final String BUTTON_TITLE = "Redo";
-	private static final String COMMAND = "REDO";
+	private static final String BUTTON_TITLE = "Undo";
 	
 	public UndoButton(Controller controller) {
 		super(BUTTON_TITLE, controller);
@@ -14,9 +13,7 @@ public class UndoButton extends Button {
 
 	@Override
 	public void buttonPushed() {
-		// TODO Auto-generated method stub
 		this.myController.undo();
-//        myController.interpretCommand(COMMAND);
 	}
 
 }

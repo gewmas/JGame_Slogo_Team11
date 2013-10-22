@@ -125,7 +125,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     public void undo () {
-    	System.out.println(currentCommand);
         currentCommand--;
         interpretCommand(CLEARSCREEN);
         for (String command : commandList.subList(0, currentCommand)) {
@@ -135,6 +134,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     public void redo () {
+    	System.out.println(commandList.size());
         if (currentCommand < commandList.size() - 1) {
             currentCommand++;
             System.out.println(commandList.get(currentCommand));
