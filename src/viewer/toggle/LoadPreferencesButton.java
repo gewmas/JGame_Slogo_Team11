@@ -7,9 +7,9 @@ public class LoadPreferencesButton extends SelectableListButton {
 
 	private static final String BUTTON_TITLE = "Load Preferences";
 	private static final String DIALOG_MESSAGE = "Please select preferences to load.";
+
 	protected static String[] PREFERENCES = {};
-	//protected TurtleCommand turtleCmd;
-	
+
 	public LoadPreferencesButton(Controller controller) {
 		super(PREFERENCES, PREFERENCES, BUTTON_TITLE, DIALOG_MESSAGE, controller);
 	}

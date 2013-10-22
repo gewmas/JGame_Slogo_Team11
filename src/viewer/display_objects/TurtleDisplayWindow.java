@@ -44,6 +44,7 @@ public abstract class TurtleDisplayWindow extends JGEngine {
         protected InformationTableBox myInfoTable;
         protected TurtleCommand myEndCommand;
         protected String myTrackedTurtle;
+//        protected double myPenSize;
         /** The parameterless constructor is called by the browser, in case we're
          * an applet. */
         public TurtleDisplayWindow(Controller controller,InformationTableBox infotable) {
@@ -109,6 +110,7 @@ public abstract class TurtleDisplayWindow extends JGEngine {
                 myHighlightTurtles=false;
                 myPenColor=JGColor.black;
                 myTrackedTurtle="1";
+//                myPenSize=5;
         }
         
         public void clearScreen(){
@@ -129,8 +131,8 @@ public abstract class TurtleDisplayWindow extends JGEngine {
             System.out.println("");
         }
         
-        public void addPath(double x1, double y1, double x2, double y2){
-            myPaths.add(new DisplayPath(x1,y1,x2,y2,myPenColor));
+        public void addPath(double x1, double y1, double x2, double y2,double size){
+            myPaths.add(new DisplayPath(x1,y1,x2,y2,size,myPenColor));
         }
         
         public void setBackGroundColor(JGColor color){
@@ -140,6 +142,10 @@ public abstract class TurtleDisplayWindow extends JGEngine {
         public void setPenColor(JGColor color){
             myPenColor=color;
         }
+        
+//        public void setPenSize(double pensize){
+//            myPenSize=pensize;
+//        }
         
         public void toggleGrid(){
             myGrid.toggleOn();
@@ -200,6 +206,7 @@ public abstract class TurtleDisplayWindow extends JGEngine {
 	                                                        lastPos.getY(),
 	                                                        thisPos.getX(),
 	                                                        thisPos.getY(),
+	                                                        lastCommand.getPenSize(),
 	                                                        myPenColor));
 	                        }
 	                    }

@@ -70,6 +70,10 @@ public class SLogoViewer extends Viewer{
     public void setPenColor (JGColor penColor) {
         myTurtleDisplay.setPenColor(penColor);
     }
+    
+//    public void setPenSize (double pensize) {
+//        myTurtleDisplay.setPenSize(pensize);
+//    }
 
     public void toggleGrid(){
         myTurtleDisplay.toggleGrid();
@@ -103,5 +107,9 @@ public class SLogoViewer extends Viewer{
         myUserCommandsBox.updateFunctionList(functionList);
     }
 
+    public void clearDataTables(){
+        myUserVariableBox.clearVariableTable();
+        myUserCommandsBox.clearFunctionList();
+    }
 
 }

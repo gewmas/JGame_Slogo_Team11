@@ -153,8 +153,9 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
             tempWorkspace = new Workspace();
             workspaces.put(workspaceId, tempWorkspace);
         }
-
         currentWorkspace = tempWorkspace;
+        ((SLogoViewer)viewer).clearScreen();
+        ((SLogoViewer)viewer).clearDataTables();
     }
 
     public void setLanguage (String language) {
@@ -244,6 +245,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     public JGColor getPenColor () {
         return currentWorkspace.getPenColor();
     }
+    
+//    public double getPenSize (){
+//        return this.PEN_SIZE;
+//    }
 
     public void setTurtleImage (String imageNumber) {
         ((SLogoViewer) viewer).setTurtleImage((int) (Double.parseDouble(imageNumber)));
