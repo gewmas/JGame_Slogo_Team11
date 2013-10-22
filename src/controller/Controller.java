@@ -34,6 +34,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     List<Turtle> activeTurtles;
 
     private List<String> commandList;
+    private List<String> undoneList;
     private int currentCommand;
 
     Map<String, Workspace> workspaces;
@@ -113,7 +114,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
     
     public List<HashMap<String, Double>> getAllPreferences() {
-    	return (ArrayList<HashMap<String, Double>>) preferencesMap;
+    	return (ArrayList<HashMap<String, Double>>) this.preferencesMap;
     }    
 
     public void addCommand (String userInput) {
