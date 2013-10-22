@@ -17,13 +17,14 @@ public class DisplayTurtle extends JGObject{
     protected DisplayRect myBox;
     
     public DisplayTurtle (double x,
-                          double y) {
+                          double y,
+                          double direction) {
         super(DISPLAY_TURTLE_NAME, true, x-16, y-16, TURTLE_COLID,null);
         myBox=new DisplayRect(x,y,TURTLE_SIZE,TURTLE_SIZE,this);
         myColor=JGColor.black;
         myEngine=eng;
         myImageNumber=1;
-        myRotation=90;
+        myRotation=direction;
         setRotation(myRotation);
     }
         
@@ -47,8 +48,9 @@ public class DisplayTurtle extends JGObject{
         myRotation=direction;
     }
     
-    public void setPosition(double x,double y){
+    public void setPosition(double x,double y,double direction){
         setPos(x-16,y-16);
+        setRotation(direction);
     }
     
     public void activateBox(){

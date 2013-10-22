@@ -259,6 +259,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     @Override
     public void clearScreen () {
         currentWorkspace.clearScreen();
+        ((SLogoViewer) viewer).clearScreen();
     }
 
     public void clearWorkspace () {
