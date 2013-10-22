@@ -2,6 +2,7 @@ package viewer.toggle;
 
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
+
 import controller.Controller;
 import jgame.JGColor;
 import viewer.Panel;
@@ -17,16 +18,20 @@ public class PenColorButton extends SelectableListButton {
     private static final String COMMAND="SETPEN ";
     
 	public PenColorButton(Controller controller) {
-            super(PEN_COLORS, PEN_COLORS, COMMAND, BUTTON_TITLE, DIALOG_MESSAGE,controller);
+		super(PEN_COLORS, PEN_COLORS, COMMAND, BUTTON_TITLE, DIALOG_MESSAGE,controller);
 	}
 	
 	@Override
 	public void buttonPushed() {
     	super.buttonPushed();
-//    	for (int i = 0; i < this.myController.getActiveTurtles().size(); i++) {
-//    		this.myController.getActiveTurtles().get(i).getTurtleTrace().setTurtlePenColor(PEN_JGCOLORS[myList.getSelectedIndex()]);
-//		}
+    	BackgroundColorButton.buildColorMap();
     	this.myController.setPenColor(PEN_JGCOLORS[myList.getSelectedIndex()]);
 	}
-	
+
+	public static Double getColorIdFromColor(JGColor penColor) {
+		return BackgroundColorButton.getColorIdFromColor(penColor);
+	}
+	public static JGColor getColorFromColorId(Double id) {
+		return BackgroundColorButton.getColorFromColorId(id);
+	}
 }

@@ -19,7 +19,7 @@ public class LoadPreferencesExpression extends DisplayCommandExpression {
         
         NumberExpression exp = super.turtleCommandPrep(turtleCmd, list);
                 
-        turtleCmd.loadPreferences((int)exp.getNumber());
+//        turtleCmd.loadPreferences((int)exp.getNumber());
         
         list.add(turtleCmd);
         return list;

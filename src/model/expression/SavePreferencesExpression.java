@@ -21,7 +21,7 @@ public class SavePreferencesExpression extends DisplayCommandExpression {
         
         NumberExpression exp = super.turtleCommandPrep(turtleCmd, list);
                 
-        turtleCmd.savePreferences(turtleCmd.getCurrentPreferences());
+//        turtleCmd.savePreferences(turtleCmd.getCurrentPreferences());
         
         list.add(turtleCmd);
         return list;

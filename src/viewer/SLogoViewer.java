@@ -70,4 +70,12 @@ public class SLogoViewer extends Viewer{
     public void clearScreen(){
         myTurtleDisplay.clearScreen();
     }
+
+	public void setTurtleImage(int num) {
+		myTurtleDisplay.setTurtleImageNumber(num);
+	}
+	
+	public int getTurtleImage() {
+		return myTurtleDisplay.getTurtleImageNumber();
+	}
 }

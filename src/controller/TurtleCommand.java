@@ -30,7 +30,6 @@ public class TurtleCommand {
         this.direction = direction;
         this.isPenDown = true;
         this.isVisible = true;
-        this.preferencesMap = new ArrayList<HashMap<String, Double>>();
     }
     
     public TurtleCommand(TurtleCommand rhs){
@@ -42,38 +41,38 @@ public class TurtleCommand {
 //        this.isVisible = rhs.isVisible;
     }
     
-    private static final String BACKGROUND = "background";
-    private static final String PEN_COLOR = "penColor";
-    private static final String PEN_SIZE = "penSize";
-    private static final String SHAPE = "shape";
-
-    private static List<HashMap<String, Double>> preferencesMap;
-    
-	public Map<String, Double> getCurrentPreferences() {
-		Map<String, Double> preference = new HashMap<String, Double>();
-
-//		preference.put(BACKGROUND, this.getBackground());
-		preference.put(PEN_COLOR, this.getPenColor());
-		preference.put(SHAPE, this.getShape());
-		preference.put(PEN_SIZE, this.getPenSize());
-		return preference;
-	}
-    
-    public void savePreferences (Map<String, Double> preference) {
-    	this.preferencesMap.add((HashMap<String, Double>) preference);
-    }
-    
-    public void loadPreferences (int index) {
-    	Map<String, Double> map = this.preferencesMap.get(index);
-//    	this.setBackground(map.get(BACKGROUND));
-    	this.setPenColor(map.get(PEN_COLOR));
-    	this.setPenSize(map.get(PEN_SIZE));
-    	this.setShape(map.get(SHAPE));
-    }
-    
-    public static List<HashMap<String, Double>> getAllPreferences() {
-    	return (ArrayList<HashMap<String, Double>>) preferencesMap;
-    }    
+//    private static final String BACKGROUND = "background";
+//    private static final String PEN_COLOR = "penColor";
+//    private static final String PEN_SIZE = "penSize";
+//    private static final String SHAPE = "shape";
+//
+//    private static List<HashMap<String, Double>> preferencesMap;
+//    
+//	public Map<String, Double> getCurrentPreferences() {
+//		Map<String, Double> preference = new HashMap<String, Double>();
+//
+////		preference.put(BACKGROUND, this.getBackground());
+//		preference.put(PEN_COLOR, this.getPenColor());
+//		preference.put(SHAPE, this.getShape());
+//		preference.put(PEN_SIZE, this.getPenSize());
+//		return preference;
+//	}
+//    
+//    public void savePreferences (Map<String, Double> preference) {
+//    	this.preferencesMap.add((HashMap<String, Double>) preference);
+//    }
+//    
+//    public void loadPreferences (int index) {
+//    	Map<String, Double> map = this.preferencesMap.get(index);
+////    	this.setBackground(map.get(BACKGROUND));
+//    	this.setPenColor(map.get(PEN_COLOR));
+//    	this.setPenSize(map.get(PEN_SIZE));
+//    	this.setShape(map.get(SHAPE));
+//    }
+//    
+//    public static List<HashMap<String, Double>> getAllPreferences() {
+//    	return (ArrayList<HashMap<String, Double>>) preferencesMap;
+//    }    
     
 //    public double getBackground () {
 //        return  background;
@@ -91,13 +90,13 @@ public class TurtleCommand {
         this.penColor = penColor;
     }
 
-    public double getShape () {
-        return shape;
-    }
-
-    public void setShape (double shape) {
-        this.shape = shape;
-    }
+//    public double getShape () {
+//        return shape;
+//    }
+//
+//    public void setShape (double shape) {
+//        this.shape = shape;
+//    }
 
     public boolean isStamp () {
         return stamp;

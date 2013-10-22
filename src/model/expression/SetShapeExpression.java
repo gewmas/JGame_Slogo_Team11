@@ -18,7 +18,7 @@ public class SetShapeExpression extends DisplayCommandExpression {
         
         NumberExpression exp = super.turtleCommandPrep(turtleCmd, list);
         
-        turtleCmd.setShape(exp.getNumber());
+//        turtleCmd.setShape(exp.getNumber());
         
         list.add(turtleCmd);
         return list;
