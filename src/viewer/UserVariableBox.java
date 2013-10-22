@@ -24,17 +24,17 @@ public class UserVariableBox extends EditableListTable{
     protected JList myVariableNameList, myVariableValueList;
     public UserVariableBox(int width, int height){
         super(width,height,columnNames);
-        //String[] test={"Hi","Hello"};
+//        String[] test={"Hi","Hello"};
 //        Map<String, Expression> map = MakeExpression.getVariables();
 //        for (String key : map.keySet()) {
-//			String[] row = {key, map.get(key).toString()};
-//            myTableModel.addRow(row);
+////			String[] row = {key, map.get(key).toString()};
+//            myTableModel.addRow(test);
 //		}
         //Automate value entry?*/
     }
     
     public static void addVariable(String key, Expression expression) {
-        String expressionValue = ((NumberExpression) expression).getNumber().toString();
+    	String expressionValue = ((NumberExpression) expression).getNumber().toString();
     	String[] row = {key, expressionValue};
     	System.out.println(key + " " + expressionValue);
     	System.out.println(myTableModel.getColumnCount());
