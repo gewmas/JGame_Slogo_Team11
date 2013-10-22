@@ -6,10 +6,12 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+
 import model.expression.Expression;
 import model.expression.MakeExpression;
 import model.expression.NumberExpression;

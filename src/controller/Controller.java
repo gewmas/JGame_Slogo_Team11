@@ -125,7 +125,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     public void undo () {
-    	System.out.println("hello");
+//    	System.out.println("hello");
         currentCommand--;
         interpretCommand(CLEARSCREEN);
         for (String command : commandList.subList(0, currentCommand)) {

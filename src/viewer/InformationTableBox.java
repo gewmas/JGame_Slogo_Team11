@@ -13,7 +13,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import viewer.display_objects.TurtleDisplayWindow;
 
-//Should also extend EditableListTable?
 public class InformationTableBox extends EditableListTable {
     private static final int X_ROW=0;
     private static final int Y_ROW=1;
