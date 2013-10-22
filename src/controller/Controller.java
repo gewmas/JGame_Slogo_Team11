@@ -59,7 +59,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         workspaces = new HashMap<String, Workspace>();
         currentWorkspace = new Workspace();
         workspaces.put("1", currentWorkspace);
-
+        commandList=new ArrayList<String>();
     }
 
     private void buildLanguageMap() {
@@ -125,17 +125,19 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     public void undo () {
-//    	System.out.println("hello");
+    	System.out.println(currentCommand);
         currentCommand--;
         interpretCommand(CLEARSCREEN);
         for (String command : commandList.subList(0, currentCommand)) {
             interpretCommand(command);
+            System.out.println(command);
         }
     }
 
     public void redo () {
         if (currentCommand < commandList.size() - 1) {
             currentCommand++;
+            System.out.println(commandList.get(currentCommand));
             interpretCommand(commandList.get(currentCommand));
         }
     }

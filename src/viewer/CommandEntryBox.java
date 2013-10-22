@@ -26,7 +26,7 @@ public class CommandEntryBox extends Panel implements ActionListener{
     @Override
     public void actionPerformed (ActionEvent arg0) {
         String text = myTextField.getText();
-        myController.interpretCommand(text);
+        myController.addCommand(text);
         myPastCommandBox.addCommand(text);
         myTextField.setText("");
     }
