@@ -21,6 +21,9 @@ import controller.Turtle;
 import jgame.JGColor;
 import viewer.Panel;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class WorkspaceButton extends SelectableListButton {
 	private static final String BUTTON_TITLE="Change Workspace";
 	private static final String DIALOG_MESSAGE="Please select a workspace";

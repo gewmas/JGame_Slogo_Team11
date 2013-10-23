@@ -2,6 +2,9 @@ package viewer.toggle;
 
 import controller.Controller;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class RedoButton extends Button {
 
 	private static final String LABEL = "Redo";

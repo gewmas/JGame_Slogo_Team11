@@ -12,6 +12,9 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public abstract class EditableListTable extends Panel {
     protected JTable myElementTable; 
     protected DefaultTableModel myTableModel;

@@ -5,6 +5,9 @@ import java.awt.event.MouseEvent;
 import controller.Controller;
 import viewer.Panel;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class GridButton extends Button {
 	
     private static final String LABEL="Toggle Grid";

@@ -22,6 +22,8 @@ import jgame.platform.JGEngine;
  * constructor (this is the entry point for an applet).  We use a second
  * constructor with a size parameter to initialise the engine as an
  * application.
+ * 
+ * @author FrontEnd - Alex, Adam
  */
 public abstract class TurtleDisplayWindow extends JGEngine {
 	protected static final int ZERO_OFFSET=50;

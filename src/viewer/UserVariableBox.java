@@ -17,6 +17,9 @@ import model.expression.Expression;
 import model.expression.MakeExpression;
 import model.expression.NumberExpression;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class UserVariableBox extends EditableListTable{
 	
     protected static final String[] COLUMNNAMES={"Variable","Value"};

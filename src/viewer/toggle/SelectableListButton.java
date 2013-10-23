@@ -20,6 +20,9 @@ import controller.Controller;
 import jgame.JGColor;
 import viewer.Panel;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public abstract class SelectableListButton extends Button {
 
 	private String[] myListStrings;

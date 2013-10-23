@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import controller.Controller;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class CommandEntryBox extends Panel implements ActionListener{
     JTextField myTextField;
     Controller myController;

@@ -10,6 +10,9 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class Panel extends JPanel {
 
 	protected List<JComponent> componentList;

@@ -19,6 +19,9 @@ import viewer.Panel;
 import viewer.display_objects.DefaultTurtleDisplayWindow;
 import viewer.display_objects.TurtleDisplayWindow;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class Toggles extends Panel {
 	
     protected List<Button> buttonList;
