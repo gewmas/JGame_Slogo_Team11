@@ -19,7 +19,7 @@ import viewer.toggle.Toggles;
 
 public class SLogoViewer extends Viewer{
     private static int DISPLAY_WIDTH=600;
-    private static int DISPLAY_HEIGHT=480;
+    private static int DISPLAY_HEIGHT=600;
 
     protected Panel myLeftPanel;
     protected Panel myRightPanel;
