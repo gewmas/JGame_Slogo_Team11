@@ -36,7 +36,7 @@ You can also fun the tests within the testExample bundle
 
 Bugs:
  
-1. tellWith does not work properly all the time
+1. tellWith does not work properly for all possible conditions supplied
 
 Extra Features:
 
