@@ -221,11 +221,13 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     public void setLanguage (String language) {
 
+        System.out.println("Calling change language to: "+language);
         String country = languageToCountry.get(language);
 
         Locale currentLocale;
         currentLocale = new Locale(language, country);
         messages = ResourceBundle.getBundle("Languages.MessagesBundle", currentLocale);
+        
     }
 
     /**
@@ -385,6 +387,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     @Override
     public void addColorIndex (ColorIndex index) {
         colorIndexes.put(index.index, index);
+    }
+    
+    public ResourceBundle getLanguageMessages() {
+        return this.messages;
     }
 
     // Turtle queries function call

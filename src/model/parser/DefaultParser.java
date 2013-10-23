@@ -59,6 +59,8 @@ public class DefaultParser extends Parser {
     
     @Override
     public Expression parse (List<String> commandInput) throws SlogoException {
+        messages = model.getController().getLanguageMessages();
+        
         String s = commandInput.get(0).toLowerCase();
 
         //Turtle Commands

@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import model.expression.Expression;
 
 /**
@@ -26,6 +27,9 @@ public interface ControllerToModelInterface {
     public void penColor ();
     public void turtleShape ();
     public void id();
+    
+    //other
+    public ResourceBundle getLanguageMessages();
     
     public void addColorIndex (ColorIndex index);
     
