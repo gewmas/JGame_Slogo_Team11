@@ -45,6 +45,7 @@ public class AskExpression extends Expression {
         //Within [ :count ]
         for(int i = openBracketIndex+1; i < closeBracketIndex; i++){
             turtleIds.add(cmdList.get(i));
+            cmdList.remove(0);
         }
 
 
