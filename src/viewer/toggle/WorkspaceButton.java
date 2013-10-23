@@ -25,12 +25,11 @@ public class WorkspaceButton extends SelectableListButton {
         private static final String BUTTON_TITLE="Change Workspace";
         private static final String DIALOG_MESSAGE="Please select a workspace";
         private static final String WORKSPACE_PROMPT="Workspace ";
-        private static final String[] WORKSPACE_NUMBERS={"1","2","3","4","5"};
         private static final String[] WORKSPACE_VALUES={"Workspace One","Workspace Two","Workspace Three","Workspace Four","Workspace Five"};
         protected int numWorkspaces;
 	        
 	public WorkspaceButton(Controller controller) {
-		super(WORKSPACE_VALUES, WORKSPACE_NUMBERS, BUTTON_TITLE, DIALOG_MESSAGE, controller);
+		super(WORKSPACE_VALUES,BUTTON_TITLE, DIALOG_MESSAGE, controller);
 		numWorkspaces=1;
 	}
 	

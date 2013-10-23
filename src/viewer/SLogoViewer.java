@@ -46,8 +46,8 @@ public class SLogoViewer extends Viewer{
 
         setTitle("SLogo");
         myInformationTableBox=new InformationTableBox(200,110);
-        myUserVariableBox=new UserVariableBox(200,170,controller);
-        myUserCommandsBox = new UserDefinedCommandsBox(200,170);
+        myUserVariableBox=new UserVariableBox(200,160,controller);
+        myUserCommandsBox = new UserDefinedCommandsBox(200,160);
         myTurtleDisplay=new DefaultTurtleDisplayWindow(new JGPoint(DISPLAY_WIDTH-10,DISPLAY_HEIGHT-10), controller,myInformationTableBox);
         myPastCommandBox=new PastCommandBox(600,140,controller);
         myLeftPanel.add(new DisplayBox(DISPLAY_WIDTH,DISPLAY_HEIGHT,myTurtleDisplay,controller));
@@ -57,17 +57,17 @@ public class SLogoViewer extends Viewer{
         myRightPanel.add(myInformationTableBox);
         myRightPanel.add(myUserVariableBox);
         myRightPanel.add(myUserCommandsBox);
-        myRightPanel.add(new Toggles(200,310,controller));
+        myRightPanel.add(new Toggles(200,340,controller));
         pack();
         setVisible(true);
     }
 
     public void setBackgroundColor (JGColor backgroundColor) {
-        myTurtleDisplay.setBackGroundColor(backgroundColor);;
+        ((DefaultTurtleDisplayWindow) myTurtleDisplay).setBackGroundColor(backgroundColor);;
     }
 
     public void setPenColor (JGColor penColor) {
-        myTurtleDisplay.setPenColor(penColor);
+        ((DefaultTurtleDisplayWindow) myTurtleDisplay).setPenColor(penColor);
     }
     
 //    public void setPenSize (double pensize) {
@@ -75,11 +75,11 @@ public class SLogoViewer extends Viewer{
 //    }
 
     public void toggleGrid(){
-        myTurtleDisplay.toggleGrid();
+        ((DefaultTurtleDisplayWindow) myTurtleDisplay).toggleGrid();
     }
 
     public void toggleHighlightTurtles(){
-        myTurtleDisplay.toggleHighLightTurtles();
+        ((DefaultTurtleDisplayWindow) myTurtleDisplay).toggleHighLightTurtles();
     }
 
     public void clearScreen(){
@@ -87,15 +87,15 @@ public class SLogoViewer extends Viewer{
     }
 
     public void setTurtleImage(int num) {
-        myTurtleDisplay.setTurtleImageNumber(num);
+        ((DefaultTurtleDisplayWindow) myTurtleDisplay).setTurtleImageNumber(num);
     }
 
     public int getTurtleImage() {
-        return myTurtleDisplay.getTurtleImageNumber();
+        return ((DefaultTurtleDisplayWindow) myTurtleDisplay).getTurtleImageNumber();
     }
     
     public void setTrackedTurtle(String turtleNum){
-        myTurtleDisplay.setTrackedTurtle(turtleNum);
+        ((DefaultTurtleDisplayWindow) myTurtleDisplay).setTrackedTurtle(turtleNum);
     }
     
     public void updateUserVariableTable(Map<String, Expression> variableMap){

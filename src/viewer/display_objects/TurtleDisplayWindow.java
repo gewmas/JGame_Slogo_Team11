@@ -24,8 +24,7 @@ import jgame.platform.JGEngine;
  * application.
  */
 public abstract class TurtleDisplayWindow extends JGEngine {
-	
-        private static final int ZERO_OFFSET=50;
+        protected static final int ZERO_OFFSET=50;
         private static final int NUM_TILES_WIDTH=20;
         private static final int NUM_TILES_HEIGHT=20;
         private static final int NUM_GRID_X=20;
@@ -114,38 +113,38 @@ public abstract class TurtleDisplayWindow extends JGEngine {
             System.out.println("");
         }
         
-        public void addPath(double x1, double y1, double x2, double y2,double size){
-            myPaths.add(new DisplayPath(x1,y1,x2,y2,size,myPenColor));
-        }
-        
-        public void setBackGroundColor(JGColor color){
-            setBGColor(color);
-        }
-        
-        public void setPenColor(JGColor color){
-            myPenColor=color;
-        }
-        
-//        public void setPenSize(double pensize){
-//            myPenSize=pensize;
+//        public void addPath(double x1, double y1, double x2, double y2,double size){
+//            myPaths.add(new DisplayPath(x1,y1,x2,y2,size,myPenColor));
 //        }
-        
-        public void toggleGrid(){
-            myGrid.toggleOn();
-        }
-        
-        public void toggleHighLightTurtles(){
-            myHighlightTurtles=!myHighlightTurtles;
-        }
-        
-        public void setTrackedTurtle(String turtleNum){
-            myTrackedTurtle=turtleNum;
-        }
-        
+//        
+//        public void setBackGroundColor(JGColor color){
+//            setBGColor(color);
+//        }
+//        
+//        public void setPenColor(JGColor color){
+//            myPenColor=color;
+//        }
+//        
+////        public void setPenSize(double pensize){
+////            myPenSize=pensize;
+////        }
+//        
+//        public void toggleGrid(){
+//            myGrid.toggleOn();
+//        }
+//        
+//        public void toggleHighLightTurtles(){
+//            myHighlightTurtles=!myHighlightTurtles;
+//        }
+//        
+//        public void setTrackedTurtle(String turtleNum){
+//            myTrackedTurtle=turtleNum;
+//        }
+//        
         protected Point2D getDisplayCoordinates(double x, double y){
             return new Point2D.Double(myWidth/2+x,-y+myHeight-ZERO_OFFSET);
         }
-        
+//        
         public void setTurtlePosition(String id,double x, double y,double direction){
             if (myActiveTurtles.containsKey(id)){
                 myActiveTurtles.get(id).setPosition(x, y,direction);
@@ -153,18 +152,18 @@ public abstract class TurtleDisplayWindow extends JGEngine {
                 myActiveTurtles.put(id, new DisplayTurtle(x, y,direction));
             }
         }
-        
-        public void setTurtleImageNumber(int imageNum){
-            for (DisplayTurtle turtle:myActiveTurtles.values()){
-                turtle.setImageNumber(imageNum);
-                turtle.setRotation(turtle.getRotation());
-            }
-        }
-        
-        public int getTurtleImageNumber() {
-            System.out.println(myActiveTurtles.get("1").toString());
-        	return myActiveTurtles.get("1").getImageNumber();
-        }
+//        
+//        public void setTurtleImageNumber(int imageNum){
+//            for (DisplayTurtle turtle:myActiveTurtles.values()){
+//                turtle.setImageNumber(imageNum);
+//                turtle.setRotation(turtle.getRotation());
+//            }
+//        }
+//        
+//        public int getTurtleImageNumber() {
+//            System.out.println(myActiveTurtles.get("1").toString());
+//        	return myActiveTurtles.get("1").getImageNumber();
+//        }
 
         private void drawTurtle(){
             try {

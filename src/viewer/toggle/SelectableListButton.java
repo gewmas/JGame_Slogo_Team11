@@ -28,7 +28,7 @@ public abstract class SelectableListButton extends Button {
     protected Controller myController;
     protected DefaultListModel myListModel;
 
-    public SelectableListButton(String[] listStrings,String[] listValues,
+    public SelectableListButton(String[] listStrings,
                                 String buttonTitle,String dialogMessage, Controller controller) {
         super(buttonTitle, controller);
         myController=controller;

@@ -17,7 +17,7 @@ public class PenColorButton extends SelectableListButton {
     private static final String[] PEN_COLORS={"Black","Blue","Cyan","Gray","Green","Magenta","Orange","Pink","Red","White","Yellow"};
     
 	public PenColorButton(Controller controller) {
-		super(PEN_COLORS, PEN_COLORS, BUTTON_TITLE, DIALOG_MESSAGE,controller);
+		super(PEN_COLORS, BUTTON_TITLE, DIALOG_MESSAGE,controller);
 	}
 	
 	@Override

@@ -36,7 +36,7 @@ public class BackgroundColorButton extends SelectableListButton {
 	protected static Map<Double, JGColor> colorMap;
 
 	public BackgroundColorButton(Controller controller) {
-		super(BG_COLORS, BG_COLORS, LABEL, DIALOG_MESSAGE,controller);
+		super(BG_COLORS, LABEL, DIALOG_MESSAGE,controller);
 		buildColorMap();
 	}
 

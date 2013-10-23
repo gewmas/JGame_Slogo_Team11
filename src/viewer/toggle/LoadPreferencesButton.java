@@ -11,7 +11,7 @@ public class LoadPreferencesButton extends SelectableListButton {
 	protected static String[] PREFERENCES = {};
 
 	public LoadPreferencesButton(Controller controller) {
-		super(PREFERENCES, PREFERENCES, BUTTON_TITLE, DIALOG_MESSAGE, controller);
+		super(PREFERENCES, BUTTON_TITLE, DIALOG_MESSAGE, controller);
 	}
 	
 	private int getAllPreferenceNames() {

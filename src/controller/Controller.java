@@ -77,6 +77,9 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         setCurrentWorkspace("1");
     }
 
+    public Set<String> getLanguages () {
+        return languageToCountry.keySet();
+    }
 
     private void buildLanguageMap() {
         languageToCountry = new HashMap<String, String>();

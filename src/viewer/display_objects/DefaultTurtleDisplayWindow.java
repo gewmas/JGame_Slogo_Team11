@@ -23,6 +23,8 @@ import jgame.platform.JGEngine;
  * application.
  */
 public class DefaultTurtleDisplayWindow extends TurtleDisplayWindow {
+        private static final int ZERO_OFFSET=50;
+    
 	public DefaultTurtleDisplayWindow(Controller controller,InformationTableBox infotable) {
 		this(new JGPoint(500,500),controller,infotable); 
 	}
@@ -31,4 +33,44 @@ public class DefaultTurtleDisplayWindow extends TurtleDisplayWindow {
 	public DefaultTurtleDisplayWindow(JGPoint size, Controller controller,InformationTableBox infotable) {
 		super(size,controller,infotable); 
 	}
+	
+	public void addPath(double x1, double y1, double x2, double y2,double size){
+            myPaths.add(new DisplayPath(x1,y1,x2,y2,size,myPenColor));
+        }
+        
+        public void setBackGroundColor(JGColor color){
+            setBGColor(color);
+        }
+        
+        public void setPenColor(JGColor color){
+            myPenColor=color;
+        }
+        
+//        public void setPenSize(double pensize){
+//            myPenSize=pensize;
+//        }
+        
+        public void toggleGrid(){
+            myGrid.toggleOn();
+        }
+        
+        public void toggleHighLightTurtles(){
+            myHighlightTurtles=!myHighlightTurtles;
+        }
+        
+        public void setTrackedTurtle(String turtleNum){
+            myTrackedTurtle=turtleNum;
+        }
+        
+        public void setTurtleImageNumber(int imageNum){
+            for (DisplayTurtle turtle:myActiveTurtles.values()){
+                turtle.setImageNumber(imageNum);
+                turtle.setRotation(turtle.getRotation());
+            }
+        }
+        
+        public int getTurtleImageNumber() {
+            System.out.println(myActiveTurtles.get("1").toString());
+                return myActiveTurtles.get("1").getImageNumber();
+        }
 }

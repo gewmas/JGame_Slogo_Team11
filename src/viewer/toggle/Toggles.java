@@ -16,6 +16,7 @@ import jgame.JGColor;
 import jgame.JGObject;
 import viewer.DisplayBox;
 import viewer.Panel;
+import viewer.display_objects.DefaultTurtleDisplayWindow;
 import viewer.display_objects.TurtleDisplayWindow;
 
 public class Toggles extends Panel {
@@ -45,6 +46,7 @@ public class Toggles extends Panel {
         buttonList.add(new RedoButton(controller));
         buttonList.add(new SavePreferencesButton(controller));
         buttonList.add(new LoadPreferencesButton(controller));
+        buttonList.add(new SetLanguageButton(controller));
         buttonList.add(new HelpButton(controller));
 
         for (int i = 0; i < buttonList.size(); i++) {
@@ -55,7 +57,7 @@ public class Toggles extends Panel {
     }
     
     public void setBackgroundColor(JGColor color) {
-    	myTurtleDisplay.setBackGroundColor(color);
+    	((DefaultTurtleDisplayWindow) myTurtleDisplay).setBackGroundColor(color);
     	this.backgroundColor = color;
     }
     
@@ -64,7 +66,7 @@ public class Toggles extends Panel {
     }
     
     public void setTurtleImage(int imageNum) {
-        myTurtleDisplay.setTurtleImageNumber(imageNum);
+        ((DefaultTurtleDisplayWindow) myTurtleDisplay).setTurtleImageNumber(imageNum);
         this.turtleImageNum = imageNum;
     }
     
@@ -73,7 +75,7 @@ public class Toggles extends Panel {
     }
     
     public void setPenColor(JGColor color) {
-    	myTurtleDisplay.setPenColor(color);
+    	((DefaultTurtleDisplayWindow) myTurtleDisplay).setPenColor(color);
     	this.penColor = color;
     }
     
@@ -82,7 +84,7 @@ public class Toggles extends Panel {
     }
     
     public void toggleGrid() {
-    	myTurtleDisplay.toggleGrid();
+    	((DefaultTurtleDisplayWindow) myTurtleDisplay).toggleGrid();
     	this.gridOn = !this.gridOn;
     }
     

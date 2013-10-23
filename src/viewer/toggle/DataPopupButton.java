@@ -16,7 +16,7 @@ public class DataPopupButton extends SelectableListButton {
     private static final String DIALOG_MESSAGE="Please select a turtle to monitor";
     
     public DataPopupButton(Controller controller) {
-        super(new String[] {}, new String[] {}, LABEL,DIALOG_MESSAGE, controller);
+        super(new String[] {}, LABEL,DIALOG_MESSAGE, controller);
     }
 
     @Override
