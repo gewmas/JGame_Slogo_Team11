@@ -2,9 +2,15 @@ package viewer;
 
 import javax.swing.table.DefaultTableModel;
 
-
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class DataTableModel extends DefaultTableModel{
-    public DataTableModel(){
+    
+	/**
+	 * DataTableModel is an extension of DefaultTableModel for use creating information tables in GUI
+	 */
+	public DataTableModel(){
         super();
     }
    

@@ -12,7 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import viewer.display_objects.TurtleDisplayWindow;
-
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class InformationTableBox extends EditableListTable {
     private static final int X_ROW=0;
     private static final int Y_ROW=1;
@@ -22,6 +24,10 @@ public class InformationTableBox extends EditableListTable {
     protected JLabel myVariables;
     protected DefaultListModel myListModel;
     
+    /**
+     * InformationTableBox is a table that displays information about a turtle in the display
+     * You can change which turtle you are viewing information for with the DataPopupButton
+     */
     public InformationTableBox(int width, int height){
         super(width,height,COLUMNNAMES);
         myListModel=new DefaultListModel();

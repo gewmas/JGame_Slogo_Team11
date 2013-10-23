@@ -19,6 +19,9 @@ import viewer.Panel;
 import viewer.display_objects.DefaultTurtleDisplayWindow;
 import viewer.display_objects.TurtleDisplayWindow;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class Toggles extends Panel {
 	
     protected List<Button> buttonList;
@@ -28,6 +31,10 @@ public class Toggles extends Panel {
     private TurtleDisplayWindow myTurtleDisplay;
     private boolean gridOn;
     
+	/**
+	 * Toggles is the GUI box in the bottom right of our display
+	 * This panel contains all clickable buttons defined in this package
+	 */
     public Toggles(int width, int height, Controller controller){
         super(width,height);
         setBorder(BorderFactory.createLineBorder(Color.black));

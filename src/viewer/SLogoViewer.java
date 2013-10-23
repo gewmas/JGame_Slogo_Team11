@@ -17,6 +17,9 @@ import viewer.display_objects.DefaultTurtleDisplayWindow;
 import viewer.display_objects.TurtleDisplayWindow;
 import viewer.toggle.Toggles;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class SLogoViewer extends Viewer{
     private static int DISPLAY_WIDTH=600;
     private static int DISPLAY_HEIGHT=480;
@@ -29,6 +32,10 @@ public class SLogoViewer extends Viewer{
     protected UserVariableBox myUserVariableBox;
     protected InformationTableBox myInformationTableBox;
 
+    /**
+     * SLogoViewer is our container GUI class. This class holds all GUI elements for user interaction
+     * @param controller is the controller between view and model (MVC)
+     */
     public SLogoViewer(Controller controller){
         super();
         myLeftPanel=new Panel();

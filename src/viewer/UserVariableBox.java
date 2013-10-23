@@ -17,16 +17,23 @@ import model.expression.Expression;
 import model.expression.MakeExpression;
 import model.expression.NumberExpression;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class UserVariableBox extends EditableListTable{
 	
     protected static final String[] COLUMNNAMES={"Variable","Value"};
-    protected static final String SET_VARIABLE_COMMAND="MAKE ";
+    protected static final String SET_VARIABLE_COMMAND="MakeVariable";
     protected JLabel myVariables;
     protected JList myVariableNameList, myVariableValueList;
     protected HashMap<String, Integer> myVariablePositions;
     protected Controller myController;
     protected boolean update;    
     
+    /**
+     * UserVariableBox is a GUI element where users can see the names and values of previously defined variables
+     * Users can change the value of a variable by clicking in the table and changing the value manually
+     */
     public UserVariableBox(int width, int height, Controller controller){
         super(width,height,COLUMNNAMES);
         myController=controller;
@@ -55,9 +62,10 @@ public class UserVariableBox extends EditableListTable{
         myTableModel.addTableModelListener(new TableModelListener(){
             public void tableChanged(TableModelEvent e){
                 if (update){
+                    String moveCommand=myController.getLanguageMessages().getString(SET_VARIABLE_COMMAND);
                     for (int i=e.getFirstRow();i<=e.getLastRow();i++){
                         System.out.println("Change!");
-                        myController.interpretCommand(SET_VARIABLE_COMMAND+
+                        myController.interpretCommand(moveCommand+
                                 myTableModel.getValueAt(i, 0)+" "+myTableModel.getValueAt(i,1));
                     }
                 }

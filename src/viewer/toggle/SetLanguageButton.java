@@ -22,11 +22,18 @@ import controller.Turtle;
 import jgame.JGColor;
 import viewer.Panel;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class SetLanguageButton extends SelectableListButton {
-        private static final String BUTTON_TITLE="Set SLogo Language";
-        private static final String DIALOG_MESSAGE="Please select a Language";
-        protected Set<String> myLanguages;
+	private static final String BUTTON_TITLE="Set SLogo Language";
+	private static final String DIALOG_MESSAGE="Please select a Language";
+	protected Set<String> myLanguages;
 	        
+	/**
+	 * SetLanguageButton is a GUI button for users to choose which language to use 
+	 * @param controller is the controller between model and view (MVC)
+	 */
 	public SetLanguageButton(Controller controller) {
 		super(new String[]{}, BUTTON_TITLE, DIALOG_MESSAGE, controller);
 		myLanguages=myController.getLanguages();

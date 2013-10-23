@@ -21,13 +21,20 @@ import controller.Turtle;
 import jgame.JGColor;
 import viewer.Panel;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class WorkspaceButton extends SelectableListButton {
-        private static final String BUTTON_TITLE="Change Workspace";
-        private static final String DIALOG_MESSAGE="Please select a workspace";
-        private static final String WORKSPACE_PROMPT="Workspace ";
-        private static final String[] WORKSPACE_VALUES={"Workspace One","Workspace Two","Workspace Three","Workspace Four","Workspace Five"};
-        protected int numWorkspaces;
+	private static final String BUTTON_TITLE="Change Workspace";
+	private static final String DIALOG_MESSAGE="Please select a workspace";
+	private static final String WORKSPACE_PROMPT="Workspace ";
+	private static final String[] WORKSPACE_VALUES={"Workspace One","Workspace Two","Workspace Three","Workspace Four","Workspace Five"};
+	protected int numWorkspaces;
 	        
+	/**
+	 * WorkspaceButton is a GUI button for users to change the current workspace
+	 * @param controller is the controller between model and view (MVC)
+	 */
 	public WorkspaceButton(Controller controller) {
 		super(WORKSPACE_VALUES,BUTTON_TITLE, DIALOG_MESSAGE, controller);
 		numWorkspaces=1;

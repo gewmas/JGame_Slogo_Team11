@@ -21,6 +21,8 @@ import jgame.platform.JGEngine;
  * constructor (this is the entry point for an applet).  We use a second
  * constructor with a size parameter to initialise the engine as an
  * application.
+ *
+ * @author FrontEnd - Alex, Adam
  */
 public class DefaultTurtleDisplayWindow extends TurtleDisplayWindow {
         private static final int ZERO_OFFSET=50;
@@ -38,39 +40,38 @@ public class DefaultTurtleDisplayWindow extends TurtleDisplayWindow {
             myPaths.add(new DisplayPath(x1,y1,x2,y2,size,myPenColor));
         }
         
-        public void setBackGroundColor(JGColor color){
-            setBGColor(color);
-        }
-        
-        public void setPenColor(JGColor color){
-            myPenColor=color;
-        }
-        
+    public void setBackGroundColor(JGColor color){
+        setBGColor(color);
+    }
+    
+    public void setPenColor(JGColor color){
+        myPenColor=color;
+    }
+    
 //        public void setPenSize(double pensize){
 //            myPenSize=pensize;
 //        }
-        
-        public void toggleGrid(){
-            myGrid.toggleOn();
+    
+    public void toggleGrid(){
+        myGrid.toggleOn();
+    }
+    
+    public void toggleHighLightTurtles(){
+        myHighlightTurtles=!myHighlightTurtles;
+    }
+    
+    public void setTrackedTurtle(String turtleNum){
+        myTrackedTurtle=turtleNum;
+    }
+    
+    public void setTurtleImageNumber(int imageNum){
+        for (DisplayTurtle turtle:myActiveTurtles.values()){
+            turtle.setImageNumber(imageNum);
+            turtle.setRotation(turtle.getRotation());
         }
-        
-        public void toggleHighLightTurtles(){
-            myHighlightTurtles=!myHighlightTurtles;
-        }
-        
-        public void setTrackedTurtle(String turtleNum){
-            myTrackedTurtle=turtleNum;
-        }
-        
-        public void setTurtleImageNumber(int imageNum){
-            for (DisplayTurtle turtle:myActiveTurtles.values()){
-                turtle.setImageNumber(imageNum);
-                turtle.setRotation(turtle.getRotation());
-            }
-        }
-        
-        public int getTurtleImageNumber() {
-            System.out.println(myActiveTurtles.get("1").toString());
-                return myActiveTurtles.get("1").getImageNumber();
-        }
+    }
+    
+    public int getTurtleImageNumber() {
+        return myActiveTurtles.get("1").getImageNumber();
+    }
 }

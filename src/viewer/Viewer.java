@@ -9,10 +9,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import jgame.JGPoint;
 
-public abstract class Viewer extends Frame{
+/**
+ * @author FrontEnd - Alex, Adam
+ */
+public abstract class Viewer extends Frame {
 	
     protected Panel myMainPanel;
     
+    /**
+     * Frame class extends Frame superclass to add a few desired features for our displays
+     * This class will be further extended by SLogoViewer with the specifics of our GUI
+     */
     public Viewer() {
         super();
         setLayout(new FlowLayout());

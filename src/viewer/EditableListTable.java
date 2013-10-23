@@ -12,13 +12,22 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public abstract class EditableListTable extends Panel {
     protected JTable myElementTable; 
     protected DefaultTableModel myTableModel;
     protected JScrollPane myScrollPane;
     protected String[] myColumnNames;
-    
     protected HashMap<String,Double> myElements;
+    
+    /**
+     * EditableListTable is a type of table where users can edit values in the list manually
+     * @param width is physical width of the panel
+     * @param height is the physical height of the panel
+     * @param columnNames is the names of all columns in this list
+     */
     public EditableListTable(int width, int height, String[] columnNames){
         super(width,height);
         myElements=new HashMap<String,Double>();
