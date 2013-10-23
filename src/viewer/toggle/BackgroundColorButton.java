@@ -34,7 +34,11 @@ public class BackgroundColorButton extends SelectableListButton {
     private static final String[] BG_COLORS={"Black","Blue","Cyan","Gray","Green","Magenta",
     										 "Orange","Pink","Red","White","Yellow"};
 	protected static Map<Double, JGColor> colorMap;
-
+	
+	/**
+	 * BackgroundColorButton is a GUI button for users to change the color of the background of the display
+	 * @param controller is the controller between model and view (MVC)
+	 */
 	public BackgroundColorButton(Controller controller) {
 		super(BG_COLORS, LABEL, DIALOG_MESSAGE,controller);
 		buildColorMap();
@@ -50,6 +54,9 @@ public class BackgroundColorButton extends SelectableListButton {
     	}
     }
     
+    /**
+     * colorMap maps color id's to JGColors for the GUI
+     */
     protected static void buildColorMap() {
 		colorMap = new HashMap<Double, JGColor>();
 		colorMap.put(0d, JGColor.black);

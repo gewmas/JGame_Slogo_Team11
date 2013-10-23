@@ -12,6 +12,10 @@ public class TurtleImageButton extends SelectableListButton {
     private static final String[] IMAGE_NUMBERS={"1","2"};
     private static final String[] IMAGE_NAMES={"Turtle 1", "Turtle 2"};
 
+	/**
+	 * TurtleImageButton is a GUI button for users to change the turtle image in the display
+	 * @param controller is the controller between model and view (MVC)
+	 */
     public TurtleImageButton(Controller controller) {
         super(IMAGE_NAMES, BUTTON_TITLE, DIALOG_MESSAGE, controller);
     }

@@ -11,6 +11,10 @@ public class HelpButton extends Button {
     private static final String LABEL="Help";
     private static final String HELP_URI = "http://www.cs.duke.edu/courses/cps108/current/assign/03_slogo/commands.php";
 	
+	/**
+	 * HelpButton is a GUI button for users to link to a help page with useable functions
+	 * @param controller is the controller between model and view (MVC)
+	 */
 	public HelpButton(Controller controller) {
 		super(LABEL, controller);
 	}

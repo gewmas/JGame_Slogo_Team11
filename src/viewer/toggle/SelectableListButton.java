@@ -28,6 +28,10 @@ public abstract class SelectableListButton extends Button {
     protected Controller myController;
     protected DefaultListModel myListModel;
 
+	/**
+	 * SelectableListButton is an extension of the Button class
+	 * This class is used for buttons that bring up popup menus
+	 */
     public SelectableListButton(String[] listStrings,
                                 String buttonTitle,String dialogMessage, Controller controller) {
         super(buttonTitle, controller);
