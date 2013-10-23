@@ -23,6 +23,11 @@ public abstract class Button extends JButton {
 		this(LABEL, controller);
 	}
 	
+	/**
+	 * Button is a GUI button for users to change GUI elements
+	 * This class will be extended by subclasses for specific buttons
+	 * @param controller is the controller between model and view (MVC)
+	 */
 	public Button(String buttonText, Controller controller) {
 		super(buttonText);
 		setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));

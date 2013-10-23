@@ -16,6 +16,10 @@ public class PenColorButton extends SelectableListButton {
                                               JGColor.orange,JGColor.pink,JGColor.red,JGColor.white,JGColor.yellow};
     private static final String[] PEN_COLORS={"Black","Blue","Cyan","Gray","Green","Magenta","Orange","Pink","Red","White","Yellow"};
     
+	/**
+	 * PenColorButton is a GUI button for users to change the color of pens in the display
+	 * @param controller is the controller between model and view (MVC)
+	 */
 	public PenColorButton(Controller controller) {
 		super(PEN_COLORS, BUTTON_TITLE, DIALOG_MESSAGE,controller);
 	}

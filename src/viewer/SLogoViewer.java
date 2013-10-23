@@ -29,6 +29,10 @@ public class SLogoViewer extends Viewer{
     protected UserVariableBox myUserVariableBox;
     protected InformationTableBox myInformationTableBox;
 
+    /**
+     * SLogoViewer is our container GUI class. This class holds all GUI elements for user interaction
+     * @param controller is the controller between view and model (MVC)
+     */
     public SLogoViewer(Controller controller){
         super();
         myLeftPanel=new Panel();

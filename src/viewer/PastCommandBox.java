@@ -15,12 +15,18 @@ import javax.swing.JScrollPane;
 import controller.Controller;
 
 public class PastCommandBox extends Panel{
+	
     private static final String WELCOME="Welcome to SLOGO!";
     JList myPastCommandJList;
     DefaultListModel myListModel;
     List<String> myPastCommands;
     JScrollPane myCommandPane;
     Controller myController;
+    
+    /**
+     * PastCommandBox is a GUI element where previously executed commands are displayed
+     * A user can re-execute commands by clicking on a previously run command
+     */
     public PastCommandBox(int width, int height,Controller controller){
         super(width,height);
         myController=controller;

@@ -10,6 +10,10 @@ public class LoadPreferencesButton extends SelectableListButton {
 
 	protected static String[] PREFERENCES = {};
 
+	/**
+	 * LoadPreferencesButton is a GUI button for users to load previously saved GUI preferences
+	 * @param controller is the controller between model and view (MVC)
+	 */
 	public LoadPreferencesButton(Controller controller) {
 		super(PREFERENCES, BUTTON_TITLE, DIALOG_MESSAGE, controller);
 	}

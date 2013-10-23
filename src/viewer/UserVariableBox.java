@@ -27,6 +27,10 @@ public class UserVariableBox extends EditableListTable{
     protected Controller myController;
     protected boolean update;    
     
+    /**
+     * UserVariableBox is a GUI element where users can see the names and values of previously defined variables
+     * Users can change the value of a variable by clicking in the table and changing the value manually
+     */
     public UserVariableBox(int width, int height, Controller controller){
         super(width,height,COLUMNNAMES);
         myController=controller;
