@@ -9,6 +9,10 @@ import Exceptions.SlogoException;
 import model.Model;
 import model.expression.*;
 
+/**
+ * @author Fabio Berger, Yuhua Wei
+ *
+ */
 public class DefaultParser extends Parser {
     
     private Model model;
@@ -20,6 +24,7 @@ public class DefaultParser extends Parser {
         this.messages = messages;
     }
     
+    @Override
     public List<Expression> execute(List<String> commandInput, Map<String, Expression> functionMap) throws SlogoException {
         this.functionMap = functionMap;
         
@@ -33,6 +38,12 @@ public class DefaultParser extends Parser {
         return expressionList;
     }
     
+    /**
+     * @purpose Checks if supplied command equal to any of the language file alternatives
+     * @param command
+     * @param message
+     * @return
+     */
     public boolean equals(String command, String message) {
         
         String[] messages = message.split(",");
@@ -46,6 +57,7 @@ public class DefaultParser extends Parser {
         return false;
     }
     
+    @Override
     public Expression parse (List<String> commandInput) throws SlogoException {
         String s = commandInput.get(0).toLowerCase();
 

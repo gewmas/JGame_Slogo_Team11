@@ -48,7 +48,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     List<Turtle> activeTurtles;
 
     private List<String> commandList;
-    //    private List<String> undoneList;
+
     private int currentCommand;
 
     Map<String, Workspace> workspaces;
@@ -77,6 +77,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         setCurrentWorkspace("1");
     }
 
+
     private void buildLanguageMap() {
         languageToCountry = new HashMap<String, String>();
         languageToCountry.put("en", "US");
@@ -97,18 +98,17 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         }
         catch (SlogoException e) {
             SlogoError error =
+
                     new SlogoError("Parse Error",
                             "A syntax error occured while parsing your script");
+
             currentWorkspace.setSlogoError(error);
             System.out.println("Error!");
             return;
         }
     }
 
-    /**
-     * 
-     * @return
-     */
+
     public Map<String, Double> getCurrentPreferences() {
         Map<String, Double> preference = new HashMap<String, Double>();
         preference.put(BACKGROUND, BackgroundColorButton.getColorIdFromColor(this.getCurrentWorkspace().getBackgroundColor()));
@@ -117,16 +117,12 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         return preference;
     }
 
-    /**
-     * @param preference
-     */
+
     public void savePreferences (Map<String, Double> preference) {
         this.preferencesMap.add((HashMap<String, Double>) preference);
     }
 
-    /**
-     * @param index
-     */
+
     public void loadPreferences (int index) {
         Map<String, Double> map = this.preferencesMap.get(index);
         this.setBackgroundColor(BackgroundColorButton.getColorFromColorId(map.get(BACKGROUND)));
@@ -134,17 +130,13 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         this.setTurtleImage(Double.toString(map.get(SHAPE)));
     }
 
-    /**
-     * @param workspaceId
-     */
+
     private void storeCurrentWorkspacePreferences(String workspaceId) {
         currentPreferencesOfWorkspaces.put(workspaceId, (HashMap<String, Double>) this.getCurrentPreferences());
         System.out.println("store " + Double.toString(this.getCurrentPreferences().get(SHAPE)));
     }
 
-    /**
-     * @param workspaceId
-     */
+
     public void loadLastPreferences(String workspaceId) {
         if (this.currentPreferencesOfWorkspaces.containsKey(workspaceId)) {
             Map<String, Double> map = this.currentPreferencesOfWorkspaces.get(workspaceId);
@@ -159,9 +151,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         }
     }
 
-    /**
-     * @return
-     */
+
     public List<HashMap<String, Double>> getAllPreferences() {
         return (ArrayList<HashMap<String, Double>>) this.preferencesMap;
     }    
@@ -178,9 +168,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         interpretCommand(userInput);
     }
 
-    /**
-     * 
-     */
     public void undo () {
         if (currentCommand>-1){
             currentCommand--;
@@ -191,9 +178,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         }
     }
 
-    /**
-     * 
-     */
+
     public void redo () {
         if (currentCommand < commandList.size()-1) {
             currentCommand++;
@@ -201,9 +186,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         }
     }
 
-    /**
-     * @return
-     */
+
     public List<String> getCurrentCommands(){
         return commandList.subList(0, currentCommand+1);
     }
@@ -212,7 +195,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     public Workspace getCurrentWorkspace () {
         return currentWorkspace;
     }
-
 
     /**
      * @param workspaceId
@@ -230,12 +212,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         currentWorkspace.setWorkspaceId(workspaceId);
         ((SLogoViewer)viewer).clearScreen();
         ((SLogoViewer)viewer).clearDataTables();
+
         //        this.loadLastPreferences(workspaceId);
     }
 
-    /**
-     * @param language
-     */
     public void setLanguage (String language) {
 
         String country = languageToCountry.get(language);
@@ -320,7 +300,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         ((SLogoViewer) viewer).setPenColor(penColor);
         currentWorkspace.setPenColor(penColor);
     }
- 
+
     public void setTrackedTurtle(String turtleNum){
         ((SLogoViewer) viewer).setTrackedTurtle(turtleNum);
     }
@@ -328,6 +308,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     public JGColor getPenColor () {
         return currentWorkspace.getPenColor();
     }
+
 
 
     public void setTurtleImage (String imageNumber) {
