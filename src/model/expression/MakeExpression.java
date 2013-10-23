@@ -20,7 +20,7 @@ import model.parser.DefaultParser;
  */
 
 public class MakeExpression extends Expression {
-    static Map<String, Expression> variables; //Though assuming one variable, making it map for extend
+    private Map<String, Expression> variables; //Though assuming one variable, making it map for extend
     boolean isGlobal;
     
     public MakeExpression(List<String> cmdList, Model model) throws SlogoException{
@@ -34,7 +34,7 @@ public class MakeExpression extends Expression {
     public void convert (List<String> cmdList) throws SlogoException {
         cmdList.remove(0); //remove make
         
-        String id = cmdList.get(0);//.substring(1);
+        String id = cmdList.get(0).substring(1);
                 
         cmdList.remove(0); // remove :random
 
@@ -103,7 +103,7 @@ public class MakeExpression extends Expression {
         return commandList;
     }
     
-    public static HashMap<String, Expression> getVariables() {
+    public HashMap<String, Expression> getVariables() {
     	return (HashMap<String, Expression>) variables;
     }
     

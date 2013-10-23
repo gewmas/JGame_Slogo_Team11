@@ -101,6 +101,7 @@ public abstract class TurtleDisplayWindow extends JGEngine {
         
         public void clearScreen(){
             Point2D origin=getDisplayCoordinates(0,0);
+            if(myPaths == null) return;
             for (DisplayPath path:myPaths){
                 path.remove();
             }

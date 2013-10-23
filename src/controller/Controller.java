@@ -183,7 +183,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         currentWorkspace.setWorkspaceId(workspaceId);
         ((SLogoViewer)viewer).clearScreen();
         ((SLogoViewer)viewer).clearDataTables();
-        this.loadLastPreferences(workspaceId);
+//        this.loadLastPreferences(workspaceId);
     }
 
 	public void setLanguage (String language) {

@@ -33,12 +33,19 @@ public class TurtleCommand {
     }
     
     public TurtleCommand(TurtleCommand rhs){
-    	this(rhs.x, rhs.y, rhs.direction);
-//        this.x = rhs.x;
-//        this.y = rhs.y;
-//        this.direction = rhs.direction;
-//        this.isPenDown = rhs.isPenDown;
-//        this.isVisible = rhs.isVisible;
+//    	this(rhs.x, rhs.y, rhs.direction);
+        this.x = rhs.x;
+        this.y = rhs.y;
+        this.direction = rhs.direction;
+        this.isPenDown = rhs.isPenDown;
+        this.isVisible = rhs.isVisible;
+        this.isActive = rhs.isActive;
+        
+        this.penColor = rhs.penColor;
+        this.penSize = rhs.penSize;
+        this.shape = rhs.shape;
+        this.stamp = rhs.stamp;
+        this.clearStamps = rhs.clearStamps;
     }
     
 //    private static final String BACKGROUND = "background";
