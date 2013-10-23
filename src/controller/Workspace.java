@@ -11,6 +11,10 @@ import jgame.JGColor;
 import model.expression.Expression;
 import model.expression.ScopedExpression;
 
+/**
+ *  @purpose Store all variables related to the Workspace
+ *  @author Yuhua, Fabio
+ */
 public class Workspace {
 
     private HashMap<String, Turtle> turtles;

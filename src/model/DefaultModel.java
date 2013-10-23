@@ -44,6 +44,9 @@ public class DefaultModel extends Model {
         functionStack = new Stack<String>();
     }
     
+    /**
+     * update variables store in the current workspace for every command list
+     */
     private void updateInstanceVariable(){
         definedFunction = controller.getDefinedFunction();
         runningFunction = controller.getRunningFunction();
@@ -68,6 +71,13 @@ public class DefaultModel extends Model {
         
     }
     
+    /**
+     * Parse command into Expression list
+     * Evaluate Expression list to create TurtleCommand
+     * 
+     * @param expressionList
+     * @throws SlogoException
+     */
     public void createTraceForTurtles(List<Expression> expressionList) throws SlogoException {
         
         TurtleCommand latestTurtleCommand;

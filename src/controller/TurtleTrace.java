@@ -5,6 +5,10 @@ import java.util.List;
 
 import jgame.JGColor;
 
+/**
+ *  Store TurtleCommand for each Turtle
+ *  @author Fabio, Yuhua
+ */
 public class TurtleTrace {
     List<TurtleCommand> commandList;
     JGColor penColor;

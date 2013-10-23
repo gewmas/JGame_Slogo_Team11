@@ -1,5 +1,8 @@
 package controller;
 
+/**
+ * PALETTE color class
+ */
 public class ColorIndex {
     
     double index;

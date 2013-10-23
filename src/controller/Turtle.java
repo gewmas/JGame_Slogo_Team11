@@ -2,6 +2,10 @@ package controller;
 
 import jgame.JGColor;
 
+/**
+ *  Store turtle id, turtleTrace which store turtleCommands to record information for every move
+ *  @author Yuhua, Fabio
+ */
 public abstract class Turtle {
     String id;
     TurtleTrace turtleTrace;

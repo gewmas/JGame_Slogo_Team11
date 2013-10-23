@@ -1,5 +1,10 @@
 package controller;
 
+/**
+ * Default turtle represented by color
+ * 
+ * @author Yuhua, Fabio
+ */
 public class DefaultTurtle extends Turtle {
 
     String color;

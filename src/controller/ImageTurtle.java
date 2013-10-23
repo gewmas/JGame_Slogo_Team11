@@ -1,5 +1,9 @@
 package controller;
 
+/**
+ * ImageTurtle reprsents turtle by image
+ * @author Yuhua, Fabio
+ */
 public class ImageTurtle extends Turtle {
 
     String image;

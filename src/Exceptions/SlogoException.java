@@ -6,9 +6,6 @@ public class SlogoException extends Exception {
         super(msg);
     }
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
 
 }

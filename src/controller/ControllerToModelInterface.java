@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import model.expression.Expression;
 
+/**
+ * Methods for model 
+ */
 public interface ControllerToModelInterface {
     public List<Turtle> getActiveTurtles();
 //    public void setActiveTurtle (List<String> turtleIds);

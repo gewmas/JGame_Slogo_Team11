@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Store position, direction, pen information for each move a turtle make
+ * @author Yuhua, Fabio
+ */
 public class TurtleCommand {
     private double x;
     private double y;
