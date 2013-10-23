@@ -78,9 +78,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
     
     //Test purposes only
-    public Viewer getViewer () {
-        return viewer;
-    }
 
     public Set<String> getLanguages () {
         return languageToCountry.keySet();
@@ -341,6 +338,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     public void toggleGrid () {
         ((SLogoViewer) viewer).toggleGrid();
+        this.currentWorkspace.toggleGrid();
     }
 
     public void toggleHighlightTurtles () {
@@ -456,6 +454,14 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     public ResourceBundle getMessages () {
         return messages;
+    }
+    
+    public Viewer getViewer() {
+    	return this.viewer;
+    }
+    
+    public List<HashMap<String, Double>> getPreferencesMap() {
+    	return this.preferencesMap;
     }
 
 }

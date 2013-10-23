@@ -60,6 +60,10 @@ public class DefaultTurtleDisplayWindow extends TurtleDisplayWindow {
         myHighlightTurtles=!myHighlightTurtles;
     }
     
+    public boolean isHighlightTurtles() {
+    	return this.myHighlightTurtles;
+    }
+    
     public void setTrackedTurtle(String turtleNum){
         myTrackedTurtle=turtleNum;
     }

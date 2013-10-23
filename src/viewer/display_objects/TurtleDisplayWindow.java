@@ -224,6 +224,14 @@ public abstract class TurtleDisplayWindow extends JGEngine {
         myController.updateUserVariableBox();
         myController.updateUserDefinedCommandsBox();
     }
+    
+    public boolean isHighlightTurtles() {
+    	return this.myHighlightTurtles;
+    }
+    
+    public String getTrackedTurtle() {
+    	return this.myTrackedTurtle;
+    }
         
 	/** Any graphics drawing beside objects or tiles should be done here.
      * Usually, only status / HUD information needs to be drawn here. */
