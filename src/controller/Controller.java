@@ -147,7 +147,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
      */
     private void storeCurrentWorkspacePreferences(String workspaceId) {
         currentPreferencesOfWorkspaces.put(workspaceId, (HashMap<String, Double>) this.getCurrentPreferences());
-        System.out.println("store " + Double.toString(this.getCurrentPreferences().get(SHAPE)));
     }
 
     /**
@@ -159,7 +158,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
             this.setBackgroundColor(BackgroundColorButton.getColorFromColorId(map.get(BACKGROUND)));
             this.setPenColor(PenColorButton.getColorFromColorId(map.get(PEN_COLOR)));
             this.setTurtleImage(Double.toString(map.get(SHAPE)));
-            System.out.println("load " + Double.toString(map.get(SHAPE)));
         } else {
             this.setBackgroundColor(JGColor.white);
             this.setTurtleImage("1");
