@@ -41,7 +41,7 @@ public class TellDefaultExpression extends TellExpression {
         
         //Within [ :count ]
         for(int i = openBracketIndex+1; i < closeBracketIndex; i++){
-            turtleIds.add(cmdList.get(i));
+            turtleIds.add(cmdList.get(1));
             cmdList.remove(1);
         }
         
