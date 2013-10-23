@@ -20,7 +20,7 @@ import model.expression.NumberExpression;
 public class UserVariableBox extends EditableListTable{
 	
     protected static final String[] COLUMNNAMES={"Variable","Value"};
-    protected static final String SET_VARIABLE_COMMAND="MAKE ";
+    protected static final String SET_VARIABLE_COMMAND="MakeVariable";
     protected JLabel myVariables;
     protected JList myVariableNameList, myVariableValueList;
     protected HashMap<String, Integer> myVariablePositions;
@@ -55,9 +55,10 @@ public class UserVariableBox extends EditableListTable{
         myTableModel.addTableModelListener(new TableModelListener(){
             public void tableChanged(TableModelEvent e){
                 if (update){
+                    String moveCommand=myController.getLanguageMessages().getString(SET_VARIABLE_COMMAND);
                     for (int i=e.getFirstRow();i<=e.getLastRow();i++){
                         System.out.println("Change!");
-                        myController.interpretCommand(SET_VARIABLE_COMMAND+
+                        myController.interpretCommand(moveCommand+
                                 myTableModel.getValueAt(i, 0)+" "+myTableModel.getValueAt(i,1));
                     }
                 }
