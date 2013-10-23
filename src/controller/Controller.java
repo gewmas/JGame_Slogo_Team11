@@ -84,6 +84,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         languageToCountry.put("fr", "FR");
         languageToCountry.put("pt", "PT");
         languageToCountry.put("it", "IT");
+        languageToCountry.put("de", "DE");
         setLanguage("en");
 	}
 
