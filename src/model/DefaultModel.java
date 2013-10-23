@@ -18,6 +18,13 @@ import model.parser.DefaultParser;
 import model.parser.Parser;
 import model.expression.*;
 
+/**
+ * Model is responsible for parsing the command strings,
+ * updating muliple properties of the TurtleTrace of Turtle.
+ * 
+ * @author Yuhua, Fabio
+ * 
+ */
 public class DefaultModel extends Model {
     private ControllerToModelInterface controller;
     private Parser parser;
