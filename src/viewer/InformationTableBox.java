@@ -17,11 +17,10 @@ import viewer.display_objects.TurtleDisplayWindow;
  * @author FrontEnd - Alex, Adam
  */
 public class InformationTableBox extends EditableListTable {
-    private static final int X_ROW=0;
-    private static final int Y_ROW=1;
-    private static final int DIR_ROW=2;
+    private static final int DATA_COLUMN=1;
     private static final String[] COLUMNNAMES={"Variable","Value"};
     private static final String[] DATA={"Turtle #","x","y","direction","pendown"};
+    protected String[] turtleParameters;
     protected JLabel myVariables;
     protected DefaultListModel myListModel;
     
@@ -35,14 +34,21 @@ public class InformationTableBox extends EditableListTable {
         for (String data:DATA){
             myTableModel.addRow(new String[] {data,""});
         }
+        turtleParameters=null;
         setBorder(BorderFactory.createLineBorder(Color.black));
         setVisible(true);
     }
     
     public void setTable(String turtlenum,String x, String y, String dir, String penup){
-        String[] parameters=new String[]{turtlenum,x,y,dir,penup};
-        for (int i=0;i<parameters.length;i++){
-            myTableModel.setValueAt(parameters[i], i, 1);
+        turtleParameters=new String[]{turtlenum,x,y,dir,penup};
+        for (int i=0;i<turtleParameters.length;i++){
+//            System.out.println(turtleParameters[i]);
+            myTableModel.setValueAt(turtleParameters[i], i, DATA_COLUMN);
         }
+    }
+
+    //For testing only
+    public String[] getTurtleParameters () {
+        return turtleParameters;
     }
 }

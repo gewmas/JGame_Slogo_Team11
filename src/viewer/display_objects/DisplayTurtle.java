@@ -25,12 +25,12 @@ public class DisplayTurtle extends JGObject{
      * @param y is the initial y-coordinate
      * @param direction is the initial angular direction
      */
-    public DisplayTurtle (double x, double y, double direction) {
+    public DisplayTurtle (double x, double y, double direction, int imageNum) {
         super(DISPLAY_TURTLE_NAME, true, x-16, y-16, TURTLE_COLID,null);
         myBox=new DisplayRect(x,y,TURTLE_SIZE,TURTLE_SIZE,this);
         myColor=JGColor.black;
         myEngine=eng;
-        myImageNumber=1;
+        myImageNumber=imageNum;
         myRotation=direction;
         setRotation(myRotation);
     }

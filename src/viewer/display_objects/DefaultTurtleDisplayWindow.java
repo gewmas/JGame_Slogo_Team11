@@ -65,9 +65,12 @@ public class DefaultTurtleDisplayWindow extends TurtleDisplayWindow {
     }
     
     public void setTurtleImageNumber(int imageNum){
-        for (DisplayTurtle turtle:myActiveTurtles.values()){
-            turtle.setImageNumber(imageNum);
-            turtle.setRotation(turtle.getRotation());
+        myTurtleImageNumber=imageNum;
+        if (myActiveTurtles!=null){
+            for (DisplayTurtle turtle:myActiveTurtles.values()){
+                turtle.setImageNumber(imageNum);
+                turtle.setRotation(turtle.getRotation());
+            }
         }
     }
     

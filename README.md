@@ -5,7 +5,7 @@ Name:
 	 
 Fabio Berger, Alex Zhou, Adam Sommer, Yuhua Mai
 
-Date Started: 11/12/13
+Date Started: 9/30/13
 Date Ended: 10/23/13
 
 Link to Repo: https://github.com/duke-compsci308-fall2013/slogo_team11

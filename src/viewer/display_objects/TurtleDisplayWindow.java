@@ -43,6 +43,7 @@ public abstract class TurtleDisplayWindow extends JGEngine {
     protected InformationTableBox myInfoTable;
     protected TurtleCommand myEndCommand;
     protected String myTrackedTurtle;
+    protected int myTurtleImageNumber;
 
     /** The parameterless constructor is called by the browser, in case we're
      * an applet. */
@@ -97,6 +98,7 @@ public abstract class TurtleDisplayWindow extends JGEngine {
         myHighlightTurtles=false;
         myPenColor=JGColor.black;
         myTrackedTurtle="1";
+        myTurtleImageNumber=1;
     }
         
     public void clearScreen(){
@@ -150,7 +152,7 @@ public abstract class TurtleDisplayWindow extends JGEngine {
         if (myActiveTurtles.containsKey(id)){
             myActiveTurtles.get(id).setPosition(x, y,direction);
         } else {
-            myActiveTurtles.put(id, new DisplayTurtle(x, y,direction));
+            myActiveTurtles.put(id, new DisplayTurtle(x, y,direction,myTurtleImageNumber));
         }
     }
         

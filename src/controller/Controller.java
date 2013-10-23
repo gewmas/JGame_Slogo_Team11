@@ -42,7 +42,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     private static final String CLEARSCREEN = "clearscreen";
 
     Model model;
-    Viewer viewer;
+    protected Viewer viewer;
 
     List<Turtle> turtles;
     List<Turtle> activeTurtles;
@@ -75,6 +75,11 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         commandList=new ArrayList<String>();
         currentCommand=-1;
         setCurrentWorkspace("1");
+    }
+    
+    //Test purposes only
+    public Viewer getViewer () {
+        return viewer;
     }
 
     public Set<String> getLanguages () {
