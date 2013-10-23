@@ -64,6 +64,12 @@ public class DisplayTurtle extends JGObject{
     }
     
     @Override
+    public void remove(){
+        myBox.remove();
+        super.remove();
+    }
+    
+    @Override
     public void paint() {}
     
 }
