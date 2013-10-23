@@ -49,7 +49,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     List<Turtle> activeTurtles;
 
     private List<String> commandList;
-//    private List<String> undoneList;
+//  private List<String> undoneList;
     private int currentCommand;
 
     Map<String, Workspace> workspaces;
@@ -65,7 +65,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     public Map<String, HashMap<String, Double>> currentPreferencesOfWorkspaces;
 
     public Controller () {
-    	buildLanguageMap();
+        buildLanguageMap();
         model = new DefaultModel(this);
         viewer = new SLogoViewer(this);
         preferencesMap = new ArrayList<HashMap<String, Double>>();
@@ -78,7 +78,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         setCurrentWorkspace("1");
     }
 
-	private void buildLanguageMap() {
+    /**
+     * 
+     */
+    private void buildLanguageMap() {
         languageToCountry = new HashMap<String, String>();
         languageToCountry.put("en", "US");
         languageToCountry.put("fr", "FR");
@@ -86,9 +89,9 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         languageToCountry.put("it", "IT");
         languageToCountry.put("de", "DE");
         setLanguage("en");
-	}
+    }
 
-	// Take the commands typed by the user and updates the TurtleTrace accordingly.
+    // Take the commands typed by the user and updates the TurtleTrace accordingly.
     @Override
     public void interpretCommand (String userInput) {
         try {
@@ -98,54 +101,58 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         }
         catch (SlogoException e) {
             SlogoError error =
-                    new SlogoError("Parse Error",
-                                   "A syntax error occured while parsing your script");
+                new SlogoError("Parse Error",
+                "A syntax error occured while parsing your script");
             currentWorkspace.setSlogoError(error);
             System.out.println("Error!");
             return;
         }
     }
-    
-	public Map<String, Double> getCurrentPreferences() {
-		Map<String, Double> preference = new HashMap<String, Double>();
-		preference.put(BACKGROUND, BackgroundColorButton.getColorIdFromColor(this.getCurrentWorkspace().getBackgroundColor()));
-		preference.put(PEN_COLOR, PenColorButton.getColorIdFromColor(this.getCurrentWorkspace().getPenColor()));
-		preference.put(SHAPE, (double) this.getCurrentWorkspace().getTurtleImage());
-		return preference;
-	}
-    
+
+    public Map<String, Double> getCurrentPreferences() {
+        Map<String, Double> preference = new HashMap<String, Double>();
+        preference.put(BACKGROUND, BackgroundColorButton.getColorIdFromColor(this.getCurrentWorkspace().getBackgroundColor()));
+        preference.put(PEN_COLOR, PenColorButton.getColorIdFromColor(this.getCurrentWorkspace().getPenColor()));
+        preference.put(SHAPE, (double) this.getCurrentWorkspace().getTurtleImage());
+        return preference;
+    }
+
     public void savePreferences (Map<String, Double> preference) {
-    	this.preferencesMap.add((HashMap<String, Double>) preference);
+        this.preferencesMap.add((HashMap<String, Double>) preference);
     }
-    
+
+    /**
+     * @purpose 
+     * @param index
+     */
     public void loadPreferences (int index) {
-    	Map<String, Double> map = this.preferencesMap.get(index);
-    	this.setBackgroundColor(BackgroundColorButton.getColorFromColorId(map.get(BACKGROUND)));
-    	this.setPenColor(PenColorButton.getColorFromColorId(map.get(PEN_COLOR)));
-    	this.setTurtleImage(Double.toString(map.get(SHAPE)));
+        Map<String, Double> map = this.preferencesMap.get(index);
+        this.setBackgroundColor(BackgroundColorButton.getColorFromColorId(map.get(BACKGROUND)));
+        this.setPenColor(PenColorButton.getColorFromColorId(map.get(PEN_COLOR)));
+        this.setTurtleImage(Double.toString(map.get(SHAPE)));
     }
-    
+
     private void storeCurrentWorkspacePreferences(String workspaceId) {
-		currentPreferencesOfWorkspaces.put(workspaceId, (HashMap<String, Double>) this.getCurrentPreferences());
-    	System.out.println("store " + Double.toString(this.getCurrentPreferences().get(SHAPE)));
-	}
-    
-    public void loadLastPreferences(String workspaceId) {
-    	if (this.currentPreferencesOfWorkspaces.containsKey(workspaceId)) {
-        	Map<String, Double> map = this.currentPreferencesOfWorkspaces.get(workspaceId);
-        	this.setBackgroundColor(BackgroundColorButton.getColorFromColorId(map.get(BACKGROUND)));
-        	this.setPenColor(PenColorButton.getColorFromColorId(map.get(PEN_COLOR)));
-        	this.setTurtleImage(Double.toString(map.get(SHAPE)));
-        	System.out.println("load " + Double.toString(map.get(SHAPE)));
-    	} else {
-    		this.setBackgroundColor(JGColor.white);
-    		this.setTurtleImage("1");
-    		this.setPenColor(JGColor.black);
-    	}
+        currentPreferencesOfWorkspaces.put(workspaceId, (HashMap<String, Double>) this.getCurrentPreferences());
+        System.out.println("store " + Double.toString(this.getCurrentPreferences().get(SHAPE)));
     }
-        
+
+    public void loadLastPreferences(String workspaceId) {
+        if (this.currentPreferencesOfWorkspaces.containsKey(workspaceId)) {
+            Map<String, Double> map = this.currentPreferencesOfWorkspaces.get(workspaceId);
+            this.setBackgroundColor(BackgroundColorButton.getColorFromColorId(map.get(BACKGROUND)));
+            this.setPenColor(PenColorButton.getColorFromColorId(map.get(PEN_COLOR)));
+            this.setTurtleImage(Double.toString(map.get(SHAPE)));
+            System.out.println("load " + Double.toString(map.get(SHAPE)));
+        } else {
+            this.setBackgroundColor(JGColor.white);
+            this.setTurtleImage("1");
+            this.setPenColor(JGColor.black);
+        }
+    }
+
     public List<HashMap<String, Double>> getAllPreferences() {
-    	return (ArrayList<HashMap<String, Double>>) this.preferencesMap;
+        return (ArrayList<HashMap<String, Double>>) this.preferencesMap;
     }    
 
     public void addCommand (String userInput) {
@@ -173,7 +180,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
             interpretCommand(commandList.get(currentCommand));
         }
     }
-    
+
     public List<String> getCurrentCommands(){
         return commandList.subList(0, currentCommand+1);
     }
@@ -182,12 +189,12 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     public Workspace getCurrentWorkspace () {
         return currentWorkspace;
     }
-    
+
 
     public void setCurrentWorkspace (String workspaceId) {
-    	this.storeCurrentWorkspacePreferences(this.getCurrentWorkspace().getWorkspaceId());
-    	
-    	Workspace tempWorkspace = workspaces.get(workspaceId);
+        this.storeCurrentWorkspacePreferences(this.getCurrentWorkspace().getWorkspaceId());
+
+        Workspace tempWorkspace = workspaces.get(workspaceId);
 
         if (tempWorkspace == null) {
             tempWorkspace = new Workspace();
@@ -197,10 +204,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         currentWorkspace.setWorkspaceId(workspaceId);
         ((SLogoViewer)viewer).clearScreen();
         ((SLogoViewer)viewer).clearDataTables();
-//        this.loadLastPreferences(workspaceId);
+//      this.loadLastPreferences(workspaceId);
     }
 
-	public void setLanguage (String language) {
+    public void setLanguage (String language) {
 
         String country = languageToCountry.get(language);
 
@@ -279,7 +286,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         ((SLogoViewer) viewer).setPenColor(penColor);
         currentWorkspace.setPenColor(penColor);
     }
-    
+
     public void setTrackedTurtle(String turtleNum){
         ((SLogoViewer) viewer).setTrackedTurtle(turtleNum);
     }
@@ -287,18 +294,18 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     public JGColor getPenColor () {
         return currentWorkspace.getPenColor();
     }
-    
-//    public double getPenSize (){
-//        return this.PEN_SIZE;
-//    }
+
+//  public double getPenSize (){
+//  return this.PEN_SIZE;
+//  }
 
     public void setTurtleImage (String imageNumber) {
         ((SLogoViewer) viewer).setTurtleImage((int) (Double.parseDouble(imageNumber)));
         this.currentWorkspace.setTurtleImage((int) (Double.parseDouble(imageNumber)));
     }
-    
+
     public Double getTurtleImage() {
-    	return (double) ((SLogoViewer) viewer).getTurtleImage();
+        return (double) ((SLogoViewer) viewer).getTurtleImage();
     }
 
     public void toggleGrid () {
@@ -307,13 +314,13 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     public void toggleHighlightTurtles () {
         // Insert toggle method call here
-         ((SLogoViewer)viewer).toggleHighlightTurtles();
+        ((SLogoViewer)viewer).toggleHighlightTurtles();
     }
 
     public void toggleData () {
         // Add toggle method here
     }
-    
+
     public void updateUserVariableBox(){
         try{
             Map<String, Expression> variableMap=getGlobalVariables();
@@ -321,10 +328,10 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
                 ((SLogoViewer)viewer).updateUserVariableTable(variableMap);
             }
         } catch(Exception e){
-            
+
         }
     }
-    
+
     public void updateUserDefinedCommandsBox(){
         try{
             Map<String, Expression> functionList=getDefinedFunction();
@@ -332,7 +339,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
                 ((SLogoViewer)viewer).updateUserCommandList(functionList);
             }
         } catch(Exception e){
-            
+
         }
     }
 
@@ -411,7 +418,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     public void isShowing () {
         // view.isShowing();
     }
-    
+
     public void id() {
         // view show ids
     }
