@@ -147,7 +147,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
      */
     private void storeCurrentWorkspacePreferences(String workspaceId) {
         currentPreferencesOfWorkspaces.put(workspaceId, (HashMap<String, Double>) this.getCurrentPreferences());
-        System.out.println("store " + Double.toString(this.getCurrentPreferences().get(SHAPE)));
     }
 
     /**
@@ -338,6 +337,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     public void toggleGrid () {
         ((SLogoViewer) viewer).toggleGrid();
+        this.currentWorkspace.toggleGrid();
     }
 
     public void toggleHighlightTurtles () {
@@ -453,6 +453,14 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
 
     public ResourceBundle getMessages () {
         return messages;
+    }
+    
+    public Viewer getViewer() {
+    	return this.viewer;
+    }
+    
+    public List<HashMap<String, Double>> getPreferencesMap() {
+    	return this.preferencesMap;
     }
 
 }

@@ -31,6 +31,7 @@ public class SLogoViewer extends Viewer{
     protected UserDefinedCommandsBox myUserCommandsBox;
     protected UserVariableBox myUserVariableBox;
     protected InformationTableBox myInformationTableBox;
+    protected Toggles myToggles;
 
     /**
      * SLogoViewer is our container GUI class. This class holds all GUI elements for user interaction
@@ -57,6 +58,7 @@ public class SLogoViewer extends Viewer{
         myUserCommandsBox = new UserDefinedCommandsBox(200,160);
         myTurtleDisplay=new DefaultTurtleDisplayWindow(new JGPoint(DISPLAY_WIDTH-10,DISPLAY_HEIGHT-10), controller,myInformationTableBox);
         myPastCommandBox=new PastCommandBox(600,140,controller);
+        myToggles = new Toggles(200,340,controller);
         myLeftPanel.add(new DisplayBox(DISPLAY_WIDTH,DISPLAY_HEIGHT,myTurtleDisplay,controller));
         myLeftPanel.add(myPastCommandBox);
         myLeftPanel.add(new CommandEntryBox(600,30,myPastCommandBox,controller));
@@ -64,7 +66,7 @@ public class SLogoViewer extends Viewer{
         myRightPanel.add(myInformationTableBox);
         myRightPanel.add(myUserVariableBox);
         myRightPanel.add(myUserCommandsBox);
-        myRightPanel.add(new Toggles(200,340,controller));
+        myRightPanel.add(myToggles);
         pack();
         setVisible(true);
     }
@@ -85,7 +87,7 @@ public class SLogoViewer extends Viewer{
         ((DefaultTurtleDisplayWindow) myTurtleDisplay).toggleGrid();
     }
 
-    public void toggleHighlightTurtles(){
+    public void toggleHighlightTurtles() {
         ((DefaultTurtleDisplayWindow) myTurtleDisplay).toggleHighLightTurtles();
     }
 
@@ -120,6 +122,22 @@ public class SLogoViewer extends Viewer{
     public void clearDataTables(){
         myUserVariableBox.clearVariableTable();
         myUserCommandsBox.clearFunctionList();
+    }
+    
+    public Panel getMyRightPanel() {
+    	return this.myRightPanel;
+    }
+    
+    public Panel getMyLeftPanel() {
+    	return this.myLeftPanel;
+    }
+    
+    public Toggles getToggles() {
+    	return this.myToggles;
+    }
+    
+    public TurtleDisplayWindow getTurtleDisplay() {
+    	return this.myTurtleDisplay;
     }
 
 }

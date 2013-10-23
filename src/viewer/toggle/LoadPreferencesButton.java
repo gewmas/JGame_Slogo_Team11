@@ -31,11 +31,9 @@ public class LoadPreferencesButton extends SelectableListButton {
 		int numOptions = getAllPreferenceNames();
 		for (int i = 0; i < numOptions; i++) {
 			myListModel.addElement(String.valueOf(i));
-			System.out.println(i);
 		}
 		super.buttonPushed();
 		if (!myListModel.isEmpty()) {
-			System.out.println(numOptions);
 			int selected = myList.getSelectedIndex();
 			if (selected > -1) {
 			    this.myController.loadPreferences(selected);				

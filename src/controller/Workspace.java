@@ -189,4 +189,8 @@ public class Workspace {
 	public void setWorkspaceId(String workspaceId) {
 		this.workspaceId = workspaceId;
 	}    
+	
+	public boolean isGridOn() {
+		return this.gridOn;
+	}
 }

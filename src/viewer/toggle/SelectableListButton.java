@@ -52,5 +52,9 @@ public abstract class SelectableListButton extends Button {
     public void buttonPushed() {
         JOptionPane.showMessageDialog(this, myList, myDialogMessage, JOptionPane.PLAIN_MESSAGE);
     }
+    
+    public JList getMyList() {
+    	return this.myList;
+    }
 
 }

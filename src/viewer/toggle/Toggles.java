@@ -98,4 +98,8 @@ public class Toggles extends Panel {
     public boolean getGridStatus() {
     	return this.gridOn;
     }
+    
+    public List<Button> getButtonList() {
+    	return this.buttonList;
+    }
 }

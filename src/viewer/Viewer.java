@@ -34,4 +34,8 @@ public abstract class Viewer extends Frame {
         setVisible(true);
     }
     
+    public Panel getMyMainPanel() {
+    	return this.myMainPanel;
+    }
+    
 }
