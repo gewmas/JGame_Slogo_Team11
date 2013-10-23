@@ -16,6 +16,12 @@ public class DisplayTurtle extends JGObject{
     protected JGEngineInterface myEngine;
     protected DisplayRect myBox;
     
+    /**
+     * DisplayTurtle objects are the visible turtles in the display for users to see the results of their commands
+     * @param x is the initial x-coordinate
+     * @param y is the initial y-coordinate
+     * @param direction is the initial angular direction
+     */
     public DisplayTurtle (double x, double y, double direction) {
         super(DISPLAY_TURTLE_NAME, true, x-16, y-16, TURTLE_COLID,null);
         myBox=new DisplayRect(x,y,TURTLE_SIZE,TURTLE_SIZE,this);
