@@ -10,6 +10,9 @@ import controller.Controller;
 import controller.Turtle;
 import viewer.Panel;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class DataPopupButton extends SelectableListButton {
 	
     private static final String LABEL="View Data";

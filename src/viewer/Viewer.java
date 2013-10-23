@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import jgame.JGPoint;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public abstract class Viewer extends Frame {
 	
     protected Panel myMainPanel;

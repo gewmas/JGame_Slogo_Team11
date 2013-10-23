@@ -3,7 +3,9 @@ package viewer.display_objects;
 import jgame.JGObject;
 import jgame.impl.JGEngineInterface;
 
-
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class DisplayRect extends JGObject {
 	
     private static final String RECTANGLE_NAME="turtle_rect";

@@ -5,6 +5,9 @@ import jgame.JGObject;
 import jgame.JGRectangle;
 import jgame.impl.JGEngineInterface;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class DisplayTurtle extends JGObject{
     private static final int TURTLE_SIZE=32;
     private static final int TURTLE_COLID=1;

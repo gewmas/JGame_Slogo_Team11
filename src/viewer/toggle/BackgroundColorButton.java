@@ -24,6 +24,9 @@ import controller.Controller;
 import jgame.JGColor;
 import viewer.Panel;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class BackgroundColorButton extends SelectableListButton {
     private static final String LABEL="Set Background";
     private static final String DIALOG_MESSAGE="Please select a background color";

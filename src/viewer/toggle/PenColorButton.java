@@ -7,6 +7,9 @@ import controller.Controller;
 import jgame.JGColor;
 import viewer.Panel;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class PenColorButton extends SelectableListButton {
 
     private static final String BUTTON_TITLE="Set Pen Color";

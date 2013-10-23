@@ -17,6 +17,9 @@ import viewer.display_objects.DefaultTurtleDisplayWindow;
 import viewer.display_objects.TurtleDisplayWindow;
 import viewer.toggle.Toggles;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class SLogoViewer extends Viewer{
     private static int DISPLAY_WIDTH=600;
     private static int DISPLAY_HEIGHT=600;

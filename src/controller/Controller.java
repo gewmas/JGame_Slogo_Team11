@@ -111,7 +111,9 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         }
     }
 
-
+    /**
+     * Returns the current settings of the GUI
+     */
     public Map<String, Double> getCurrentPreferences() {
         Map<String, Double> preference = new HashMap<String, Double>();
         preference.put(BACKGROUND, BackgroundColorButton.getColorIdFromColor(this.getCurrentWorkspace().getBackgroundColor()));
@@ -120,12 +122,18 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         return preference;
     }
 
-
+    /**
+     * Stores a given preference map for future loading
+     * @param preference
+     */
     public void savePreferences (Map<String, Double> preference) {
         this.preferencesMap.add((HashMap<String, Double>) preference);
     }
 
-
+    /**
+     * Loads the preference map into the GUI specified by preference index
+     * @param index
+     */
     public void loadPreferences (int index) {
         Map<String, Double> map = this.preferencesMap.get(index);
         this.setBackgroundColor(BackgroundColorButton.getColorFromColorId(map.get(BACKGROUND)));
@@ -133,13 +141,18 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         this.setTurtleImage(Double.toString(map.get(SHAPE)));
     }
 
-
+    /**
+     * Used for automatically storing a workspace's preferences, not for manual loading, but rather for auto-loading
+     * upon return to the workspace identified by workspaceId
+     */
     private void storeCurrentWorkspacePreferences(String workspaceId) {
         currentPreferencesOfWorkspaces.put(workspaceId, (HashMap<String, Double>) this.getCurrentPreferences());
         System.out.println("store " + Double.toString(this.getCurrentPreferences().get(SHAPE)));
     }
 
-
+    /**
+     * Auto-loads the preferences of a workspace from what was auto-saved upon leaving previously
+     */
     public void loadLastPreferences(String workspaceId) {
         if (this.currentPreferencesOfWorkspaces.containsKey(workspaceId)) {
             Map<String, Double> map = this.currentPreferencesOfWorkspaces.get(workspaceId);
@@ -154,12 +167,12 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         }
     }
 
-
     public List<HashMap<String, Double>> getAllPreferences() {
         return (ArrayList<HashMap<String, Double>>) this.preferencesMap;
     }    
 
     /**
+     * Adds the userInput to the commandList to be parsed by backend
      * @param userInput
      */
     public void addCommand (String userInput) {
@@ -171,6 +184,9 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         interpretCommand(userInput);
     }
 
+    /**
+     * Undoes previously issued command
+     */
     public void undo () {
         if (currentCommand>-1){
             currentCommand--;
@@ -181,14 +197,15 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         }
     }
 
-
+    /**
+     * Redoes previously undone command
+     */
     public void redo () {
         if (currentCommand < commandList.size()-1) {
             currentCommand++;
             interpretCommand(commandList.get(currentCommand));
         }
     }
-
 
     public List<String> getCurrentCommands(){
         return commandList.subList(0, currentCommand+1);
@@ -200,7 +217,9 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     /**
-     * @param workspaceId
+     * Auto-stores preferences for departing workspace,
+     * Loads specified workspaceId or creates a new one if non-existent,
+     * Auto-loads preferences of incoming workspace
      */
     public void setCurrentWorkspace (String workspaceId) {
         this.storeCurrentWorkspacePreferences(this.getCurrentWorkspace().getWorkspaceId());
@@ -216,23 +235,19 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         ((SLogoViewer)viewer).clearScreen();
         ((SLogoViewer)viewer).clearDataTables();
 
-        //        this.loadLastPreferences(workspaceId);
+        this.loadLastPreferences(workspaceId);
     }
 
     public void setLanguage (String language) {
-
         System.out.println("Calling change language to: "+language);
         String country = languageToCountry.get(language);
-
         Locale currentLocale;
         currentLocale = new Locale(language, country);
         messages = ResourceBundle.getBundle("Languages.MessagesBundle", currentLocale);
-        
     }
 
     /**
-     * save command into a file
-     * @param userInput
+     * Save userInput commands into a file
      */
     public void saveFile (String userInput) {
         JFileChooser chooser = new JFileChooser();
@@ -252,14 +267,12 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     /**
-     * load commands to current workspace
+     * Load commands to current workspace from a previously saved file
      */
     public void loadFile () {
         String result = "";
         JFileChooser fileChooser = new JFileChooser();
         if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-
-            // load from file
             try {
                 File file = fileChooser.getSelectedFile();
                 FileInputStream saveFile = new FileInputStream(file);
@@ -314,8 +327,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         return currentWorkspace.getPenColor();
     }
 
-
-
     public void setTurtleImage (String imageNumber) {
         ((SLogoViewer) viewer).setTurtleImage((int) (Double.parseDouble(imageNumber)));
         this.currentWorkspace.setTurtleImage((int) (Double.parseDouble(imageNumber)));
@@ -330,12 +341,7 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
     }
 
     public void toggleHighlightTurtles () {
-        // Insert toggle method call here
         ((SLogoViewer)viewer).toggleHighlightTurtles();
-    }
-
-    public void toggleData () {
-        // Add toggle method here
     }
 
     public void updateUserVariableBox(){
@@ -393,7 +399,6 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         return this.messages;
     }
 
-    // Turtle queries function call
     @Override
     public void clearScreen () {
         currentWorkspace.clearScreen();
@@ -404,7 +409,9 @@ public class Controller implements ControllerToViewInterface, ControllerToModelI
         currentWorkspace.clearWorkspace();
     }
 
-    // Get the given attribute from latest turtletrace and show to user
+    /*
+     * The below methods were never needed in the Controller directly.
+     */
     @Override
     public void xCor () {
         // view.xCor();

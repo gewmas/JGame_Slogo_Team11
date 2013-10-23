@@ -12,6 +12,9 @@ import controller.Controller;
 import viewer.Panel;
 import jgame.JGColor;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public abstract class Button extends JButton {
 
     private static final int BUTTON_WIDTH=180;

@@ -3,6 +3,9 @@ package viewer.toggle;
 import controller.Controller;
 import controller.TurtleCommand;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class LoadPreferencesButton extends SelectableListButton {
 
 	private static final String BUTTON_TITLE = "Load Preferences";

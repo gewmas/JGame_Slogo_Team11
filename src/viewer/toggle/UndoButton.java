@@ -2,6 +2,9 @@ package viewer.toggle;
 
 import controller.Controller;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class UndoButton extends Button {
 
 	private static final String LABEL = "Undo";

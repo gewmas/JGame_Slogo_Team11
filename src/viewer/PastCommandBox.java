@@ -14,6 +14,9 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import controller.Controller;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class PastCommandBox extends Panel{
 	
     private static final String WELCOME="Welcome to SLOGO!";

@@ -4,6 +4,9 @@ import jgame.JGColor;
 import jgame.JGObject;
 import jgame.impl.JGEngineInterface;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class DisplayPath extends JGObject{
 
     private static final int PATH_COLID=2;

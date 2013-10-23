@@ -6,6 +6,9 @@ import controller.Controller;
 import jgame.JGColor;
 import viewer.Panel;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class TurtleImageButton extends SelectableListButton {
     private static final String BUTTON_TITLE="Set Turtle Image";
     private static final String DIALOG_MESSAGE="Please select a turtle image";

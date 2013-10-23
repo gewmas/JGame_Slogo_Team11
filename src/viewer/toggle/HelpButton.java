@@ -6,6 +6,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import controller.Controller;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class HelpButton extends Button {
 
     private static final String LABEL="Help";

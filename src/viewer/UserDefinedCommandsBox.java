@@ -12,6 +12,9 @@ import javax.swing.JScrollPane;
 import model.expression.Expression;
 import model.expression.NumberExpression;
 
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class UserDefinedCommandsBox extends Panel {
     private static final JLabel HEADER=new JLabel("User Defined Functions");
     protected JLabel myVariables;

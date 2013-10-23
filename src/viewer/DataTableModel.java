@@ -2,7 +2,9 @@ package viewer;
 
 import javax.swing.table.DefaultTableModel;
 
-
+/**
+ * @author FrontEnd - Alex, Adam
+ */
 public class DataTableModel extends DefaultTableModel{
     
 	/**
