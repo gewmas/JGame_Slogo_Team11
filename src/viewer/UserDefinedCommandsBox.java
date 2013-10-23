@@ -19,6 +19,9 @@ public class UserDefinedCommandsBox extends Panel {
     protected DefaultListModel myListModel;
     protected JScrollPane myScrollPane;
     
+    /**
+     * UserDefinedCommandsBox is a GUI element where users can see the names of previously defined functions
+     */
     public UserDefinedCommandsBox(int width, int height){
         super(width,height);
         myListModel=new DefaultListModel();

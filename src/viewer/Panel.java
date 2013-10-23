@@ -15,6 +15,9 @@ public class Panel extends JPanel {
 	protected List<JComponent> componentList;
 	protected LayoutManager layout;
 	
+	/**
+	 * Panel extends JPanel to make our use of this concept more easily compatible with our SLogo program
+	 */
 	public Panel(){
 	    this(new FlowLayout());
 	}

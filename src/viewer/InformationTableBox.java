@@ -22,6 +22,10 @@ public class InformationTableBox extends EditableListTable {
     protected JLabel myVariables;
     protected DefaultListModel myListModel;
     
+    /**
+     * InformationTableBox is a table that displays information about a turtle in the display
+     * You can change which turtle you are viewing information for with the DataPopupButton
+     */
     public InformationTableBox(int width, int height){
         super(width,height,COLUMNNAMES);
         myListModel=new DefaultListModel();
