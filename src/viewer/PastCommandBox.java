@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.ListModel;
 import controller.Controller;
 
 /**
@@ -21,7 +22,7 @@ public class PastCommandBox extends Panel{
 	
     private static final String WELCOME="Welcome to SLOGO!";
     JList myPastCommandJList;
-    DefaultListModel myListModel;
+    ListModel myListModel;
     List<String> myPastCommands;
     JScrollPane myCommandPane;
     Controller myController;
@@ -40,23 +41,24 @@ public class PastCommandBox extends Panel{
             public void mousePressed(MouseEvent commandClicked){
                 int selectedIndex=myPastCommandJList.getSelectedIndex();
                 if (selectedIndex>0){
-                    myController.addCommand((String) myListModel.get(selectedIndex));
+                    myController.addCommand((String) ((DefaultListModel) myListModel).get(selectedIndex));
                 }
             }
         });
         add(myPastCommandJList);
         myPastCommands=new ArrayList<String>();
-        myListModel.addElement(WELCOME);
+        // Always display the welcome
+        ((DefaultListModel) myListModel).addElement(WELCOME);
         myCommandPane=new JScrollPane(myPastCommandJList);
         myCommandPane.setPreferredSize(new Dimension(width,height-5));
         add(myCommandPane);
     }
     
     public void updateCommands(List<String> commands){
-        myListModel.clear();
-        myListModel.addElement(WELCOME);
+        ((DefaultListModel) myListModel).clear();
+        ((DefaultListModel) myListModel).addElement(WELCOME);
         for (String command:commands){
-            myListModel.addElement(command);
+            ((DefaultListModel) myListModel).addElement(command);
         }
     }
 }

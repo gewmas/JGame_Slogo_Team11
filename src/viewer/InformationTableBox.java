@@ -42,7 +42,6 @@ public class InformationTableBox extends EditableListTable {
     public void setTable(String turtlenum,String x, String y, String dir, String penup){
         turtleParameters=new String[]{turtlenum,x,y,dir,penup};
         for (int i=0;i<turtleParameters.length;i++){
-//            System.out.println(turtleParameters[i]);
             myTableModel.setValueAt(turtleParameters[i], i, DATA_COLUMN);
         }
     }

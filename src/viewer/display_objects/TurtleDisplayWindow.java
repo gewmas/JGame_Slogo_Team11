@@ -4,6 +4,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import viewer.InformationTableBox;
 import controller.Controller;
 import controller.Turtle;
@@ -26,17 +27,18 @@ import jgame.platform.JGEngine;
  * @author FrontEnd - Alex, Adam
  */
 public abstract class TurtleDisplayWindow extends JGEngine {
-	protected static final int ZERO_OFFSET=50;
+    protected static final int ZERO_OFFSET=50;
     private static final int NUM_TILES_WIDTH=20;
     private static final int NUM_TILES_HEIGHT=20;
     private static final int NUM_GRID_X=20;
     private static final int NUM_GRID_Y=20;
+    private static final String GRAPHICS_LINK="turtle_pics.tbl";
     
     protected List<DisplayPath> myPaths;
     protected double myWidth, myHeight;
     protected Controller myController;
-    protected HashMap<String, DisplayTurtle> myActiveTurtles;
-    protected HashMap<String, Integer> myTurtleCommandNumbers;
+    protected Map<String, DisplayTurtle> myActiveTurtles;
+    protected Map<String, Integer> myTurtleCommandNumbers;
     protected DisplayGrid myGrid;
     protected JGColor myPenColor;
     protected boolean myHighlightTurtles;
@@ -88,10 +90,9 @@ public abstract class TurtleDisplayWindow extends JGEngine {
             35,// 35 = frame rate, 35 frames per second
             2  //  2 = frame skip, skip at most 2 frames before displaying
         );
-        defineMedia("turtle_pics.tbl");
+        defineMedia(GRAPHICS_LINK);
         myPenColor=JGColor.black;
         myPaths=new ArrayList<DisplayPath>();
-        Point2D thispoint=getDisplayCoordinates(0,0);
         myActiveTurtles=new HashMap<String,DisplayTurtle>();
         myTurtleCommandNumbers=new HashMap<String,Integer>();
         myGrid=new DisplayGrid((int)(myWidth),(int)(myHeight),NUM_GRID_X,NUM_GRID_Y);
@@ -101,6 +102,7 @@ public abstract class TurtleDisplayWindow extends JGEngine {
         myTurtleImageNumber=1;
     }
         
+    // Clears the screen of turtles, run when the user runs the clearscreen command
     public void clearScreen(){
         Point2D origin=getDisplayCoordinates(0,0);
         if(myPaths == null) return;
@@ -113,37 +115,9 @@ public abstract class TurtleDisplayWindow extends JGEngine {
             turtle.remove();
         }
         myActiveTurtles.clear();
-        System.out.println("");
     }
-        
-//        public void addPath(double x1, double y1, double x2, double y2,double size){
-//            myPaths.add(new DisplayPath(x1,y1,x2,y2,size,myPenColor));
-//        }
-//        
-//        public void setBackGroundColor(JGColor color){
-//            setBGColor(color);
-//        }
-//        
-//        public void setPenColor(JGColor color){
-//            myPenColor=color;
-//        }
-//        
-//        public void setPenSize(double pensize){
-//            myPenSize=pensize;
-//        }
-//        
-//        public void toggleGrid(){
-//            myGrid.toggleOn();
-//        }
-//        
-//        public void toggleHighLightTurtles(){
-//            myHighlightTurtles=!myHighlightTurtles;
-//        }
-//        
-//        public void setTrackedTurtle(String turtleNum){
-//            myTrackedTurtle=turtleNum;
-//        }
-        
+     
+    // Converts coordinates from the model into coordinates in the game frame (origin in the center)    
     protected Point2D getDisplayCoordinates(double x, double y){
         return new Point2D.Double(myWidth/2+x,-y+myHeight-ZERO_OFFSET);
     }
@@ -155,19 +129,8 @@ public abstract class TurtleDisplayWindow extends JGEngine {
             myActiveTurtles.put(id, new DisplayTurtle(x, y,direction,myTurtleImageNumber));
         }
     }
-        
-//        public void setTurtleImageNumber(int imageNum){
-//            for (DisplayTurtle turtle:myActiveTurtles.values()){
-//                turtle.setImageNumber(imageNum);
-//                turtle.setRotation(turtle.getRotation());
-//            }
-//        }
-//        
-//        public int getTurtleImageNumber() {
-//            System.out.println(myActiveTurtles.get("1").toString());
-//        	return myActiveTurtles.get("1").getImageNumber();
-//        }
 
+    // Gets the list of turtles from the controller and draws new ones only
     private void drawTurtle(){
         try {
         	for (Turtle turtle : myController.getTurtles()) {
@@ -206,9 +169,11 @@ public abstract class TurtleDisplayWindow extends JGEngine {
                     }
                 }
             }
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
         
+    // Updates the GUI table for turtle data
     public void updateDataTable(TurtleCommand turtle){
         if (turtle!=null){
             myInfoTable.setTable(myTrackedTurtle,String.valueOf(turtle.getX()), String.valueOf(turtle.getY()),

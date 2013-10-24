@@ -18,6 +18,11 @@ public class DisplayGrid extends JGObject{
     protected int myVerticalSeparation;
     protected JGEngineInterface myEngine;
     
+    /**
+     * DisplayGrid is the game overlay that draws a grid when it is set. The grid is toggled by 
+     * suspending and resuming it.
+     */
+    
     public DisplayGrid(int displayWidth, int displayHeight,int numHorizontal, int numVertical){
         super("Grid", true, displayWidth/2, displayHeight/2, GRID_COLID,null);
         myDisplayWidth=displayWidth;

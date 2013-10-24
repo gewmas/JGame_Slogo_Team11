@@ -62,6 +62,7 @@ public class TestViewer {
            if (paramReference!=null) {
                turtleParameters=paramReference.clone();
            }
+           System.out.println(turtleParameters);
         }
         return turtleParameters;
     }

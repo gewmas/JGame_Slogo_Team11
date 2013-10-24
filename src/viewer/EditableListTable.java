@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,7 +21,7 @@ public abstract class EditableListTable extends Panel {
     protected DefaultTableModel myTableModel;
     protected JScrollPane myScrollPane;
     protected String[] myColumnNames;
-    protected HashMap<String,Double> myElements;
+    protected Map<String,Double> myElements;
     
     /**
      * EditableListTable is a type of table where users can edit values in the list manually
@@ -32,6 +33,7 @@ public abstract class EditableListTable extends Panel {
         super(width,height);
         myElements=new HashMap<String,Double>();
         myElementTable=new JTable(){
+            // We override this class so that elements can be deselected (remove the highlight)
             @Override  
             public void changeSelection(int rowIndex, int columnIndex,  
                     boolean toggle, boolean extend) {  

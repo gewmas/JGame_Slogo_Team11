@@ -6,7 +6,7 @@ import jgame.impl.JGEngineInterface;
 /**
  * @author FrontEnd - Alex, Adam
  */
-public class DisplayRect extends JGObject {
+public class DisplayHighlightRect extends JGObject {
 	
     private static final String RECTANGLE_NAME="turtle_rect";
     private static final int RECTANGLE_COLID=1;
@@ -17,7 +17,12 @@ public class DisplayRect extends JGObject {
     protected double myHeight;
     protected DisplayTurtle myTurtle;
 
-    public DisplayRect (double x, double y,double width, double height, DisplayTurtle turtle) {
+    /**
+     * DisplayHighlightRect is a in game JGObject used to highlight turtles when the option to highlight
+     * the active turtle is selected. It is turned on and off by suspending and resuming the object.
+     */
+    
+    public DisplayHighlightRect (double x, double y,double width, double height, DisplayTurtle turtle) {
         super(RECTANGLE_NAME, true, x, y, RECTANGLE_COLID, null);
         myTurtle=turtle;
         myEngine=eng;

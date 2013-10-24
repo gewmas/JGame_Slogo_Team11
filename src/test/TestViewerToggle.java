@@ -22,7 +22,7 @@ import viewer.toggle.PenColorButton;
 import viewer.toggle.RedoButton;
 import viewer.toggle.SavePreferencesButton;
 import viewer.toggle.SetLanguageButton;
-import viewer.toggle.Toggles;
+import viewer.toggle.ToggleBox;
 import viewer.toggle.TurtleImageButton;
 import viewer.toggle.UndoButton;
 import viewer.toggle.WorkspaceButton;
@@ -31,7 +31,7 @@ import controller.Controller;
 public class TestViewerToggle extends TestCase {
 
 	Controller controller; 
-	Toggles toggles;
+	ToggleBox toggles;
 	public static final int WORKSPACE_BUTTON = 0;
 	public static final int BACKGROUND_COLOR_BUTTON = 1;
 	public static final int TURTLE_IMAGE_BUTTON = 2;

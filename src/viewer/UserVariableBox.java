@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -23,10 +24,11 @@ import model.expression.NumberExpression;
 public class UserVariableBox extends EditableListTable{
 	
     protected static final String[] COLUMNNAMES={"Variable","Value"};
+    // Stores the variable command to tell the model to set a variable
     protected static final String SET_VARIABLE_COMMAND="MakeVariable";
     protected JLabel myVariables;
     protected JList myVariableNameList, myVariableValueList;
-    protected HashMap<String, Integer> myVariablePositions;
+    protected Map<String, Integer> myVariablePositions;
     protected Controller myController;
     protected boolean update;    
     
@@ -62,11 +64,10 @@ public class UserVariableBox extends EditableListTable{
         myTableModel.addTableModelListener(new TableModelListener(){
             public void tableChanged(TableModelEvent e){
                 if (update){
-                    String moveCommand=myController.getLanguageMessages().getString(SET_VARIABLE_COMMAND);
+                    String moveCommand=myController.getLanguageMessages().getString(SET_VARIABLE_COMMAND).split(",")[0];
                     for (int i=e.getFirstRow();i<=e.getLastRow();i++){
-                        System.out.println("Change!");
                         myController.interpretCommand(moveCommand+
-                                myTableModel.getValueAt(i, 0)+" "+myTableModel.getValueAt(i,1));
+                                " :"+myTableModel.getValueAt(i, 0)+" "+myTableModel.getValueAt(i,1));
                     }
                 }
             }

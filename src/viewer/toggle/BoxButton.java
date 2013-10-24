@@ -9,13 +9,13 @@ import viewer.Panel;
  * @author FrontEnd - Alex, Adam
  */
 public class BoxButton extends Button {
-	
+
     private static final String LABEL="Highlight Active Turtles";
-    
-	/**
-	 * BoxButton is a GUI button for users to highlight active turtles
-	 * @param controller is the controller between model and view (MVC)
-	 */
+
+    /**
+     * BoxButton is a GUI button for users to highlight active turtles
+     * @param controller is the controller between model and view (MVC)
+     */
     public BoxButton(Controller controller) {
         super(LABEL, controller);
     }
@@ -24,5 +24,5 @@ public class BoxButton extends Button {
     public void buttonPushed() {
         myController.toggleHighlightTurtles();
     }
-	
+
 }

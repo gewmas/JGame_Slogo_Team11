@@ -17,6 +17,11 @@ public class DisplayPath extends JGObject{
     protected double myStartX,myStartY,myEndX,myEndY;
     protected double myPenSize;
     
+    /**
+     * DisplayPath is an in game object that represents the path drawn by the turtle as it moves.
+     * The path should only be created if the pen is set to down.
+     */
+    
     public DisplayPath (double x1,double y1,double x2,double y2,double pensize,JGColor color) {
         super(DISPLAY_PATH_NAME, true, x1, y1, PATH_COLID,null);
         myColor=color;

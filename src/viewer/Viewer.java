@@ -13,7 +13,8 @@ import jgame.JGPoint;
  * @author FrontEnd - Alex, Adam
  */
 public abstract class Viewer extends Frame {
-	
+    private static final int[] MAIN=new int[]{800,800};
+    
     protected Panel myMainPanel;
     
     /**
@@ -23,7 +24,7 @@ public abstract class Viewer extends Frame {
     public Viewer() {
         super();
         setLayout(new FlowLayout());
-        myMainPanel = new Panel();
+        myMainPanel = new Panel(MAIN[0],MAIN[1]);
         getContentPane().add(myMainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

@@ -22,7 +22,7 @@ import viewer.display_objects.TurtleDisplayWindow;
 /**
  * @author FrontEnd - Alex, Adam
  */
-public class Toggles extends Panel {
+public class ToggleBox extends Panel {
 	
     protected List<Button> buttonList;
     private JGColor backgroundColor;
@@ -32,10 +32,10 @@ public class Toggles extends Panel {
     private boolean gridOn;
     
 	/**
-	 * Toggles is the GUI box in the bottom right of our display
+	 * ToggleBox is the GUI box in the bottom right of our display
 	 * This panel contains all clickable buttons defined in this package
 	 */
-    public Toggles(int width, int height, Controller controller){
+    public ToggleBox(int width, int height, Controller controller){
         super(width,height);
         setBorder(BorderFactory.createLineBorder(Color.black));
         this.setName("Togggle Controls");

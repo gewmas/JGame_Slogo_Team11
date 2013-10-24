@@ -15,15 +15,24 @@ import jgame.JGPoint;
 import controller.Controller;
 import viewer.display_objects.DefaultTurtleDisplayWindow;
 import viewer.display_objects.TurtleDisplayWindow;
-import viewer.toggle.Toggles;
+import viewer.toggle.ToggleBox;
 
 /**
  * @author FrontEnd - Alex, Adam
  */
 public class SLogoViewer extends Viewer{
-    private static int DISPLAY_WIDTH=600;
-    private static int DISPLAY_HEIGHT=600;
-
+    // All panel sizes are stored here
+    private static final int[] LEFT=new int[]{600,800};
+    private static final int[] RIGHT=new int[]{200,800};
+    
+    private static final int[] INFOBOX=new int[]{200,100};
+    private static final int[] USERVARBOX=new int[]{200,160};
+    private static final int[] USERCOMMBOX=new int[]{200,160};
+    private static final int[] DISPLAYBOX=new int[]{600,600};
+    private static final int[] PASTCOMMBOX=new int[]{600,140};
+    private static final int[] TOGGLEBOX=new int[]{200,340};
+    private static final int[] COMMENTRYBOX=new int[]{600,30};
+    
     protected Panel myLeftPanel;
     protected Panel myRightPanel;
     protected TurtleDisplayWindow myTurtleDisplay;
@@ -31,37 +40,31 @@ public class SLogoViewer extends Viewer{
     protected UserDefinedCommandsBox myUserCommandsBox;
     protected UserVariableBox myUserVariableBox;
     protected InformationTableBox myInformationTableBox;
-    protected Toggles myToggles;
-
+    protected ToggleBox myToggles;
+    
     /**
      * SLogoViewer is our container GUI class. This class holds all GUI elements for user interaction
      * @param controller is the controller between view and model (MVC)
      */
     public SLogoViewer(Controller controller){
         super();
-        myLeftPanel=new Panel();
-        myRightPanel=new Panel();
-        myLeftPanel.setPreferredSize(new Dimension(600,800));
-        myRightPanel.setPreferredSize(new Dimension(200,800));
-        myMainPanel.setPreferredSize(new Dimension(800,800));
-        FlowLayout myFlow = new FlowLayout();
-        myFlow.setAlignment(FlowLayout.LEADING);
-        myFlow.setHgap(0);
-        myFlow.setVgap(0);
+        myLeftPanel=new Panel(LEFT[0],LEFT[1]);
+        myRightPanel=new Panel(RIGHT[0],RIGHT[1]);
         myMainPanel.setLayout(new BorderLayout());
         myMainPanel.add(myLeftPanel, BorderLayout.WEST);
         myMainPanel.add(myRightPanel, BorderLayout.EAST);
 
         setTitle("SLogo");
-        myInformationTableBox=new InformationTableBox(200,110);
-        myUserVariableBox=new UserVariableBox(200,160,controller);
-        myUserCommandsBox = new UserDefinedCommandsBox(200,160);
-        myTurtleDisplay=new DefaultTurtleDisplayWindow(new JGPoint(DISPLAY_WIDTH-10,DISPLAY_HEIGHT-10), controller,myInformationTableBox);
-        myPastCommandBox=new PastCommandBox(600,140,controller);
-        myToggles = new Toggles(200,340,controller);
-        myLeftPanel.add(new DisplayBox(DISPLAY_WIDTH,DISPLAY_HEIGHT,myTurtleDisplay,controller));
+        myInformationTableBox=new InformationTableBox(INFOBOX[0],INFOBOX[1]);
+        myUserVariableBox=new UserVariableBox(USERVARBOX[0],USERVARBOX[1],controller);
+        myUserCommandsBox = new UserDefinedCommandsBox(USERCOMMBOX[0],USERCOMMBOX[1]);
+        myTurtleDisplay=new DefaultTurtleDisplayWindow(new JGPoint(DISPLAYBOX[0]-10,DISPLAYBOX[1]-10), controller,myInformationTableBox);
+        myPastCommandBox=new PastCommandBox(PASTCOMMBOX[0],PASTCOMMBOX[1],controller);
+        myToggles = new ToggleBox(TOGGLEBOX[0],TOGGLEBOX[1],controller);
+        
+        myLeftPanel.add(new DisplayBox(DISPLAYBOX[0],DISPLAYBOX[1],myTurtleDisplay,controller));
         myLeftPanel.add(myPastCommandBox);
-        myLeftPanel.add(new CommandEntryBox(600,30,myPastCommandBox,controller));
+        myLeftPanel.add(new CommandEntryBox(COMMENTRYBOX[0],COMMENTRYBOX[1],myPastCommandBox,controller));
         
         myRightPanel.add(myInformationTableBox);
         myRightPanel.add(myUserVariableBox);
@@ -71,6 +74,8 @@ public class SLogoViewer extends Viewer{
         setVisible(true);
     }
 
+    // Methods to interact with the JGame class
+    
     public void setBackgroundColor (JGColor backgroundColor) {
         ((DefaultTurtleDisplayWindow) myTurtleDisplay).setBackGroundColor(backgroundColor);;
     }
@@ -78,10 +83,6 @@ public class SLogoViewer extends Viewer{
     public void setPenColor (JGColor penColor) {
         ((DefaultTurtleDisplayWindow) myTurtleDisplay).setPenColor(penColor);
     }
-    
-//    public void setPenSize (double pensize) {
-//        myTurtleDisplay.setPenSize(pensize);
-//    }
 
     public void toggleGrid(){
         ((DefaultTurtleDisplayWindow) myTurtleDisplay).toggleGrid();
@@ -124,6 +125,7 @@ public class SLogoViewer extends Viewer{
         myUserCommandsBox.clearFunctionList();
     }
     
+    // All methods below this are for testing purposes only
     public String[] getTurtleParameters() {
         return myInformationTableBox.getTurtleParameters();
     }
@@ -136,7 +138,7 @@ public class SLogoViewer extends Viewer{
     	return this.myLeftPanel;
     }
     
-    public Toggles getToggles() {
+    public ToggleBox getToggles() {
     	return this.myToggles;
     }
     

@@ -14,14 +14,14 @@ import viewer.Panel;
  * @author FrontEnd - Alex, Adam
  */
 public class DataPopupButton extends SelectableListButton {
-	
+
     private static final String LABEL="View Data";
     private static final String DIALOG_MESSAGE="Please select a turtle to monitor";
-    
-	/**
-	 * DataPopupButton is a GUI button for users to change which turtle they view data for in the data box (top right)
-	 * @param controller is the controller between model and view (MVC)
-	 */
+
+    /**
+     * DataPopupButton is a GUI button for users to change which turtle they view data for in the data box (top right)
+     * @param controller is the controller between model and view (MVC)
+     */
     public DataPopupButton(Controller controller) {
         super(new String[] {}, LABEL,DIALOG_MESSAGE, controller);
     }
@@ -40,5 +40,5 @@ public class DataPopupButton extends SelectableListButton {
             myController.setTrackedTurtle((String) myListModel.get(myList.getSelectedIndex()));
         }
     }
-    
+
 }
