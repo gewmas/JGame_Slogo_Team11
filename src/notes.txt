@@ -1,4 +1,3 @@
 SAVEPREFS command should take 
-Set language method in controller doesn't seem to work
 TELL [ 1 2 ] with multiple turtles doesn't work, it gets turtles 1 and ]
 Not all errors are caught, I get massive errors when I try telleven and there is a turtle named ] in game

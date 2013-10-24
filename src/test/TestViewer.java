@@ -106,9 +106,14 @@ public class TestViewer {
         // Test that the turtle is created correctly
         String[] lastParam=assertCorrectDisplayTurtle(new String[]{});
         String command="fd 100";
+        //Test turtle movement
         controller.addCommand(command);
         lastParam=assertCorrectDisplayTurtle(lastParam);
+        //Test turtle rotation
         controller.addCommand("rt 90");
+        lastParam=assertCorrectDisplayTurtle(lastParam);
+        //Test turtle pen
+        controller.addCommand("penup");
         lastParam=assertCorrectDisplayTurtle(lastParam);
     }
 }
